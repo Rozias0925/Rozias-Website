@@ -1,15 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[你的姓名] | 個人網站</title>
+    <title>Rozias | 個人網站</title>
+    <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* 全局設定與黑白灰色彩計畫 */
         :root {
-            --bg-color: #ffffff;
+            --bg-color: #fafafa;
+            --card-bg: #ffffff;
             --text-color: #222222;
-            --gray-light: #f5f5f5;
+            --gray-light: #eeeeee;
             --gray-medium: #888888;
             --black: #000000;
         }
@@ -34,20 +38,20 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             border-bottom: 1px solid var(--gray-light);
             z-index: 1000;
             display: flex;
             justify-content: center;
-            padding: 20px 0;
-            transition: all 0.3s ease;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
 
         nav a {
             color: var(--text-color);
             text-decoration: none;
             margin: 0 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             transition: color 0.3s ease;
@@ -57,84 +61,150 @@
             color: var(--gray-medium);
         }
 
-        /* 區塊共用設定 */
-        section {
-            padding: 120px 20px 80px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* 首頁橫幅 (Hero Section) */
+        /* 首頁橫幅 (Banner) */
         #home {
-            height: 100vh;
+            height: 55vh; 
+            margin-top: 50px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             background-color: var(--black);
-            color: var(--bg-color);
             max-width: 100%;
             padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+            /* 背景微網點維持 */
+            background-image:radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+
+            background-repeat: repeat;
+            background-size: 30px 30px;
+            background-position: 0 0;
         }
 
-        #home h1 {
+        /* --- 銳利版：數學幾何流線 --- */
+        .banner-wave {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 100%;
+            max-height: 500px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .banner-wave-left { left: 0; }
+        .banner-wave-right { right: 0; transform: translateY(-50%) scaleX(-1); }
+
+        /* --- 高清名字層次排版 --- */
+        #home .name-zh {
             font-size: 3.5rem;
+            letter-spacing: 16px;
+            font-weight: 300;
+            margin-bottom: 5px;
+            color: #FFFFFF; /* 極致純白 */
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.4); /* 加入高級微光暈 */
+            z-index: 1;
+            margin-right: -16px; 
+        }
+
+        #home .name-en {
+            font-size: 1.2rem;
             letter-spacing: 5px;
             font-weight: 300;
-            margin-bottom: 10px;
+            color: #E0E0E0; /* 鈦銀灰 */
+            margin-bottom: 8px;
+            z-index: 1;
         }
 
-        #home p {
-            color: var(--gray-medium);
-            font-size: 1.2rem;
-            letter-spacing: 2px;
+        #home .title {
+            color: #BBBBBB;
+            font-size: 1rem;
+            letter-spacing: 6px;
+            z-index: 1;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* --- 內容區塊 (純白卡片設計) --- */
+        .content-box {
+            background-color: var(--card-bg);
+            padding: 80px 60px;
+            max-width: 850px;
+            margin: 60px auto; 
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03); 
+            border: 1px solid rgba(0,0,0,0.02);
+            z-index: 1; /* 確保卡片在背景葉片之上 */
         }
 
         /* 標題設計 */
         h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 400;
             letter-spacing: 3px;
-            margin-bottom: 40px;
-            border-bottom: 2px solid var(--black);
-            padding-bottom: 10px;
+            margin-bottom: 50px;
+            position: relative;
+            padding-left: 20px;
             display: inline-block;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 6px;
+            height: 100%;
+            background-color: var(--black);
         }
 
         /* 照片預留區塊 */
         .image-placeholder {
             width: 100%;
-            height: 400px;
-            background-color: var(--gray-light);
+            height: 350px;
+            background-color: #fcfcfc;
             display: flex;
             justify-content: center;
             align-items: center;
             color: var(--gray-medium);
-            margin-bottom: 30px;
-            border: 1px dashed #ccc;
+            margin-bottom: 40px;
+            border: 1px solid var(--gray-light);
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.02) 10px, rgba(0,0,0,0.02) 20px);
         }
 
-        /* 如果你有真實照片，可以將其設定為 img 的樣式 */
-        img.profile-pic {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            display: block;
-            margin: 0 auto 30px;
-            filter: grayscale(100%); /* 照片預設轉為灰階，保持時尚感，可刪除此行恢復彩色 */
-            transition: filter 0.5s ease;
-        }
-        
-        img.profile-pic:hover {
-            filter: grayscale(0%);
-        }
-
-        /* 項目列表設計 (學歷、榮譽、研究) */
+        /* 項目列表設計 (時間軸樣式) */
         .list-item {
-            margin-bottom: 30px;
-            border-left: 2px solid var(--gray-light);
-            padding-left: 20px;
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .list-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            background-color: var(--card-bg);
+        }
+
+        .list-item::after {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 25px;
+            width: 2px;
+            height: calc(100% + 15px);
+            background-color: var(--gray-light);
+        }
+
+        .list-item:last-child::after {
+            display: none;
         }
 
         .list-item h3 {
@@ -145,24 +215,172 @@
 
         .list-item .meta {
             color: var(--gray-medium);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
         }
 
-        /* 頁尾 */
+        /* 頁尾與聯絡資訊 */
         footer {
             background-color: var(--black);
             color: var(--gray-medium);
+            padding: 70px 20px 40px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden; /* 確保角落的裝飾圖案不會超出框線 */
+        }
+
+        /* --- Footer 角落原創點陣螺旋裝飾 --- */
+        .footer-corner-bg {
+            position: absolute;
+            z-index: -1;
+            pointer-events: none;
+            width: 300px;
+            height: 300px;
+            opacity: 0.8;
+        }
+
+        /* 移至左上角，並旋轉 90 度讓圖案從角落往內延伸 */
+        .footer-corner-top-left {
+            top: 0;
+            left: 0;
+            transform: rotate(0deg); 
+        }
+
+        /* 移至右下角，並旋轉 -90 度讓圖案從角落往內延伸 */
+        .footer-corner-bottom-right {
+            bottom: 0;
+            right: 0;
+            transform: rotate(180deg); 
+        }
+
+        .footer-content {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        /* 左右分欄排版 - 讓個資與 QR Code 靠攏 */
+        .footer-info {
+            display: flex;
+            justify-content: center; /* 將原本的 space-between 改為 center，讓內容向中間靠攏 */
+            align-items: center;
+            gap: 80px; /* 這裡控制文字與 QR Code 之間的距離，覺得太近或太遠可以修改這個數值 */
+            margin-bottom: 40px;
+            flex-wrap: wrap; 
+        }
+
+        .contact-details {
+            text-align: left;
+        }
+
+        .contact-details p {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* 社群連結排版 */
+        .social-links {
+            margin: 20px 0 0 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+        }
+
+        .social-links .divider {
+            color: #444444;
+            font-size: 1.1rem;
+        }
+
+        /* 放大的 QR Code 排版在右側 */
+        .qr-box {
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            transition: transform 0.4s ease;
+        }
+
+        .qr-box img {
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+
+        .qr-box:hover {
+            transform: scale(1.05);
+        }
+
+        .copyright {
             text-align: center;
-            padding: 40px 20px;
             font-size: 0.8rem;
+            color: #555555;
+            border-top: 1px solid #333333;
+            padding-top: 25px;
+            margin-top: 20px;
+        }
+
+        /* 手寫字體樣式 */
+        .handwriting {
+            font-family: 'Klee One', cursive, sans-serif;
+            font-size: 1.15rem; /* 手寫字通常比較細，可以稍微放大一點 */
+            line-height: 2;     /* 增加行距讓畫面更透氣 */
+            color: #333333;     /* 用深灰色取代純黑，讓手寫感更柔和 */
             letter-spacing: 1px;
         }
 
-        /* --- 滑動顯示特效 (CSS 配合 JS) --- */
+        /* 專案連結樣式 (極簡文字風) */
+        .project-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-color);
+            text-decoration: none;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 2px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--gray-medium);
+            border-bottom-color: var(--gray-medium);
+        }
+
+        @media (max-width: 650px) {
+            .footer-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 35px;
+            }
+            .contact-details {
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        /* --- 滑動顯示特效 --- */
         .fade-in {
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(30px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
@@ -170,120 +388,300 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* --- 手繪感植物線條背景設定 --- */
+        .organic-bg {
+            position: fixed;
+            z-index: -2;
+            opacity: 0.08; /* 極低透明度，增加柔和感 */
+            pointer-events: none; /* 避免擋住滑鼠點擊 */
+        }
+        
+        .organic-top-left {
+            top: 10%;
+            left: -5%;
+            width: 45vw;
+            max-width: 500px;
+        }
+
+        .organic-bottom-right {
+            bottom: -5%;
+            right: -5%;
+            width: 45vw;
+            max-width: 500px;
+            transform: rotate(180deg); /* 翻轉放置於右下角 */
+        }
     </style>
 </head>
+
 <body>
 
-    <!-- 頂部導覽列 -->
+    <!-- 原創設計：柔和的手繪感植物線條 (左上) -->
+    <svg class="organic-bg organic-top-left" viewBox="0 0 500 700" fill="none" stroke="#000000" xmlns="http://www.w3.org/2000/svg">
+        <!-- 主枝幹 -->
+        <path d="M-50,0 C100,100 250,300 200,700" stroke-width="3" stroke-linecap="round"/>
+        <!-- 葉片 1 (大) -->
+        <path d="M40,90 C120,40 220,90 230,180 C160,190 60,160 40,90 Z" stroke-width="1.5"/>
+        <path d="M40,90 C110,110 160,140 230,180" stroke-width="1"/> <!-- 葉脈 -->
+        <path d="M80,110 C120,95 150,110 180,135" stroke-width="0.8"/>
+        <!-- 葉片 2 -->
+        <path d="M125,240 C210,190 310,240 330,330 C260,340 150,320 125,240 Z" stroke-width="1.5"/>
+        <path d="M125,240 C190,260 250,290 330,330" stroke-width="1"/>
+        <path d="M170,260 C210,250 240,265 280,295" stroke-width="0.8"/>
+        <!-- 葉片 3 (稍小) -->
+        <path d="M185,420 C270,390 350,450 340,540 C270,530 180,490 185,420 Z" stroke-width="1.5"/>
+        <path d="M185,420 C240,450 280,490 340,540" stroke-width="1"/>
+        <!-- 散落的柔和曲線 (增加點綴) -->
+        <path d="M280,100 C350,150 320,250 400,280" stroke-width="1" stroke-dasharray="4 4"/>
+        <path d="M380,450 C450,420 480,500 450,580" stroke-width="1"/>
+    </svg>
+
+    <!-- 原創設計：柔和的手繪感植物線條 (右下) -->
+    <svg class="organic-bg organic-bottom-right" viewBox="0 0 500 700" fill="none" stroke="#000000" xmlns="http://www.w3.org/2000/svg">
+        <path d="M-50,0 C100,100 250,300 200,700" stroke-width="3" stroke-linecap="round"/>
+        <path d="M40,90 C120,40 220,90 230,180 C160,190 60,160 40,90 Z" stroke-width="1.5"/>
+        <path d="M40,90 C110,110 160,140 230,180" stroke-width="1"/>
+        <path d="M80,110 C120,95 150,110 180,135" stroke-width="0.8"/>
+        <path d="M125,240 C210,190 310,240 330,330 C260,340 150,320 125,240 Z" stroke-width="1.5"/>
+        <path d="M125,240 C190,260 250,290 330,330" stroke-width="1"/>
+        <path d="M170,260 C210,250 240,265 280,295" stroke-width="0.8"/>
+        <path d="M185,420 C270,390 350,450 340,540 C270,530 180,490 185,420 Z" stroke-width="1.5"/>
+        <path d="M185,420 C240,450 280,490 340,540" stroke-width="1"/>
+        <path d="M280,100 C350,150 320,250 400,280" stroke-width="1" stroke-dasharray="4 4"/>
+    </svg>
+
     <nav>
-        <a href="#home">Home</a>
+        <a href="#">Home</a>
         <a href="#about">About</a>
         <a href="#education">Education</a>
         <a href="#research">Research</a>
         <a href="#honors">Honors</a>
+        <a href="#contact">Contact</a> <!-- 新增這行 -->
     </nav>
 
-    <!-- 首頁區塊 -->
     <section id="home">
-        <h1 class="fade-in">[你的姓名]</h1>
-        <p class="fade-in">[你的專業抬頭，例如：Researcher / Designer / Developer]</p>
+        <!-- 左側：數學幾何流線 -->
+        <svg class="banner-wave banner-wave-left" viewBox="0 0 200 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="sharpGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0" />
+                    <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+                </linearGradient>
+            </defs>
+            <path d="M-50,500 C50,350 150,250 100,0" stroke="url(#sharpGrad)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M-50,400 C80,300 120,150 50,0" stroke="url(#sharpGrad)" stroke-width="1" stroke-linecap="round"/>
+            <path d="M-50,300 C100,220 80,80 0,0" stroke="url(#sharpGrad)" stroke-width="0.5" stroke-linecap="round"/>
+        </svg>
+
+        <!-- 右側：數學幾何流線 (鏡像) -->
+        <svg class="banner-wave banner-wave-right" viewBox="0 0 200 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M-50,500 C50,350 150,250 100,0" stroke="url(#sharpGrad)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M-50,400 C80,300 120,150 50,0" stroke="url(#sharpGrad)" stroke-width="1" stroke-linecap="round"/>
+            <path d="M-50,300 C100,220 80,80 0,0" stroke="url(#sharpGrad)" stroke-width="0.5" stroke-linecap="round"/>
+        </svg>
+
+        <h1 class="fade-in name-zh">文君豪</h1>
+        <div class="fade-in name-en">Chun-Hao, Wen | Rozias Wen</div>
+        <p class="fade-in title">Data Science / Mathematics</p>
     </section>
 
-    <!-- 簡介區塊 -->
-    <section id="about">
+    <section id="about" class="content-box">
         <h2 class="fade-in">簡介 / ABOUT</h2>
-        
-        <!-- 如果要放照片，可以把下一行取消註解並替換 src 圖片路徑 -->
-        <!-- <img src="your-photo.jpg" alt="Profile Picture" class="profile-pic fade-in"> -->
         
         <div class="image-placeholder fade-in">
             [這裡可以放一張你的形象照]
         </div>
 
-        <p class="fade-in">
-            你好，我是 [你的姓名]。這是一段關於你的簡短自我介紹。你可以寫下你的專業背景、對什麼領域充滿熱情，以及你未來的目標。這段文字可以隨時修改，保持語氣自然且充滿自信。
+        <p class="fade-in handwriting">
+            你好，我是文君豪，目前就讀於國立台灣師範大學數學系。在修習代數學與線性代數的過程中，我培養了對純數學的熱愛與高敏感度。這份熱情驅使我利用暑假期間自修《Galois Theory》，並進一步探索同調代數的廣闊領域。
         </p>
         <br>
-        <p class="fade-in">
-            [這裡可以補充你的次要簡介，例如你的性格特質或是工作哲學。]
+        <p class="fade-in handwriting">
+            在深入純數之際，我修習了「科學計算導論(數值分析)」，恰逢人工智慧崛起的黃金年代。「如何讓無生命的機器學會思考？」這個問題深深吸引了我。憑藉著在代數領域的優勢，我開始從線性代數的角度切入，從研究 Graph Laplacian 開始，並實際著手解決機器學習中的分類問題。
+        </p>
+        <br>
+        <p class="fade-in handwriting">
+            隨後，在「科學計算特論(數值分析特論)」的訓練下，我進一步掌握了以數據為核心、策略性解決問題的思維，正式跨足資料科學與機器學習領域。在參與多場工作坊與學術研討會並獲得肯定後，我更加堅定了朝此方向發展的信心。期許自己能持續將嚴謹的數學邏輯，轉化為解決真實世界問題的演算法，有朝一日在資料科學領域中，開創屬於我的一席之地。
         </p>
     </section>
 
-    <!-- 學歷區塊 -->
-    <section id="education">
-        <h2 class="fade-in">學歷 / EDUCATION</h2>
+    <section id="education" class="content-box">
+        <h2 class="fade-in">學歷與經歷 / EDUCATION & EXPERIENCE</h2>
         
         <div class="list-item fade-in">
-            <h3>[你的最高學歷校系，例如：國立台灣大學 資訊工程學系 碩士]</h3>
-            <div class="meta">[入學年份] – [畢業年份]</div>
-            <p>[這裡可以簡述你在該學位的重點成就或是論文題目]</p>
+            <h3>國立臺灣師範大學 數學系</h3>
+            <div class="meta">學士學位 | 2022-2026</div>
+            <p>※111-2學期因家事休學</p>
         </div>
 
         <div class="list-item fade-in">
-            <h3>[你的次高學歷校系，例如：國立清華大學 物理系 學士]</h3>
-            <div class="meta">[入學年份] – [畢業年份]</div>
-            <p>[如果有參與什麼重要的社團或是專題，也可以寫在這裡]</p>
+            <h3>elevo_艾樂維教育科技股份有限公司</h3>
+            <div class="meta">2023-2024</div>
+            <p>擔任國中及高中數學科講師</p>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>NTNU MATH_教學助理</h3>
+            <div class="meta">2024-2025</div>
+            <p>113-1學期擔任代數學(I)助教，113-2學期擔任代數學(II)、機率導論助教</p>
+            <p>113-1、113-2兩學期皆獲數學系優良教學助理</p>
+
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>NTNU MATH_教學助理</h3>
+            <div class="meta">2025-2026</div>
+            <p>114-1學期擔任線性代數(I)助教，114-2學期擔任數論助教</p>
+            <p>114-1學期獲數學系優良教學助理</p>
+        </div>
+
+    </section>
+
+    <section id="research" class="content-box">
+        <h2 class="fade-in">研究與發表 / RESEARCH</h2>
+        
+        <div class="list-item fade-in">
+            <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
+            <div class="meta">2026 | TWSIAM 台灣工業與應用數學會年會 海報發表</div>
+            <p>
+                以 Stanford Bunny 幾何模型為例說明演算法核心，並將無從證明的社會科學理論（如都市經濟學）融入現代機器學習方法加以實證。後續更將此演算法框架應用於 AI 醫療領域，透過精準辨識腦腫瘤影像，輔助臨床醫師進行診斷，期能有效降低醫療人員的工作負擔。
+            </p>
+            <p style="margin-top: 10px;">
+                第二次研究在演算法中加入特徵提取工程 (Feature Extraction Engineering)，將腦部MRI影像分為腫瘤區與非腫瘤區，後續研究欲引入Dice Coefficient並持續改良，期許未來開發輔助臨床醫師使用。
+            </p>
+            <a href="https://rozias0925.github.io/FY26-TWSIAM-Website/" target="_blank" class="project-link">View Project ↗</a>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
+            <div class="meta">2026 | International Conference on Optimization and Machine Learning 海報發表</div>
+            <p>
+                為克服傳統投資組合易受『假性相關』干擾，以及 HRP 模型受限於歷史價格雜訊的痛點，本研究提出基於圖論架構的 Factor GCN 模型。該演算法透過圖卷積神經網路，將長期基本面因子與短期動能特徵進行深度融合，有效過濾市場雜訊，並以端到端（End-to-End）的方式動態輸出最佳資產配置權重，最大化每單位風險之報酬。
+            </p>
+            <a href="https://rozias0925.github.io/FY26-ICOML-Website/" target="_blank" class="project-link">View Project ↗</a>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>應用混合效應機器學習於小樣本縱向資料之建模</h3>
+            <div class="meta">Ongoing | 進行中研究專案</div>
+            <p>
+                本研究為與台大醫院新竹分院之共同研究，專案目前仍在進行中，預期以論文或期刊方式發表，敬請期待後續成果。
+            </p>
         </div>
     </section>
 
-    <!-- 研究內容區塊 -->
-    <section id="research">
-        <h2 class="fade-in">研究內容 / RESEARCH</h2>
-        
+    <section id="honors" class="content-box">
+        <h2 class="fade-in">榮譽與檢定 / HONORS & CERTIFICATIONS </h2>
+
         <div class="list-item fade-in">
-            <h3>[研究專案名稱 A]</h3>
-            <div class="meta">[年份] | [合作單位或指導教授]</div>
-            <p>[簡述該研究的背景、你負責的項目、使用的方法，以及最終的發現或成果。]</p>
+            <h3>IBM Data Science Professional Certificate</h3>
+            <div class="meta">2026 | IBM × Coursera</div>
+            <a href="你的證書檔名.pdf" target="_blank" class="project-link">查看證書 ↗</a>
         </div>
 
         <div class="list-item fade-in">
-            <h3>[研究專案名稱 B]</h3>
-            <div class="meta">[年份] | [合作單位或指導教授]</div>
-            <p>[簡述該研究的背景、你負責的項目、使用的方法，以及最終的發現或成果。]</p>
+            <h3>International Conference on Optimization and Machine Learning 最佳化與機器學習國際研討會</h3>
+            <div class="meta">2026 | 參賽中</div>
+            <a href="你的獎狀檔名.pdf" target="_blank" class="project-link">查看證明 ↗</a>  
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>Taiwan Society for Industrial and Applied Mathematics 海報論文最佳人氣獎</h3>
+            <div class="meta">2026 | 台灣工業與應用數學會</div>
+            <a href="你的獎狀檔名.pdf" target="_blank" class="project-link">查看獎狀 ↗</a>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>科學計算學生研討會 (量化程式交易) 最佳論文獎</h3>
+            <div class="meta">2026 | 師大數學系 × 凱基證券</div>
+            <a href="你的獎狀檔名.pdf" target="_blank" class="project-link">查看獎狀 ↗</a>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>校際應用數學秋季研討會 最佳論文獎</h3>
+            <div class="meta">2025 | NTNU × SPEC × NTU × NTHU × NYCU × NCCU × NCU × SCU × FJU</div>
+            <a href="你的獎狀檔名.pdf" target="_blank" class="project-link">查看獎狀 ↗</a>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>優秀教學助理</h3>
+            <div class="meta">113-1, 113-2, 114-1 學期 | 國立臺灣師範大學</div>
+            <a href="你的獎狀檔名.pdf" target="_blank" class="project-link">查看獎狀 ↗</a>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>書卷獎</h3>
+            <div class="meta">113-1 學期 | 國立臺灣師範大學</div>
+            <a href="你的獎狀檔名.pdf" target="_blank" class="project-link">查看獎狀 ↗</a>
         </div>
     </section>
 
-    <!-- 榮譽與獎項區塊 -->
-    <section id="honors">
-        <h2 class="fade-in">榮譽 / HONORS</h2>
-        
-        <div class="list-item fade-in">
-            <h3>[獎項名稱，例如：全國學術研討會 最佳論文獎]</h3>
-            <div class="meta">[獲獎年份] | [頒發機構]</div>
-        </div>
+    <footer id="contact">
+        <svg class="footer-corner-bg footer-corner-top-left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="fadeGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="rgba(255,255,255,0.35)" />
+                    <stop offset="100%" stop-color="rgba(255,255,255,0.05)" />
+                </linearGradient>
+                <linearGradient id="fadeGradDot" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="rgba(255,255,255,0.8)" />
+                    <stop offset="100%" stop-color="rgba(255,255,255,0.1)" />
+                </linearGradient>
+            </defs>
+            <path d="M 0 180 C 60 180 120 120 180 0" fill="none" stroke="url(#fadeGrad)" stroke-width="1.5" />
+            <path d="M 0 140 C 40 140 90 90 120 0" fill="none" stroke="url(#fadeGrad)" stroke-width="1" />
+            <path d="M 0 80 C 20 80 50 50 60 0" fill="none" stroke="url(#fadeGrad)" stroke-width="0.5" />
+            <path d="M 0 200 C 100 200 200 100 200 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="4" stroke-dasharray="1 14" stroke-linecap="round" />
+            <path d="M 0 160 C 70 160 150 70 150 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="2.5" stroke-dasharray="1 10" stroke-linecap="round" />
+            <path d="M 0 110 C 40 110 90 40 90 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="1.5" stroke-dasharray="1 6" stroke-linecap="round" />
+        </svg>
 
-        <div class="list-item fade-in">
-            <h3>[獎項名稱，例如：某某獎學金]</h3>
-            <div class="meta">[獲獎年份] | [頒發機構]</div>
-        </div>
-    </section>
+        <svg class="footer-corner-bg footer-corner-bottom-right" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 0 180 C 60 180 120 120 180 0" fill="none" stroke="url(#fadeGrad)" stroke-width="1.5" />
+            <path d="M 0 140 C 40 140 90 90 120 0" fill="none" stroke="url(#fadeGrad)" stroke-width="1" />
+            <path d="M 0 80 C 20 80 50 50 60 0" fill="none" stroke="url(#fadeGrad)" stroke-width="0.5" />
+            <path d="M 0 200 C 100 200 200 100 200 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="4" stroke-dasharray="1 14" stroke-linecap="round" />
+            <path d="M 0 160 C 70 160 150 70 150 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="2.5" stroke-dasharray="1 10" stroke-linecap="round" />
+            <path d="M 0 110 C 40 110 90 40 90 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="1.5" stroke-dasharray="1 6" stroke-linecap="round" />
+        </svg>
 
-    <!-- 頁尾 -->
-    <footer>
-        <p>&copy; 2026 [你的姓名]. All Rights Reserved.</p>
-        <p style="margin-top: 10px;">Contact: [你的電子郵件]</p>
+        <div class="footer-content">
+            <div class="footer-info fade-in">
+                <div class="contact-details">
+                    <p>Contact: ykskryrbo0925@gmail.com</p>
+                    <p>Phone: (+886) 0971-707-392</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/rozias_9_25/" target="_blank">Instagram</a>
+                        <span class="divider">|</span>
+                        <a href="https://l.messenger.com/l.php?u=https%3A%2F%2Fline.me%2Fti%2Fp%2FM-xq8_Zrvc&h=AT0RsKgXt0swyfamoHpBkppz4LRJGsqqnxE2zDtzFogB4bD1x1dPR_NQkx-A1ucuakybjzwD0pWybXvuLPWMjGUvnMZgFhYMRH4Kb3u_0cWVb-5bWiJv5SyADRznq-azG3rlXw" target="_blank">LINE</a>
+                    </div>
+                </div>
+
+                <div class="qr-box">
+                    <img src="line_contact.png" alt="LINE QR Code">
+                </div>
+            </div>
+
+            <p class="copyright">&copy; 2026 文君豪. All Rights Reserved.</p>
+        </div>
     </footer>
 
-    <!-- JavaScript 負責滑動顯示特效 -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const faders = document.querySelectorAll('.fade-in');
 
             const appearOptions = {
-                threshold: 0.15, // 當元素有 15% 進入畫面時觸發
-                rootMargin: "0px 0px -50px 0px"
+                threshold: 0.1,
+                rootMargin: "0px 0px -20px 0px"
             };
 
-            const appearOnScroll = new IntersectionObserver(function(
-                entries, 
-                appearOnScroll
-            ) {
+            const appearOnScroll = new IntersectionObserver(function(entries) {
                 entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
+                    if (entry.isIntersecting) {
                         entry.target.classList.add('appear');
-                        appearOnScroll.unobserve(entry.target); // 觸發後停止觀察，節省效能
+                    } else {
+                        entry.target.classList.remove('appear');
                     }
                 });
             }, appearOptions);
@@ -293,5 +691,7 @@
             });
         });
     </script>
+
 </body>
+
 </html>
