@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[你的姓名] | 個人網站</title>
+    <style>
+        /* 全局設定與黑白灰色彩計畫 */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #222222;
+            --gray-light: #f5f5f5;
+            --gray-medium: #888888;
+            --black: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Helvetica Neue", Arial, "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* 導覽列 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--gray-light);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--gray-medium);
+        }
+
+        /* 區塊共用設定 */
+        section {
+            padding: 120px 20px 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* 首頁橫幅 (Hero Section) */
+        #home {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: var(--black);
+            color: var(--bg-color);
+            max-width: 100%;
+            padding: 0 20px;
+        }
+
+        #home h1 {
+            font-size: 3.5rem;
+            letter-spacing: 5px;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        #home p {
+            color: var(--gray-medium);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        /* 標題設計 */
+        h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--black);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* 照片預留區塊 */
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: var(--gray-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray-medium);
+            margin-bottom: 30px;
+            border: 1px dashed #ccc;
+        }
+
+        /* 如果你有真實照片，可以將其設定為 img 的樣式 */
+        img.profile-pic {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            display: block;
+            margin: 0 auto 30px;
+            filter: grayscale(100%); /* 照片預設轉為灰階，保持時尚感，可刪除此行恢復彩色 */
+            transition: filter 0.5s ease;
+        }
+        
+        img.profile-pic:hover {
+            filter: grayscale(0%);
+        }
+
+        /* 項目列表設計 (學歷、榮譽、研究) */
+        .list-item {
+            margin-bottom: 30px;
+            border-left: 2px solid var(--gray-light);
+            padding-left: 20px;
+        }
+
+        .list-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .list-item .meta {
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: var(--black);
+            color: var(--gray-medium);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- 滑動顯示特效 (CSS 配合 JS) --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 頂部導覽列 -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#research">Research</a>
+        <a href="#honors">Honors</a>
+    </nav>
+
+    <!-- 首頁區塊 -->
+    <section id="home">
+        <h1 class="fade-in">[你的姓名]</h1>
+        <p class="fade-in">[你的專業抬頭，例如：Researcher / Designer / Developer]</p>
+    </section>
+
+    <!-- 簡介區塊 -->
+    <section id="about">
+        <h2 class="fade-in">簡介 / ABOUT</h2>
+        
+        <!-- 如果要放照片，可以把下一行取消註解並替換 src 圖片路徑 -->
+        <!-- <img src="your-photo.jpg" alt="Profile Picture" class="profile-pic fade-in"> -->
+        
+        <div class="image-placeholder fade-in">
+            [這裡可以放一張你的形象照]
+        </div>
+
+        <p class="fade-in">
+            你好，我是 [你的姓名]。這是一段關於你的簡短自我介紹。你可以寫下你的專業背景、對什麼領域充滿熱情，以及你未來的目標。這段文字可以隨時修改，保持語氣自然且充滿自信。
+        </p>
+        <br>
+        <p class="fade-in">
+            [這裡可以補充你的次要簡介，例如你的性格特質或是工作哲學。]
+        </p>
+    </section>
+
+    <!-- 學歷區塊 -->
+    <section id="education">
+        <h2 class="fade-in">學歷 / EDUCATION</h2>
+        
+        <div class="list-item fade-in">
+            <h3>[你的最高學歷校系，例如：國立台灣大學 資訊工程學系 碩士]</h3>
+            <div class="meta">[入學年份] – [畢業年份]</div>
+            <p>[這裡可以簡述你在該學位的重點成就或是論文題目]</p>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>[你的次高學歷校系，例如：國立清華大學 物理系 學士]</h3>
+            <div class="meta">[入學年份] – [畢業年份]</div>
+            <p>[如果有參與什麼重要的社團或是專題，也可以寫在這裡]</p>
+        </div>
+    </section>
+
+    <!-- 研究內容區塊 -->
+    <section id="research">
+        <h2 class="fade-in">研究內容 / RESEARCH</h2>
+        
+        <div class="list-item fade-in">
+            <h3>[研究專案名稱 A]</h3>
+            <div class="meta">[年份] | [合作單位或指導教授]</div>
+            <p>[簡述該研究的背景、你負責的項目、使用的方法，以及最終的發現或成果。]</p>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>[研究專案名稱 B]</h3>
+            <div class="meta">[年份] | [合作單位或指導教授]</div>
+            <p>[簡述該研究的背景、你負責的項目、使用的方法，以及最終的發現或成果。]</p>
+        </div>
+    </section>
+
+    <!-- 榮譽與獎項區塊 -->
+    <section id="honors">
+        <h2 class="fade-in">榮譽 / HONORS</h2>
+        
+        <div class="list-item fade-in">
+            <h3>[獎項名稱，例如：全國學術研討會 最佳論文獎]</h3>
+            <div class="meta">[獲獎年份] | [頒發機構]</div>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>[獎項名稱，例如：某某獎學金]</h3>
+            <div class="meta">[獲獎年份] | [頒發機構]</div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>&copy; 2026 [你的姓名]. All Rights Reserved.</p>
+        <p style="margin-top: 10px;">Contact: [你的電子郵件]</p>
+    </footer>
+
+    <!-- JavaScript 負責滑動顯示特效 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const faders = document.querySelectorAll('.fade-in');
+
+            const appearOptions = {
+                threshold: 0.15, // 當元素有 15% 進入畫面時觸發
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(
+                entries, 
+                appearOnScroll
+            ) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('appear');
+                        appearOnScroll.unobserve(entry.target); // 觸發後停止觀察，節省效能
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+</body>
+</html>
