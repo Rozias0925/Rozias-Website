@@ -1055,6 +1055,19 @@
                 });
             });
         });
+
+        // --- 點擊右下角 Icon 絲滑回到頂端 ---
+            const backToTopBtn = document.getElementById('back-to-top');
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener('click', function(e) {
+                    e.preventDefault(); // 阻止原本預設的跳轉，避免網址列多出 '#'
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth' // 觸發「刷～」的絲滑滑動效果
+                    });
+                });
+            }
+            
     </script>
 
 </body>
