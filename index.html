@@ -406,10 +406,10 @@
             transform: rotate(180deg);
         }
         
-        /* --- 專業技能 (互動式膠囊標籤) --- */
+        /* --- 專業技能 (獨立面板切換設計) --- */
         .skills-grid {
             display: grid;
-            grid-template-columns: 1fr; /* 將 repeat(3, 1fr) 改為 1fr 即可變成垂直排列 */
+            grid-template-columns: 1fr;
             gap: 40px;
             margin-top: 10px;
         }
@@ -424,15 +424,12 @@
             letter-spacing: 1px;
         }
 
+        /* 標籤按鈕區 (完全獨立於文字) */
         .interactive-tags {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .tag-item {
-            margin-bottom: 12px;
-            width: 100%;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 10px;
         }
 
         .tag-button {
@@ -448,9 +445,11 @@
             cursor: pointer;
             transition: all 0.3s ease;
             user-select: none;
+            white-space: nowrap;
         }
 
-        .tag-button:hover, .tag-item.active .tag-button {
+        /* 按鈕啟動與懸浮樣式 */
+        .tag-button:hover, .tag-button.active {
             background-color: var(--black);
             color: #ffffff;
             border-color: var(--black);
@@ -463,36 +462,51 @@
             transition: transform 0.4s ease;
         }
 
-        .tag-item.active .tag-button .plus {
-            transform: rotate(45deg);
+        .tag-button.active .plus {
+            transform: rotate(45deg); /* 把 + 轉成 × */
         }
 
-        .tag-content {
+        /* 說明文字面板區 (完全獨立，顯示在膠囊下方) */
+        .tag-panels {
+            position: relative;
+        }
+
+        .tag-panel {
             max-height: 0;
-            overflow: hidden;
             opacity: 0;
+            overflow: hidden;
             transition: all 0.4s ease-in-out;
-            padding: 0 10px;
+            background-color: #fcfcfc;
+            border-radius: 12px;
+            padding: 0 20px;
+            border: 1px solid transparent;
         }
 
-        .tag-item.active .tag-content {
-            max-height: 250px;
+        /* 說明文字展開時 */
+        .tag-panel.active {
+            max-height: 400px;
             opacity: 1;
-            padding: 15px 10px 5px 10px;
+            padding: 20px;
+            border-color: var(--gray-light);
+            margin-top: 5px;
         }
 
-        /* --- 手機與平板版專屬設定 (包含漢堡選單) --- */
+        .tag-panel p {
+            margin: 0;
+        }
+
+        /* --- 手機與平板版專屬設定 --- */
         @media (max-width: 768px) {
             nav {
-                justify-content: flex-end; /* 讓漢堡按鈕靠右 */
+                justify-content: flex-end; 
             }
 
             .menu-toggle {
-                display: flex; /* 在手機版顯示漢堡按鈕 */
+                display: flex; 
             }
 
             .nav-links {
-                display: none; /* 預設隱藏連結 */
+                display: none; 
                 flex-direction: column;
                 position: absolute;
                 top: 100%;
@@ -505,33 +519,28 @@
                 box-shadow: 0 5px 10px rgba(0,0,0,0.05);
             }
 
-            /* 當按鈕被點擊時，加上 active 讓它顯示 */
             .nav-links.active {
                 display: flex;
             }
 
             .nav-links a {
-                margin: 15px 0; /* 增加上下間距讓手指好點擊 */
+                margin: 15px 0; 
             }
 
-            /* 手機版內容卡片：讓出左右空間 */
             .content-box {
                 margin: 40px 20px;  
                 padding: 40px 25px; 
             }
 
-            /* 背景植物稍微放大，避免被卡片完全遮死 */
             .organic-top-left, .organic-bottom-right {
                 width: 70vw; 
             }
 
-            /* 手機版技能區塊：改為單欄往下排列 */
             .skills-grid {
                 grid-template-columns: 1fr;
                 gap: 35px;
             }
 
-            /* 手機版首頁 Banner 文字微調 */
             #home .name-zh {
                 font-size: 2.5rem;   
                 letter-spacing: 10px;
@@ -642,15 +651,23 @@
         </div>
 
         <p class="fade-in handwriting">
-            你好，我是文君豪，目前就讀於國立台灣師範大學數學系。在修習代數學與線性代數的過程中，我培養了對純數學的熱愛與高敏感度。這份熱情驅使我利用暑假期間自修《Galois Theory》，並進一步探索同調代數的廣闊領域。
+            你好，我是文君豪，目前就讀於國立臺灣師範大學數學系。在修習代數學與線性代數的過程中，我培養了對純數學的熱愛與高敏感度。這份熱情驅使我利用暑假期間自修《Galois Theory》，並進一步探索同調代數的廣闊領域。
         </p>
         <br>
         <p class="fade-in handwriting">
-            在深入純數之際，我修習了「科學計算導論(數值分析)」，恰逢人工智慧崛起的黃金年代。「如何讓無生命的機器學會思考？」這個問題深深吸引了我。憑藉著在代數領域的優勢，我開始從線性代數的角度切入，從研究 Graph Laplacian 開始，並實際著手解決機器學習中的分類問題。
+            在深入純數之際，新加坡一直是我非常嚮往的城市。2018 年初次造訪時，我便對其先進的城市發展與高度自律的精神印象深刻；而 2025 年的再次拜訪，更成為我人生重要的轉捩點。當時我有幸與當地學生深入交流，他們展現出的「極高效率」、「積極上進」與對自我的嚴格要求深深打動了我，因為這些特質恰好與我對自身的期許不謀而合。
         </p>
         <br>
         <p class="fade-in handwriting">
-            隨後，在「科學計算特論(數值分析特論)」的訓練下，我進一步掌握了以數據為核心、策略性解決問題的思維，正式跨足資料科學與機器學習領域。在參與多場工作坊與學術研討會並獲得肯定後，我更加堅定了朝此方向發展的信心。期許自己能持續將嚴謹的數學邏輯，轉化為解決真實世界問題的演算法，有朝一日在資料科學領域中，開創屬於我的一席之地。
+            那段期間，我正好榮獲了 2025 校際應用數學秋季研討會「最佳論文獎」的殊榮。然而，在這份肯定的背後，未來的生涯走向卻帶給我極大的壓力。在審慎評估自身個性與嚮往的生活藍圖後，我對繼續深耕「純數」這條路產生了猶豫。這趟旅程宛如一劑強心針，回臺灣後，我更加確信新加坡就是我渴望置身的環境。新加坡擁有亞洲最頂尖的學府——新加坡國立大學與南洋理工大學，在各個前沿領域皆具備深厚的資源。如此完美的烏托邦怎會不讓人心動呢？
+        </p>
+        <br>
+        <p class="fade-in handwriting">
+            這份嚮往促使我立下了明確的目標：期望能進入這兩所頂尖學府之一，攻讀機器學習、資料科學與人工智慧相關的碩士學程。為此，我決心將專研領域從純代數向外拓展，期許能用這兩年的時間，淬鍊出一份足以說服頂尖學術機構的堅實背景。
+        </p>
+        <br>
+        <p class="fade-in handwriting">
+            恰逢人工智慧崛起的黃金年代，「如何讓無生命的機器學會思考？」這個問題深深吸引了我。在修習「科學計算導論」與「科學計算特論」後，我進一步掌握了以數據為核心、策略性解決問題的思維。憑藉著在代數領域的優勢，我開始從線性代數的視角切入，由研究 Graph Laplacian 起步，著手解決機器學習中的分類問題；隨後更實際融入圖卷積神經網路（GCN），設計出一套以資產配置為目標的投資演算法，正式跨足資料科學與機器學習領域。在參與多場工作坊與學術研討會並獲得肯定後，我更加堅定了朝此方向發展的信念。期許自己能持續將嚴謹的數學邏輯，轉化為解決真實世界問題的演算法，有朝一日在資料科學領域中，開創出屬於自己的一席之地。
         </p>
     </section>
 
@@ -661,23 +678,29 @@
             <div class="skill-category">
                 <h3>Mathematics</h3>
                 <div class="interactive-tags">
-                    <div class="tag-item">
-                        <div class="tag-button">Algebra/Linear Algebra <span class="plus">+</span></div>
-                        <div class="tag-content">
-                            <p class="handwriting">我的純數啟蒙，除了修習代數學與擔任線性代數助教，更利用暑期自修《Galois Theory》。抽象代數的結構性思維，是我後來理解複雜系統的底氣。</p>
-                        </div>
+                    <div class="tag-button" data-target="math-1">Algebra/Linear Algebra <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="math-2">Probability/Statistics <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="math-3">Scientific Computing <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="math-4">Linear Programming/Convex Optimization <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="math-5">Functional Analysis <span class="plus">+</span></div>
+
+
+                </div>
+                <div class="tag-panels">
+                    <div class="tag-panel" id="math-1">
+                        <p class="handwriting">代數學探討的是數學的「結構」本質。在撰寫程式或分析真實世界問題時，代數與線性代數能幫助我在腦中快速建構出清晰的數學模型。現實生活中線性關係隨處可見，尤其在電腦科學中，矩陣與向量空間的概念更是資料處理、圖論架構與現代機器學習最核心的底層邏輯。</p>
                     </div>
-                    <div class="tag-item">
-                        <div class="tag-button">Probability/Statistics <span class="plus">+</span></div>
-                        <div class="tag-content">
-                            <p class="handwriting">擔任助教的拿手科目。在機器學習的黑盒子中，機率統計提供了評估模型不確定性、風險與混合效應建模的嚴謹視角。</p>
-                        </div>
+                    <div class="tag-panel" id="math-2">
+                        <p class="handwriting">機率與統計是量化「不確定性」的科學，為機器學習提供了嚴謹的數學視角。它使我能洞悉資料背後的分佈規律、精準評估風險；在面對真實世界中充滿雜訊或複雜結構的數據時，不僅能藉此建構出適應各種情境的預測模型，更能透過嚴密釐清各類誤差，為檢驗模型優劣提供客觀且扎實的判斷準則。</p>
                     </div>
-                    <div class="tag-item">
-                        <div class="tag-button">Numerical Analysis <span class="plus">+</span></div>
-                        <div class="tag-content">
-                            <p class="handwriting">科學計算的靈魂。讓我在追求理論精確之餘，更懂得如何策略性地運用電腦處理誤差與逼近，是連接純數與現實應用的重要橋樑。</p>
-                        </div>
+                    <div class="tag-panel" id="math-3">
+                        <p class="handwriting">科學計算是連接純數理論與電腦實作的關鍵。在追求理論精確之餘，實務上更須妥善處理電腦運算時無可避免的誤差與極限逼近。它訓練我建立起以「運算成本」、「演算法效率」及「收斂性」為核心的思維模式，以嚴謹的數學知識，為解決真實世界問題的高效程式碼提供精準的想法與嚴謹的證明。</p>
+                    </div>
+                    <div class="tag-panel" id="math-4">
+                        <p class="handwriting">修習並研究中</p>
+                    </div>
+                    <div class="tag-panel" id="math-5">
+                        <p class="handwriting">泛函分析是探討函數空間與算子理論的核心數學分支。為了更透徹地理解 Spectral Theory 在 Graph Laplacian 中的底層邏輯，我展開了這門學科的自主研修。透過剖析無限維空間的性質與算子行為，我期望對機器學習中的最佳化問題具備更宏觀的視角，也為深入探究模型的泛化能力打下了堅實的理論底蘊。</p>
                     </div>
                 </div>
             </div>
@@ -685,41 +708,39 @@
             <div class="skill-category">
                 <h3>Programming Languages</h3>
                 <div class="interactive-tags">
-                    <div class="tag-item">
-                        <div class="tag-button">Python <span class="plus">+</span></div>
-                        <div class="tag-content">
-                            <p class="handwriting">做為跨足資料科學的主力語言，從資料清理到建構 Factor GCN 模型與視覺化，它幫助我將抽象的數學理論落地為可執行的演算法。</p>
-                        </div>
+                    <div class="tag-button" data-target="prog-1">Python <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="prog-2">C / C++ <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="prog-3">SQL <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="prog-4">MATLAB <span class="plus">+</span></div>
+                </div>
+                <div class="tag-panels">
+                    <div class="tag-panel" id="prog-1">
+                        <p class="handwriting">作為實現資料科學的主力語言，自高中起便深耕的 Python 為我提供了強大且靈活的開發特性。在科學計算特論課程中，它在不同的技術層面皆提供強大的協助：從繁雜的資料清洗、建構複雜的模型，到最終的數據視覺化，皆一手包辦的它成為最強大的助攻之一。</p>
                     </div>
-                    <div class="tag-item">
-                        <div class="tag-button">C <span class="plus">+</span></div>
-                        <div class="tag-content">
-                            <p class="handwriting">培養底層運算思維與記憶體管理的嚴謹度，是理解高效能演算法與資料結構不可或缺的基礎訓練。</p>
-                        </div>
+                    <div class="tag-panel" id="prog-2">
+                        <p class="handwriting">學習 C 語言是對底層運算思維與記憶體管理的極致淬鍊，也是我在國立臺灣科技大學（NTUST）修習期間收穫最豐的技能之一。它訓練我以電腦硬體的視角剖析程式，深刻理解指令編譯與底層運行的原理，為日後實作高效能演算法與複雜資料結構，打下了無可取代的扎實基礎。</p>
                     </div>
-                    <div class="tag-item">
-                        <div class="tag-button">MATLAB / SQL <span class="plus">+</span></div>
-                        <div class="tag-content">
-                            <p class="handwriting">在處理真實世界數據時必備的工具，讓我能有效率地從龐大的資料庫中萃取、整合出分析所需的特徵與模型建立。</p>
-                        </div>
+                    <div class="tag-panel" id="prog-3">
+                        <p class="handwriting">透過 IBM Data Science 專業認證課程的洗禮，我掌握了這項駕馭與萃取真實世界龐大數據的必備利器。對於具備嚴謹邏輯訓練的數學系學生而言，SQL 的關聯式思維極具共鳴，使我能以極高的效率，從海量資料庫中精煉出建模所需的關鍵特徵。</p>
+                    </div>
+                    <div class="tag-panel" id="prog-4">
+                        <p class="handwriting">MATLAB 是我在大學期間深入掌握的重要數學語言。它提供了無與倫比的矩陣運算與數值分析環境；對我而言，它不僅是一台「超大型的科學計算機」，更是我在建構純數模型與快速驗證演算法原型時，最得心應手的強大引擎。</p>
                     </div>
                 </div>
             </div>
 
             <div class="skill-category">
-                <h3>Data Science & ML</h3>
+                <h3>Data Science & Machine Learning</h3>
                 <div class="interactive-tags">
-                    <div class="tag-item">
-                        <div class="tag-button">Machine Learning <span class="plus">+</span></div>
-                        <div class="tag-content">
-                            <p class="handwriting">從傳統分類問題到混合效應機器學習，我專注於將嚴謹的數學邏輯，轉化為解決小樣本或複雜縱向資料的有效策略。</p>
-                        </div>
+                    <div class="tag-button" data-target="ds-1">Machine Learning and Deep Learning <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="ds-2">Application of Graph Theory <span class="plus">+</span></div>
+                </div>
+                <div class="tag-panels">
+                    <div class="tag-panel" id="ds-1">
+                        <p class="handwriting">機器學習是我跨足資料科學的啟端。國立台灣大學有提供一門課程"機器學習導論" 只是我運氣不好沒有加簽到 不過我仍透過其課程錄影學到了大致的運作原理和核心架構。放眼未來，我將目標鎖定於新加坡國立大學（NUS）的資料科學與機器學習碩士學程 (DSML)，期許能在頂尖的學術殿堂中，建構更完整、深厚的機器學習知識體系。</p>                    </div>
                     </div>
-                    <div class="tag-item">
-                        <div class="tag-button">Graph Theory / GCN <span class="plus">+</span></div>
-                        <div class="tag-content">
-                            <p class="handwriting">深入研究 Graph Laplacian 並應用於醫療影像辨識；後續更利用圖卷積神經網路 (GCN) 解決量化投資中的端到端資產配置問題。</p>
-                        </div>
+                    <div class="tag-panel" id="ds-2">
+                        <p class="handwriting">圖論是我認為能將真實世界的複雜網絡與拓樸結構，最直觀轉化為數學語言的強大工具，而線性代數則是支撐其運作的核心基石。儘管未曾正式修習圖論課程，我卻在研究實務中將其概念深刻實踐。從深究 Graph Laplacian 的頻譜特性，到建構 Graph Convolutional Network (GCN) 與 Graph Attention Network (GAT) 以萃取複雜的節點特徵，圖論與機器學習的結合，是我目前最熱衷且持續突破的研究主軸。</p>
                     </div>
                 </div>
             </div>
@@ -914,12 +935,10 @@
             const mobileMenu = document.getElementById('mobile-menu');
             const navLinks = document.getElementById('nav-links');
 
-            // 點擊漢堡按鈕，切換選單的顯示與隱藏
             mobileMenu.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
             });
 
-            // 貼心設計：點擊任何一個連結後，自動收起選單
             const links = navLinks.querySelectorAll('a');
             links.forEach(link => {
                 link.addEventListener('click', () => {
@@ -927,12 +946,43 @@
                 });
             });
 
-            // 互動式膠囊標籤邏輯
+            // 互動式膠囊標籤邏輯 (獨立面板切換 - 修正動畫順序)
             const tagButtons = document.querySelectorAll('.tag-button');
+            
             tagButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    const tagItem = button.parentElement;
-                    tagItem.classList.toggle('active');
+                    const targetId = button.getAttribute('data-target');
+                    const targetPanel = document.getElementById(targetId);
+                    const currentCategory = button.closest('.skill-category');
+                    
+                    // 記錄當前按鈕原本是不是打開的
+                    const isActive = button.classList.contains('active');
+                    
+                    // 找出目前該類別中「正在開啟」的按鈕和面板
+                    const activeBtn = currentCategory.querySelector('.tag-button.active');
+                    const activePanel = currentCategory.querySelector('.tag-panel.active');
+                    
+                    if (isActive) {
+                        // 1. 如果點擊的是「已經打開」的膠囊，直接關閉它就好
+                        button.classList.remove('active');
+                        targetPanel.classList.remove('active');
+                    } else {
+                        // 2. 如果點擊的是「新的」膠囊
+                        let delay = 0;
+                        
+                        if (activePanel) {
+                            // 如果有舊的正在打開，先關閉舊的
+                            activeBtn.classList.remove('active');
+                            activePanel.classList.remove('active');
+                            delay = 10; // 設定延遲 10 毫秒，等待 CSS 收合動畫播完
+                        }
+                        
+                        // 3. 等待 delay 時間後，再打開新的
+                        setTimeout(() => {
+                            button.classList.add('active');
+                            targetPanel.classList.add('active');
+                        }, delay);
+                    }
                 });
             });
         });
