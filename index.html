@@ -405,6 +405,81 @@
             max-width: 500px;
             transform: rotate(180deg);
         }
+        
+        /* --- 專業技能 (互動式膠囊標籤) --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* 將 repeat(3, 1fr) 改為 1fr 即可變成垂直排列 */
+            gap: 40px;
+            margin-top: 10px;
+        }
+
+        .skill-category h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--gray-light);
+            padding-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .interactive-tags {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .tag-item {
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        .tag-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #f8f8f8;
+            color: var(--text-color);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid var(--gray-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .tag-button:hover, .tag-item.active .tag-button {
+            background-color: var(--black);
+            color: #ffffff;
+            border-color: var(--black);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .tag-button .plus {
+            font-size: 1.1rem;
+            font-weight: 300;
+            transition: transform 0.4s ease;
+        }
+
+        .tag-item.active .tag-button .plus {
+            transform: rotate(45deg);
+        }
+
+        .tag-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease-in-out;
+            padding: 0 10px;
+        }
+
+        .tag-item.active .tag-content {
+            max-height: 250px;
+            opacity: 1;
+            padding: 15px 10px 5px 10px;
+        }
 
         /* --- 手機與平板版專屬設定 (包含漢堡選單) --- */
         @media (max-width: 768px) {
@@ -448,6 +523,12 @@
             /* 背景植物稍微放大，避免被卡片完全遮死 */
             .organic-top-left, .organic-bottom-right {
                 width: 70vw; 
+            }
+
+            /* 手機版技能區塊：改為單欄往下排列 */
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
             }
 
             /* 手機版首頁 Banner 文字微調 */
@@ -520,6 +601,7 @@
         <div class="nav-links" id="nav-links">
             <a href="#">Home</a>
             <a href="#about">About</a>
+            <a href="#skills">Skills</a> 
             <a href="#education">Education</a>
             <a href="#research">Research</a>
             <a href="#honors">Honors</a>
@@ -570,6 +652,78 @@
         <p class="fade-in handwriting">
             隨後，在「科學計算特論(數值分析特論)」的訓練下，我進一步掌握了以數據為核心、策略性解決問題的思維，正式跨足資料科學與機器學習領域。在參與多場工作坊與學術研討會並獲得肯定後，我更加堅定了朝此方向發展的信心。期許自己能持續將嚴謹的數學邏輯，轉化為解決真實世界問題的演算法，有朝一日在資料科學領域中，開創屬於我的一席之地。
         </p>
+    </section>
+
+    <section id="skills" class="content-box">
+        <h2 class="fade-in">專業技能 / TECHNICAL SKILLS</h2>
+        
+        <div class="skills-grid fade-in">
+            <div class="skill-category">
+                <h3>Mathematics</h3>
+                <div class="interactive-tags">
+                    <div class="tag-item">
+                        <div class="tag-button">Algebra/Linear Algebra <span class="plus">+</span></div>
+                        <div class="tag-content">
+                            <p class="handwriting">我的純數啟蒙，除了修習代數學與擔任線性代數助教，更利用暑期自修《Galois Theory》。抽象代數的結構性思維，是我後來理解複雜系統的底氣。</p>
+                        </div>
+                    </div>
+                    <div class="tag-item">
+                        <div class="tag-button">Probability/Statistics <span class="plus">+</span></div>
+                        <div class="tag-content">
+                            <p class="handwriting">擔任助教的拿手科目。在機器學習的黑盒子中，機率統計提供了評估模型不確定性、風險與混合效應建模的嚴謹視角。</p>
+                        </div>
+                    </div>
+                    <div class="tag-item">
+                        <div class="tag-button">Numerical Analysis <span class="plus">+</span></div>
+                        <div class="tag-content">
+                            <p class="handwriting">科學計算的靈魂。讓我在追求理論精確之餘，更懂得如何策略性地運用電腦處理誤差與逼近，是連接純數與現實應用的重要橋樑。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="interactive-tags">
+                    <div class="tag-item">
+                        <div class="tag-button">Python <span class="plus">+</span></div>
+                        <div class="tag-content">
+                            <p class="handwriting">做為跨足資料科學的主力語言，從資料清理到建構 Factor GCN 模型與視覺化，它幫助我將抽象的數學理論落地為可執行的演算法。</p>
+                        </div>
+                    </div>
+                    <div class="tag-item">
+                        <div class="tag-button">C <span class="plus">+</span></div>
+                        <div class="tag-content">
+                            <p class="handwriting">培養底層運算思維與記憶體管理的嚴謹度，是理解高效能演算法與資料結構不可或缺的基礎訓練。</p>
+                        </div>
+                    </div>
+                    <div class="tag-item">
+                        <div class="tag-button">MATLAB / SQL <span class="plus">+</span></div>
+                        <div class="tag-content">
+                            <p class="handwriting">在處理真實世界數據時必備的工具，讓我能有效率地從龐大的資料庫中萃取、整合出分析所需的特徵與模型建立。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Data Science & ML</h3>
+                <div class="interactive-tags">
+                    <div class="tag-item">
+                        <div class="tag-button">Machine Learning <span class="plus">+</span></div>
+                        <div class="tag-content">
+                            <p class="handwriting">從傳統分類問題到混合效應機器學習，我專注於將嚴謹的數學邏輯，轉化為解決小樣本或複雜縱向資料的有效策略。</p>
+                        </div>
+                    </div>
+                    <div class="tag-item">
+                        <div class="tag-button">Graph Theory / GCN <span class="plus">+</span></div>
+                        <div class="tag-content">
+                            <p class="handwriting">深入研究 Graph Laplacian 並應用於醫療影像辨識；後續更利用圖卷積神經網路 (GCN) 解決量化投資中的端到端資產配置問題。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="education" class="content-box">
@@ -770,6 +924,15 @@
             links.forEach(link => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
+                });
+            });
+
+            // 互動式膠囊標籤邏輯
+            const tagButtons = document.querySelectorAll('.tag-button');
+            tagButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tagItem = button.parentElement;
+                    tagItem.classList.toggle('active');
                 });
             });
         });
