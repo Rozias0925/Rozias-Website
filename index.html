@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="zh-TW">
 
 <head>
@@ -33,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* 導覽列 */
+        /* --- 導覽列 --- */
         nav {
             position: fixed;
             top: 0;
@@ -41,13 +40,20 @@
             background-color: rgba(255, 255, 255, 0.98);
             border-bottom: 1px solid var(--gray-light);
             z-index: 1000;
-            display: flex;
-            justify-content: center;
-            padding: 15px 0;
+            padding: 15px 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
         }
 
-        nav a {
+        /* 導覽列連結區塊 (電腦版置中橫排) */
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .nav-links a {
             color: var(--text-color);
             text-decoration: none;
             margin: 0 20px;
@@ -57,8 +63,24 @@
             transition: color 0.3s ease;
         }
 
-        nav a:hover {
+        .nav-links a:hover {
             color: var(--gray-medium);
+        }
+
+        /* 漢堡按鈕 (電腦版隱藏) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle .bar {
+            height: 2px;
+            width: 20px;
+            background-color: var(--text-color);
+            margin: 3px 0;
+            transition: 0.3s;
         }
 
         /* 首頁橫幅 (Banner) */
@@ -75,15 +97,13 @@
             padding: 0 20px;
             position: relative;
             overflow: hidden;
-            /* 背景微網點維持 */
             background-image:radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
-
             background-repeat: repeat;
             background-size: 30px 30px;
             background-position: 0 0;
         }
 
-        /* --- 銳利版：數學幾何流線 --- */
+        /* 數學幾何流線 */
         .banner-wave {
             position: absolute;
             top: 50%;
@@ -97,14 +117,13 @@
         .banner-wave-left { left: 0; }
         .banner-wave-right { right: 0; transform: translateY(-50%) scaleX(-1); }
 
-        /* --- 高清名字層次排版 --- */
         #home .name-zh {
             font-size: 3.5rem;
             letter-spacing: 16px;
             font-weight: 300;
             margin-bottom: 5px;
-            color: #FFFFFF; /* 極致純白 */
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.4); /* 加入高級微光暈 */
+            color: #FFFFFF;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
             z-index: 1;
             margin-right: -16px; 
         }
@@ -113,7 +132,7 @@
             font-size: 1.2rem;
             letter-spacing: 5px;
             font-weight: 300;
-            color: #E0E0E0; /* 鈦銀灰 */
+            color: #E0E0E0;
             margin-bottom: 8px;
             z-index: 1;
         }
@@ -127,7 +146,7 @@
             font-weight: 300;
         }
 
-        /* --- 內容區塊 (純白卡片設計) --- */
+        /* 內容區塊 (純白卡片設計) */
         .content-box {
             background-color: var(--card-bg);
             padding: 80px 60px;
@@ -136,10 +155,9 @@
             position: relative;
             box-shadow: 0 10px 40px rgba(0,0,0,0.03); 
             border: 1px solid rgba(0,0,0,0.02);
-            z-index: 1; /* 確保卡片在背景葉片之上 */
+            z-index: 1;
         }
 
-        /* 標題設計 */
         h2 {
             font-size: 1.8rem;
             font-weight: 400;
@@ -160,7 +178,6 @@
             background-color: var(--black);
         }
 
-        /* 照片預留區塊 */
         .image-placeholder {
             width: 100%;
             height: 350px;
@@ -174,7 +191,7 @@
             background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.02) 10px, rgba(0,0,0,0.02) 20px);
         }
 
-        /* 項目列表設計 (時間軸樣式) */
+        /* 項目列表設計 */
         .list-item {
             margin-bottom: 40px;
             position: relative;
@@ -221,7 +238,7 @@
             text-transform: uppercase;
         }
 
-        /* 頁尾與聯絡資訊 */
+        /* 頁尾 */
         footer {
             background-color: var(--black);
             color: var(--gray-medium);
@@ -231,10 +248,9 @@
             margin-top: 50px;
             position: relative;
             z-index: 1;
-            overflow: hidden; /* 確保角落的裝飾圖案不會超出框線 */
+            overflow: hidden;
         }
 
-        /* --- Footer 角落原創點陣螺旋裝飾 --- */
         .footer-corner-bg {
             position: absolute;
             z-index: -1;
@@ -244,14 +260,12 @@
             opacity: 0.8;
         }
 
-        /* 移至左上角，並旋轉 90 度讓圖案從角落往內延伸 */
         .footer-corner-top-left {
             top: 0;
             left: 0;
             transform: rotate(0deg); 
         }
 
-        /* 移至右下角，並旋轉 -90 度讓圖案從角落往內延伸 */
         .footer-corner-bottom-right {
             bottom: 0;
             right: 0;
@@ -263,12 +277,11 @@
             margin: 0 auto;
         }
 
-        /* 左右分欄排版 - 讓個資與 QR Code 靠攏 */
         .footer-info {
             display: flex;
-            justify-content: center; /* 將原本的 space-between 改為 center，讓內容向中間靠攏 */
+            justify-content: center;
             align-items: center;
-            gap: 80px; /* 這裡控制文字與 QR Code 之間的距離，覺得太近或太遠可以修改這個數值 */
+            gap: 80px;
             margin-bottom: 40px;
             flex-wrap: wrap; 
         }
@@ -282,7 +295,6 @@
             font-size: 1.1rem;
         }
 
-        /* 社群連結排版 */
         .social-links {
             margin: 20px 0 0 0;
             display: flex;
@@ -308,7 +320,6 @@
             font-size: 1.1rem;
         }
 
-        /* 放大的 QR Code 排版在右側 */
         .qr-box {
             background-color: #ffffff;
             padding: 10px;
@@ -336,16 +347,14 @@
             margin-top: 20px;
         }
 
-        /* 手寫字體樣式 */
         .handwriting {
             font-family: 'Klee One', cursive, sans-serif;
-            font-size: 1.15rem; /* 手寫字通常比較細，可以稍微放大一點 */
-            line-height: 2;     /* 增加行距讓畫面更透氣 */
-            color: #333333;     /* 用深灰色取代純黑，讓手寫感更柔和 */
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #333333;
             letter-spacing: 1px;
         }
 
-        /* 專案連結樣式 (極簡文字風) */
         .project-link {
             display: inline-block;
             margin-top: 10px;
@@ -363,21 +372,6 @@
             border-bottom-color: var(--gray-medium);
         }
 
-        @media (max-width: 650px) {
-            .footer-info {
-                flex-direction: column;
-                text-align: center;
-                gap: 35px;
-            }
-            .contact-details {
-                text-align: center;
-            }
-            .social-links {
-                justify-content: center;
-            }
-        }
-
-        /* --- 滑動顯示特效 --- */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -389,12 +383,12 @@
             transform: translateY(0);
         }
 
-        /* --- 手繪感植物線條背景設定 --- */
+        /* 手繪感植物線條背景 */
         .organic-bg {
             position: fixed;
             z-index: -2;
-            opacity: 0.08; /* 極低透明度，增加柔和感 */
-            pointer-events: none; /* 避免擋住滑鼠點擊 */
+            opacity: 0.08;
+            pointer-events: none;
         }
         
         .organic-top-left {
@@ -409,34 +403,100 @@
             right: -5%;
             width: 45vw;
             max-width: 500px;
-            transform: rotate(180deg); /* 翻轉放置於右下角 */
+            transform: rotate(180deg);
+        }
+
+        /* --- 手機與平板版專屬設定 (包含漢堡選單) --- */
+        @media (max-width: 768px) {
+            nav {
+                justify-content: flex-end; /* 讓漢堡按鈕靠右 */
+            }
+
+            .menu-toggle {
+                display: flex; /* 在手機版顯示漢堡按鈕 */
+            }
+
+            .nav-links {
+                display: none; /* 預設隱藏連結 */
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.98);
+                border-bottom: 1px solid var(--gray-light);
+                text-align: center;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+            }
+
+            /* 當按鈕被點擊時，加上 active 讓它顯示 */
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                margin: 15px 0; /* 增加上下間距讓手指好點擊 */
+            }
+
+            /* 手機版內容卡片：讓出左右空間 */
+            .content-box {
+                margin: 40px 20px;  
+                padding: 40px 25px; 
+            }
+
+            /* 背景植物稍微放大，避免被卡片完全遮死 */
+            .organic-top-left, .organic-bottom-right {
+                width: 70vw; 
+            }
+
+            /* 手機版首頁 Banner 文字微調 */
+            #home .name-zh {
+                font-size: 2.5rem;   
+                letter-spacing: 10px;
+                margin-right: -10px;
+            }
+            
+            #home .name-en {
+                font-size: 0.95rem;  
+            }
+            
+            #home {
+                margin-top: 50px;
+                height: 65vh; 
+            }
+
+            .footer-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 35px;
+            }
+            .contact-details {
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- 原創設計：柔和的手繪感植物線條 (左上) -->
     <svg class="organic-bg organic-top-left" viewBox="0 0 500 700" fill="none" stroke="#000000" xmlns="http://www.w3.org/2000/svg">
-        <!-- 主枝幹 -->
         <path d="M-50,0 C100,100 250,300 200,700" stroke-width="3" stroke-linecap="round"/>
-        <!-- 葉片 1 (大) -->
         <path d="M40,90 C120,40 220,90 230,180 C160,190 60,160 40,90 Z" stroke-width="1.5"/>
-        <path d="M40,90 C110,110 160,140 230,180" stroke-width="1"/> <!-- 葉脈 -->
+        <path d="M40,90 C110,110 160,140 230,180" stroke-width="1"/> 
         <path d="M80,110 C120,95 150,110 180,135" stroke-width="0.8"/>
-        <!-- 葉片 2 -->
         <path d="M125,240 C210,190 310,240 330,330 C260,340 150,320 125,240 Z" stroke-width="1.5"/>
         <path d="M125,240 C190,260 250,290 330,330" stroke-width="1"/>
         <path d="M170,260 C210,250 240,265 280,295" stroke-width="0.8"/>
-        <!-- 葉片 3 (稍小) -->
         <path d="M185,420 C270,390 350,450 340,540 C270,530 180,490 185,420 Z" stroke-width="1.5"/>
         <path d="M185,420 C240,450 280,490 340,540" stroke-width="1"/>
-        <!-- 散落的柔和曲線 (增加點綴) -->
         <path d="M280,100 C350,150 320,250 400,280" stroke-width="1" stroke-dasharray="4 4"/>
         <path d="M380,450 C450,420 480,500 450,580" stroke-width="1"/>
     </svg>
 
-    <!-- 原創設計：柔和的手繪感植物線條 (右下) -->
     <svg class="organic-bg organic-bottom-right" viewBox="0 0 500 700" fill="none" stroke="#000000" xmlns="http://www.w3.org/2000/svg">
         <path d="M-50,0 C100,100 250,300 200,700" stroke-width="3" stroke-linecap="round"/>
         <path d="M40,90 C120,40 220,90 230,180 C160,190 60,160 40,90 Z" stroke-width="1.5"/>
@@ -451,16 +511,23 @@
     </svg>
 
     <nav>
-        <a href="#">Home</a>
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#research">Research</a>
-        <a href="#honors">Honors</a>
-        <a href="#contact">Contact</a> <!-- 新增這行 -->
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        
+        <div class="nav-links" id="nav-links">
+            <a href="#">Home</a>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#research">Research</a>
+            <a href="#honors">Honors</a>
+            <a href="#contact">Contact</a>
+        </div>
     </nav>
 
     <section id="home">
-        <!-- 左側：數學幾何流線 -->
         <svg class="banner-wave banner-wave-left" viewBox="0 0 200 500" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="sharpGrad" x1="0%" y1="100%" x2="0%" y2="0%">
@@ -474,7 +541,6 @@
             <path d="M-50,300 C100,220 80,80 0,0" stroke="url(#sharpGrad)" stroke-width="0.5" stroke-linecap="round"/>
         </svg>
 
-        <!-- 右側：數學幾何流線 (鏡像) -->
         <svg class="banner-wave banner-wave-right" viewBox="0 0 200 500" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M-50,500 C50,350 150,250 100,0" stroke="url(#sharpGrad)" stroke-width="2" stroke-linecap="round"/>
             <path d="M-50,400 C80,300 120,150 50,0" stroke="url(#sharpGrad)" stroke-width="1" stroke-linecap="round"/>
@@ -526,7 +592,6 @@
             <div class="meta">2024-2025</div>
             <p>113-1學期擔任代數學(I)助教，113-2學期擔任代數學(II)、機率導論助教</p>
             <p>113-1、113-2兩學期皆獲數學系優良教學助理</p>
-
         </div>
 
         <div class="list-item fade-in">
@@ -654,7 +719,7 @@
                     <div class="social-links">
                         <a href="https://www.instagram.com/rozias_9_25/" target="_blank">Instagram</a>
                         <span class="divider">|</span>
-                        <a href="https://l.messenger.com/l.php?u=https%3A%2F%2Fline.me%2Fti%2Fp%2FM-xq8_Zrvc&h=AT0RsKgXt0swyfamoHpBkppz4LRJGsqqnxE2zDtzFogB4bD1x1dPR_NQkx-A1ucuakybjzwD0pWybXvuLPWMjGUvnMZgFhYMRH4Kb3u_0cWVb-5bWiJv5SyADRznq-azG3rlXw" target="_blank">LINE</a>
+                        <a href="https://l.messenger.com/l.php?u=https%3A%2F%2Fline.me%2Fti%2Fp%2FM-xq8_Zrvc" target="_blank">LINE</a>
                     </div>
                 </div>
 
@@ -669,6 +734,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // 滑動顯示特效
             const faders = document.querySelectorAll('.fade-in');
 
             const appearOptions = {
@@ -689,9 +755,25 @@
             faders.forEach(fader => {
                 appearOnScroll.observe(fader);
             });
+
+            // 漢堡選單互動邏輯
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+
+            // 點擊漢堡按鈕，切換選單的顯示與隱藏
+            mobileMenu.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // 貼心設計：點擊任何一個連結後，自動收起選單
+            const links = navLinks.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
         });
     </script>
 
 </body>
-
 </html>
