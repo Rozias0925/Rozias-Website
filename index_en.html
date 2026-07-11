@@ -47,6 +47,31 @@
             align-items: center;
         }
 
+/* 左側專屬 Icon (Logo) 設定 */
+        .nav-logo {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            z-index: 1001; /* 確保不被遮擋 */
+        }
+
+        .nav-logo img {
+            height: 45px; /* 控制 Icon 的大小 */
+            width: 45px;
+            object-fit: cover; /* 確保圖片不變形 */
+            border-radius: 50%; /* 如果你想讓方形圖片變成圓形，可以保留這行；如果本來就是透明背景的 Logo，這行可以刪掉 */
+            border: 1px solid var(--gray-light); /* 輕微的邊框增加質感，不需要也可刪除 */
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover img {
+            transform: scale(1.1); /* 滑鼠游標靠近時會微微放大 */
+        }
+
+
         /* 導覽列連結區塊 (電腦版置中橫排) */
         .nav-links {
             display: flex;
@@ -640,7 +665,10 @@
     </svg>
 
     <nav>
-        <!-- 主選單連結 -->
+        <a href="#" class="nav-logo">
+            <img src="icon.png" alt="Rozias Icon">
+        </a>
+
         <div class="nav-links" id="nav-links">
             <a href="#">Home</a>
             <a href="#about">About</a>
@@ -651,10 +679,8 @@
             <a href="#contact">Contact</a>
         </div>
 
-        <!-- 語言切換按鈕 (預計連結回中文版 HTML) -->
-        <a href="index.html" class="lang-switch">中文</a>
+        <a href="index_en.html" class="lang-switch">EN</a>
 
-        <!-- 手機版漢堡選單 -->
         <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
             <span class="bar"></span>
