@@ -678,6 +678,11 @@
         }
         .hero-media {
             width: 100%;
+            position: relative;
+            isolation: isolate;
+        }
+        .hero-frame {
+            width: 100%;
             aspect-ratio: 16 / 9;
             position: relative;
             overflow: hidden;
@@ -686,6 +691,17 @@
             border: 1px solid rgba(255, 255, 255, 0.28);
             border-radius: 18px;
             box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        }
+        .hero-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            background:
+                linear-gradient(112deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.05) 42%, rgba(255,255,255,0.13) 100%),
+                rgba(238, 238, 238, 0.08);
+            backdrop-filter: blur(0.7px) saturate(0.78) contrast(0.94);
         }
         .hero-slideshow {
             position: absolute;
@@ -711,55 +727,53 @@
             object-fit: contain;
             background: #000000;
         }
-        .hero-slide::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.02) 44%, rgba(0,0,0,0.16) 100%),
-                rgba(10, 10, 10, 0.04);
-            backdrop-filter: saturate(0.92) contrast(0.96);
-            z-index: 1;
-        }
         .hero-caption {
-            position: absolute;
-            left: 18px;
-            right: 18px;
-            bottom: 35px;
-            z-index: 2;
-            color: rgba(255, 255, 255, 0.94);
+            display: none;
+        }
+        .hero-meta {
+            min-height: 68px;
+            padding: 12px 12px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 9px;
+        }
+        #home:not(.has-banner-images) .hero-meta { visibility: hidden; }
+        .hero-caption-display {
+            min-height: 1.5em;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.82);
             font-size: 0.78rem;
             line-height: 1.5;
             letter-spacing: 1.2px;
             text-align: center;
-            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
         }
         .banner-wave { z-index: 1; }
         .hero-dots {
-            position: absolute;
-            left: 50%;
-            bottom: 14px;
-            transform: translateX(-50%);
-            z-index: 3;
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 7px 10px;
-            border-radius: 999px;
-            background: rgba(0, 0, 0, 0.26);
-            backdrop-filter: blur(8px);
         }
-        #home:not(.has-banner-images) .hero-dots { display: none; }
         .hero-dot {
+            appearance: none;
             width: 6px;
             height: 6px;
+            padding: 0;
+            border: 0;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.42);
+            cursor: pointer;
             transition: transform 0.35s ease, background 0.35s ease;
         }
         .hero-dot.active {
             background: #ffffff;
             transform: scale(1.35);
+        }
+        .hero-dot:hover { background: rgba(255, 255, 255, 0.78); }
+        .hero-dot:focus-visible {
+            outline: 1px solid rgba(255, 255, 255, 0.92);
+            outline-offset: 4px;
         }
         @media (max-width: 900px) {
             #home {
@@ -787,10 +801,10 @@
                 max-width: 760px;
                 margin: 0 auto;
             }
-            .hero-dots { bottom: 10px; }
+            .hero-meta { min-height: 72px; }
         }
         @media (prefers-reduced-motion: reduce) {
-            .hero-slideshow, .hero-slide { transition: none; }
+            .hero-slideshow, .hero-slide, .hero-dot { transition: none; }
         }
     </style>
 </head>
@@ -876,25 +890,30 @@
             </div>
 
             <div class="hero-media" aria-label="研究與活動照片自動輪播">
-                <div class="hero-slideshow" data-banner-carousel aria-live="off">
-                    <figure class="hero-slide active"><img src="assets/banner/banner-01.jpg" alt="於 2026 ICOML 進行研究海報發表" fetchpriority="high"><figcaption class="hero-caption">2026 ICOML｜研究海報發表與學術交流</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-02.jpg" alt="於 2026 ICOML 與國際學者討論研究" loading="lazy"><figcaption class="hero-caption">2026 ICOML｜與國際學者交流研究方法與成果</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-03.jpg" alt="2026 TWSIAM 年會參與者合影" loading="lazy"><figcaption class="hero-caption">2026 TWSIAM 年會｜與參與者合影</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-04.jpg" alt="在數學課堂講解代數概念" loading="lazy"><figcaption class="hero-caption">數學課堂｜代數概念講解與討論</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-05.jpg" alt="參與 2025 校際應用數學學生研討會" loading="lazy"><figcaption class="hero-caption">2025 校際應用數學學生研討會</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-06.jpg" alt="於 2026 ICOML 交流腦腫瘤光譜分群研究" loading="lazy"><figcaption class="hero-caption">2026 ICOML｜腦腫瘤光譜分群研究交流</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-07.jpg" alt="於 2026 TWSIAM 年會介紹腦腫瘤光譜分群研究" loading="lazy"><figcaption class="hero-caption">2026 TWSIAM 年會｜腦腫瘤光譜分群研究海報</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-08.jpg" alt="2026 ICOML 會議參與者合影" loading="lazy"><figcaption class="hero-caption">2026 ICOML｜會議參與者合影</figcaption></figure>
+                <div class="hero-frame">
+                    <div class="hero-slideshow" data-banner-carousel aria-live="off">
+                        <figure class="hero-slide active"><img src="assets/banner/banner-01.jpg" alt="於 2026 ICOML 進行研究海報發表" fetchpriority="high"><figcaption class="hero-caption">2026 ICOML｜研究海報發表與學術交流</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-02.jpg" alt="於 2026 ICOML 與國際學者討論研究" loading="lazy"><figcaption class="hero-caption">2026 ICOML｜與國際學者交流研究方法與成果</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-03.jpg" alt="2026 TWSIAM 年會國立臺灣師範大學團隊合照" loading="lazy"><figcaption class="hero-caption">2026 TWSIAM 年會｜國立臺灣師範大學團隊合照</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-04.jpg" alt="在代數助教課講解代數概念" loading="lazy"><figcaption class="hero-caption">代數助教課｜代數概念講解與討論</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-05.jpg" alt="參與 2025 校際應用數學學生研討會" loading="lazy"><figcaption class="hero-caption">2025 校際應用數學學生研討會</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-06.jpg" alt="於 2026 ICOML 進行研究交流" loading="lazy"><figcaption class="hero-caption">2026 ICOML｜研究交流與意見討論</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-07.jpg" alt="於 2026 TWSIAM 年會介紹腦腫瘤光譜分群研究" loading="lazy"><figcaption class="hero-caption">2026 TWSIAM 年會｜腦腫瘤光譜分群研究海報</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-08.jpg" alt="2026 ICOML 工作人員合照" loading="lazy"><figcaption class="hero-caption">2026 ICOML｜工作人員合照</figcaption></figure>
+                    </div>
                 </div>
-                <div class="hero-dots" data-banner-dots aria-hidden="true">
-                    <span class="hero-dot active"></span>
-                    <span class="hero-dot"></span>
-                    <span class="hero-dot"></span>
-                    <span class="hero-dot"></span>
-                    <span class="hero-dot"></span>
-                    <span class="hero-dot"></span>
-                    <span class="hero-dot"></span>
-                    <span class="hero-dot"></span>
+                <div class="hero-meta">
+                    <p class="hero-caption-display" data-banner-caption aria-live="polite">2026 ICOML｜研究海報發表與學術交流</p>
+                    <div class="hero-dots" data-banner-dots aria-label="選擇輪播照片">
+                        <button type="button" class="hero-dot active" aria-label="顯示第 1 張照片" aria-current="true"></button>
+                        <button type="button" class="hero-dot" aria-label="顯示第 2 張照片"></button>
+                        <button type="button" class="hero-dot" aria-label="顯示第 3 張照片"></button>
+                        <button type="button" class="hero-dot" aria-label="顯示第 4 張照片"></button>
+                        <button type="button" class="hero-dot" aria-label="顯示第 5 張照片"></button>
+                        <button type="button" class="hero-dot" aria-label="顯示第 6 張照片"></button>
+                        <button type="button" class="hero-dot" aria-label="顯示第 7 張照片"></button>
+                        <button type="button" class="hero-dot" aria-label="顯示第 8 張照片"></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1249,6 +1268,7 @@
                 const allSlides = Array.from(banner.querySelectorAll('.hero-slide'));
                 const images = allSlides.map(slide => slide.querySelector('img'));
                 const dots = Array.from(document.querySelectorAll('.hero-dot'));
+                const caption = document.querySelector('[data-banner-caption]');
                 const validSlides = new Set();
                 let activeIndex = 0;
                 let timer;
@@ -1260,7 +1280,14 @@
                     if (!slides.length) return;
                     activeIndex = (index + slides.length) % slides.length;
                     slides.forEach((slide, i) => slide.classList.toggle('active', i === activeIndex));
-                    dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
+                    const activeSlide = slides[activeIndex];
+                    const originalIndex = allSlides.indexOf(activeSlide);
+                    dots.forEach((dot, i) => {
+                        const isActive = i === originalIndex;
+                        dot.classList.toggle('active', isActive);
+                        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+                    });
+                    caption.textContent = activeSlide.querySelector('.hero-caption').textContent;
                 };
                 const stop = () => { window.clearInterval(timer); };
                 const start = () => {
@@ -1271,7 +1298,7 @@
                     const slides = visibleSlides();
                     home.classList.toggle('has-banner-images', slides.length > 0);
                     allSlides.forEach(slide => { slide.hidden = !validSlides.has(slide); });
-                    dots.forEach((dot, index) => { dot.hidden = index >= slides.length; });
+                    dots.forEach((dot, index) => { dot.hidden = !validSlides.has(allSlides[index]); });
                     if (slides.length) { update(0); start(); }
                 };
 
@@ -1280,6 +1307,15 @@
                     image.addEventListener('load', () => { validSlides.add(slide); refresh(); });
                     image.addEventListener('error', () => { validSlides.delete(slide); refresh(); });
                     if (image.complete && image.naturalWidth > 0) validSlides.add(slide);
+                });
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        const targetIndex = visibleSlides().indexOf(allSlides[index]);
+                        if (targetIndex >= 0) {
+                            update(targetIndex);
+                            start();
+                        }
+                    });
                 });
                 refresh();
             }

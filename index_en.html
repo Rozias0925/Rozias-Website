@@ -677,6 +677,11 @@
         }
         .hero-media {
             width: 100%;
+            position: relative;
+            isolation: isolate;
+        }
+        .hero-frame {
+            width: 100%;
             aspect-ratio: 16 / 9;
             position: relative;
             overflow: hidden;
@@ -685,6 +690,17 @@
             border: 1px solid rgba(255, 255, 255, 0.28);
             border-radius: 18px;
             box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        }
+        .hero-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            background:
+                linear-gradient(112deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.05) 42%, rgba(255,255,255,0.13) 100%),
+                rgba(238, 238, 238, 0.08);
+            backdrop-filter: blur(0.7px) saturate(0.78) contrast(0.94);
         }
         .hero-slideshow {
             position: absolute;
@@ -710,55 +726,53 @@
             object-fit: contain;
             background: #000000;
         }
-        .hero-slide::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.02) 44%, rgba(0,0,0,0.16) 100%),
-                rgba(10, 10, 10, 0.04);
-            backdrop-filter: saturate(0.92) contrast(0.96);
-            z-index: 1;
-        }
         .hero-caption {
-            position: absolute;
-            left: 18px;
-            right: 18px;
-            bottom: 35px;
-            z-index: 2;
-            color: rgba(255, 255, 255, 0.94);
+            display: none;
+        }
+        .hero-meta {
+            min-height: 68px;
+            padding: 12px 12px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 9px;
+        }
+        #home:not(.has-banner-images) .hero-meta { visibility: hidden; }
+        .hero-caption-display {
+            min-height: 1.5em;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.82);
             font-size: 0.78rem;
             line-height: 1.5;
             letter-spacing: 1.2px;
             text-align: center;
-            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
         }
         .banner-wave { z-index: 1; }
         .hero-dots {
-            position: absolute;
-            left: 50%;
-            bottom: 14px;
-            transform: translateX(-50%);
-            z-index: 3;
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 7px 10px;
-            border-radius: 999px;
-            background: rgba(0, 0, 0, 0.26);
-            backdrop-filter: blur(8px);
         }
-        #home:not(.has-banner-images) .hero-dots { display: none; }
         .hero-dot {
+            appearance: none;
             width: 6px;
             height: 6px;
+            padding: 0;
+            border: 0;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.42);
+            cursor: pointer;
             transition: transform 0.35s ease, background 0.35s ease;
         }
         .hero-dot.active {
             background: #ffffff;
             transform: scale(1.35);
+        }
+        .hero-dot:hover { background: rgba(255, 255, 255, 0.78); }
+        .hero-dot:focus-visible {
+            outline: 1px solid rgba(255, 255, 255, 0.92);
+            outline-offset: 4px;
         }
         @media (max-width: 900px) {
             #home {
@@ -786,10 +800,10 @@
                 max-width: 760px;
                 margin: 0 auto;
             }
-            .hero-dots { bottom: 10px; }
+            .hero-meta { min-height: 72px; }
         }
         @media (prefers-reduced-motion: reduce) {
-            .hero-slideshow, .hero-slide { transition: none; }
+            .hero-slideshow, .hero-slide, .hero-dot { transition: none; }
         }
     </style>
 </head>
@@ -875,25 +889,30 @@
             </div>
 
             <div class="hero-media" aria-label="Automatic research and activity photo carousel">
-                <div class="hero-slideshow" data-banner-carousel aria-live="off">
-                    <figure class="hero-slide active"><img src="assets/banner/banner-01.jpg" alt="Presenting a research poster at ICOML 2026" fetchpriority="high"><figcaption class="hero-caption">ICOML 2026 | Research poster presentation and academic exchange</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-02.jpg" alt="Discussing research with international scholars at ICOML 2026" loading="lazy"><figcaption class="hero-caption">ICOML 2026 | Discussing research methods and findings with scholars</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-03.jpg" alt="Group photo at the 2026 TWSIAM Annual Meeting" loading="lazy"><figcaption class="hero-caption">2026 TWSIAM Annual Meeting | Group photo</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-04.jpg" alt="Explaining algebraic concepts in a mathematics classroom" loading="lazy"><figcaption class="hero-caption">Mathematics Classroom | Explaining and discussing algebraic concepts</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-05.jpg" alt="Attending the 2025 Intercollegiate Applied Mathematics Student Seminar" loading="lazy"><figcaption class="hero-caption">2025 Intercollegiate Applied Mathematics Student Seminar</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-06.jpg" alt="Discussing brain tumor spectral clustering research at ICOML 2026" loading="lazy"><figcaption class="hero-caption">ICOML 2026 | Brain tumor spectral clustering research exchange</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-07.jpg" alt="Presenting a brain tumor spectral clustering poster at the 2026 TWSIAM Annual Meeting" loading="lazy"><figcaption class="hero-caption">2026 TWSIAM Annual Meeting | Brain tumor spectral clustering poster</figcaption></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-08.jpg" alt="Conference group photo at ICOML 2026" loading="lazy"><figcaption class="hero-caption">ICOML 2026 | Conference group photo</figcaption></figure>
+                <div class="hero-frame">
+                    <div class="hero-slideshow" data-banner-carousel aria-live="off">
+                        <figure class="hero-slide active"><img src="assets/banner/banner-01.jpg" alt="Presenting a research poster at ICOML 2026" fetchpriority="high"><figcaption class="hero-caption">ICOML 2026 | Research poster presentation and academic exchange</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-02.jpg" alt="Discussing research with international scholars at ICOML 2026" loading="lazy"><figcaption class="hero-caption">ICOML 2026 | Discussing research methods and findings with scholars</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-03.jpg" alt="National Taiwan Normal University team photo at the 2026 TWSIAM Annual Meeting" loading="lazy"><figcaption class="hero-caption">2026 TWSIAM Annual Meeting | National Taiwan Normal University team photo</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-04.jpg" alt="Explaining algebraic concepts during an algebra teaching assistant session" loading="lazy"><figcaption class="hero-caption">Algebra TA Session | Explaining and discussing algebraic concepts</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-05.jpg" alt="Attending the 2025 Intercollegiate Applied Mathematics Student Seminar" loading="lazy"><figcaption class="hero-caption">2025 Intercollegiate Applied Mathematics Student Seminar</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-06.jpg" alt="Research exchange at ICOML 2026" loading="lazy"><figcaption class="hero-caption">ICOML 2026 | Research exchange and discussion</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-07.jpg" alt="Presenting a brain tumor spectral clustering poster at the 2026 TWSIAM Annual Meeting" loading="lazy"><figcaption class="hero-caption">2026 TWSIAM Annual Meeting | Brain tumor spectral clustering poster</figcaption></figure>
+                        <figure class="hero-slide"><img src="assets/banner/banner-08.jpg" alt="ICOML 2026 staff group photo" loading="lazy"><figcaption class="hero-caption">ICOML 2026 | Staff group photo</figcaption></figure>
+                    </div>
                 </div>
-                <div class="hero-dots" data-banner-dots aria-hidden="true">
-                    <span class="hero-dot active"></span>
-                    <span class="hero-dot"></span>
-                    <span class="hero-dot"></span>
-                    <span class="hero-dot"></span>
-                    <span class="hero-dot"></span>
-                    <span class="hero-dot"></span>
-                    <span class="hero-dot"></span>
-                    <span class="hero-dot"></span>
+                <div class="hero-meta">
+                    <p class="hero-caption-display" data-banner-caption aria-live="polite">ICOML 2026 | Research poster presentation and academic exchange</p>
+                    <div class="hero-dots" data-banner-dots aria-label="Select a carousel photo">
+                        <button type="button" class="hero-dot active" aria-label="Show photo 1" aria-current="true"></button>
+                        <button type="button" class="hero-dot" aria-label="Show photo 2"></button>
+                        <button type="button" class="hero-dot" aria-label="Show photo 3"></button>
+                        <button type="button" class="hero-dot" aria-label="Show photo 4"></button>
+                        <button type="button" class="hero-dot" aria-label="Show photo 5"></button>
+                        <button type="button" class="hero-dot" aria-label="Show photo 6"></button>
+                        <button type="button" class="hero-dot" aria-label="Show photo 7"></button>
+                        <button type="button" class="hero-dot" aria-label="Show photo 8"></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1246,6 +1265,7 @@
                 const allSlides = Array.from(banner.querySelectorAll('.hero-slide'));
                 const images = allSlides.map(slide => slide.querySelector('img'));
                 const dots = Array.from(document.querySelectorAll('.hero-dot'));
+                const caption = document.querySelector('[data-banner-caption]');
                 const validSlides = new Set();
                 let activeIndex = 0;
                 let timer;
@@ -1257,7 +1277,14 @@
                     if (!slides.length) return;
                     activeIndex = (index + slides.length) % slides.length;
                     slides.forEach((slide, i) => slide.classList.toggle('active', i === activeIndex));
-                    dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
+                    const activeSlide = slides[activeIndex];
+                    const originalIndex = allSlides.indexOf(activeSlide);
+                    dots.forEach((dot, i) => {
+                        const isActive = i === originalIndex;
+                        dot.classList.toggle('active', isActive);
+                        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+                    });
+                    caption.textContent = activeSlide.querySelector('.hero-caption').textContent;
                 };
                 const stop = () => { window.clearInterval(timer); };
                 const start = () => {
@@ -1268,7 +1295,7 @@
                     const slides = visibleSlides();
                     home.classList.toggle('has-banner-images', slides.length > 0);
                     allSlides.forEach(slide => { slide.hidden = !validSlides.has(slide); });
-                    dots.forEach((dot, index) => { dot.hidden = index >= slides.length; });
+                    dots.forEach((dot, index) => { dot.hidden = !validSlides.has(allSlides[index]); });
                     if (slides.length) { update(0); start(); }
                 };
 
@@ -1277,6 +1304,15 @@
                     image.addEventListener('load', () => { validSlides.add(slide); refresh(); });
                     image.addEventListener('error', () => { validSlides.delete(slide); refresh(); });
                     if (image.complete && image.naturalWidth > 0) validSlides.add(slide);
+                });
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        const targetIndex = visibleSlides().indexOf(allSlides[index]);
+                        if (targetIndex >= 0) {
+                            update(targetIndex);
+                            start();
+                        }
+                    });
                 });
                 refresh();
             }
