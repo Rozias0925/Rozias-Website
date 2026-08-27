@@ -633,6 +633,76 @@
                 justify-content: center;
             }
         }
+
+        /* 照片跑馬燈：沒有照片時完全隱藏，保留原本黑色幾何 Banner */
+        .hero-slideshow {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            background: #000000;
+        }
+        #home.has-banner-images .hero-slideshow { opacity: 1; }
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            background: #000000;
+        }
+        .hero-slide.active { opacity: 1; }
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000000;
+        }
+        .hero-slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.42);
+        }
+        .banner-wave { z-index: 1; }
+        #home .name-zh, #home .name-en, #home .title { z-index: 2; }
+        .hero-slideshow-controls {
+            position: absolute;
+            right: 24px;
+            bottom: 18px;
+            z-index: 3;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        #home.has-banner-images .hero-slideshow-controls { display: flex; }
+        .hero-slideshow-controls[hidden] { display: none !important; }
+        .hero-slideshow-controls button {
+            width: 30px;
+            height: 30px;
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.7);
+            background: rgba(0,0,0,0.35);
+            cursor: pointer;
+        }
+        .hero-slideshow-controls button:hover,
+        .hero-slideshow-controls button:focus-visible { background: rgba(255,255,255,0.2); }
+        .hero-slideshow-status {
+            min-width: 42px;
+            color: #ffffff;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .hero-slideshow-controls { right: 14px; bottom: 12px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-slideshow, .hero-slide { transition: none; }
+        }
     </style>
 </head>
 
@@ -689,7 +759,18 @@
         </div>
     </nav>
 
-    <section id="home">
+    <section id="home" aria-label="首頁橫幅">
+        <div class="hero-slideshow" data-banner-carousel aria-live="off">
+            <figure class="hero-slide active"><img src="assets/banner/banner-01.jpg" alt="研究或演講活動照片 1"></figure>
+            <figure class="hero-slide"><img src="assets/banner/banner-02.jpg" alt="研究或演講活動照片 2"></figure>
+            <figure class="hero-slide"><img src="assets/banner/banner-03.jpg" alt="研究或演講活動照片 3"></figure>
+        </div>
+        <div class="hero-slideshow-controls" aria-label="Banner 照片控制項">
+            <button type="button" data-banner-prev aria-label="上一張照片">←</button>
+            <span class="hero-slideshow-status" data-banner-status>1 / 3</span>
+            <button type="button" data-banner-next aria-label="下一張照片">→</button>
+            <button type="button" data-banner-pause aria-pressed="false">暫停</button>
+        </div>
         <svg class="banner-wave banner-wave-left" viewBox="0 0 200 500" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="sharpGrad" x1="0%" y1="100%" x2="0%" y2="0%">
@@ -717,28 +798,24 @@
     <section id="about" class="content-box">
         <h2 class="fade-in">簡介 / ABOUT</h2>
         
-        <div class="image-placeholder fade-in">
-            研究／演講活動照片將於素材備妥後更新
-        </div>
-
         <p class="fade-in handwriting">
-            你好，我是文君豪，目前就讀於國立臺灣師範大學數學系。在修習代數學與線性代數的過程中，我培養了對純數學的熱愛與高敏感度。這份熱情驅使我利用暑假期間自修《Galois Theory》，並進一步探索同調代數的廣闊領域。
+            你好，我是文君豪，目前就讀國立臺灣師範大學數學系。我關心數學結構如何轉化為可計算、可驗證的模型；代數與線性代數奠定了這份興趣，也驅使我自修 Galois Theory、泛函分析與機器學習。
         </p>
         <br>
         <p class="fade-in handwriting">
-            在深入純數之際，新加坡一直是我非常嚮往的城市。2018 年初次造訪時，我便對其先進的城市發展與高度自律的精神印象深刻；而 2025 年的再次拜訪，更成為我人生重要的轉捩點。當時我有幸與當地學生深入交流，他們展現出的極高效率、積極上進與對自我的嚴格要求深深打動了我，因為這些特質恰好與我對自身的期許不謀而合。
+            2018 與 2025 年兩次造訪新加坡，讓我更清楚自己嚮往一個高標準、持續成長的學術環境。這份感受也提醒我：好的研究不只來自天分，更來自長期規劃、主動提問與反覆驗證。
         </p>
         <br>
         <p class="fade-in handwriting">
-            那段期間，我正好榮獲了 2025 校際應用數學秋季研討會「最佳論文獎」的殊榮。然而，在這份肯定的背後，未來的生涯走向卻帶給我極大的壓力。在審慎評估自身個性與嚮往的生活藍圖後，我對繼續深耕「純數」這條路產生了猶豫。這趟旅程宛如一劑強心針，回臺灣後，我更加確信新加坡就是我渴望置身的環境。新加坡擁有亞洲最頂尖的學府——新加坡國立大學與南洋理工大學，在各個前沿領域皆具備深厚的資源。如此完美的烏托邦怎會不讓人心動呢？
+            在獲得校際應用數學秋季研討會最佳論文獎後，我開始更認真思考自己想解決的問題。我不離開數學，而是把它延伸到資料科學與機器學習：讓嚴謹的理論成為面對複雜資料時可靠的出發點。
         </p>
         <br>
         <p class="fade-in handwriting">
-            這份嚮往促使我立下了明確的目標：期望能進入這兩所頂尖學府之一，攻讀機器學習、資料科學與人工智慧相關的碩士學程。為此，我決心將專研領域從純代數向外拓展，期許能用這兩年的時間，淬鍊出一份足以說服頂尖學術機構的堅實背景。
+            目前，我以 Graph Laplacian 與 Factor GCN 兩項研究為主軸：前者探索圖結構與分群在跨領域資料中的可能，後者則持續延伸 GAT、強化學習與部署能力。每一個專題，都是我把好奇心轉化為具體計畫的練習。
         </p>
         <br>
         <p class="fade-in handwriting">
-            恰逢人工智慧崛起的黃金年代，「如何讓無生命的機器學會思考？」這個問題深深吸引了我。在修習「科學計算導論」與「科學計算特論」後，我進一步掌握了以數據為核心、策略性解決問題的思維。憑藉著在代數領域的優勢，我開始從線性代數的視角切入，由研究 Graph Laplacian 起步，著手解決機器學習中的分類問題；隨後更實際融入圖卷積神經網路（GCN），設計出一套以資產配置為目標的投資演算法，正式跨足資料科學與機器學習領域。在參與多場工作坊與學術研討會並獲得肯定後，我更加堅定了朝此方向發展的信念。期許自己能持續將嚴謹的數學邏輯，轉化為解決真實世界問題的演算法，有朝一日在資料科學領域中，開創出屬於自己的一席之地。
+            下一步，我希望在機器學習、資料科學或 AI 相關碩士領域持續深耕，累積更完整的研究能力，並把數學的精確性帶進真實世界的問題。
         </p>
     </section>
 
@@ -1053,6 +1130,60 @@
                     }
                 });
             });
+
+            // 首頁照片跑馬燈：僅在至少一張指定照片成功載入時啟用
+            const banner = document.querySelector('[data-banner-carousel]');
+            const home = document.getElementById('home');
+            const bannerControls = document.querySelector('.hero-slideshow-controls');
+            if (banner && home && bannerControls) {
+                const allSlides = Array.from(banner.querySelectorAll('.hero-slide'));
+                const images = allSlides.map(slide => slide.querySelector('img'));
+                const validSlides = new Set();
+                let activeIndex = 0;
+                let timer;
+                let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                const prevButton = document.querySelector('[data-banner-prev]');
+                const nextButton = document.querySelector('[data-banner-next]');
+                const pauseButton = document.querySelector('[data-banner-pause]');
+                const status = document.querySelector('[data-banner-status]');
+
+                const visibleSlides = () => allSlides.filter(slide => validSlides.has(slide));
+                const update = index => {
+                    const slides = visibleSlides();
+                    if (!slides.length) return;
+                    activeIndex = (index + slides.length) % slides.length;
+                    slides.forEach((slide, i) => slide.classList.toggle('active', i === activeIndex));
+                    status.textContent = `${activeIndex + 1} / ${slides.length}`;
+                };
+                const stop = () => { window.clearInterval(timer); };
+                const start = () => {
+                    stop();
+                    if (!paused && visibleSlides().length > 1) timer = window.setInterval(() => update(activeIndex + 1), 6000);
+                };
+                const refresh = () => {
+                    const slides = visibleSlides();
+                    home.classList.toggle('has-banner-images', slides.length > 0);
+                    bannerControls.hidden = slides.length < 2;
+                    allSlides.forEach(slide => { slide.hidden = !validSlides.has(slide); });
+                    if (slides.length) { update(0); start(); }
+                };
+
+                images.forEach((image, index) => {
+                    const slide = allSlides[index];
+                    image.addEventListener('load', () => { validSlides.add(slide); refresh(); });
+                    image.addEventListener('error', () => { validSlides.delete(slide); refresh(); });
+                    if (image.complete && image.naturalWidth > 0) validSlides.add(slide);
+                });
+                refresh();
+                prevButton.addEventListener('click', () => { update(activeIndex - 1); start(); });
+                nextButton.addEventListener('click', () => { update(activeIndex + 1); start(); });
+                pauseButton.addEventListener('click', () => {
+                    paused = !paused;
+                    pauseButton.setAttribute('aria-pressed', String(paused));
+                    pauseButton.textContent = paused ? '播放' : '暫停';
+                    start();
+                });
+            }
         });
 
         // --- 點擊右下角 Icon 絲滑回到頂端 ---

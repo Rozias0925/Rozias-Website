@@ -632,6 +632,76 @@
                 justify-content: center;
             }
         }
+
+        /* Photo carousel: hidden when no public banner photos are available. */
+        .hero-slideshow {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            background: #000000;
+        }
+        #home.has-banner-images .hero-slideshow { opacity: 1; }
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            background: #000000;
+        }
+        .hero-slide.active { opacity: 1; }
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000000;
+        }
+        .hero-slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.42);
+        }
+        .banner-wave { z-index: 1; }
+        #home .name-zh, #home .name-en, #home .title { z-index: 2; }
+        .hero-slideshow-controls {
+            position: absolute;
+            right: 24px;
+            bottom: 18px;
+            z-index: 3;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        #home.has-banner-images .hero-slideshow-controls { display: flex; }
+        .hero-slideshow-controls[hidden] { display: none !important; }
+        .hero-slideshow-controls button {
+            width: 30px;
+            height: 30px;
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.7);
+            background: rgba(0,0,0,0.35);
+            cursor: pointer;
+        }
+        .hero-slideshow-controls button:hover,
+        .hero-slideshow-controls button:focus-visible { background: rgba(255,255,255,0.2); }
+        .hero-slideshow-status {
+            min-width: 42px;
+            color: #ffffff;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .hero-slideshow-controls { right: 14px; bottom: 12px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-slideshow, .hero-slide { transition: none; }
+        }
     </style>
 </head>
 
@@ -688,7 +758,18 @@
         </div>
     </nav>
 
-    <section id="home">
+    <section id="home" aria-label="Homepage banner">
+        <div class="hero-slideshow" data-banner-carousel aria-live="off">
+            <figure class="hero-slide active"><img src="assets/banner/banner-01.jpg" alt="Research or speaking activity photo 1"></figure>
+            <figure class="hero-slide"><img src="assets/banner/banner-02.jpg" alt="Research or speaking activity photo 2"></figure>
+            <figure class="hero-slide"><img src="assets/banner/banner-03.jpg" alt="Research or speaking activity photo 3"></figure>
+        </div>
+        <div class="hero-slideshow-controls" aria-label="Banner photo controls">
+            <button type="button" data-banner-prev aria-label="Previous photo">←</button>
+            <span class="hero-slideshow-status" data-banner-status>1 / 3</span>
+            <button type="button" data-banner-next aria-label="Next photo">→</button>
+            <button type="button" data-banner-pause aria-pressed="false">Pause</button>
+        </div>
         <svg class="banner-wave banner-wave-left" viewBox="0 0 200 500" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="sharpGrad" x1="0%" y1="100%" x2="0%" y2="0%">
@@ -716,28 +797,24 @@
     <section id="about" class="content-box">
         <h2 class="fade-in">ABOUT ME</h2>
         
-        <div class="image-placeholder fade-in">
-            Research or speaking photo will be added when public assets are ready
-        </div>
-
         <p class="fade-in handwriting">
-            Hello, I am Chun-Hao Wen, currently an undergraduate student majoring in Mathematics at National Taiwan Normal University (NTNU). Through studying Algebra and Linear Algebra, I developed a profound passion and high sensitivity for pure mathematics. This enthusiasm drove me to self-study Galois Theory over the summer and further explore the expansive field of Homological Algebra.
+            Hello, I am Chun-Hao Wen, a Mathematics student at National Taiwan Normal University. I am interested in how mathematical structure can become a computable, testable model; algebra and linear algebra shaped this interest and led me to independently study Galois theory, functional analysis, and machine learning.
         </p>
         <br>
         <p class="fade-in handwriting">
-            While delving deep into pure mathematics, <i>Singapore</i> has always been a city I deeply admire. During my first visit in 2018, I was highly impressed by its <i>advanced urban development</i> and <i>spirit of high self-discipline</i>. My second visit in 2025 became a crucial turning point in my life. I had the privilege of engaging in in-depth conversations with local students, whose <i>extreme efficiency</i>, <i>drive for excellence</i>, and <i>strict self-demands</i> deeply resonated with my own personal expectations.
+            Two visits to Singapore, in 2018 and 2025, clarified my aspiration for a high-standard academic environment built around growth. They also reinforced a simple belief: good research comes not only from aptitude, but from deliberate planning, active questions, and repeated validation.
         </p>
         <br>
         <p class="fade-in handwriting">
-            During that period, I was honored to receive the "<i>Best Thesis Award</i>" at the 2025 Intercollegiate Applied Mathematics Autumn Conference. However, behind this recognition, the future direction of my career brought me immense pressure. After carefully evaluating my personality and the life blueprint I envisioned, I hesitated about continuing solely on the path of pure mathematics. The trip to Singapore acted as a shot in the arm; upon returning to Taiwan, I was even more certain that Singapore is the environment I aspire to be in. Housing Asia's top institutions—the <i>National University of Singapore (NUS)</i> and <i>Nanyang Technological University (NTU)</i>—it possesses profound resources across cutting-edge fields. How could such a perfect utopia not be captivating?
+            Receiving the Best Paper Award at the 2025 Intercollegiate Applied Mathematics Autumn Conference prompted me to think more carefully about the questions I want to solve. I am not leaving mathematics; I am extending it into data science and machine learning, using rigorous theory as a dependable starting point for complex data.
         </p>
         <br>
         <p class="fade-in handwriting">
-            This admiration prompted me to set a clear goal: to gain admission into one of these top-tier institutions for a Master's program in <i>Machine Learning</i>, <i>Data Science</i>, or <i>Artificial Intelligence</i>. To achieve this, I decided to expand my research focus beyond pure algebra, hoping to use these two years to forge a robust, cross-disciplinary background compelling enough for top academic institutions.
+            My current work centres on two projects: Graph Laplacian and Factor GCN. The first explores what graph structure and clustering can reveal in cross-domain data; the second is extending toward GATs, reinforcement learning, and deployment. Each project is a practice in turning curiosity into a concrete plan.
         </p>
         <br>
         <p class="fade-in handwriting">
-            Coinciding with the golden era of Artificial Intelligence, the question "<i>How can inanimate machines learn to think?</i>" deeply fascinated me. After taking "Introduction to Scientific Computing" and "Special Topics in Scientific Computing," I mastered a data-centric, strategic problem-solving mindset. Leveraging my strengths in algebra, I approached machine learning from the perspective of linear algebra—starting with Graph Laplacian to solve classification problems, and subsequently integrating Graph Convolutional Networks (GCN) to design an end-to-end investment algorithm for portfolio optimization, officially stepping into the realm of Data Science. Following recognitions from various workshops and academic conferences, my conviction to pursue this path has only strengthened. I aspire to continue translating rigorous mathematical logic into algorithms that solve real-world problems, eventually carving out my own niche in the field of Data Science.
+            Next, I hope to deepen this work in a graduate programme in machine learning, data science, or AI—building stronger research capability while bringing mathematical precision to real-world questions.
         </p>
     </section>
 
@@ -1050,6 +1127,60 @@
                     }
                 });
             });
+
+            // Activate the banner carousel only when at least one named photo loads.
+            const banner = document.querySelector('[data-banner-carousel]');
+            const home = document.getElementById('home');
+            const bannerControls = document.querySelector('.hero-slideshow-controls');
+            if (banner && home && bannerControls) {
+                const allSlides = Array.from(banner.querySelectorAll('.hero-slide'));
+                const images = allSlides.map(slide => slide.querySelector('img'));
+                const validSlides = new Set();
+                let activeIndex = 0;
+                let timer;
+                let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                const prevButton = document.querySelector('[data-banner-prev]');
+                const nextButton = document.querySelector('[data-banner-next]');
+                const pauseButton = document.querySelector('[data-banner-pause]');
+                const status = document.querySelector('[data-banner-status]');
+
+                const visibleSlides = () => allSlides.filter(slide => validSlides.has(slide));
+                const update = index => {
+                    const slides = visibleSlides();
+                    if (!slides.length) return;
+                    activeIndex = (index + slides.length) % slides.length;
+                    slides.forEach((slide, i) => slide.classList.toggle('active', i === activeIndex));
+                    status.textContent = `${activeIndex + 1} / ${slides.length}`;
+                };
+                const stop = () => { window.clearInterval(timer); };
+                const start = () => {
+                    stop();
+                    if (!paused && visibleSlides().length > 1) timer = window.setInterval(() => update(activeIndex + 1), 6000);
+                };
+                const refresh = () => {
+                    const slides = visibleSlides();
+                    home.classList.toggle('has-banner-images', slides.length > 0);
+                    bannerControls.hidden = slides.length < 2;
+                    allSlides.forEach(slide => { slide.hidden = !validSlides.has(slide); });
+                    if (slides.length) { update(0); start(); }
+                };
+
+                images.forEach((image, index) => {
+                    const slide = allSlides[index];
+                    image.addEventListener('load', () => { validSlides.add(slide); refresh(); });
+                    image.addEventListener('error', () => { validSlides.delete(slide); refresh(); });
+                    if (image.complete && image.naturalWidth > 0) validSlides.add(slide);
+                });
+                refresh();
+                prevButton.addEventListener('click', () => { update(activeIndex - 1); start(); });
+                nextButton.addEventListener('click', () => { update(activeIndex + 1); start(); });
+                pauseButton.addEventListener('click', () => {
+                    paused = !paused;
+                    pauseButton.setAttribute('aria-pressed', String(paused));
+                    pauseButton.textContent = paused ? 'Play' : 'Pause';
+                    start();
+                });
+            }
         });
 
         // --- 點擊右下角 Icon 絲滑回到頂端 ---
