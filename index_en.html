@@ -636,27 +636,27 @@
         /* Homepage name and photo carousel */
         #home {
             height: auto;
-            min-height: 680px;
-            padding: 72px clamp(24px, 6vw, 96px);
+            min-height: 560px;
+            padding: 48px clamp(24px, 5vw, 72px);
             align-items: stretch;
-            text-align: left;
+            text-align: center;
         }
         .hero-layout {
             width: 100%;
-            max-width: 1280px;
+            max-width: 1120px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: minmax(300px, 0.85fr) minmax(480px, 1.15fr);
+            grid-template-columns: minmax(340px, 0.85fr) minmax(520px, 1.15fr);
             align-items: center;
-            gap: clamp(42px, 6vw, 96px);
+            gap: clamp(42px, 4vw, 58px);
             position: relative;
             z-index: 2;
         }
         .hero-intro {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
+            align-items: center;
+            text-align: center;
             min-width: 0;
         }
         #home .name-zh {
@@ -683,7 +683,8 @@
             isolation: isolate;
             background: #000000;
             border: 1px solid rgba(255, 255, 255, 0.28);
-            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+            border-radius: 18px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
         }
         .hero-slideshow {
             position: absolute;
@@ -713,49 +714,46 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.08);
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.02) 44%, rgba(0,0,0,0.16) 100%),
+                rgba(10, 10, 10, 0.04);
+            backdrop-filter: saturate(0.92) contrast(0.96);
         }
         .banner-wave { z-index: 1; }
-        .hero-slideshow-controls {
+        .hero-dots {
             position: absolute;
-            right: 16px;
+            left: 50%;
             bottom: 14px;
+            transform: translateX(-50%);
             z-index: 3;
-            display: none;
+            display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.26);
+            backdrop-filter: blur(8px);
         }
-        #home.has-banner-images .hero-slideshow-controls { display: flex; }
-        .hero-slideshow-controls[hidden] { display: none !important; }
-        .hero-slideshow-controls button {
-            width: 30px;
-            height: 30px;
-            color: #ffffff;
-            border: 1px solid rgba(255,255,255,0.7);
-            background: rgba(0,0,0,0.35);
-            cursor: pointer;
+        #home:not(.has-banner-images) .hero-dots { display: none; }
+        .hero-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.42);
+            transition: transform 0.35s ease, background 0.35s ease;
         }
-        .hero-slideshow-controls button[data-banner-pause] {
-            width: auto;
-            padding: 0 10px;
-        }
-        .hero-slideshow-controls button:hover,
-        .hero-slideshow-controls button:focus-visible { background: rgba(255,255,255,0.2); }
-        .hero-slideshow-status {
-            min-width: 42px;
-            color: #ffffff;
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-            text-align: center;
+        .hero-dot.active {
+            background: #ffffff;
+            transform: scale(1.35);
         }
         @media (max-width: 900px) {
             #home {
                 min-height: 0;
-                padding: 64px 24px 72px;
+                padding: 48px 24px 56px;
             }
             .hero-layout {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
             }
             .hero-intro {
                 align-items: center;
@@ -774,7 +772,7 @@
                 max-width: 760px;
                 margin: 0 auto;
             }
-            .hero-slideshow-controls { right: 12px; bottom: 10px; }
+            .hero-dots { bottom: 10px; }
         }
         @media (prefers-reduced-motion: reduce) {
             .hero-slideshow, .hero-slide { transition: none; }
@@ -862,7 +860,7 @@
                 <p class="fade-in title">Data Science / Mathematics</p>
             </div>
 
-            <div class="hero-media" tabindex="0" aria-label="Research and activity photo carousel; use the left and right arrow keys to change photos">
+            <div class="hero-media" aria-label="Automatic research and activity photo carousel">
                 <div class="hero-slideshow" data-banner-carousel aria-live="off">
                     <figure class="hero-slide active"><img src="assets/banner/banner-01.jpg" alt="Research or speaking activity photo 1" fetchpriority="high"></figure>
                     <figure class="hero-slide"><img src="assets/banner/banner-02.jpg" alt="Research or speaking activity photo 2" loading="lazy"></figure>
@@ -873,11 +871,15 @@
                     <figure class="hero-slide"><img src="assets/banner/banner-07.jpg" alt="Research or speaking activity photo 7" loading="lazy"></figure>
                     <figure class="hero-slide"><img src="assets/banner/banner-08.jpg" alt="Research or speaking activity photo 8" loading="lazy"></figure>
                 </div>
-                <div class="hero-slideshow-controls" aria-label="Banner photo controls">
-                    <button type="button" data-banner-prev aria-label="Previous photo">←</button>
-                    <span class="hero-slideshow-status" data-banner-status aria-live="polite">1 / 8</span>
-                    <button type="button" data-banner-next aria-label="Next photo">→</button>
-                    <button type="button" data-banner-pause aria-pressed="false">Pause</button>
+                <div class="hero-dots" data-banner-dots aria-hidden="true">
+                    <span class="hero-dot active"></span>
+                    <span class="hero-dot"></span>
+                    <span class="hero-dot"></span>
+                    <span class="hero-dot"></span>
+                    <span class="hero-dot"></span>
+                    <span class="hero-dot"></span>
+                    <span class="hero-dot"></span>
+                    <span class="hero-dot"></span>
                 </div>
             </div>
         </div>
@@ -1226,19 +1228,14 @@
             // Activate the banner carousel only when at least one named photo loads.
             const banner = document.querySelector('[data-banner-carousel]');
             const home = document.getElementById('home');
-            const bannerControls = document.querySelector('.hero-slideshow-controls');
-            if (banner && home && bannerControls) {
+            if (banner && home) {
                 const allSlides = Array.from(banner.querySelectorAll('.hero-slide'));
                 const images = allSlides.map(slide => slide.querySelector('img'));
+                const dots = Array.from(document.querySelectorAll('.hero-dot'));
                 const validSlides = new Set();
                 let activeIndex = 0;
                 let timer;
                 let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                const prevButton = document.querySelector('[data-banner-prev]');
-                const nextButton = document.querySelector('[data-banner-next]');
-                const pauseButton = document.querySelector('[data-banner-pause]');
-                const status = document.querySelector('[data-banner-status]');
-                const media = banner.closest('.hero-media');
 
                 const visibleSlides = () => allSlides.filter(slide => validSlides.has(slide));
                 const update = index => {
@@ -1246,7 +1243,7 @@
                     if (!slides.length) return;
                     activeIndex = (index + slides.length) % slides.length;
                     slides.forEach((slide, i) => slide.classList.toggle('active', i === activeIndex));
-                    status.textContent = `${activeIndex + 1} / ${slides.length}`;
+                    dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
                 };
                 const stop = () => { window.clearInterval(timer); };
                 const start = () => {
@@ -1256,8 +1253,8 @@
                 const refresh = () => {
                     const slides = visibleSlides();
                     home.classList.toggle('has-banner-images', slides.length > 0);
-                    bannerControls.hidden = slides.length < 2;
                     allSlides.forEach(slide => { slide.hidden = !validSlides.has(slide); });
+                    dots.forEach((dot, index) => { dot.hidden = index >= slides.length; });
                     if (slides.length) { update(0); start(); }
                 };
 
@@ -1268,30 +1265,6 @@
                     if (image.complete && image.naturalWidth > 0) validSlides.add(slide);
                 });
                 refresh();
-                prevButton.addEventListener('click', () => { update(activeIndex - 1); start(); });
-                nextButton.addEventListener('click', () => { update(activeIndex + 1); start(); });
-                pauseButton.addEventListener('click', () => {
-                    paused = !paused;
-                    pauseButton.setAttribute('aria-pressed', String(paused));
-                    pauseButton.textContent = paused ? 'Play' : 'Pause';
-                    start();
-                });
-                media?.addEventListener('keydown', event => {
-                    if (event.key === 'ArrowLeft') {
-                        event.preventDefault();
-                        update(activeIndex - 1);
-                        start();
-                    }
-                    if (event.key === 'ArrowRight') {
-                        event.preventDefault();
-                        update(activeIndex + 1);
-                        start();
-                    }
-                    if (event.key === ' ') {
-                        event.preventDefault();
-                        pauseButton.click();
-                    }
-                });
             }
         });
 
