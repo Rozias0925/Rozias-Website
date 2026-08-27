@@ -719,6 +719,20 @@
                 linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.02) 44%, rgba(0,0,0,0.16) 100%),
                 rgba(10, 10, 10, 0.04);
             backdrop-filter: saturate(0.92) contrast(0.96);
+            z-index: 1;
+        }
+        .hero-caption {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 35px;
+            z-index: 2;
+            color: rgba(255, 255, 255, 0.94);
+            font-size: 0.78rem;
+            line-height: 1.5;
+            letter-spacing: 1.2px;
+            text-align: center;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
         }
         .banner-wave { z-index: 1; }
         .hero-dots {
@@ -863,14 +877,14 @@
 
             <div class="hero-media" aria-label="研究與活動照片自動輪播">
                 <div class="hero-slideshow" data-banner-carousel aria-live="off">
-                    <figure class="hero-slide active"><img src="assets/banner/banner-01.jpg" alt="研究或演講活動照片 1" fetchpriority="high"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-02.jpg" alt="研究或演講活動照片 2" loading="lazy"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-03.jpg" alt="研究或演講活動照片 3" loading="lazy"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-04.jpg" alt="研究或演講活動照片 4" loading="lazy"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-05.jpg" alt="研究或演講活動照片 5" loading="lazy"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-06.jpg" alt="研究或演講活動照片 6" loading="lazy"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-07.jpg" alt="研究或演講活動照片 7" loading="lazy"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-08.jpg" alt="研究或演講活動照片 8" loading="lazy"></figure>
+                    <figure class="hero-slide active"><img src="assets/banner/banner-01.jpg" alt="於 2026 ICOML 進行研究海報發表" fetchpriority="high"><figcaption class="hero-caption">2026 ICOML｜研究海報發表與學術交流</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-02.jpg" alt="於 2026 ICOML 與國際學者討論研究" loading="lazy"><figcaption class="hero-caption">2026 ICOML｜與國際學者交流研究方法與成果</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-03.jpg" alt="2026 TWSIAM 年會參與者合影" loading="lazy"><figcaption class="hero-caption">2026 TWSIAM 年會｜與參與者合影</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-04.jpg" alt="在數學課堂講解代數概念" loading="lazy"><figcaption class="hero-caption">數學課堂｜代數概念講解與討論</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-05.jpg" alt="參與 2025 校際應用數學學生研討會" loading="lazy"><figcaption class="hero-caption">2025 校際應用數學學生研討會</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-06.jpg" alt="於 2026 ICOML 交流腦腫瘤光譜分群研究" loading="lazy"><figcaption class="hero-caption">2026 ICOML｜腦腫瘤光譜分群研究交流</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-07.jpg" alt="於 2026 TWSIAM 年會介紹腦腫瘤光譜分群研究" loading="lazy"><figcaption class="hero-caption">2026 TWSIAM 年會｜腦腫瘤光譜分群研究海報</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-08.jpg" alt="2026 ICOML 會議參與者合影" loading="lazy"><figcaption class="hero-caption">2026 ICOML｜會議參與者合影</figcaption></figure>
                 </div>
                 <div class="hero-dots" data-banner-dots aria-hidden="true">
                     <span class="hero-dot active"></span>

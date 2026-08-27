@@ -718,6 +718,20 @@
                 linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.02) 44%, rgba(0,0,0,0.16) 100%),
                 rgba(10, 10, 10, 0.04);
             backdrop-filter: saturate(0.92) contrast(0.96);
+            z-index: 1;
+        }
+        .hero-caption {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 35px;
+            z-index: 2;
+            color: rgba(255, 255, 255, 0.94);
+            font-size: 0.78rem;
+            line-height: 1.5;
+            letter-spacing: 1.2px;
+            text-align: center;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
         }
         .banner-wave { z-index: 1; }
         .hero-dots {
@@ -862,14 +876,14 @@
 
             <div class="hero-media" aria-label="Automatic research and activity photo carousel">
                 <div class="hero-slideshow" data-banner-carousel aria-live="off">
-                    <figure class="hero-slide active"><img src="assets/banner/banner-01.jpg" alt="Research or speaking activity photo 1" fetchpriority="high"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-02.jpg" alt="Research or speaking activity photo 2" loading="lazy"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-03.jpg" alt="Research or speaking activity photo 3" loading="lazy"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-04.jpg" alt="Research or speaking activity photo 4" loading="lazy"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-05.jpg" alt="Research or speaking activity photo 5" loading="lazy"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-06.jpg" alt="Research or speaking activity photo 6" loading="lazy"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-07.jpg" alt="Research or speaking activity photo 7" loading="lazy"></figure>
-                    <figure class="hero-slide"><img src="assets/banner/banner-08.jpg" alt="Research or speaking activity photo 8" loading="lazy"></figure>
+                    <figure class="hero-slide active"><img src="assets/banner/banner-01.jpg" alt="Presenting a research poster at ICOML 2026" fetchpriority="high"><figcaption class="hero-caption">ICOML 2026 | Research poster presentation and academic exchange</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-02.jpg" alt="Discussing research with international scholars at ICOML 2026" loading="lazy"><figcaption class="hero-caption">ICOML 2026 | Discussing research methods and findings with scholars</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-03.jpg" alt="Group photo at the 2026 TWSIAM Annual Meeting" loading="lazy"><figcaption class="hero-caption">2026 TWSIAM Annual Meeting | Group photo</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-04.jpg" alt="Explaining algebraic concepts in a mathematics classroom" loading="lazy"><figcaption class="hero-caption">Mathematics Classroom | Explaining and discussing algebraic concepts</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-05.jpg" alt="Attending the 2025 Intercollegiate Applied Mathematics Student Seminar" loading="lazy"><figcaption class="hero-caption">2025 Intercollegiate Applied Mathematics Student Seminar</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-06.jpg" alt="Discussing brain tumor spectral clustering research at ICOML 2026" loading="lazy"><figcaption class="hero-caption">ICOML 2026 | Brain tumor spectral clustering research exchange</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-07.jpg" alt="Presenting a brain tumor spectral clustering poster at the 2026 TWSIAM Annual Meeting" loading="lazy"><figcaption class="hero-caption">2026 TWSIAM Annual Meeting | Brain tumor spectral clustering poster</figcaption></figure>
+                    <figure class="hero-slide"><img src="assets/banner/banner-08.jpg" alt="Conference group photo at ICOML 2026" loading="lazy"><figcaption class="hero-caption">ICOML 2026 | Conference group photo</figcaption></figure>
                 </div>
                 <div class="hero-dots" data-banner-dots aria-hidden="true">
                     <span class="hero-dot active"></span>
