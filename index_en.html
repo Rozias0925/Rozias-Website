@@ -1,20 +1,1070 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Rozias Wen is a Mathematics-Driven ML Researcher exploring graph learning, optimization, data science, and machine learning."><meta name="theme-color" content="#0b0d12"><meta property="og:title" content="Rozias Wen｜Mathematics-Driven ML Researcher"><meta property="og:description" content="From rigorous mathematical foundations to independent machine-learning research."><meta property="og:type" content="website"><meta property="og:url" content="https://rozias0925.github.io/Rozias-Website/index_en.html"><link rel="canonical" href="https://rozias0925.github.io/Rozias-Website/index_en.html"><link rel="alternate" hreflang="zh-Hant" href="https://rozias0925.github.io/Rozias-Website/"><link rel="alternate" hreflang="en" href="https://rozias0925.github.io/Rozias-Website/index_en.html"><link rel="icon" href="icon.png" type="image/png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Klee+One:wght@400;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><title>Rozias Wen｜Mathematics-Driven ML Researcher</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rozias | Personal Website</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 全局設定與黑白灰色彩計畫 */
+        :root {
+            --bg-color: #fafafa;
+            --card-bg: #ffffff;
+            --text-color: #222222;
+            --gray-light: #eeeeee;
+            --gray-medium: #888888;
+            --black: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Helvetica Neue", Arial, "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* --- 導覽列 --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid var(--gray-light);
+            z-index: 1000;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+        }
+
+/* 左側專屬 Icon (Logo) 設定 */
+        .nav-logo {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            z-index: 1001; /* 確保不被遮擋 */
+        }
+
+        .nav-logo img {
+            height: 45px; /* 控制 Icon 的大小 */
+            width: 45px;
+            object-fit: cover; /* 確保圖片不變形 */
+            border-radius: 50%; /* 如果你想讓方形圖片變成圓形，可以保留這行；如果本來就是透明背景的 Logo，這行可以刪掉 */
+            border: 1px solid var(--gray-light); /* 輕微的邊框增加質感，不需要也可刪除 */
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover img {
+            transform: scale(1.1); /* 滑鼠游標靠近時會微微放大 */
+        }
+
+
+        /* 導覽列連結區塊 (電腦版置中橫排) */
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gray-medium);
+        }
+
+        /* 漢堡按鈕 (電腦版隱藏) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle .bar {
+            height: 2px;
+            width: 20px;
+            background-color: var(--text-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* 首頁橫幅 (Banner) */
+        #home {
+            height: 55vh; 
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: var(--black);
+            max-width: 100%;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+            background-image:radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-repeat: repeat;
+            background-size: 30px 30px;
+            background-position: 0 0;
+        }
+
+        /* 數學幾何流線 */
+        .banner-wave {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 100%;
+            max-height: 500px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .banner-wave-left { left: 0; }
+        .banner-wave-right { right: 0; transform: translateY(-50%) scaleX(-1); }
+
+        #home .name-zh {
+            font-size: 3.5rem;
+            letter-spacing: 16px;
+            font-weight: 300;
+            margin-bottom: 5px;
+            color: #FFFFFF;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+            z-index: 1;
+            margin-right: -16px; 
+        }
+
+        #home .name-en {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            font-weight: 300;
+            color: #E0E0E0;
+            margin-bottom: 8px;
+            z-index: 1;
+        }
+
+        #home .title {
+            color: #BBBBBB;
+            font-size: 1rem;
+            letter-spacing: 6px;
+            z-index: 1;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* 內容區塊 (純白卡片設計) */
+        .content-box {
+            background-color: var(--card-bg);
+            padding: 80px 60px;
+            max-width: 850px;
+            margin: 60px auto; 
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03); 
+            border: 1px solid rgba(0,0,0,0.02);
+            z-index: 1;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-bottom: 50px;
+            position: relative;
+            padding-left: 20px;
+            display: inline-block;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 6px;
+            height: 100%;
+            background-color: var(--black);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 350px;
+            background-color: #fcfcfc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray-medium);
+            margin-bottom: 40px;
+            border: 1px solid var(--gray-light);
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.02) 10px, rgba(0,0,0,0.02) 20px);
+        }
+
+        /* 項目列表設計 */
+        .list-item {
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .list-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            background-color: var(--card-bg);
+        }
+
+        .list-item::after {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 25px;
+            width: 2px;
+            height: calc(100% + 15px);
+            background-color: var(--gray-light);
+        }
+
+        .list-item:last-child::after {
+            display: none;
+        }
+
+        .list-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .list-item .meta {
+            color: var(--gray-medium);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: var(--black);
+            color: var(--gray-medium);
+            padding: 70px 20px 40px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .footer-corner-bg {
+            position: absolute;
+            z-index: -1;
+            pointer-events: none;
+            width: 300px;
+            height: 300px;
+            opacity: 0.8;
+        }
+
+        .footer-corner-top-left {
+            top: 0;
+            left: 0;
+            transform: rotate(0deg); 
+        }
+
+        .footer-corner-bottom-right {
+            bottom: 0;
+            right: 0;
+            transform: rotate(180deg); 
+        }
+
+        .footer-content {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            margin-bottom: 40px;
+            flex-wrap: wrap; 
+        }
+
+        .contact-details {
+            text-align: left;
+        }
+
+        .contact-details p {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            margin: 20px 0 0 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+        }
+
+        .social-links .divider {
+            color: #444444;
+            font-size: 1.1rem;
+        }
+
+        .qr-box {
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            transition: transform 0.4s ease;
+        }
+
+        .qr-box img {
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+
+        .qr-box:hover {
+            transform: scale(1.05);
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555555;
+            border-top: 1px solid #333333;
+            padding-top: 25px;
+            margin-top: 20px;
+        }
+
+        .handwriting {
+            font-family: 'Klee One', cursive, sans-serif;
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #333333;
+            letter-spacing: 1px;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-color);
+            text-decoration: none;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 2px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--gray-medium);
+            border-bottom-color: var(--gray-medium);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 手繪感植物線條背景 */
+        .organic-bg {
+            position: fixed;
+            z-index: -2;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+        
+        .organic-top-left {
+            top: 10%;
+            left: -5%;
+            width: 45vw;
+            max-width: 500px;
+        }
+
+        .organic-bottom-right {
+            bottom: -5%;
+            right: -5%;
+            width: 45vw;
+            max-width: 500px;
+            transform: rotate(180deg);
+        }
+        
+        /* --- 專業技能 (獨立面板切換設計) --- */
+        /* --- 區塊操作提示小字 --- */
+        .hint-text {
+            color: var(--gray-medium);
+            font-size: 0.85rem;
+            margin-top: -35px;    /* 往上拉近標題 */
+            margin-bottom: 40px;  /* 往下推開膠囊內容 */
+            padding-left: 20px;   /* 讓它跟標題的文字左側對齊 */
+            letter-spacing: 1px;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 10px;
+        }
+
+        .skill-category h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--gray-light);
+            padding-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        /* 標籤按鈕區 (完全獨立於文字) */
+        .interactive-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .tag-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #f8f8f8;
+            color: var(--text-color);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid var(--gray-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        /* 按鈕啟動與懸浮樣式 */
+        .tag-button:hover, .tag-button.active {
+            background-color: var(--black);
+            color: #ffffff;
+            border-color: var(--black);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .tag-button .plus {
+            font-size: 1.1rem;
+            font-weight: 300;
+            transition: transform 0.4s ease;
+        }
+
+        .tag-button.active .plus {
+            transform: rotate(45deg); /* 把 + 轉成 × */
+        }
+
+        /* 說明文字面板區 (完全獨立，顯示在膠囊下方) */
+        .tag-panels {
+            position: relative;
+        }
+
+        .tag-panel {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.4s ease-in-out;
+            background-color: #fcfcfc;
+            border-radius: 12px;
+            padding: 0 20px;
+            border: 1px solid transparent;
+        }
+
+        /* 說明文字展開時 */
+        .tag-panel.active {
+            max-height: 400px;
+            opacity: 1;
+            padding: 20px;
+            border-color: var(--gray-light);
+            margin-top: 5px;
+        }
+
+        .tag-panel p {
+            margin: 0;
+        }
+
+        /* --- 語言切換按鈕 (電腦版) --- */
+        /* 使用絕對定位靠右，這樣不會影響到中間選單的完美置中 */
+        .lang-switch {
+            position: absolute;
+            right: 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px solid var(--text-color);
+            padding: 4px 12px;
+            border-radius: 20px; /* 膠囊形狀 */
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch:hover {
+            background-color: var(--black);
+            color: #ffffff;
+            border-color: var(--black);
+        }
+
+        /* --- 手機與平板版專屬設定 --- */
+        @media (max-width: 768px) {
+            nav {
+                justify-content: flex-end; 
+            }
+
+            .menu-toggle {
+                display: flex; 
+            }
+
+            .nav-links {
+                display: none; 
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.98);
+                border-bottom: 1px solid var(--gray-light);
+                text-align: center;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                margin: 15px 0; 
+            }
+
+            /* 手機版語言按鈕：取消絕對定位，與漢堡按鈕並排靠右 */
+            .lang-switch {
+                position: relative;
+                right: auto;
+                margin-right: 20px; /* 跟右邊的漢堡按鈕拉開一點呼吸空間 */
+            }
+            
+            .content-box {
+                margin: 40px 20px;  
+                padding: 40px 25px; 
+            }
+
+            .organic-top-left, .organic-bottom-right {
+                width: 70vw; 
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            #home .name-zh {
+                font-size: 2.5rem;   
+                letter-spacing: 10px;
+                margin-right: -10px;
+            }
+            
+            #home .name-en {
+                font-size: 0.95rem;  
+            }
+            
+            #home {
+                margin-top: 50px;
+                height: 65vh; 
+            }
+
+            .footer-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 35px;
+            }
+            .contact-details {
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  <header class="site-header"><nav class="nav container" aria-label="Primary navigation"><a class="brand" href="#top" aria-label="Back to home"><img src="icon.png" alt="Rozias Wen personal mark"></a><button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-menu"><span></span><span></span><span></span><span class="sr-only">Open navigation menu</span></button><div class="nav-links" id="primary-menu"><a href="#about">About</a><a href="#research">Research</a><a href="#journey">Journey</a><a href="#honors">Honors</a><a href="#contact">Contact</a></div><a class="language-link" href="index.html" lang="zh-Hant">繁中</a></nav></header>
-  <main id="main-content">
-    <section class="hero" id="top" aria-labelledby="hero-title"><div class="hero-grid"></div><div class="container hero-layout"><div class="hero-copy"><p class="eyebrow">ROZIAS WEN · CHUN-HAO, WEN</p><h1 id="hero-title">Mathematics-Driven<br><em>ML Researcher</em></h1><p class="hero-description">I build rigorous mathematical foundations, design my own learning paths, and translate graph theory, optimization, and machine learning into researchable real-world questions.</p><div class="hero-actions"><a class="button button-light" href="#research">Explore Research</a><a class="button button-ghost" href="#honors">View Honors</a></div></div><section class="hero-carousel" aria-roledescription="carousel" aria-label="Research and academic activity moments" tabindex="0"><div class="carousel-frame"><!-- Replace the decorative backgrounds below with public research or speaking photos when available. --><article class="carousel-slide is-active" data-slide aria-label="Slide 1 of 3"><span class="slide-index">01 / 03</span><div class="slide-visual visual-seminar"></div><p>Turning learning into the next research question.</p></article><article class="carousel-slide" data-slide aria-label="Slide 2 of 3" aria-hidden="true"><span class="slide-index">02 / 03</span><div class="slide-visual visual-poster"></div><p>Moving from mathematical models to public exchange.</p></article><article class="carousel-slide" data-slide aria-label="Slide 3 of 3" aria-hidden="true"><span class="slide-index">03 / 03</span><div class="slide-visual visual-workshop"></div><p>Deepening methods and perspective through iteration.</p></article></div><div class="carousel-controls"><button type="button" class="carousel-button" data-carousel-prev aria-label="Previous slide">←</button><div class="carousel-dots" role="tablist" aria-label="Choose a slide"><button class="dot is-active" type="button" role="tab" aria-selected="true" aria-label="Show slide 1" data-carousel-dot="0"></button><button class="dot" type="button" role="tab" aria-selected="false" aria-label="Show slide 2" data-carousel-dot="1"></button><button class="dot" type="button" role="tab" aria-selected="false" aria-label="Show slide 3" data-carousel-dot="2"></button></div><button type="button" class="carousel-button" data-carousel-next aria-label="Next slide">→</button><button type="button" class="pause-button" data-carousel-pause aria-pressed="false">Pause</button></div></section></div></section>
-    <section class="section container" id="about" aria-labelledby="about-title"><div class="section-heading"><p class="eyebrow">01 / ABOUT</p><h2 id="about-title">Rigorous learning, deliberately extended.</h2></div><div class="about-layout"><div class="about-statement"><p class="lead">I am Chun-Hao Wen, a Mathematics student at National Taiwan Normal University, exploring machine learning questions through mathematical structure.</p><p>Algebra and linear algebra developed my sensitivity to abstract structure. Independent study in Galois theory, functional analysis, and machine learning has taught me to plan deliberately and commit over the long term.</p></div><div class="about-detail"><p>Two visits to Singapore, in 2018 and 2025, clarified my aspiration for a high-standard academic environment built around growth. It led me to expand from pure mathematics into data science and ML: beginning with Graph Laplacians, GCNs, and optimization problems, I keep translating rigorous theory into research that can be examined and improved.</p><p class="signature">Goal: to continue deepening my work in a graduate programme in machine learning, data science, or AI.</p></div></div></section>
-    <section class="section section-tint" id="research" aria-labelledby="research-title"><div class="container"><div class="section-heading section-heading-row"><div><p class="eyebrow">02 / SELECTED RESEARCH</p><h2 id="research-title">Research that starts with a question.</h2></div><p class="section-note">Two projects begin with Graph Laplacians and graph neural networks, then extend the possible connections between theory and application.</p></div><div class="research-grid"><article class="research-card"><div class="card-topline"><span class="status status-complete">Core research complete</span><span>2026</span></div><h3>Graph Laplacian &amp;<br>Spectral Clustering</h3><p class="research-summary">Using geometric models and network structures to explain the core logic of spectral clustering, while exploring a research prototype and future cross-domain potential in questions such as medical imaging.</p><ol class="roadmap" aria-label="Graph Laplacian research stages"><li class="done"><span>01</span>Spectral theory and clustering framework</li><li class="done"><span>02</span>Geometric and network case studies</li><li class="current"><span>03</span>Imaging research prototype and further validation</li></ol><p class="research-note">This is a research prototype, not a clinical diagnostic tool.</p><a class="text-link" href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" rel="noopener noreferrer">Explore Research <span aria-hidden="true">↗</span></a></article><article class="research-card"><div class="card-topline"><span class="status status-progress">In active development</span><span>2026 →</span></div><h3>Factor GCN for<br>Portfolio Optimization</h3><p class="research-summary">Integrating long-term fundamentals and short-term momentum in graph neural networks to explore end-to-end portfolio optimization; next steps deepen modelling, decision-making, and deployment.</p><ol class="roadmap" aria-label="Factor GCN research stages"><li class="done"><span>01</span>Factor GCN base model</li><li class="current"><span>02</span>GAT / RL model extension</li><li><span>03</span>Product deployment and iteration</li></ol><p class="research-note">For academic research only. Not investment advice.</p><a class="text-link" href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" rel="noopener noreferrer">Explore Research <span aria-hidden="true">↗</span></a></article></div></div></section>
-    <section class="section container" id="journey" aria-labelledby="journey-title"><div class="section-heading"><p class="eyebrow">03 / LEARNING ROADMAP</p><h2 id="journey-title">Turning curiosity into capability.</h2><p class="section-note">I use independent study and research iteration to build a path from mathematical foundations to ML applications.</p></div><ol class="journey"><li><span class="journey-year">FOUNDATION</span><div><h3>Pure mathematics and structural thinking</h3><p>Algebra, linear algebra, and independent study of Galois theory trained abstract reasoning and proof-oriented thinking.</p></div></li><li><span class="journey-year">EXPANSION</span><div><h3>Graph theory, optimization, and scientific computing</h3><p>Graph Laplacians, numerical methods, and convex optimization build a bridge from theory to computable models.</p></div></li><li><span class="journey-year">RESEARCH</span><div><h3>Graph machine learning and cross-domain questions</h3><p>GCNs, feature engineering, and modelling small longitudinal datasets form the basis of self-directed research questions.</p></div></li><li><span class="journey-year">NEXT</span><div><h3>Deepening ML, AI, and research implementation</h3><p>I am extending into GATs, reinforcement learning, and deployment in preparation for graduate study in data science and AI.</p></div></li></ol></section>
-    <section class="section section-dark" id="skills" aria-labelledby="skills-title"><div class="container"><div class="section-heading"><p class="eyebrow">04 / TECHNICAL FOUNDATION</p><h2 id="skills-title">Skills driven by research questions.</h2></div><div class="skills-grid"><div class="skill-group"><h3>Mathematics</h3><div class="skill-tags"><button type="button" data-disclosure="math-algebra" aria-expanded="false">Algebra &amp; Linear Algebra <span>+</span></button><button type="button" data-disclosure="math-stats" aria-expanded="false">Probability &amp; Statistics <span>+</span></button><button type="button" data-disclosure="math-computing" aria-expanded="false">Scientific Computing <span>+</span></button><button type="button" data-disclosure="math-opt" aria-expanded="false">Optimization <span>+</span></button></div><p id="math-algebra" class="skill-detail" hidden>Algebra and linear algebra are my starting point for understanding structure, transformation, and high-dimensional representations.</p><p id="math-stats" class="skill-detail" hidden>Probability and statistics guide how I handle uncertainty, distributions, and model evaluation.</p><p id="math-computing" class="skill-detail" hidden>Numerical methods and algorithmic efficiency turn mathematical models into testable computational experiments.</p><p id="math-opt" class="skill-detail" hidden>I continue to study linear programming, convex optimization, and their roles in model training and allocation.</p></div><div class="skill-group"><h3>Programming</h3><div class="skill-tags"><button type="button" data-disclosure="prog-python" aria-expanded="false">Python <span>+</span></button><button type="button" data-disclosure="prog-c" aria-expanded="false">C / C++ <span>+</span></button><button type="button" data-disclosure="prog-sql" aria-expanded="false">SQL <span>+</span></button><button type="button" data-disclosure="prog-matlab" aria-expanded="false">MATLAB <span>+</span></button></div><p id="prog-python" class="skill-detail" hidden>My primary research tool for data preparation, modelling, experiments, and visualisation.</p><p id="prog-c" class="skill-detail" hidden>Low-level programming, memory, and algorithmic thinking provide a foundation for efficient implementation.</p><p id="prog-sql" class="skill-detail" hidden>Used for querying, structuring, and extracting features from relational data.</p><p id="prog-matlab" class="skill-detail" hidden>Used for matrix computation, numerical analysis, and rapid algorithm prototyping.</p></div><div class="skill-group"><h3>Data Science &amp; ML</h3><div class="skill-tags"><button type="button" data-disclosure="ml-core" aria-expanded="false">Machine Learning <span>+</span></button><button type="button" data-disclosure="ml-graph" aria-expanded="false">Graph Learning <span>+</span></button><button type="button" data-disclosure="ml-next" aria-expanded="false">Next: GAT / RL / Deployment <span>+</span></button></div><p id="ml-core" class="skill-detail" hidden>Scientific computing and independent study support my foundations in ML architectures, experiment design, and evaluation.</p><p id="ml-graph" class="skill-detail" hidden>Graph Laplacians, GCNs, and graph-structured features help me explore complex relational data.</p><p id="ml-next" class="skill-detail" hidden>My next stage is to extend into GATs, reinforcement learning, and deployable research implementations.</p></div></div></div></section>
-    <section class="section container" id="education" aria-labelledby="education-title"><div class="section-heading"><p class="eyebrow">05 / EDUCATION &amp; EXPERIENCE</p><h2 id="education-title">Academic and teaching experience.</h2></div><ol class="timeline"><li><time>2025–2026</time><div><h3>National Taiwan Normal University｜Mathematics Teaching Assistant</h3><p>Linear Algebra (I), Number Theory; Outstanding Teaching Assistant, Fall 2025.</p></div></li><li><time>2024–2025</time><div><h3>National Taiwan Normal University｜Mathematics Teaching Assistant</h3><p>Algebra (I) &amp; (II), Introduction to Probability; Outstanding Teaching Assistant in both semesters.</p></div></li><li><time>2023–2024</time><div><h3>elevo Education Technology｜Mathematics Instructor</h3><p>Taught middle- and high-school mathematics, translating abstract concepts into understandable learning paths.</p></div></li><li><time>2022–2026</time><div><h3>National Taiwan Normal University｜B.S. in Mathematics</h3><p>Leave of absence in Spring 2023 due to family matters.</p></div></li></ol></section>
-    <section class="section section-tint" id="honors" aria-labelledby="honors-title"><div class="container"><div class="section-heading"><p class="eyebrow">06 / HONORS &amp; CERTIFICATIONS</p><h2 id="honors-title">Research and effort, recognised.</h2><p class="section-note">Grouped by category and ordered by recency. Public certificates and official sources will be added when available.</p></div><div class="honors-grid"><section><h3>Research &amp; Conferences</h3><ul class="honor-list"><li><span>2026</span><div><strong>International Conference on Optimization and Machine Learning</strong><p>Participant</p></div></li><li><span>2026</span><div><strong>TWSIAM Annual Meeting｜Best Popularity Poster Award</strong><p>Graph Laplacian &amp; Spectral Clustering</p></div></li><li><span>2026</span><div><strong>Scientific Computing Student Seminar (Quantitative Trading)｜Best Paper Award</strong><p>NTNU Math × KGI Securities</p></div></li><li><span>2025</span><div><strong>Intercollegiate Applied Mathematics Autumn Conference｜Best Paper Award</strong><p>Intercollegiate Applied Mathematics Autumn Conference</p></div></li></ul></section><section><h3>Academic &amp; Teaching</h3><ul class="honor-list"><li><span>2025</span><div><strong>Outstanding Teaching Assistant</strong><p>National Taiwan Normal University (Fall 2024, Spring 2025, Fall 2025)</p></div></li><li><span>2024</span><div><strong>Presidential Award (Academic Excellence)</strong><p>National Taiwan Normal University</p></div></li></ul><h3 class="subheading">Certification</h3><ul class="honor-list"><li><span>2026</span><div><strong>IBM Data Science Professional Certificate</strong><p>IBM × Coursera</p></div></li></ul></section></div></div></section>
-  </main>
-  <footer id="contact" class="footer"><div class="container footer-layout"><div><p class="eyebrow">07 / CONTACT</p><h2>Start a conversation with an email.</h2><p>I welcome conversations around research, academic exchange, and data-science questions.</p></div><address><a class="email-link" href="mailto:ykskryrbo0925@gmail.com">ykskryrbo0925@gmail.com</a><p>+886 971-707-392</p><div class="social-links"><a href="https://github.com/Rozias0925" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.instagram.com/rozias_9_25/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://l.messenger.com/l.php?u=https%3A%2F%2Fline.me%2Fti%2Fp%2FM-xq8_Zrvc" target="_blank" rel="noopener noreferrer">LINE</a></div></address><div class="qr-box"><img src="line_contact.png" alt="QR code for adding Rozias Wen on LINE"><span>LINE</span></div></div><p class="copyright">© 2026 Chun-Hao Wen. All rights reserved.</p></div></footer><script src="script.js"></script>
+
+    <svg class="organic-bg organic-top-left" viewBox="0 0 500 700" fill="none" stroke="#000000" xmlns="http://www.w3.org/2000/svg">
+        <path d="M-50,0 C100,100 250,300 200,700" stroke-width="3" stroke-linecap="round"/>
+        <path d="M40,90 C120,40 220,90 230,180 C160,190 60,160 40,90 Z" stroke-width="1.5"/>
+        <path d="M40,90 C110,110 160,140 230,180" stroke-width="1"/> 
+        <path d="M80,110 C120,95 150,110 180,135" stroke-width="0.8"/>
+        <path d="M125,240 C210,190 310,240 330,330 C260,340 150,320 125,240 Z" stroke-width="1.5"/>
+        <path d="M125,240 C190,260 250,290 330,330" stroke-width="1"/>
+        <path d="M170,260 C210,250 240,265 280,295" stroke-width="0.8"/>
+        <path d="M185,420 C270,390 350,450 340,540 C270,530 180,490 185,420 Z" stroke-width="1.5"/>
+        <path d="M185,420 C240,450 280,490 340,540" stroke-width="1"/>
+        <path d="M280,100 C350,150 320,250 400,280" stroke-width="1" stroke-dasharray="4 4"/>
+        <path d="M380,450 C450,420 480,500 450,580" stroke-width="1"/>
+    </svg>
+
+    <svg class="organic-bg organic-bottom-right" viewBox="0 0 500 700" fill="none" stroke="#000000" xmlns="http://www.w3.org/2000/svg">
+        <path d="M-50,0 C100,100 250,300 200,700" stroke-width="3" stroke-linecap="round"/>
+        <path d="M40,90 C120,40 220,90 230,180 C160,190 60,160 40,90 Z" stroke-width="1.5"/>
+        <path d="M40,90 C110,110 160,140 230,180" stroke-width="1"/>
+        <path d="M80,110 C120,95 150,110 180,135" stroke-width="0.8"/>
+        <path d="M125,240 C210,190 310,240 330,330 C260,340 150,320 125,240 Z" stroke-width="1.5"/>
+        <path d="M125,240 C190,260 250,290 330,330" stroke-width="1"/>
+        <path d="M170,260 C210,250 240,265 280,295" stroke-width="0.8"/>
+        <path d="M185,420 C270,390 350,450 340,540 C270,530 180,490 185,420 Z" stroke-width="1.5"/>
+        <path d="M185,420 C240,450 280,490 340,540" stroke-width="1"/>
+        <path d="M280,100 C350,150 320,250 400,280" stroke-width="1" stroke-dasharray="4 4"/>
+    </svg>
+
+    <nav>
+        <a href="#" class="nav-logo">
+            <img src="icon.png" alt="Rozias Icon">
+        </a>
+
+        <div class="nav-links" id="nav-links">
+            <a href="#">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a> 
+            <a href="#education">Education</a>
+            <a href="#research">Research</a>
+            <a href="#honors">Honors</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <a href="index.html" class="lang-switch">繁體中文</a>
+
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <section id="home">
+        <svg class="banner-wave banner-wave-left" viewBox="0 0 200 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="sharpGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0" />
+                    <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+                </linearGradient>
+            </defs>
+            <path d="M-50,500 C50,350 150,250 100,0" stroke="url(#sharpGrad)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M-50,400 C80,300 120,150 50,0" stroke="url(#sharpGrad)" stroke-width="1" stroke-linecap="round"/>
+            <path d="M-50,300 C100,220 80,80 0,0" stroke="url(#sharpGrad)" stroke-width="0.5" stroke-linecap="round"/>
+        </svg>
+
+        <svg class="banner-wave banner-wave-right" viewBox="0 0 200 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M-50,500 C50,350 150,250 100,0" stroke="url(#sharpGrad)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M-50,400 C80,300 120,150 50,0" stroke="url(#sharpGrad)" stroke-width="1" stroke-linecap="round"/>
+            <path d="M-50,300 C100,220 80,80 0,0" stroke="url(#sharpGrad)" stroke-width="0.5" stroke-linecap="round"/>
+        </svg>
+
+        <h1 class="fade-in name-zh">Chun-Hao Wen</h1>
+        <div class="fade-in name-en">Rozias Wen</div>
+        <p class="fade-in title">MATHEMATICS-DRIVEN ML RESEARCHER</p>
+    </section>
+
+    <section id="about" class="content-box">
+        <h2 class="fade-in">ABOUT ME</h2>
+        
+        <div class="image-placeholder fade-in">
+            Research or speaking photo will be added when public assets are ready
+        </div>
+
+        <p class="fade-in handwriting">
+            Hello, I am Chun-Hao Wen, currently an undergraduate student majoring in Mathematics at National Taiwan Normal University (NTNU). Through studying Algebra and Linear Algebra, I developed a profound passion and high sensitivity for pure mathematics. This enthusiasm drove me to self-study Galois Theory over the summer and further explore the expansive field of Homological Algebra.
+        </p>
+        <br>
+        <p class="fade-in handwriting">
+            While delving deep into pure mathematics, <i>Singapore</i> has always been a city I deeply admire. During my first visit in 2018, I was highly impressed by its <i>advanced urban development</i> and <i>spirit of high self-discipline</i>. My second visit in 2025 became a crucial turning point in my life. I had the privilege of engaging in in-depth conversations with local students, whose <i>extreme efficiency</i>, <i>drive for excellence</i>, and <i>strict self-demands</i> deeply resonated with my own personal expectations.
+        </p>
+        <br>
+        <p class="fade-in handwriting">
+            During that period, I was honored to receive the "<i>Best Thesis Award</i>" at the 2025 Intercollegiate Applied Mathematics Autumn Conference. However, behind this recognition, the future direction of my career brought me immense pressure. After carefully evaluating my personality and the life blueprint I envisioned, I hesitated about continuing solely on the path of pure mathematics. The trip to Singapore acted as a shot in the arm; upon returning to Taiwan, I was even more certain that Singapore is the environment I aspire to be in. Housing Asia's top institutions—the <i>National University of Singapore (NUS)</i> and <i>Nanyang Technological University (NTU)</i>—it possesses profound resources across cutting-edge fields. How could such a perfect utopia not be captivating?
+        </p>
+        <br>
+        <p class="fade-in handwriting">
+            This admiration prompted me to set a clear goal: to gain admission into one of these top-tier institutions for a Master's program in <i>Machine Learning</i>, <i>Data Science</i>, or <i>Artificial Intelligence</i>. To achieve this, I decided to expand my research focus beyond pure algebra, hoping to use these two years to forge a robust, cross-disciplinary background compelling enough for top academic institutions.
+        </p>
+        <br>
+        <p class="fade-in handwriting">
+            Coinciding with the golden era of Artificial Intelligence, the question "<i>How can inanimate machines learn to think?</i>" deeply fascinated me. After taking "Introduction to Scientific Computing" and "Special Topics in Scientific Computing," I mastered a data-centric, strategic problem-solving mindset. Leveraging my strengths in algebra, I approached machine learning from the perspective of linear algebra—starting with Graph Laplacian to solve classification problems, and subsequently integrating Graph Convolutional Networks (GCN) to design an end-to-end investment algorithm for portfolio optimization, officially stepping into the realm of Data Science. Following recognitions from various workshops and academic conferences, my conviction to pursue this path has only strengthened. I aspire to continue translating rigorous mathematical logic into algorithms that solve real-world problems, eventually carving out my own niche in the field of Data Science.
+        </p>
+    </section>
+
+    <section id="skills" class="content-box">
+        <h2 class="fade-in">TECHNICAL SKILLS</h2>
+        <p class="fade-in hint-text">※ Click the keywords below to view learning insights</p>
+        
+        <div class="skills-grid fade-in">
+            <div class="skill-category">
+                <h3>Mathematics</h3>
+                <div class="interactive-tags">
+                    <div class="tag-button" data-target="math-1">Algebra/Linear Algebra <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="math-2">Probability/Statistics <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="math-3">Scientific Computing <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="math-4">Linear Programming/Convex Optimization <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="math-5">Functional Analysis <span class="plus">+</span></div>
+                </div>
+                <div class="tag-panels">
+                    <div class="tag-panel" id="math-1">
+                        <p class="handwriting">Algebra explores the "structural" nature of mathematics. When writing code or analyzing real-world problems, algebra and linear algebra help me rapidly construct clear mathematical models in my mind. Linear relationships are ubiquitous in real life; especially in computer science, the concepts of matrices and vector spaces serve as the core foundational logic for data processing, graph architectures, and modern machine learning.</p>
+                    </div>
+                    <div class="tag-panel" id="math-2">
+                        <p class="handwriting">Probability and statistics are the sciences of quantifying "uncertainty," providing a rigorous mathematical perspective for ML. They enable me to uncover the underlying distribution patterns of data and accurately assess risks. When facing real-world data full of noise or complex structures, this knowledge allows me to build robust prediction models tailored to various scenarios and establish objective, solid criteria for evaluating model performance by strictly clarifying different types of errors.</p>
+                    </div>
+                    <div class="tag-panel" id="math-3">
+                        <p class="handwriting">Scientific computing is the critical bridge connecting pure mathematical theory with computer implementation. While pursuing theoretical precision, handling inevitable computational errors and limit approximations in practice is crucial. It trained me to build a mindset centered on "computational cost," "algorithm efficiency," and "convergence," applying rigorous mathematical knowledge to provide precise ideas and strict proofs for efficient code that solves real-world problems.</p>
+                    </div>
+                    <div class="tag-panel" id="math-4">
+                        <p class="handwriting">Currently studying and actively researching in this domain.</p>
+                    </div>
+                    <div class="tag-panel" id="math-5">
+                        <p class="handwriting">Functional analysis is a core mathematical branch exploring function spaces and operator theory. To thoroughly understand the foundational logic of Spectral Theory within Graph Laplacian, I initiated a self-study of this subject. By analyzing the properties of infinite-dimensional spaces and operator behaviors, I aim to gain a macroscopic perspective on optimization problems in machine learning and lay a solid theoretical foundation for delving into model generalization.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="interactive-tags">
+                    <div class="tag-button" data-target="prog-1">Python <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="prog-2">C / C++ <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="prog-3">SQL <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="prog-4">MATLAB <span class="plus">+</span></div>
+                </div>
+                <div class="tag-panels">
+                    <div class="tag-panel" id="prog-1">
+                        <p class="handwriting">As the primary language for realizing data science, Python, which I have cultivated since high school, offers powerful and flexible development features. In the Special Topics in Scientific Computing course, it provided tremendous assistance across various technical levels: from complex data cleaning and building intricate models to the final data visualization, it has been my most powerful asset.</p>
+                    </div>
+                    <div class="tag-panel" id="prog-2">
+                        <p class="handwriting">Learning C language is the ultimate refinement of low-level computational thinking and memory management, and one of the most rewarding skills I acquired while studying at the National Taiwan University of Science and Technology (NTUST). It trained me to analyze programs from a hardware perspective and deeply understand the principles of instruction compilation and low-level execution, laying an irreplaceable foundation for implementing high-performance algorithms and complex data structures.</p>
+                    </div>
+                    <div class="tag-panel" id="prog-3">
+                        <p class="handwriting">Through the IBM Data Science Professional Certificate program, I mastered this essential tool for navigating and extracting massive real-world datasets. For a math major with rigorous logical training, the relational thinking of SQL resonates strongly, allowing me to highly efficiently refine key features required for modeling from vast databases.</p>
+                    </div>
+                    <div class="tag-panel" id="prog-4">
+                        <p class="handwriting">MATLAB is a vital mathematical language I deeply mastered during college. It provides an unparalleled environment for matrix operations and numerical analysis; to me, it is not merely a "giant scientific calculator" but my most proficient engine when constructing pure math models and rapidly verifying algorithm prototypes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Data Science & Machine Learning</h3>
+                <div class="interactive-tags">
+                    <div class="tag-button" data-target="ds-1">Machine Learning and Deep Learning <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="ds-2">Application of Graph Theory <span class="plus">+</span></div>
+                </div>
+                <div class="tag-panels">
+                    <div class="tag-panel" id="ds-1">
+                        <p class="handwriting">Machine learning is my starting point in data science. Although I couldn't formally enroll in the "Introduction to Machine Learning" course at NTU due to capacity limits, I learned its core architectures and operational principles through recorded lectures. Looking forward, I am setting my sights on the Master's program in Data Science and Machine Learning (DSML) at the National University of Singapore (NUS), hoping to construct a more complete and profound ML knowledge system in a top-tier academic institution.</p>
+                    </div>
+                    <div class="tag-panel" id="ds-2">
+                        <p class="handwriting">Graph theory is, in my view, the most intuitive and powerful tool to translate the complex networks and topological structures of the real world into mathematical language, with linear algebra acting as its core operational foundation. Even without formally taking a graph theory course, I have deeply implemented its concepts in my research. From investigating the spectral properties of Graph Laplacian to constructing Graph Convolutional Networks (GCN) and Graph Attention Networks (GAT) to extract complex node features, the integration of graph theory and machine learning is my current and most passionate research focus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="content-box">
+        <h2 class="fade-in">EDUCATION & EXPERIENCE</h2>
+        
+        <div class="list-item fade-in">
+            <h3>National Taiwan Normal University (NTNU) | Dept. of Mathematics</h3>
+            <div class="meta">Bachelor of Science | 2022-2026</div>
+            <p>* Leave of absence in Spring 2023 due to family matters.</p>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>elevo Education Technology Co.</h3>
+            <div class="meta">2023-2024</div>
+            <p>Mathematics Instructor for Middle and High School students.</p>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>NTNU MATH_Teaching Assistant</h3>
+            <div class="meta">2024-2025</div>
+            <p>Fall 2024: Algebra (I) / Spring 2025: Algebra (II), Introduction to Probability.</p>
+            <p>Awarded Outstanding Teaching Assistant for both semesters.</p>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>NTNU MATH_Teaching Assistant</h3>
+            <div class="meta">2025-2026</div>
+            <p>Fall 2025: Linear Algebra (I) / Spring 2026: Number Theory.</p>
+            <p>Awarded Outstanding Teaching Assistant for Fall 2025.</p>
+        </div>
+
+    </section>
+
+    <section id="research" class="content-box">
+        <h2 class="fade-in">RESEARCH & PUBLICATIONS</h2>
+        
+        <div class="list-item fade-in">
+            <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
+            <div class="meta">2026 | TWSIAM Annual Meeting - Poster Presentation</div>
+            <p>
+                Used Stanford Bunny geometric models and urban networks to explain the core logic of spectral clustering, while exploring a research prototype and future cross-domain potential in questions such as medical imaging.
+            </p>
+            <p style="margin-top: 10px;">
+                A later phase introduced Feature Extraction Engineering to explore regional MRI segmentation. This is a research prototype, not a clinical diagnostic tool.
+            </p>
+            <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" class="project-link">View Project ↗</a>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
+            <div class="meta">2026 | International Conference on Optimization and Machine Learning - Poster Presentation</div>
+            <p>
+                This research proposes a graph-theory-based Factor GCN that combines long-term fundamental factors with short-term momentum features to explore end-to-end portfolio optimization. The next phase extends toward GATs, reinforcement learning, and product deployment.
+            </p>
+            <p style="margin-top: 10px;">For academic research only. Not investment advice.</p>
+            <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" class="project-link">View Project ↗</a>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>Application of Mixed-Effects Machine Learning in Modeling Small Sample Longitudinal Data</h3>
+            <div class="meta">Ongoing | Joint Research Project</div>
+            <p>
+                This is a joint research project with National Taiwan University (NTU) Hospital Hsinchu Branch. The project is currently ongoing and is expected to be published as a conference thesis or journal paper. Please stay tuned for the results.
+            </p>
+        </div>
+    </section>
+
+    <section id="honors" class="content-box">
+        <h2 class="fade-in">HONORS & CERTIFICATIONS</h2>
+
+        <div class="list-item fade-in">
+            <h3>IBM Data Science Professional Certificate</h3>
+            <div class="meta">2026 | IBM × Coursera</div>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>International Conference on Optimization and Machine Learning</h3>
+            <div class="meta">2026 | Participant</div>  
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>Best Popularity Poster Award</h3>
+            <div class="meta">2026 | Taiwan Society for Industrial and Applied Mathematics (TWSIAM)</div>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>Best Paper Award</h3>
+            <div class="meta">2026 | Scientific Computing Student Seminar (Quant Trading) | NTNU Math × KGI Securities</div>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>Best Paper Award</h3>
+            <div class="meta">2025 | Intercollegiate Applied Mathematics Autumn Conference | NTNU × SPEC × NTU × NTHU × NYCU × NCCU × NCU × SCU × FJU</div>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>Outstanding Teaching Assistant</h3>
+            <div class="meta">Fall 2024, Spring 2025, Fall 2025 | National Taiwan Normal University</div>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>Presidential Award (Academic Excellence)</h3>
+            <div class="meta">Fall 2024 | National Taiwan Normal University</div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <svg class="footer-corner-bg footer-corner-top-left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="fadeGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="rgba(255,255,255,0.35)" />
+                    <stop offset="100%" stop-color="rgba(255,255,255,0.05)" />
+                </linearGradient>
+                <linearGradient id="fadeGradDot" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="rgba(255,255,255,0.8)" />
+                    <stop offset="100%" stop-color="rgba(255,255,255,0.1)" />
+                </linearGradient>
+            </defs>
+            <path d="M 0 180 C 60 180 120 120 180 0" fill="none" stroke="url(#fadeGrad)" stroke-width="1.5" />
+            <path d="M 0 140 C 40 140 90 90 120 0" fill="none" stroke="url(#fadeGrad)" stroke-width="1" />
+            <path d="M 0 80 C 20 80 50 50 60 0" fill="none" stroke="url(#fadeGrad)" stroke-width="0.5" />
+            <path d="M 0 200 C 100 200 200 100 200 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="4" stroke-dasharray="1 14" stroke-linecap="round" />
+            <path d="M 0 160 C 70 160 150 70 150 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="2.5" stroke-dasharray="1 10" stroke-linecap="round" />
+            <path d="M 0 110 C 40 110 90 40 90 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="1.5" stroke-dasharray="1 6" stroke-linecap="round" />
+        </svg>
+
+        <svg class="footer-corner-bg footer-corner-bottom-right" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 0 180 C 60 180 120 120 180 0" fill="none" stroke="url(#fadeGrad)" stroke-width="1.5" />
+            <path d="M 0 140 C 40 140 90 90 120 0" fill="none" stroke="url(#fadeGrad)" stroke-width="1" />
+            <path d="M 0 80 C 20 80 50 50 60 0" fill="none" stroke="url(#fadeGrad)" stroke-width="0.5" />
+            <path d="M 0 200 C 100 200 200 100 200 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="4" stroke-dasharray="1 14" stroke-linecap="round" />
+            <path d="M 0 160 C 70 160 150 70 150 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="2.5" stroke-dasharray="1 10" stroke-linecap="round" />
+            <path d="M 0 110 C 40 110 90 40 90 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="1.5" stroke-dasharray="1 6" stroke-linecap="round" />
+        </svg>
+
+        <div class="footer-content">
+            <div class="footer-info fade-in">
+                <div class="contact-details">
+                    <p>Contact: ykskryrbo0925@gmail.com</p>
+                    <p>Phone: (+886) 0971-707-392</p>
+                    <div class="social-links">
+                        <a href="https://github.com/Rozias0925" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <span class="divider">|</span>
+                        <a href="https://www.instagram.com/rozias_9_25/" target="_blank">Instagram</a>
+                        <span class="divider">|</span>
+                        <a href="https://l.messenger.com/l.php?u=https%3A%2F%2Fline.me%2Fti%2Fp%2FM-xq8_Zrvc" target="_blank">LINE</a>
+                    </div>
+                </div>
+
+                <div class="qr-box">
+                    <img src="line_contact.png" alt="LINE QR Code">
+                </div>
+            </div>
+
+            <p class="copyright">&copy; 2026 Chun-Hao Wen. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 滑動顯示特效
+            const faders = document.querySelectorAll('.fade-in');
+
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -20px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                    } else {
+                        entry.target.classList.remove('appear');
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // 漢堡選單互動邏輯
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+
+            mobileMenu.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            const links = navLinks.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // 互動式膠囊標籤邏輯 (獨立面板切換 - 修正動畫順序)
+            const tagButtons = document.querySelectorAll('.tag-button');
+            
+            tagButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.getAttribute('data-target');
+                    const targetPanel = document.getElementById(targetId);
+                    const currentCategory = button.closest('.skill-category');
+                    
+                    // 記錄當前按鈕原本是不是打開的
+                    const isActive = button.classList.contains('active');
+                    
+                    // 找出目前該類別中「正在開啟」的按鈕和面板
+                    const activeBtn = currentCategory.querySelector('.tag-button.active');
+                    const activePanel = currentCategory.querySelector('.tag-panel.active');
+                    
+                    if (isActive) {
+                        // 1. 如果點擊的是「已經打開」的膠囊，直接關閉它就好
+                        button.classList.remove('active');
+                        targetPanel.classList.remove('active');
+                    } else {
+                        // 2. 如果點擊的是「新的」膠囊
+                        let delay = 0;
+                        
+                        if (activePanel) {
+                            // 如果有舊的正在打開，先關閉舊的
+                            activeBtn.classList.remove('active');
+                            activePanel.classList.remove('active');
+                            delay = 10; // 設定延遲 10 毫秒，等待 CSS 收合動畫播完
+                        }
+                        
+                        // 3. 等待 delay 時間後，再打開新的
+                        setTimeout(() => {
+                            button.classList.add('active');
+                            targetPanel.classList.add('active');
+                        }, delay);
+                    }
+                });
+            });
+        });
+
+        // --- 點擊右下角 Icon 絲滑回到頂端 ---
+            const backToTopBtn = document.getElementById('back-to-top');
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener('click', function(e) {
+                    e.preventDefault(); // 阻止原本預設的跳轉，避免網址列多出 '#'
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth' // 觸發「刷～」的絲滑滑動效果
+                    });
+                });
+            }
+            
+    </script>
+
 </body>
 </html>

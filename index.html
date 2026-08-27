@@ -1,26 +1,1073 @@
-<!doctype html>
-<html lang="zh-Hant">
+<!DOCTYPE html>
+<html lang="zh-TW">
+
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="文君豪 Rozias Wen｜以嚴謹數學基礎推進機器學習研究，探索圖論、最佳化、資料科學與機器學習。">
-  <meta name="theme-color" content="#0b0d12"><meta property="og:title" content="Rozias Wen｜Mathematics-Driven ML Researcher"><meta property="og:description" content="以嚴謹數學基礎推進機器學習研究。"><meta property="og:type" content="website"><meta property="og:url" content="https://rozias0925.github.io/Rozias-Website/">
-  <link rel="canonical" href="https://rozias0925.github.io/Rozias-Website/"><link rel="alternate" hreflang="zh-Hant" href="https://rozias0925.github.io/Rozias-Website/"><link rel="alternate" hreflang="en" href="https://rozias0925.github.io/Rozias-Website/index_en.html"><link rel="icon" href="icon.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Klee+One:wght@400;600&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css">
-  <title>Rozias Wen｜Mathematics-Driven ML Researcher</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rozias | 個人網站</title>
+    <link rel="icon" href="icon.png" type="image/png">    
+    <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* 全局設定與黑白灰色彩計畫 */
+        :root {
+            --bg-color: #fafafa;
+            --card-bg: #ffffff;
+            --text-color: #222222;
+            --gray-light: #eeeeee;
+            --gray-medium: #888888;
+            --black: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Helvetica Neue", Arial, "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* --- 導覽列 --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid var(--gray-light);
+            z-index: 1000;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+        }
+
+
+    /* 左側專屬 Icon (Logo) 設定 */
+        .nav-logo {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            z-index: 1001; /* 確保不被遮擋 */
+        }
+
+        .nav-logo img {
+            height: 45px; /* 控制 Icon 的大小 */
+            width: 45px;
+            object-fit: cover; /* 確保圖片不變形 */
+            border-radius: 50%; /* 如果你想讓方形圖片變成圓形，可以保留這行；如果本來就是透明背景的 Logo，這行可以刪掉 */
+            border: 1px solid var(--gray-light); /* 輕微的邊框增加質感，不需要也可刪除 */
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover img {
+            transform: scale(1.1); /* 滑鼠游標靠近時會微微放大 */
+        }
+
+        /* 導覽列連結區塊 (電腦版置中橫排) */
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gray-medium);
+        }
+
+        /* 漢堡按鈕 (電腦版隱藏) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle .bar {
+            height: 2px;
+            width: 20px;
+            background-color: var(--text-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* 首頁橫幅 (Banner) */
+        #home {
+            height: 55vh; 
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: var(--black);
+            max-width: 100%;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+            background-image:radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-repeat: repeat;
+            background-size: 30px 30px;
+            background-position: 0 0;
+        }
+
+        /* 數學幾何流線 */
+        .banner-wave {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 100%;
+            max-height: 500px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .banner-wave-left { left: 0; }
+        .banner-wave-right { right: 0; transform: translateY(-50%) scaleX(-1); }
+
+        #home .name-zh {
+            font-size: 3.5rem;
+            letter-spacing: 16px;
+            font-weight: 300;
+            margin-bottom: 5px;
+            color: #FFFFFF;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+            z-index: 1;
+            margin-right: -16px; 
+        }
+
+        #home .name-en {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            font-weight: 300;
+            color: #E0E0E0;
+            margin-bottom: 8px;
+            z-index: 1;
+        }
+
+        #home .title {
+            color: #BBBBBB;
+            font-size: 1rem;
+            letter-spacing: 6px;
+            z-index: 1;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* 內容區塊 (純白卡片設計) */
+        .content-box {
+            background-color: var(--card-bg);
+            padding: 80px 60px;
+            max-width: 850px;
+            margin: 60px auto; 
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03); 
+            border: 1px solid rgba(0,0,0,0.02);
+            z-index: 1;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-bottom: 50px;
+            position: relative;
+            padding-left: 20px;
+            display: inline-block;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 6px;
+            height: 100%;
+            background-color: var(--black);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 350px;
+            background-color: #fcfcfc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray-medium);
+            margin-bottom: 40px;
+            border: 1px solid var(--gray-light);
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.02) 10px, rgba(0,0,0,0.02) 20px);
+        }
+
+        /* 項目列表設計 */
+        .list-item {
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .list-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            background-color: var(--card-bg);
+        }
+
+        .list-item::after {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 25px;
+            width: 2px;
+            height: calc(100% + 15px);
+            background-color: var(--gray-light);
+        }
+
+        .list-item:last-child::after {
+            display: none;
+        }
+
+        .list-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .list-item .meta {
+            color: var(--gray-medium);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: var(--black);
+            color: var(--gray-medium);
+            padding: 70px 20px 40px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .footer-corner-bg {
+            position: absolute;
+            z-index: -1;
+            pointer-events: none;
+            width: 300px;
+            height: 300px;
+            opacity: 0.8;
+        }
+
+        .footer-corner-top-left {
+            top: 0;
+            left: 0;
+            transform: rotate(0deg); 
+        }
+
+        .footer-corner-bottom-right {
+            bottom: 0;
+            right: 0;
+            transform: rotate(180deg); 
+        }
+
+        .footer-content {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            margin-bottom: 40px;
+            flex-wrap: wrap; 
+        }
+
+        .contact-details {
+            text-align: left;
+        }
+
+        .contact-details p {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            margin: 20px 0 0 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+        }
+
+        .social-links .divider {
+            color: #444444;
+            font-size: 1.1rem;
+        }
+
+        .qr-box {
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            transition: transform 0.4s ease;
+        }
+
+        .qr-box img {
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+
+        .qr-box:hover {
+            transform: scale(1.05);
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555555;
+            border-top: 1px solid #333333;
+            padding-top: 25px;
+            margin-top: 20px;
+        }
+
+        .handwriting {
+            font-family: 'Klee One', cursive, sans-serif;
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #333333;
+            letter-spacing: 1px;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-color);
+            text-decoration: none;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 2px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--gray-medium);
+            border-bottom-color: var(--gray-medium);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 手繪感植物線條背景 */
+        .organic-bg {
+            position: fixed;
+            z-index: -2;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+        
+        .organic-top-left {
+            top: 10%;
+            left: -5%;
+            width: 45vw;
+            max-width: 500px;
+        }
+
+        .organic-bottom-right {
+            bottom: -5%;
+            right: -5%;
+            width: 45vw;
+            max-width: 500px;
+            transform: rotate(180deg);
+        }
+        
+        /* --- 專業技能 (獨立面板切換設計) --- */
+        /* --- 區塊操作提示小字 --- */
+        .hint-text {
+            color: var(--gray-medium);
+            font-size: 0.85rem;
+            margin-top: -35px;    /* 往上拉近標題 */
+            margin-bottom: 40px;  /* 往下推開膠囊內容 */
+            padding-left: 20px;   /* 讓它跟標題的文字左側對齊 */
+            letter-spacing: 1px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 10px;
+        }
+
+        .skill-category h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--gray-light);
+            padding-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        /* 標籤按鈕區 (完全獨立於文字) */
+        .interactive-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .tag-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #f8f8f8;
+            color: var(--text-color);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid var(--gray-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        /* 按鈕啟動與懸浮樣式 */
+        .tag-button:hover, .tag-button.active {
+            background-color: var(--black);
+            color: #ffffff;
+            border-color: var(--black);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .tag-button .plus {
+            font-size: 1.1rem;
+            font-weight: 300;
+            transition: transform 0.4s ease;
+        }
+
+        .tag-button.active .plus {
+            transform: rotate(45deg); /* 把 + 轉成 × */
+        }
+
+        /* 說明文字面板區 (完全獨立，顯示在膠囊下方) */
+        .tag-panels {
+            position: relative;
+        }
+
+        .tag-panel {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.4s ease-in-out;
+            background-color: #fcfcfc;
+            border-radius: 12px;
+            padding: 0 20px;
+            border: 1px solid transparent;
+        }
+
+        /* 說明文字展開時 */
+        .tag-panel.active {
+            max-height: 400px;
+            opacity: 1;
+            padding: 20px;
+            border-color: var(--gray-light);
+            margin-top: 5px;
+        }
+
+        .tag-panel p {
+            margin: 0;
+        }
+
+        /* --- 語言切換按鈕 (電腦版) --- */
+        /* 使用絕對定位靠右，這樣不會影響到中間選單的完美置中 */
+        .lang-switch {
+            position: absolute;
+            right: 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px solid var(--text-color);
+            padding: 4px 12px;
+            border-radius: 20px; /* 膠囊形狀 */
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch:hover {
+            background-color: var(--black);
+            color: #ffffff;
+            border-color: var(--black);
+        }
+
+        /* --- 手機與平板版專屬設定 --- */
+        @media (max-width: 768px) {
+            nav {
+                justify-content: flex-end; 
+            }
+
+            .menu-toggle {
+                display: flex; 
+            }
+
+            .nav-links {
+                display: none; 
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.98);
+                border-bottom: 1px solid var(--gray-light);
+                text-align: center;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                margin: 15px 0; 
+            }
+
+            /* 手機版語言按鈕：取消絕對定位，與漢堡按鈕並排靠右 */
+            .lang-switch {
+                position: relative;
+                right: auto;
+                margin-right: 20px; /* 跟右邊的漢堡按鈕拉開一點呼吸空間 */
+            }
+            
+            .content-box {
+                margin: 40px 20px;  
+                padding: 40px 25px; 
+            }
+
+            .organic-top-left, .organic-bottom-right {
+                width: 70vw; 
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            #home .name-zh {
+                font-size: 2.5rem;   
+                letter-spacing: 10px;
+                margin-right: -10px;
+            }
+            
+            #home .name-en {
+                font-size: 0.95rem;  
+            }
+            
+            #home {
+                margin-top: 50px;
+                height: 65vh; 
+            }
+
+            .footer-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 35px;
+            }
+            .contact-details {
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <a class="skip-link" href="#main-content">跳到主要內容</a>
-  <header class="site-header"><nav class="nav container" aria-label="主要導覽"><a class="brand" href="#top" aria-label="回到首頁"><img src="icon.png" alt="Rozias Wen 個人標誌"></a><button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-menu"><span></span><span></span><span></span><span class="sr-only">開啟導覽選單</span></button><div class="nav-links" id="primary-menu"><a href="#about">關於我</a><a href="#research">研究</a><a href="#journey">研究軌跡</a><a href="#honors">榮譽</a><a href="#contact">聯絡</a></div><a class="language-link" href="index_en.html" lang="en">EN</a></nav></header>
-  <main id="main-content">
-    <section class="hero" id="top" aria-labelledby="hero-title"><div class="hero-grid"></div><div class="container hero-layout"><div class="hero-copy"><p class="eyebrow">ROZIAS WEN · CHUN-HAO, WEN</p><h1 id="hero-title">數學驅動的<br><em>ML 研究者</em></h1><p class="hero-description">以嚴謹的數學訓練，主動設計學習路徑，將圖論、最佳化與機器學習轉譯為可探索的真實問題。</p><div class="hero-actions"><a class="button button-light" href="#research">探索研究</a><a class="button button-ghost" href="#honors">查看榮譽</a></div></div><section class="hero-carousel" aria-roledescription="carousel" aria-label="研究與學術活動剪影" tabindex="0"><div class="carousel-frame"><!-- 將下方裝飾背景替換為可公開的研究或演講照片。 --><article class="carousel-slide is-active" data-slide aria-label="第 1 張，共 3 張"><span class="slide-index">01 / 03</span><div class="slide-visual visual-seminar"></div><p>把學習，化為下一個研究問題。</p></article><article class="carousel-slide" data-slide aria-label="第 2 張，共 3 張" aria-hidden="true"><span class="slide-index">02 / 03</span><div class="slide-visual visual-poster"></div><p>從數學模型走向公開交流。</p></article><article class="carousel-slide" data-slide aria-label="第 3 張，共 3 張" aria-hidden="true"><span class="slide-index">03 / 03</span><div class="slide-visual visual-workshop"></div><p>在每次迭代中深化方法與視野。</p></article></div><div class="carousel-controls"><button type="button" class="carousel-button" data-carousel-prev aria-label="上一張">←</button><div class="carousel-dots" role="tablist" aria-label="選擇輪播圖片"><button class="dot is-active" type="button" role="tab" aria-selected="true" aria-label="顯示第 1 張" data-carousel-dot="0"></button><button class="dot" type="button" role="tab" aria-selected="false" aria-label="顯示第 2 張" data-carousel-dot="1"></button><button class="dot" type="button" role="tab" aria-selected="false" aria-label="顯示第 3 張" data-carousel-dot="2"></button></div><button type="button" class="carousel-button" data-carousel-next aria-label="下一張">→</button><button type="button" class="pause-button" data-carousel-pause aria-pressed="false">暫停</button></div></section></div></section>
-    <section class="section container" id="about" aria-labelledby="about-title"><div class="section-heading"><p class="eyebrow">01 / ABOUT</p><h2 id="about-title">嚴謹學習，主動延伸。</h2></div><div class="about-layout"><div class="about-statement"><p class="lead">我是文君豪，目前就讀國立臺灣師範大學數學系，致力於從數學結構出發，探索機器學習能回答的問題。</p><p>代數學與線性代數讓我建立了對抽象結構的敏感度；而自修 Galois Theory、泛函分析與機器學習，則讓我養成主動規劃、長期投入的習慣。</p></div><div class="about-detail"><p>2018 與 2025 年兩次造訪新加坡，讓我更確信自己嚮往高標準、重視成長的學術環境。這份感受促使我從純數拓展至資料科學與 ML：以 Graph Laplacian、GCN 與最佳化問題為起點，持續把嚴謹的理論轉化為可驗證的研究工作。</p><p class="signature">目標：於機器學習、資料科學或 AI 相關碩士領域持續深耕。</p></div></div></section>
-    <section class="section section-tint" id="research" aria-labelledby="research-title"><div class="container"><div class="section-heading section-heading-row"><div><p class="eyebrow">02 / SELECTED RESEARCH</p><h2 id="research-title">以問題為起點的研究。</h2></div><p class="section-note">兩項研究分別從圖拉普拉斯與圖神經網路出發，持續延伸理論與應用的可能。</p></div><div class="research-grid"><article class="research-card"><div class="card-topline"><span class="status status-complete">核心研究完成</span><span>2026</span></div><h3>Graph Laplacian &amp;<br>Spectral Clustering</h3><p class="research-summary">以幾何模型與網路結構說明譜分群的核心邏輯，並探索其在醫療影像等跨領域問題中的研究原型與未來應用潛力。</p><ol class="roadmap" aria-label="Graph Laplacian 研究階段"><li class="done"><span>01</span>譜理論與分群框架</li><li class="done"><span>02</span>幾何與網路案例驗證</li><li class="current"><span>03</span>影像研究原型與後續驗證</li></ol><p class="research-note">此為研究原型，並非臨床診斷工具。</p><a class="text-link" href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" rel="noopener noreferrer">Explore Research <span aria-hidden="true">↗</span></a></article><article class="research-card"><div class="card-topline"><span class="status status-progress">持續推進中</span><span>2026 →</span></div><h3>Factor GCN for<br>Portfolio Optimization</h3><p class="research-summary">將長期基本面與短期動能納入圖神經網路，探索端到端資產配置與最佳化；後續將深化模型、決策與部署能力。</p><ol class="roadmap" aria-label="Factor GCN 研究階段"><li class="done"><span>01</span>Factor GCN 基礎模型</li><li class="current"><span>02</span>GAT／RL 模型延伸</li><li><span>03</span>產品部署與研究迭代</li></ol><p class="research-note">僅供學術研究展示，非投資建議。</p><a class="text-link" href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" rel="noopener noreferrer">Explore Research <span aria-hidden="true">↗</span></a></article></div></div></section>
-    <section class="section container" id="journey" aria-labelledby="journey-title"><div class="section-heading"><p class="eyebrow">03 / LEARNING ROADMAP</p><h2 id="journey-title">把好奇心，規劃成能力。</h2><p class="section-note">我以長期自學與研究迭代，建立從數學基礎到機器學習應用的學習路徑。</p></div><ol class="journey"><li><span class="journey-year">FOUNDATION</span><div><h3>純數與結構化思考</h3><p>透過代數、線性代數與自修 Galois Theory，訓練抽象推理與嚴謹證明的能力。</p></div></li><li><span class="journey-year">EXPANSION</span><div><h3>圖論、最佳化與科學計算</h3><p>以 Graph Laplacian、數值方法與凸最佳化，建立從理論到可計算模型的橋梁。</p></div></li><li><span class="journey-year">RESEARCH</span><div><h3>圖機器學習與跨域問題</h3><p>以 GCN、特徵工程與小樣本縱向資料建模，主動探索可驗證的研究題目。</p></div></li><li><span class="journey-year">NEXT</span><div><h3>深化 ML、AI 與研究實作</h3><p>持續拓展 GAT、強化學習與產品部署能力，準備在資料科學與 AI 的研究所階段進一步成長。</p></div></li></ol></section>
-    <section class="section section-dark" id="skills" aria-labelledby="skills-title"><div class="container"><div class="section-heading"><p class="eyebrow">04 / TECHNICAL FOUNDATION</p><h2 id="skills-title">能被研究問題驅動的技能。</h2></div><div class="skills-grid"><div class="skill-group"><h3>Mathematics</h3><div class="skill-tags"><button type="button" data-disclosure="math-algebra" aria-expanded="false">Algebra &amp; Linear Algebra <span>+</span></button><button type="button" data-disclosure="math-stats" aria-expanded="false">Probability &amp; Statistics <span>+</span></button><button type="button" data-disclosure="math-computing" aria-expanded="false">Scientific Computing <span>+</span></button><button type="button" data-disclosure="math-opt" aria-expanded="false">Optimization <span>+</span></button></div><p id="math-algebra" class="skill-detail" hidden>以代數與線性代數理解結構、轉換與高維資料表徵，是我進入圖論與 ML 的理論起點。</p><p id="math-stats" class="skill-detail" hidden>以機率與統計思維處理不確定性、資料分布與模型評估。</p><p id="math-computing" class="skill-detail" hidden>運用數值方法與演算法效率觀點，將數學模型落實為可驗證的程式實驗。</p><p id="math-opt" class="skill-detail" hidden>持續研究線性規劃、凸最佳化與其在模型訓練、資產配置中的應用。</p></div><div class="skill-group"><h3>Programming</h3><div class="skill-tags"><button type="button" data-disclosure="prog-python" aria-expanded="false">Python <span>+</span></button><button type="button" data-disclosure="prog-c" aria-expanded="false">C / C++ <span>+</span></button><button type="button" data-disclosure="prog-sql" aria-expanded="false">SQL <span>+</span></button><button type="button" data-disclosure="prog-matlab" aria-expanded="false">MATLAB <span>+</span></button></div><p id="prog-python" class="skill-detail" hidden>主要用於資料清理、模型建構、實驗與視覺化的研究工具。</p><p id="prog-c" class="skill-detail" hidden>低階程式、記憶體與演算法思維的訓練，建立高效實作的基礎。</p><p id="prog-sql" class="skill-detail" hidden>用於關聯式資料的查詢、整理與特徵萃取。</p><p id="prog-matlab" class="skill-detail" hidden>用於矩陣運算、數值分析與快速演算法原型驗證。</p></div><div class="skill-group"><h3>Data Science &amp; ML</h3><div class="skill-tags"><button type="button" data-disclosure="ml-core" aria-expanded="false">Machine Learning <span>+</span></button><button type="button" data-disclosure="ml-graph" aria-expanded="false">Graph Learning <span>+</span></button><button type="button" data-disclosure="ml-next" aria-expanded="false">Next: GAT / RL / Deployment <span>+</span></button></div><p id="ml-core" class="skill-detail" hidden>從科學計算與自學累積機器學習架構、實驗設計與模型評估的基礎。</p><p id="ml-graph" class="skill-detail" hidden>以 Graph Laplacian、GCN 與圖結構特徵探索複雜關係資料。</p><p id="ml-next" class="skill-detail" hidden>下一階段將拓展 GAT、強化學習與可部署產品的研究實作能力。</p></div></div></div></section>
-    <section class="section container" id="education" aria-labelledby="education-title"><div class="section-heading"><p class="eyebrow">05 / EDUCATION &amp; EXPERIENCE</p><h2 id="education-title">學術與教學經歷。</h2></div><ol class="timeline"><li><time>2025–2026</time><div><h3>國立臺灣師範大學｜數學系教學助理</h3><p>線性代數（一）、數論；2025 秋季獲優秀教學助理。</p></div></li><li><time>2024–2025</time><div><h3>國立臺灣師範大學｜數學系教學助理</h3><p>代數學（一）（二）、機率論導論；兩學期均獲優秀教學助理。</p></div></li><li><time>2023–2024</time><div><h3>elevo 艾樂維教育科技｜數學講師</h3><p>教授國、高中數學，將抽象概念轉化為可理解的學習路徑。</p></div></li><li><time>2022–2026</time><div><h3>國立臺灣師範大學｜數學系學士</h3><p>2023 春季因家庭因素暫停學業一學期。</p></div></li></ol></section>
-    <section class="section section-tint" id="honors" aria-labelledby="honors-title"><div class="container"><div class="section-heading"><p class="eyebrow">06 / HONORS &amp; CERTIFICATIONS</p><h2 id="honors-title">被看見的研究與投入。</h2><p class="section-note">依類別整理、最新優先。公開證書與官方頁面將於素材備妥後補入。</p></div><div class="honors-grid"><section><h3>研究與研討會</h3><ul class="honor-list"><li><span>2026</span><div><strong>International Conference on Optimization and Machine Learning</strong><p>Participant</p></div></li><li><span>2026</span><div><strong>TWSIAM Annual Meeting｜海報論文最佳人氣獎</strong><p>Graph Laplacian &amp; Spectral Clustering</p></div></li><li><span>2026</span><div><strong>科學計算學生研討會（量化程式交易）｜最佳論文獎</strong><p>NTNU Math × KGI Securities</p></div></li><li><span>2025</span><div><strong>校際應用數學秋季研討會｜最佳論文獎</strong><p>Intercollegiate Applied Mathematics Autumn Conference</p></div></li></ul></section><section><h3>學術與教學</h3><ul class="honor-list"><li><span>2025</span><div><strong>優秀教學助理</strong><p>國立臺灣師範大學（2024 秋、2025 春、2025 秋）</p></div></li><li><span>2024</span><div><strong>書卷獎</strong><p>國立臺灣師範大學</p></div></li></ul><h3 class="subheading">證照</h3><ul class="honor-list"><li><span>2026</span><div><strong>IBM Data Science Professional Certificate</strong><p>IBM × Coursera</p></div></li></ul></section></div></div></section>
-  </main>
-  <footer id="contact" class="footer"><div class="container footer-layout"><div><p class="eyebrow">07 / CONTACT</p><h2>交流，從一封信開始。</h2><p>歡迎就研究、學術交流與資料科學相關議題與我聯繫。</p></div><address><a class="email-link" href="mailto:ykskryrbo0925@gmail.com">ykskryrbo0925@gmail.com</a><p>+886 971-707-392</p><div class="social-links"><a href="https://github.com/Rozias0925" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.instagram.com/rozias_9_25/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://l.messenger.com/l.php?u=https%3A%2F%2Fline.me%2Fti%2Fp%2FM-xq8_Zrvc" target="_blank" rel="noopener noreferrer">LINE</a></div></address><div class="qr-box"><img src="line_contact.png" alt="加入 Rozias Wen LINE 的 QR Code"><span>LINE</span></div></div><p class="copyright">© 2026 Chun-Hao Wen. All rights reserved.</p></div></footer>
-  <script src="script.js"></script>
+
+    <svg class="organic-bg organic-top-left" viewBox="0 0 500 700" fill="none" stroke="#000000" xmlns="http://www.w3.org/2000/svg">
+        <path d="M-50,0 C100,100 250,300 200,700" stroke-width="3" stroke-linecap="round"/>
+        <path d="M40,90 C120,40 220,90 230,180 C160,190 60,160 40,90 Z" stroke-width="1.5"/>
+        <path d="M40,90 C110,110 160,140 230,180" stroke-width="1"/> 
+        <path d="M80,110 C120,95 150,110 180,135" stroke-width="0.8"/>
+        <path d="M125,240 C210,190 310,240 330,330 C260,340 150,320 125,240 Z" stroke-width="1.5"/>
+        <path d="M125,240 C190,260 250,290 330,330" stroke-width="1"/>
+        <path d="M170,260 C210,250 240,265 280,295" stroke-width="0.8"/>
+        <path d="M185,420 C270,390 350,450 340,540 C270,530 180,490 185,420 Z" stroke-width="1.5"/>
+        <path d="M185,420 C240,450 280,490 340,540" stroke-width="1"/>
+        <path d="M280,100 C350,150 320,250 400,280" stroke-width="1" stroke-dasharray="4 4"/>
+        <path d="M380,450 C450,420 480,500 450,580" stroke-width="1"/>
+    </svg>
+
+    <svg class="organic-bg organic-bottom-right" viewBox="0 0 500 700" fill="none" stroke="#000000" xmlns="http://www.w3.org/2000/svg">
+        <path d="M-50,0 C100,100 250,300 200,700" stroke-width="3" stroke-linecap="round"/>
+        <path d="M40,90 C120,40 220,90 230,180 C160,190 60,160 40,90 Z" stroke-width="1.5"/>
+        <path d="M40,90 C110,110 160,140 230,180" stroke-width="1"/>
+        <path d="M80,110 C120,95 150,110 180,135" stroke-width="0.8"/>
+        <path d="M125,240 C210,190 310,240 330,330 C260,340 150,320 125,240 Z" stroke-width="1.5"/>
+        <path d="M125,240 C190,260 250,290 330,330" stroke-width="1"/>
+        <path d="M170,260 C210,250 240,265 280,295" stroke-width="0.8"/>
+        <path d="M185,420 C270,390 350,450 340,540 C270,530 180,490 185,420 Z" stroke-width="1.5"/>
+        <path d="M185,420 C240,450 280,490 340,540" stroke-width="1"/>
+        <path d="M280,100 C350,150 320,250 400,280" stroke-width="1" stroke-dasharray="4 4"/>
+    </svg>
+
+    <nav>
+        <a href="#" class="nav-logo">
+            <img src="icon.png" alt="Rozias Icon">
+        </a>
+
+        <div class="nav-links" id="nav-links">
+            <a href="#">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a> 
+            <a href="#education">Education</a>
+            <a href="#research">Research</a>
+            <a href="#honors">Honors</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <a href="index_en.html" class="lang-switch">EN</a>
+
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <section id="home">
+        <svg class="banner-wave banner-wave-left" viewBox="0 0 200 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="sharpGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0" />
+                    <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+                </linearGradient>
+            </defs>
+            <path d="M-50,500 C50,350 150,250 100,0" stroke="url(#sharpGrad)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M-50,400 C80,300 120,150 50,0" stroke="url(#sharpGrad)" stroke-width="1" stroke-linecap="round"/>
+            <path d="M-50,300 C100,220 80,80 0,0" stroke="url(#sharpGrad)" stroke-width="0.5" stroke-linecap="round"/>
+        </svg>
+
+        <svg class="banner-wave banner-wave-right" viewBox="0 0 200 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M-50,500 C50,350 150,250 100,0" stroke="url(#sharpGrad)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M-50,400 C80,300 120,150 50,0" stroke="url(#sharpGrad)" stroke-width="1" stroke-linecap="round"/>
+            <path d="M-50,300 C100,220 80,80 0,0" stroke="url(#sharpGrad)" stroke-width="0.5" stroke-linecap="round"/>
+        </svg>
+
+        <h1 class="fade-in name-zh">文君豪</h1>
+        <div class="fade-in name-en">Chun-Hao, Wen | Rozias Wen</div>
+        <p class="fade-in title">MATHEMATICS-DRIVEN ML RESEARCHER</p>
+    </section>
+
+    <section id="about" class="content-box">
+        <h2 class="fade-in">簡介 / ABOUT</h2>
+        
+        <div class="image-placeholder fade-in">
+            研究／演講活動照片將於素材備妥後更新
+        </div>
+
+        <p class="fade-in handwriting">
+            你好，我是文君豪，目前就讀於國立臺灣師範大學數學系。在修習代數學與線性代數的過程中，我培養了對純數學的熱愛與高敏感度。這份熱情驅使我利用暑假期間自修《Galois Theory》，並進一步探索同調代數的廣闊領域。
+        </p>
+        <br>
+        <p class="fade-in handwriting">
+            在深入純數之際，新加坡一直是我非常嚮往的城市。2018 年初次造訪時，我便對其先進的城市發展與高度自律的精神印象深刻；而 2025 年的再次拜訪，更成為我人生重要的轉捩點。當時我有幸與當地學生深入交流，他們展現出的極高效率、積極上進與對自我的嚴格要求深深打動了我，因為這些特質恰好與我對自身的期許不謀而合。
+        </p>
+        <br>
+        <p class="fade-in handwriting">
+            那段期間，我正好榮獲了 2025 校際應用數學秋季研討會「最佳論文獎」的殊榮。然而，在這份肯定的背後，未來的生涯走向卻帶給我極大的壓力。在審慎評估自身個性與嚮往的生活藍圖後，我對繼續深耕「純數」這條路產生了猶豫。這趟旅程宛如一劑強心針，回臺灣後，我更加確信新加坡就是我渴望置身的環境。新加坡擁有亞洲最頂尖的學府——新加坡國立大學與南洋理工大學，在各個前沿領域皆具備深厚的資源。如此完美的烏托邦怎會不讓人心動呢？
+        </p>
+        <br>
+        <p class="fade-in handwriting">
+            這份嚮往促使我立下了明確的目標：期望能進入這兩所頂尖學府之一，攻讀機器學習、資料科學與人工智慧相關的碩士學程。為此，我決心將專研領域從純代數向外拓展，期許能用這兩年的時間，淬鍊出一份足以說服頂尖學術機構的堅實背景。
+        </p>
+        <br>
+        <p class="fade-in handwriting">
+            恰逢人工智慧崛起的黃金年代，「如何讓無生命的機器學會思考？」這個問題深深吸引了我。在修習「科學計算導論」與「科學計算特論」後，我進一步掌握了以數據為核心、策略性解決問題的思維。憑藉著在代數領域的優勢，我開始從線性代數的視角切入，由研究 Graph Laplacian 起步，著手解決機器學習中的分類問題；隨後更實際融入圖卷積神經網路（GCN），設計出一套以資產配置為目標的投資演算法，正式跨足資料科學與機器學習領域。在參與多場工作坊與學術研討會並獲得肯定後，我更加堅定了朝此方向發展的信念。期許自己能持續將嚴謹的數學邏輯，轉化為解決真實世界問題的演算法，有朝一日在資料科學領域中，開創出屬於自己的一席之地。
+        </p>
+    </section>
+
+    <section id="skills" class="content-box">
+        <h2 class="fade-in">專業技能 / TECHNICAL SKILLS</h2>
+        <p class="fade-in hint-text">※ 點選以下關鍵字可查看學習心得</p>
+        
+        <div class="skills-grid fade-in">
+            <div class="skill-category">
+                <h3>Mathematics</h3>
+                <div class="interactive-tags">
+                    <div class="tag-button" data-target="math-1">Algebra/Linear Algebra <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="math-2">Probability/Statistics <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="math-3">Scientific Computing <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="math-4">Linear Programming/Convex Optimization <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="math-5">Functional Analysis <span class="plus">+</span></div>
+
+
+                </div>
+                <div class="tag-panels">
+                    <div class="tag-panel" id="math-1">
+                        <p class="handwriting">代數學探討的是數學的「結構」本質。在撰寫程式或分析真實世界問題時，代數與線性代數能幫助我在腦中快速建構出清晰的數學模型。現實生活中線性關係隨處可見，尤其在電腦科學中，矩陣與向量空間的概念更是資料處理、圖論架構與現代機器學習最核心的底層邏輯。</p>
+                    </div>
+                    <div class="tag-panel" id="math-2">
+                        <p class="handwriting">機率與統計是量化「不確定性」的科學，為機器學習提供了嚴謹的數學視角。它使我能洞悉資料背後的分佈規律、精準評估風險；在面對真實世界中充滿雜訊或複雜結構的數據時，不僅能藉此建構出適應各種情境的預測模型，更能透過嚴密釐清各類誤差，為檢驗模型優劣提供客觀且扎實的判斷準則。</p>
+                    </div>
+                    <div class="tag-panel" id="math-3">
+                        <p class="handwriting">科學計算是連接純數理論與電腦實作的關鍵。在追求理論精確之餘，實務上更須妥善處理電腦運算時無可避免的誤差與極限逼近。它訓練我建立起以「運算成本」、「演算法效率」及「收斂性」為核心的思維模式，以嚴謹的數學知識，為解決真實世界問題的高效程式碼提供精準的想法與嚴謹的證明。</p>
+                    </div>
+                    <div class="tag-panel" id="math-4">
+                        <p class="handwriting">修習並研究中</p>
+                    </div>
+                    <div class="tag-panel" id="math-5">
+                        <p class="handwriting">泛函分析是探討函數空間與算子理論的核心數學分支。為了更透徹地理解 Spectral Theory 在 Graph Laplacian 中的底層邏輯，我展開了這門學科的自主研修。透過剖析無限維空間的性質與算子行為，我期望對機器學習中的最佳化問題具備更宏觀的視角，也為深入探究模型的泛化能力打下了堅實的理論底蘊。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="interactive-tags">
+                    <div class="tag-button" data-target="prog-1">Python <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="prog-2">C / C++ <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="prog-3">SQL <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="prog-4">MATLAB <span class="plus">+</span></div>
+                </div>
+                <div class="tag-panels">
+                    <div class="tag-panel" id="prog-1">
+                        <p class="handwriting">作為實現資料科學的主力語言，自高中起便深耕的 Python 為我提供了強大且靈活的開發特性。在科學計算特論課程中，它在不同的技術層面皆提供強大的協助：從繁雜的資料清洗、建構複雜的模型，到最終的數據視覺化，皆一手包辦的它成為最強大的助攻之一。</p>
+                    </div>
+                    <div class="tag-panel" id="prog-2">
+                        <p class="handwriting">學習 C 語言是對底層運算思維與記憶體管理的極致淬鍊，也是我在國立臺灣科技大學（NTUST）修習期間收穫最豐的技能之一。它訓練我以電腦硬體的視角剖析程式，深刻理解指令編譯與底層運行的原理，為日後實作高效能演算法與複雜資料結構，打下了無可取代的扎實基礎。</p>
+                    </div>
+                    <div class="tag-panel" id="prog-3">
+                        <p class="handwriting">透過 IBM Data Science 專業認證課程的洗禮，我掌握了這項駕馭與萃取真實世界龐大數據的必備利器。對於具備嚴謹邏輯訓練的數學系學生而言，SQL 的關聯式思維極具共鳴，使我能以極高的效率，從海量資料庫中精煉出建模所需的關鍵特徵。</p>
+                    </div>
+                    <div class="tag-panel" id="prog-4">
+                        <p class="handwriting">MATLAB 是我在大學期間深入掌握的重要數學語言。它提供了無與倫比的矩陣運算與數值分析環境；對我而言，它不僅是一台「超大型的科學計算機」，更是我在建構純數模型與快速驗證演算法原型時，最得心應手的強大引擎。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Data Science & Machine Learning</h3>
+                <div class="interactive-tags">
+                    <div class="tag-button" data-target="ds-1">Machine Learning and Deep Learning <span class="plus">+</span></div>
+                    <div class="tag-button" data-target="ds-2">Application of Graph Theory <span class="plus">+</span></div>
+                </div>
+                <div class="tag-panels">
+                    <div class="tag-panel" id="ds-1">
+                        <p class="handwriting">機器學習是我跨足資料科學的啟端。國立台灣大學有提供一門課程"機器學習導論" 只是我運氣不好沒有加簽到 不過我仍透過其課程錄影學到了大致的運作原理和核心架構。放眼未來，我將目標鎖定於新加坡國立大學（NUS）的資料科學與機器學習碩士學程 (DSML)，期許能在頂尖的學術殿堂中，建構更完整、深厚的機器學習知識體系。</p>                    </div>
+                    </div>
+                    <div class="tag-panel" id="ds-2">
+                        <p class="handwriting">圖論是我認為能將真實世界的複雜網絡與拓樸結構，最直觀轉化為數學語言的強大工具，而線性代數則是支撐其運作的核心基石。儘管未曾正式修習圖論課程，我卻在研究實務中將其概念深刻實踐。從深究 Graph Laplacian 的頻譜特性，到建構 Graph Convolutional Network (GCN) 與 Graph Attention Network (GAT) 以萃取複雜的節點特徵，圖論與機器學習的結合，是我目前最熱衷且持續突破的研究主軸。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="content-box">
+        <h2 class="fade-in">學歷與經歷 / EDUCATION & EXPERIENCE</h2>
+        
+        <div class="list-item fade-in">
+            <h3>國立臺灣師範大學 數學系</h3>
+            <div class="meta">學士學位 | 2022-2026</div>
+            <p>※111-2學期因家事休學</p>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>elevo_艾樂維教育科技股份有限公司</h3>
+            <div class="meta">2023-2024</div>
+            <p>擔任國中及高中數學科講師</p>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>NTNU MATH_教學助理</h3>
+            <div class="meta">2024-2025</div>
+            <p>113-1學期擔任代數學(I)助教，113-2學期擔任代數學(II)、機率導論助教</p>
+            <p>113-1、113-2兩學期皆獲數學系優良教學助理</p>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>NTNU MATH_教學助理</h3>
+            <div class="meta">2025-2026</div>
+            <p>114-1學期擔任線性代數(I)助教，114-2學期擔任數論助教</p>
+            <p>114-1學期獲數學系優良教學助理</p>
+        </div>
+
+    </section>
+
+    <section id="research" class="content-box">
+        <h2 class="fade-in">研究與發表 / RESEARCH</h2>
+        
+        <div class="list-item fade-in">
+            <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
+            <div class="meta">2026 | TWSIAM 台灣工業與應用數學會年會 海報發表</div>
+            <p>
+                以 Stanford Bunny 幾何模型與都市網路為例說明譜分群的核心邏輯，並探索其在醫療影像等跨領域問題中的研究原型與未來應用潛力。
+            </p>
+            <p style="margin-top: 10px;">
+                研究後期加入特徵提取工程（Feature Extraction Engineering）以探索 MRI 影像的區域分割；此為研究原型，並非臨床診斷工具。
+            </p>
+            <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" class="project-link">View Project ↗</a>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
+            <div class="meta">2026 | International Conference on Optimization and Machine Learning 海報發表</div>
+            <p>
+                本研究提出基於圖論架構的 Factor GCN，融合長期基本面因子與短期動能特徵，探索端到端資產配置與最佳化。下一階段將延伸至 GAT、強化學習與產品部署。
+            </p>
+            <p style="margin-top: 10px;">僅供學術研究展示，非投資建議。</p>
+            <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" class="project-link">View Project ↗</a>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>應用混合效應機器學習於小樣本縱向資料之建模</h3>
+            <div class="meta">Ongoing | 進行中研究專案</div>
+            <p>
+                本研究為與台大醫院新竹分院之共同研究，專案目前仍在進行中，預期以論文或期刊方式發表，敬請期待後續成果。
+            </p>
+        </div>
+    </section>
+
+    <section id="honors" class="content-box">
+        <h2 class="fade-in">榮譽與檢定 / HONORS & CERTIFICATIONS </h2>
+
+        <div class="list-item fade-in">
+            <h3>IBM Data Science Professional Certificate</h3>
+            <div class="meta">2026 | IBM × Coursera</div>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>International Conference on Optimization and Machine Learning 最佳化與機器學習國際研討會</h3>
+            <div class="meta">2026 | 參賽中</div>  
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>Taiwan Society for Industrial and Applied Mathematics 海報論文最佳人氣獎</h3>
+            <div class="meta">2026 | 台灣工業與應用數學會</div>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>科學計算學生研討會 (量化程式交易) 最佳論文獎</h3>
+            <div class="meta">2026 | 師大數學系 × 凱基證券</div>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>校際應用數學秋季研討會 最佳論文獎</h3>
+            <div class="meta">2025 | NTNU × SPEC × NTU × NTHU × NYCU × NCCU × NCU × SCU × FJU</div>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>優秀教學助理</h3>
+            <div class="meta">113-1, 113-2, 114-1 學期 | 國立臺灣師範大學</div>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>書卷獎</h3>
+            <div class="meta">113-1 學期 | 國立臺灣師範大學</div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <svg class="footer-corner-bg footer-corner-top-left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="fadeGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="rgba(255,255,255,0.35)" />
+                    <stop offset="100%" stop-color="rgba(255,255,255,0.05)" />
+                </linearGradient>
+                <linearGradient id="fadeGradDot" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="rgba(255,255,255,0.8)" />
+                    <stop offset="100%" stop-color="rgba(255,255,255,0.1)" />
+                </linearGradient>
+            </defs>
+            <path d="M 0 180 C 60 180 120 120 180 0" fill="none" stroke="url(#fadeGrad)" stroke-width="1.5" />
+            <path d="M 0 140 C 40 140 90 90 120 0" fill="none" stroke="url(#fadeGrad)" stroke-width="1" />
+            <path d="M 0 80 C 20 80 50 50 60 0" fill="none" stroke="url(#fadeGrad)" stroke-width="0.5" />
+            <path d="M 0 200 C 100 200 200 100 200 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="4" stroke-dasharray="1 14" stroke-linecap="round" />
+            <path d="M 0 160 C 70 160 150 70 150 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="2.5" stroke-dasharray="1 10" stroke-linecap="round" />
+            <path d="M 0 110 C 40 110 90 40 90 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="1.5" stroke-dasharray="1 6" stroke-linecap="round" />
+        </svg>
+
+        <svg class="footer-corner-bg footer-corner-bottom-right" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 0 180 C 60 180 120 120 180 0" fill="none" stroke="url(#fadeGrad)" stroke-width="1.5" />
+            <path d="M 0 140 C 40 140 90 90 120 0" fill="none" stroke="url(#fadeGrad)" stroke-width="1" />
+            <path d="M 0 80 C 20 80 50 50 60 0" fill="none" stroke="url(#fadeGrad)" stroke-width="0.5" />
+            <path d="M 0 200 C 100 200 200 100 200 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="4" stroke-dasharray="1 14" stroke-linecap="round" />
+            <path d="M 0 160 C 70 160 150 70 150 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="2.5" stroke-dasharray="1 10" stroke-linecap="round" />
+            <path d="M 0 110 C 40 110 90 40 90 0" fill="none" stroke="url(#fadeGradDot)" stroke-width="1.5" stroke-dasharray="1 6" stroke-linecap="round" />
+        </svg>
+
+        <div class="footer-content">
+            <div class="footer-info fade-in">
+                <div class="contact-details">
+                    <p>Contact: ykskryrbo0925@gmail.com</p>
+                    <p>Phone: (+886) 0971-707-392</p>
+                    <div class="social-links">
+                        <a href="https://github.com/Rozias0925" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <span class="divider">|</span>
+                        <a href="https://www.instagram.com/rozias_9_25/" target="_blank">Instagram</a>
+                        <span class="divider">|</span>
+                        <a href="https://l.messenger.com/l.php?u=https%3A%2F%2Fline.me%2Fti%2Fp%2FM-xq8_Zrvc" target="_blank">LINE</a>
+                    </div>
+                </div>
+
+                <div class="qr-box">
+                    <img src="line_contact.png" alt="LINE QR Code">
+                </div>
+            </div>
+
+            <p class="copyright">&copy; 2026 文君豪. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 滑動顯示特效
+            const faders = document.querySelectorAll('.fade-in');
+
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -20px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                    } else {
+                        entry.target.classList.remove('appear');
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // 漢堡選單互動邏輯
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+
+            mobileMenu.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            const links = navLinks.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // 互動式膠囊標籤邏輯 (獨立面板切換 - 修正動畫順序)
+            const tagButtons = document.querySelectorAll('.tag-button');
+            
+            tagButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.getAttribute('data-target');
+                    const targetPanel = document.getElementById(targetId);
+                    const currentCategory = button.closest('.skill-category');
+                    
+                    // 記錄當前按鈕原本是不是打開的
+                    const isActive = button.classList.contains('active');
+                    
+                    // 找出目前該類別中「正在開啟」的按鈕和面板
+                    const activeBtn = currentCategory.querySelector('.tag-button.active');
+                    const activePanel = currentCategory.querySelector('.tag-panel.active');
+                    
+                    if (isActive) {
+                        // 1. 如果點擊的是「已經打開」的膠囊，直接關閉它就好
+                        button.classList.remove('active');
+                        targetPanel.classList.remove('active');
+                    } else {
+                        // 2. 如果點擊的是「新的」膠囊
+                        let delay = 0;
+                        
+                        if (activePanel) {
+                            // 如果有舊的正在打開，先關閉舊的
+                            activeBtn.classList.remove('active');
+                            activePanel.classList.remove('active');
+                            delay = 10; // 設定延遲 10 毫秒，等待 CSS 收合動畫播完
+                        }
+                        
+                        // 3. 等待 delay 時間後，再打開新的
+                        setTimeout(() => {
+                            button.classList.add('active');
+                            targetPanel.classList.add('active');
+                        }, delay);
+                    }
+                });
+            });
+        });
+
+        // --- 點擊右下角 Icon 絲滑回到頂端 ---
+            const backToTopBtn = document.getElementById('back-to-top');
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener('click', function(e) {
+                    e.preventDefault(); // 阻止原本預設的跳轉，避免網址列多出 '#'
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth' // 觸發「刷～」的絲滑滑動效果
+                    });
+                });
+            }
+            
+    </script>
+
 </body>
 </html>
