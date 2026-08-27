@@ -1,6 +1,6 @@
 # Banner photos
 
-This folder contains the eight public research / activity photos used by the homepage banner carousel. Their original filenames are preserved and are referenced directly by the two HTML pages.
+This folder contains the nine public research / activity photos used by the homepage banner carousel. Their original filenames are preserved and are referenced directly by the two HTML pages.
 
 For future additions, horizontal **16:9** is the best fit: export at **1920 × 1080 px** when possible (minimum 1600 × 900 px), JPG or WebP, ideally under 1.5 MB each.
 
