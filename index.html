@@ -499,16 +499,18 @@
         }
 
         .progress-scale {
-            display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
+            position: relative;
             min-height: 66px;
-            margin-top: 8px;
+            margin: 8px 5px 0;
             color: var(--gray-medium);
             font-size: 0.78rem;
             letter-spacing: 0.5px;
         }
 
         .progress-scale span {
+            position: absolute;
+            top: 0;
+            width: 18%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -517,21 +519,32 @@
         }
 
         .progress-scale .start {
+            left: 0;
             align-items: flex-start;
             text-align: left;
         }
 
         .progress-scale .milestone {
-            transform: none;
+            transform: translateX(-50%);
+        }
+
+        .progress-scale .milestone:nth-child(2) {
+            left: 25%;
+        }
+
+        .progress-scale .milestone:nth-child(3) {
+            left: 50%;
         }
 
         .progress-scale .current {
-            transform: none;
+            left: var(--current-progress);
+            transform: translateX(-50%);
             color: var(--black);
             font-weight: 600;
         }
 
         .progress-scale .end {
+            right: 0;
             align-items: flex-end;
             text-align: right;
         }
@@ -847,13 +860,13 @@
         }
 
         .combined-section {
-            max-width: 1240px;
+            max-width: 1000px;
         }
 
         .background-skills-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-            gap: 48px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 32px;
             align-items: start;
         }
 
@@ -866,7 +879,7 @@
             grid-column: 2;
             grid-row: 1;
             border-left: 1px solid var(--gray-light);
-            padding-left: 48px;
+            padding-left: 32px;
         }
 
         .combined-panel-title {
@@ -879,9 +892,26 @@
             text-transform: uppercase;
         }
 
-        .skills-panel .hint-text {
-            margin: -12px 0 28px;
-            padding-left: 0;
+        .skills-panel-heading {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 6px 14px;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .skills-panel-heading .combined-panel-title {
+            margin: 0;
+            padding: 0;
+            border-bottom: 0;
+        }
+
+        .skills-panel-heading .hint-text {
+            margin: 0;
+            padding: 0;
+            font-size: 0.72rem;
         }
 
         @media (max-width: 900px) {
@@ -1316,8 +1346,10 @@
 
         <div class="background-skills-grid">
             <div id="skills" class="combined-panel skills-panel">
-                <h3 class="combined-panel-title fade-in">Skills</h3>
-                <p class="fade-in hint-text">※ 點選以下關鍵字可查看學習心得</p>
+                <div class="skills-panel-heading fade-in">
+                    <h3 class="combined-panel-title">Skills</h3>
+                    <p class="hint-text">※ 點選以下關鍵字可查看學習心得</p>
+                </div>
         
         <div class="skills-grid fade-in">
             <div class="skill-category">
@@ -1501,10 +1533,7 @@
 
             <div class="list-item research-project fade-in">
                 <h3>Mixed-Effects Machine Learning for Small-Sample and Sparse Longitudinal Data</h3>
-                <div class="research-actions">
-                    <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="mixed-effects-detail-zh">Detail</button>
-                </div>
-                <div class="research-entry-content" id="mixed-effects-detail-zh" hidden>
+                <div class="research-entry-content">
                     <p>
                         本研究為與台大醫院新竹分院的共同研究，涉及受限醫療資訊。為遵守資料治理與研究合作規範，將待研究完成並經共同決議確認可公開發表後，再公開演算法與相關內容。
                     </p>
