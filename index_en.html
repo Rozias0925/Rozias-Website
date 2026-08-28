@@ -662,6 +662,48 @@
             color: var(--black);
         }
 
+        .planned-project {
+            color: #777777;
+        }
+
+        .planned-project::before {
+            border-color: #a8a8a8;
+            background-color: #f3f3f3;
+        }
+
+        .planned-project h3,
+        .planned-project p {
+            color: inherit;
+        }
+
+        .planned-project-heading {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .planned-project-heading h3 {
+            margin-bottom: 0;
+        }
+
+        .preparing-badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 24px;
+            padding: 3px 9px;
+            border: 1px solid #bdbdbd;
+            border-radius: 999px;
+            background: #f3f3f3;
+            color: #777777;
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
         /* 頁尾 */
         footer {
             background-color: var(--black);
@@ -1738,12 +1780,50 @@
 
         <div class="research-category">
             <h3 class="research-category-title fade-in">Independent Projects</h3>
-            <p class="research-empty fade-in">In preparation. Updates will be added here.</p>
+
+            <div class="list-item planned-project fade-in">
+                <div class="planned-project-heading">
+                    <h3>FactorGCN Portfolio Service</h3>
+                    <span class="preparing-badge">In Preparation</span>
+                </div>
+                <p>A deployable, end-to-end portfolio optimization service extending my Factor GCN research through APIs, containerization, and an interactive interface.</p>
+            </div>
+
+            <div class="list-item planned-project fade-in">
+                <div class="planned-project-heading">
+                    <h3>Spectral Graph Lab</h3>
+                    <span class="preparing-badge">In Preparation</span>
+                </div>
+                <p>An interactive exploration of the mathematical intuition behind graph Laplacians, Fiedler vectors, and spectral clustering.</p>
+            </div>
+
+            <div class="list-item planned-project fade-in">
+                <div class="planned-project-heading">
+                    <h3>Longitudinal GP Engine</h3>
+                    <span class="preparing-badge">In Preparation</span>
+                </div>
+                <p>A reusable Gaussian-process framework for sparse, irregular longitudinal data and uncertainty estimation using synthetic or public datasets.</p>
+            </div>
         </div>
 
         <div class="research-category">
             <h3 class="research-category-title fade-in">Technical Experiments</h3>
-            <p class="research-empty fade-in">In preparation. Updates will be added here.</p>
+
+            <div class="list-item planned-project fade-in">
+                <div class="planned-project-heading">
+                    <h3>ML From Scratch</h3>
+                    <span class="preparing-badge">In Preparation</span>
+                </div>
+                <p>Core machine-learning algorithms implemented from scratch with NumPy to verify their mathematical foundations and model behavior.</p>
+            </div>
+
+            <div class="list-item planned-project fade-in">
+                <div class="planned-project-heading">
+                    <h3>Optimization Visual Lab</h3>
+                    <span class="preparing-badge">In Preparation</span>
+                </div>
+                <p>Visual numerical experiments comparing the convergence behavior of GD, Momentum, Adam, Newton, and BFGS across different geometries.</p>
+            </div>
         </div>
     </section>
 

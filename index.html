@@ -662,6 +662,48 @@
             color: var(--black);
         }
 
+        .planned-project {
+            color: #777777;
+        }
+
+        .planned-project::before {
+            border-color: #a8a8a8;
+            background-color: #f3f3f3;
+        }
+
+        .planned-project h3,
+        .planned-project p {
+            color: inherit;
+        }
+
+        .planned-project-heading {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .planned-project-heading h3 {
+            margin-bottom: 0;
+        }
+
+        .preparing-badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 24px;
+            padding: 3px 9px;
+            border: 1px solid #bdbdbd;
+            border-radius: 999px;
+            background: #f3f3f3;
+            color: #777777;
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
         /* 頁尾 */
         footer {
             background-color: var(--black);
@@ -1746,7 +1788,30 @@
                 自主專案
                 <span class="secondary-title">Independent Projects</span>
             </h3>
-            <p class="research-empty fade-in">內容籌備中，後續將陸續更新。</p>
+
+            <div class="list-item planned-project fade-in">
+                <div class="planned-project-heading">
+                    <h3>FactorGCN Portfolio Service</h3>
+                    <span class="preparing-badge">準備中</span>
+                </div>
+                <p>將 Factor GCN 研究延伸為可部署的端到端投資組合最佳化服務，涵蓋 API、容器化與互動介面。</p>
+            </div>
+
+            <div class="list-item planned-project fade-in">
+                <div class="planned-project-heading">
+                    <h3>Spectral Graph Lab</h3>
+                    <span class="preparing-badge">準備中</span>
+                </div>
+                <p>以互動視覺化探索圖拉普拉斯、Fiedler 向量與光譜分群的數學直覺。</p>
+            </div>
+
+            <div class="list-item planned-project fade-in">
+                <div class="planned-project-heading">
+                    <h3>Longitudinal GP Engine</h3>
+                    <span class="preparing-badge">準備中</span>
+                </div>
+                <p>以合成或公開資料建構可重用的高斯過程框架，處理稀疏、不規則的縱向資料與不確定性。</p>
+            </div>
         </div>
 
         <div class="research-category">
@@ -1754,7 +1819,22 @@
                 技術實驗
                 <span class="secondary-title">Technical Experiments</span>
             </h3>
-            <p class="research-empty fade-in">內容籌備中，後續將陸續更新。</p>
+
+            <div class="list-item planned-project fade-in">
+                <div class="planned-project-heading">
+                    <h3>ML From Scratch</h3>
+                    <span class="preparing-badge">準備中</span>
+                </div>
+                <p>以 NumPy 從零實作核心機器學習演算法，透過實驗驗證數學原理與模型行為。</p>
+            </div>
+
+            <div class="list-item planned-project fade-in">
+                <div class="planned-project-heading">
+                    <h3>Optimization Visual Lab</h3>
+                    <span class="preparing-badge">準備中</span>
+                </div>
+                <p>以視覺化數值實驗比較 GD、Momentum、Adam、Newton 與 BFGS 在不同幾何條件下的收斂行為。</p>
+            </div>
         </div>
     </section>
 
