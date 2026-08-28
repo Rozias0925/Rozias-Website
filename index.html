@@ -293,6 +293,75 @@
             margin-bottom: 0;
         }
 
+        .research-entry summary {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: start;
+            gap: 20px;
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .research-entry summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .research-entry summary::after {
+            content: '+';
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        .research-entry[open] summary::after {
+            content: '−';
+            background-color: var(--black);
+            color: #ffffff;
+        }
+
+        .research-entry summary:hover::after {
+            background-color: var(--black);
+            color: #ffffff;
+        }
+
+        .research-entry summary:focus-visible {
+            outline: 1px solid var(--black);
+            outline-offset: 8px;
+        }
+
+        .research-entry-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .research-entry-content {
+            padding-top: 18px;
+        }
+
+        .research-entry[open] .research-entry-content {
+            animation: reveal-research 0.3s ease-out;
+        }
+
+        @keyframes reveal-research {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .research-empty {
             margin: 0;
             padding-left: 30px;
@@ -840,6 +909,7 @@
         }
         @media (prefers-reduced-motion: reduce) {
             .hero-slideshow, .hero-slide, .hero-dot { transition: none; }
+            .research-entry[open] .research-entry-content { animation: none; }
         }
     </style>
 </head>
@@ -1099,34 +1169,43 @@
                 <span class="secondary-title">Research & Publications</span>
             </h3>
 
-            <div class="list-item fade-in">
-                <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
-                <div class="meta">2026 | TWSIAM 台灣工業與應用數學會年會 海報發表</div>
-                <p>
-                    以 Stanford Bunny 幾何模型為例說明演算法核心，並將無從證明的社會科學理論（如都市經濟學）融入現代機器學習方法加以實證。後續更將此演算法框架應用於 AI 醫療領域，透過精準辨識腦腫瘤影像，輔助臨床醫師進行診斷，期能有效降低醫療人員的工作負擔。
-                </p>
-                <p style="margin-top: 10px;">
-                    第二次研究在演算法中加入特徵提取工程 (Feature Extraction Engineering)，將腦部MRI影像分為腫瘤區與非腫瘤區，後續研究欲引入Dice Coefficient並持續改良，期許未來開發輔助臨床醫師使用。
-                </p>
-                <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" class="project-link">View Project ↗</a>
-            </div>
+            <details class="list-item research-entry fade-in">
+                <summary>
+                    <span class="research-entry-title">Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</span>
+                </summary>
+                <div class="research-entry-content">
+                    <p>
+                        以 Stanford Bunny 幾何模型為例說明演算法核心，並將無從證明的社會科學理論（如都市經濟學）融入現代機器學習方法加以實證。後續更將此演算法框架應用於 AI 醫療領域，透過精準辨識腦腫瘤影像，輔助臨床醫師進行診斷，期能有效降低醫療人員的工作負擔。
+                    </p>
+                    <p style="margin-top: 10px;">
+                        第二次研究在演算法中加入特徵提取工程 (Feature Extraction Engineering)，將腦部MRI影像分為腫瘤區與非腫瘤區，後續研究欲引入Dice Coefficient並持續改良，期許未來開發輔助臨床醫師使用。
+                    </p>
+                    <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" class="project-link">View Project ↗</a>
+                </div>
+            </details>
 
-            <div class="list-item fade-in">
-                <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
-                <div class="meta">2026 | International Conference on Optimization and Machine Learning 海報發表</div>
-                <p>
-                    為克服傳統投資組合易受『假性相關』干擾，以及 HRP 模型受限於歷史價格雜訊的痛點，本研究提出基於圖論架構的 Factor GCN 模型。該演算法透過圖卷積神經網路，將長期基本面因子與短期動能特徵進行深度融合，有效過濾市場雜訊，並以端到端（End-to-End）的方式動態輸出最佳資產配置權重，最大化每單位風險之報酬。
-                </p>
-                <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" class="project-link">View Project ↗</a>
-            </div>
+            <details class="list-item research-entry fade-in">
+                <summary>
+                    <span class="research-entry-title">Factor GCN for End-to-End Portfolio Optimization</span>
+                </summary>
+                <div class="research-entry-content">
+                    <p>
+                        為克服傳統投資組合易受『假性相關』干擾，以及 HRP 模型受限於歷史價格雜訊的痛點，本研究提出基於圖論架構的 Factor GCN 模型。該演算法透過圖卷積神經網路，將長期基本面因子與短期動能特徵進行深度融合，有效過濾市場雜訊，並以端到端（End-to-End）的方式動態輸出最佳資產配置權重，最大化每單位風險之報酬。
+                    </p>
+                    <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" class="project-link">View Project ↗</a>
+                </div>
+            </details>
 
-            <div class="list-item fade-in">
-                <h3>應用混合效應機器學習於小樣本縱向資料之建模</h3>
-                <div class="meta">Ongoing | 進行中研究專案</div>
-                <p>
-                    本研究為與台大醫院新竹分院之共同研究，專案目前仍在進行中，預期以論文或期刊方式發表，敬請期待後續成果。
-                </p>
-            </div>
+            <details class="list-item research-entry fade-in">
+                <summary>
+                    <span class="research-entry-title">應用混合效應機器學習於小樣本縱向資料之建模</span>
+                </summary>
+                <div class="research-entry-content">
+                    <p>
+                        本研究為與台大醫院新竹分院之共同研究，專案目前仍在進行中，預期以論文或期刊方式發表，敬請期待後續成果。
+                    </p>
+                </div>
+            </details>
         </div>
 
         <div class="research-category">

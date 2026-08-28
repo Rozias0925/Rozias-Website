@@ -293,6 +293,75 @@
             margin-bottom: 0;
         }
 
+        .research-entry summary {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: start;
+            gap: 20px;
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .research-entry summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .research-entry summary::after {
+            content: '+';
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        .research-entry[open] summary::after {
+            content: '−';
+            background-color: var(--black);
+            color: #ffffff;
+        }
+
+        .research-entry summary:hover::after {
+            background-color: var(--black);
+            color: #ffffff;
+        }
+
+        .research-entry summary:focus-visible {
+            outline: 1px solid var(--black);
+            outline-offset: 8px;
+        }
+
+        .research-entry-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .research-entry-content {
+            padding-top: 18px;
+        }
+
+        .research-entry[open] .research-entry-content {
+            animation: reveal-research 0.3s ease-out;
+        }
+
+        @keyframes reveal-research {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .research-empty {
             margin: 0;
             padding-left: 30px;
@@ -839,6 +908,7 @@
         }
         @media (prefers-reduced-motion: reduce) {
             .hero-slideshow, .hero-slide, .hero-dot { transition: none; }
+            .research-entry[open] .research-entry-content { animation: none; }
         }
     </style>
 </head>
@@ -1093,34 +1163,43 @@
         <div class="research-category">
             <h3 class="research-category-title fade-in">Research & Publications</h3>
 
-            <div class="list-item fade-in">
-                <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
-                <div class="meta">2026 | TWSIAM Annual Meeting - Poster Presentation</div>
-                <p>
-                    Utilized the Stanford Bunny geometric model to demonstrate the core of the algorithm, and empirically validated sociology theories (like urban economics) that are typically hard to prove by integrating modern ML methods. Later applied this algorithmic framework to the medical AI field, accurately identifying brain tumor images to assist clinical diagnoses, aiming to effectively reduce the workload of medical professionals.
-                </p>
-                <p style="margin-top: 10px;">
-                    The second phase of the research introduced Feature Extraction Engineering to segment MRI images into tumor and non-tumor regions. Future work aims to incorporate the Dice Coefficient for continuous improvement, developing a clinical assistant tool.
-                </p>
-                <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" class="project-link">View Project ↗</a>
-            </div>
+            <details class="list-item research-entry fade-in">
+                <summary>
+                    <span class="research-entry-title">Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</span>
+                </summary>
+                <div class="research-entry-content">
+                    <p>
+                        Utilized the Stanford Bunny geometric model to demonstrate the core of the algorithm, and empirically validated sociology theories (like urban economics) that are typically hard to prove by integrating modern ML methods. Later applied this algorithmic framework to the medical AI field, accurately identifying brain tumor images to assist clinical diagnoses, aiming to effectively reduce the workload of medical professionals.
+                    </p>
+                    <p style="margin-top: 10px;">
+                        The second phase of the research introduced Feature Extraction Engineering to segment MRI images into tumor and non-tumor regions. Future work aims to incorporate the Dice Coefficient for continuous improvement, developing a clinical assistant tool.
+                    </p>
+                    <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" class="project-link">View Project ↗</a>
+                </div>
+            </details>
 
-            <div class="list-item fade-in">
-                <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
-                <div class="meta">2026 | International Conference on Optimization and Machine Learning - Poster Presentation</div>
-                <p>
-                    To overcome the pain points of traditional portfolios being susceptible to "spurious correlations" and the HRP model being limited by historical price noise, this research proposed a Factor GCN model based on graph theory architecture. Through Graph Convolutional Networks, the algorithm deeply fuses long-term fundamental factors with short-term momentum features, effectively filtering market noise, and dynamically outputs optimal asset allocation weights in an end-to-end manner to maximize the return per unit of risk.
-                </p>
-                <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" class="project-link">View Project ↗</a>
-            </div>
+            <details class="list-item research-entry fade-in">
+                <summary>
+                    <span class="research-entry-title">Factor GCN for End-to-End Portfolio Optimization</span>
+                </summary>
+                <div class="research-entry-content">
+                    <p>
+                        To overcome the pain points of traditional portfolios being susceptible to "spurious correlations" and the HRP model being limited by historical price noise, this research proposed a Factor GCN model based on graph theory architecture. Through Graph Convolutional Networks, the algorithm deeply fuses long-term fundamental factors with short-term momentum features, effectively filtering market noise, and dynamically outputs optimal asset allocation weights in an end-to-end manner to maximize the return per unit of risk.
+                    </p>
+                    <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" class="project-link">View Project ↗</a>
+                </div>
+            </details>
 
-            <div class="list-item fade-in">
-                <h3>Application of Mixed-Effects Machine Learning in Modeling Small Sample Longitudinal Data</h3>
-                <div class="meta">Ongoing | Joint Research Project</div>
-                <p>
-                    This is a joint research project with National Taiwan University (NTU) Hospital Hsinchu Branch. The project is currently ongoing and is expected to be published as a conference thesis or journal paper. Please stay tuned for the results.
-                </p>
-            </div>
+            <details class="list-item research-entry fade-in">
+                <summary>
+                    <span class="research-entry-title">Application of Mixed-Effects Machine Learning in Modeling Small Sample Longitudinal Data</span>
+                </summary>
+                <div class="research-entry-content">
+                    <p>
+                        This is a joint research project with National Taiwan University (NTU) Hospital Hsinchu Branch. The project is currently ongoing and is expected to be published as a conference thesis or journal paper. Please stay tuned for the results.
+                    </p>
+                </div>
+            </details>
         </div>
 
         <div class="research-category">
