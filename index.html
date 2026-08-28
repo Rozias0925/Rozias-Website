@@ -295,6 +295,7 @@
 
         .research-actions {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             gap: 22px;
             margin-top: 14px;
@@ -798,12 +799,12 @@
             margin-bottom: 10px;
         }
 
-        .interactive-tags.math-tags {
+        .interactive-tags.stacked-tags {
             display: grid;
             grid-template-columns: minmax(0, 1fr);
         }
 
-        .math-tags .tag-button {
+        .stacked-tags .tag-button {
             width: 100%;
             justify-content: space-between;
             white-space: normal;
@@ -867,7 +868,7 @@
             width: 100%;
         }
 
-        .math-tags > .tag-panel {
+        .stacked-tags > .tag-panel {
             grid-column: 1 / -1;
         }
 
@@ -1381,7 +1382,7 @@
         <div class="skills-grid fade-in">
             <div class="skill-category">
                 <h3>Mathematics</h3>
-                <div class="interactive-tags math-tags">
+                <div class="interactive-tags stacked-tags">
                     <div class="tag-button" data-target="math-1">Algebra/Linear Algebra <span class="plus">+</span></div>
                     <div class="tag-button" data-target="math-2">Probability/Statistics <span class="plus">+</span></div>
                     <div class="tag-button" data-target="math-3">Scientific Computing <span class="plus">+</span></div>
@@ -1411,7 +1412,7 @@
 
             <div class="skill-category">
                 <h3>Programming Languages</h3>
-                <div class="interactive-tags">
+                <div class="interactive-tags stacked-tags">
                     <div class="tag-button" data-target="prog-1">Python <span class="plus">+</span></div>
                     <div class="tag-button" data-target="prog-2">C / C++ <span class="plus">+</span></div>
                     <div class="tag-button" data-target="prog-3">SQL <span class="plus">+</span></div>
@@ -1435,7 +1436,7 @@
 
             <div class="skill-category">
                 <h3>Data Science & Machine Learning</h3>
-                <div class="interactive-tags">
+                <div class="interactive-tags stacked-tags">
                     <div class="tag-button" data-target="ds-1">Machine Learning and Deep Learning <span class="plus">+</span></div>
                     <div class="tag-button" data-target="ds-2">Application of Graph Theory <span class="plus">+</span></div>
                 </div>
@@ -1515,6 +1516,7 @@
                 <div class="research-actions">
                     <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="brain-tumor-detail-zh">Detail</button>
                     <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+                    <a href="assets/posters/brain-tumor-spectral-clustering-poster.pdf" target="_blank" rel="noopener" class="project-link">View Poster ↗</a>
                 </div>
                 <div class="research-entry-content" id="brain-tumor-detail-zh" hidden>
                     <p>
@@ -1552,6 +1554,7 @@
                 <div class="research-actions">
                     <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="factor-gcn-detail-zh">Detail</button>
                     <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+                    <a href="assets/posters/factor-gcn-portfolio-optimization-poster.pdf" target="_blank" rel="noopener" class="project-link">View Poster ↗</a>
                 </div>
                 <div class="research-entry-content" id="factor-gcn-detail-zh" hidden>
                     <p>
