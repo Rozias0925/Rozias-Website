@@ -525,15 +525,8 @@
         }
 
         .progress-scale .milestone {
+            left: var(--step-position);
             transform: translateX(-50%);
-        }
-
-        .progress-scale .milestone:nth-child(2) {
-            left: 25%;
-        }
-
-        .progress-scale .milestone:nth-child(3) {
-            left: 50%;
         }
 
         .progress-scale .current {
@@ -561,6 +554,14 @@
             font-weight: 400;
             letter-spacing: 0.2px;
             line-height: 1.4;
+        }
+
+        .progress-scale.six-step {
+            min-height: 80px;
+        }
+
+        .progress-scale.six-step span {
+            width: 15%;
         }
 
         @media (max-width: 600px) {
@@ -1462,19 +1463,19 @@
             <div class="list-item research-project fade-in">
                 <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
 
-                <div class="research-progress" style="--current-progress: 75%;" aria-label="Brain tumor research progress: 0 research started, 50 clustering prototype completed, 100 conference presentation, Extension I clinical partnership and real-world use, Extension II further application; currently at Extension I">
+                <div class="research-progress" style="--current-progress: 75%;" aria-label="Brain tumor research progress: 0% research started, 50% initial theoretical understanding, 100% conference presentation, Extension I clinical partnership and real-world use, Extension II further application; currently at Extension I">
                     <div class="progress-track">
                         <span class="progress-fill" aria-hidden="true"></span>
-                        <button type="button" class="progress-dot start" data-tooltip="Established the research problem and spectral-clustering framework" aria-label="0: Established the research problem and spectral-clustering framework"></button>
-                        <button type="button" class="progress-dot milestone" style="--step-position: 25%;" data-tooltip="Completed the brain MRI clustering prototype and feature extraction" aria-label="50: Completed the brain MRI clustering prototype and feature extraction"></button>
-                        <button type="button" class="progress-dot milestone" style="--step-position: 50%;" data-tooltip="Presented at a conference and achieved the original research goal" aria-label="100: Presented at a conference and achieved the original research goal"></button>
+                        <button type="button" class="progress-dot start" data-tooltip="Established the research problem and spectral-clustering framework" aria-label="0%: Established the research problem and spectral-clustering framework"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 25%;" data-tooltip="Developed an initial understanding of Graph Laplacian and spectral-clustering theory" aria-label="50%: Developed an initial understanding of Graph Laplacian and spectral-clustering theory"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 50%;" data-tooltip="Presented at a conference and achieved the original research goal" aria-label="100%: Presented at a conference and achieved the original research goal"></button>
                         <button type="button" class="progress-dot current" data-tooltip="Seeking clinical partners for real-world use and feedback" aria-label="Current Extension I: Seeking clinical partners for real-world use and feedback"></button>
                         <button type="button" class="progress-dot end" data-tooltip="Refine the method based on clinical results and extend its applications" aria-label="Extension II: Refine the method based on clinical results and extend its applications"></button>
                     </div>
                     <div class="progress-scale" aria-hidden="true">
-                        <span class="start"><strong>0</strong><small>Research started</small></span>
-                        <span class="milestone"><strong>50</strong><small>Clustering prototype completed</small></span>
-                        <span class="milestone"><strong>100</strong><small>Conference presentation</small></span>
+                        <span class="start"><strong>0%</strong><small>Research started</small></span>
+                        <span class="milestone" style="--step-position: 25%;"><strong>50%</strong><small>Initial theoretical understanding</small></span>
+                        <span class="milestone" style="--step-position: 50%;"><strong>100%</strong><small>Conference presentation</small></span>
                         <span class="current"><strong>(I)</strong><small>Clinical partnership and real-world use</small></span>
                         <span class="end"><strong>(II)</strong><small>Further application</small></span>
                     </div>
@@ -1497,20 +1498,22 @@
             <div class="list-item research-project fade-in">
                 <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
 
-                <div class="research-progress" style="--current-progress: 75%;" aria-label="Factor GCN research progress: 0 research started, 40 model prototype completed, 100 conference presentation, Extension I KGI collaboration with GAT and RL integration, Extension II system extension; currently at Extension I">
+                <div class="research-progress" style="--current-progress: 80%;" aria-label="Factor GCN research progress: 0% research started, 30% reviewed GCN papers, 60% designed the algorithm prototype, 100% conference presentation, Extension I integrating GAT and RL into the algorithm, Extension II system extension; currently at Extension I">
                     <div class="progress-track">
                         <span class="progress-fill" aria-hidden="true"></span>
-                        <button type="button" class="progress-dot start" data-tooltip="Defined the end-to-end portfolio-optimization research direction" aria-label="0: Defined the end-to-end portfolio-optimization research direction"></button>
-                        <button type="button" class="progress-dot milestone" style="--step-position: 25%;" data-tooltip="Completed the Factor GCN prototype and weight-output pipeline" aria-label="40: Completed the Factor GCN prototype and weight-output pipeline"></button>
-                        <button type="button" class="progress-dot milestone" style="--step-position: 50%;" data-tooltip="Presented at a conference and achieved the original research goal" aria-label="100: Presented at a conference and achieved the original research goal"></button>
-                        <button type="button" class="progress-dot current" data-tooltip="Continuing the KGI Securities collaboration to integrate GAT, RL, and related techniques" aria-label="Current Extension I: Continuing the KGI Securities collaboration to integrate GAT, RL, and related techniques"></button>
+                        <button type="button" class="progress-dot start" data-tooltip="Defined the end-to-end portfolio-optimization research direction" aria-label="0%: Defined the end-to-end portfolio-optimization research direction"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 20%;" data-tooltip="Reviewed GCN papers and organized the model architecture" aria-label="30%: Reviewed GCN papers and organized the model architecture"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 40%;" data-tooltip="Designed the Factor GCN algorithm prototype and weight-output pipeline" aria-label="60%: Designed the Factor GCN algorithm prototype and weight-output pipeline"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 60%;" data-tooltip="Presented at a conference and achieved the original research goal" aria-label="100%: Presented at a conference and achieved the original research goal"></button>
+                        <button type="button" class="progress-dot current" data-tooltip="Continuing the KGI Securities collaboration to integrate GAT and RL into the algorithm" aria-label="Current Extension I: Continuing the KGI Securities collaboration to integrate GAT and RL into the algorithm"></button>
                         <button type="button" class="progress-dot end" data-tooltip="Extend the complete system and explore future deployment" aria-label="Extension II: Extend the complete system and explore future deployment"></button>
                     </div>
-                    <div class="progress-scale" aria-hidden="true">
-                        <span class="start"><strong>0</strong><small>Research started</small></span>
-                        <span class="milestone"><strong>40</strong><small>Model prototype completed</small></span>
-                        <span class="milestone"><strong>100</strong><small>Conference presentation</small></span>
-                        <span class="current"><strong>(I)</strong><small>KGI collaboration・GAT / RL</small></span>
+                    <div class="progress-scale six-step" aria-hidden="true">
+                        <span class="start"><strong>0%</strong><small>Research started</small></span>
+                        <span class="milestone" style="--step-position: 20%;"><strong>30%</strong><small>Reviewed GCN papers</small></span>
+                        <span class="milestone" style="--step-position: 40%;"><strong>60%</strong><small>Designed algorithm prototype</small></span>
+                        <span class="milestone" style="--step-position: 60%;"><strong>100%</strong><small>Conference presentation</small></span>
+                        <span class="current"><strong>(I)</strong><small>Integrating GAT / RL into the algorithm</small></span>
                         <span class="end"><strong>(II)</strong><small>System extension</small></span>
                     </div>
                 </div>

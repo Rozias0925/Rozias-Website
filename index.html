@@ -525,15 +525,8 @@
         }
 
         .progress-scale .milestone {
+            left: var(--step-position);
             transform: translateX(-50%);
-        }
-
-        .progress-scale .milestone:nth-child(2) {
-            left: 25%;
-        }
-
-        .progress-scale .milestone:nth-child(3) {
-            left: 50%;
         }
 
         .progress-scale .current {
@@ -561,6 +554,14 @@
             font-weight: 400;
             letter-spacing: 0.2px;
             line-height: 1.4;
+        }
+
+        .progress-scale.six-step {
+            min-height: 80px;
+        }
+
+        .progress-scale.six-step span {
+            width: 15%;
         }
 
         @media (max-width: 600px) {
@@ -1467,19 +1468,19 @@
             <div class="list-item research-project fade-in">
                 <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
 
-                <div class="research-progress" style="--current-progress: 75%;" aria-label="腦腫瘤研究進度：0 研究啟動、50 分群原型完成、100 發表會發表、第一延伸階段臨床合作與實際使用、第二延伸階段應用延伸；目前位於第一延伸階段">
+                <div class="research-progress" style="--current-progress: 75%;" aria-label="腦腫瘤研究進度：0% 研究啟動、50% 理論初步了解、100% 發表會發表、第一延伸階段臨床合作與實際使用、第二延伸階段應用延伸；目前位於第一延伸階段">
                     <div class="progress-track">
                         <span class="progress-fill" aria-hidden="true"></span>
-                        <button type="button" class="progress-dot start" data-tooltip="建立研究問題與光譜分群架構" aria-label="0：建立研究問題與光譜分群架構"></button>
-                        <button type="button" class="progress-dot milestone" style="--step-position: 25%;" data-tooltip="完成腦部 MRI 分群原型與特徵提取" aria-label="50：完成腦部 MRI 分群原型與特徵提取"></button>
-                        <button type="button" class="progress-dot milestone" style="--step-position: 50%;" data-tooltip="完成發表會發表，達成原定研究目標" aria-label="100：完成發表會發表，達成原定研究目標"></button>
+                        <button type="button" class="progress-dot start" data-tooltip="建立研究問題與光譜分群架構" aria-label="0%：建立研究問題與光譜分群架構"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 25%;" data-tooltip="初步了解 Graph Laplacian 與光譜分群理論" aria-label="50%：初步了解 Graph Laplacian 與光譜分群理論"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 50%;" data-tooltip="完成發表會發表，達成原定研究目標" aria-label="100%：完成發表會發表，達成原定研究目標"></button>
                         <button type="button" class="progress-dot current" data-tooltip="尋找臨床合作對象，進行實際使用與回饋" aria-label="目前第一延伸階段：尋找臨床合作對象，進行實際使用與回饋"></button>
                         <button type="button" class="progress-dot end" data-tooltip="依臨床結果持續改良並延伸應用" aria-label="第二延伸階段：依臨床結果持續改良並延伸應用"></button>
                     </div>
                     <div class="progress-scale" aria-hidden="true">
-                        <span class="start"><strong>0</strong><small>研究啟動</small></span>
-                        <span class="milestone"><strong>50</strong><small>分群原型完成</small></span>
-                        <span class="milestone"><strong>100</strong><small>發表會發表</small></span>
+                        <span class="start"><strong>0%</strong><small>研究啟動</small></span>
+                        <span class="milestone" style="--step-position: 25%;"><strong>50%</strong><small>理論初步了解</small></span>
+                        <span class="milestone" style="--step-position: 50%;"><strong>100%</strong><small>發表會發表</small></span>
                         <span class="current"><strong>(I)</strong><small>臨床合作與實際使用</small></span>
                         <span class="end"><strong>(II)</strong><small>應用延伸</small></span>
                     </div>
@@ -1502,20 +1503,22 @@
             <div class="list-item research-project fade-in">
                 <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
 
-                <div class="research-progress" style="--current-progress: 75%;" aria-label="Factor GCN 研究進度：0 研究啟動、40 模型原型完成、100 發表會發表、第一延伸階段凱基合作並結合 GAT 與 RL、第二延伸階段系統延伸；目前位於第一延伸階段">
+                <div class="research-progress" style="--current-progress: 80%;" aria-label="Factor GCN 研究進度：0% 研究啟動、30% 研讀 GCN 論文、60% 設計演算法雛形、100% 發表會發表、第一延伸階段將 GAT 與 RL 融合進演算法、第二延伸階段系統延伸；目前位於第一延伸階段">
                     <div class="progress-track">
                         <span class="progress-fill" aria-hidden="true"></span>
-                        <button type="button" class="progress-dot start" data-tooltip="確立端到端投資組合最佳化研究方向" aria-label="0：確立端到端投資組合最佳化研究方向"></button>
-                        <button type="button" class="progress-dot milestone" style="--step-position: 25%;" data-tooltip="完成 Factor GCN 模型原型與權重輸出流程" aria-label="40：完成 Factor GCN 模型原型與權重輸出流程"></button>
-                        <button type="button" class="progress-dot milestone" style="--step-position: 50%;" data-tooltip="完成發表會發表，達成原定研究目標" aria-label="100：完成發表會發表，達成原定研究目標"></button>
-                        <button type="button" class="progress-dot current" data-tooltip="持續與凱基證券合作，將演算法結合 GAT、RL 等技術" aria-label="目前第一延伸階段：持續與凱基證券合作，將演算法結合 GAT、RL 等技術"></button>
+                        <button type="button" class="progress-dot start" data-tooltip="確立端到端投資組合最佳化研究方向" aria-label="0%：確立端到端投資組合最佳化研究方向"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 20%;" data-tooltip="研讀 GCN 相關論文並整理模型架構" aria-label="30%：研讀 GCN 相關論文並整理模型架構"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 40%;" data-tooltip="設計 Factor GCN 演算法雛形與權重輸出流程" aria-label="60%：設計 Factor GCN 演算法雛形與權重輸出流程"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 60%;" data-tooltip="完成發表會發表，達成原定研究目標" aria-label="100%：完成發表會發表，達成原定研究目標"></button>
+                        <button type="button" class="progress-dot current" data-tooltip="持續與凱基證券合作，將 GAT、RL 融合進演算法" aria-label="目前第一延伸階段：持續與凱基證券合作，將 GAT、RL 融合進演算法"></button>
                         <button type="button" class="progress-dot end" data-tooltip="延伸完整系統與後續部署方向" aria-label="第二延伸階段：延伸完整系統與後續部署方向"></button>
                     </div>
-                    <div class="progress-scale" aria-hidden="true">
-                        <span class="start"><strong>0</strong><small>研究啟動</small></span>
-                        <span class="milestone"><strong>40</strong><small>模型原型完成</small></span>
-                        <span class="milestone"><strong>100</strong><small>發表會發表</small></span>
-                        <span class="current"><strong>(I)</strong><small>凱基合作・GAT／RL</small></span>
+                    <div class="progress-scale six-step" aria-hidden="true">
+                        <span class="start"><strong>0%</strong><small>研究啟動</small></span>
+                        <span class="milestone" style="--step-position: 20%;"><strong>30%</strong><small>研讀 GCN 論文</small></span>
+                        <span class="milestone" style="--step-position: 40%;"><strong>60%</strong><small>設計演算法雛形</small></span>
+                        <span class="milestone" style="--step-position: 60%;"><strong>100%</strong><small>發表會發表</small></span>
+                        <span class="current"><strong>(I)</strong><small>融合 GAT、RL 進入演算法</small></span>
                         <span class="end"><strong>(II)</strong><small>系統延伸</small></span>
                     </div>
                 </div>
