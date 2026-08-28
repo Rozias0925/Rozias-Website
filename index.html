@@ -293,13 +293,23 @@
             margin-bottom: 0;
         }
 
+        .research-entry {
+            margin-top: 14px;
+        }
+
         .research-entry summary {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) auto;
-            align-items: start;
-            gap: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             cursor: pointer;
             list-style: none;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 2px;
+            transition: color 0.25s ease, border-color 0.25s ease;
         }
 
         .research-entry summary::-webkit-details-marker {
@@ -307,29 +317,17 @@
         }
 
         .research-entry summary::after {
-            content: '+';
-            width: 28px;
-            height: 28px;
-            border: 1px solid var(--black);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1;
-            transition: background-color 0.25s ease, color 0.25s ease;
+            content: '↓';
+            font-size: 0.85rem;
         }
 
         .research-entry[open] summary::after {
-            content: '−';
-            background-color: var(--black);
-            color: #ffffff;
+            content: '↑';
         }
 
-        .research-entry summary:hover::after {
-            background-color: var(--black);
-            color: #ffffff;
+        .research-entry summary:hover {
+            color: var(--gray-medium);
+            border-bottom-color: var(--gray-medium);
         }
 
         .research-entry summary:focus-visible {
@@ -337,14 +335,8 @@
             outline-offset: 8px;
         }
 
-        .research-entry-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            line-height: 1.5;
-        }
-
         .research-entry-content {
-            padding-top: 18px;
+            padding-top: 16px;
         }
 
         .research-entry[open] .research-entry-content {
@@ -360,6 +352,118 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        .research-progress {
+            --current-progress: 0%;
+            margin: 22px 0 12px;
+            padding: 14px 0 8px;
+        }
+
+        .progress-heading {
+            margin-bottom: 15px;
+            color: var(--gray-medium);
+            font-size: 0.78rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .progress-track {
+            height: 16px;
+            margin: 0 5px;
+            position: relative;
+        }
+
+        .progress-track::before,
+        .progress-fill {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 7px;
+            height: 2px;
+        }
+
+        .progress-track::before {
+            background-color: var(--gray-light);
+        }
+
+        .progress-fill {
+            right: auto;
+            width: var(--current-progress);
+            background-color: var(--black);
+        }
+
+        .progress-dot {
+            position: absolute;
+            top: 2px;
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            transform: translateX(-50%);
+        }
+
+        .progress-dot.start {
+            left: 0;
+            transform: none;
+            background-color: var(--black);
+        }
+
+        .progress-dot.current {
+            left: var(--current-progress);
+            width: 16px;
+            height: 16px;
+            top: 0;
+            background-color: var(--black);
+            box-shadow: 0 0 0 4px var(--card-bg), 0 0 0 5px var(--black);
+        }
+
+        .progress-dot.end {
+            right: 0;
+            transform: none;
+        }
+
+        .progress-scale {
+            height: 24px;
+            margin-top: 4px;
+            position: relative;
+            color: var(--gray-medium);
+            font-size: 0.78rem;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-scale span {
+            position: absolute;
+            white-space: nowrap;
+        }
+
+        .progress-scale .start {
+            left: 0;
+        }
+
+        .progress-scale .current {
+            left: var(--current-progress);
+            transform: translateX(-50%);
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .progress-scale .end {
+            right: 0;
+        }
+
+        .progress-status {
+            margin: 4px 0 0;
+            color: var(--gray-medium);
+            font-size: 0.86rem;
+            line-height: 1.7;
+        }
+
+        .progress-status strong {
+            color: var(--black);
+            font-weight: 600;
         }
 
         .research-empty {
@@ -951,10 +1055,10 @@
         <div class="nav-links" id="nav-links">
             <a href="#">Home</a>
             <a href="#about">About</a>
-            <a href="#skills">Skills</a> 
-            <a href="#education">Education</a>
+            <a href="#background">Background</a>
             <a href="#research">Research</a>
             <a href="#honors">Honors</a>
+            <a href="#skills">Skills</a>
             <a href="#contact">Contact</a>
         </div>
 
@@ -1129,8 +1233,8 @@
         </div>
     </section>
 
-    <section id="education" class="content-box">
-        <h2 class="fade-in">學歷與經歷 / EDUCATION & EXPERIENCE</h2>
+    <section id="background" class="content-box">
+        <h2 class="fade-in">學術背景 / BACKGROUND</h2>
         
         <div class="list-item fade-in">
             <h3>國立臺灣師範大學 數學系</h3>
@@ -1169,43 +1273,80 @@
                 <span class="secondary-title">Research & Publications</span>
             </h3>
 
-            <details class="list-item research-entry fade-in">
-                <summary>
-                    <span class="research-entry-title">Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</span>
-                </summary>
-                <div class="research-entry-content">
-                    <p>
-                        以 Stanford Bunny 幾何模型為例說明演算法核心，並將無從證明的社會科學理論（如都市經濟學）融入現代機器學習方法加以實證。後續更將此演算法框架應用於 AI 醫療領域，透過精準辨識腦腫瘤影像，輔助臨床醫師進行診斷，期能有效降低醫療人員的工作負擔。
-                    </p>
-                    <p style="margin-top: 10px;">
-                        第二次研究在演算法中加入特徵提取工程 (Feature Extraction Engineering)，將腦部MRI影像分為腫瘤區與非腫瘤區，後續研究欲引入Dice Coefficient並持續改良，期許未來開發輔助臨床醫師使用。
-                    </p>
-                    <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" class="project-link">View Project ↗</a>
-                </div>
-            </details>
+            <div class="list-item research-project fade-in">
+                <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
 
-            <details class="list-item research-entry fade-in">
-                <summary>
-                    <span class="research-entry-title">Factor GCN for End-to-End Portfolio Optimization</span>
-                </summary>
-                <div class="research-entry-content">
-                    <p>
-                        為克服傳統投資組合易受『假性相關』干擾，以及 HRP 模型受限於歷史價格雜訊的痛點，本研究提出基於圖論架構的 Factor GCN 模型。該演算法透過圖卷積神經網路，將長期基本面因子與短期動能特徵進行深度融合，有效過濾市場雜訊，並以端到端（End-to-End）的方式動態輸出最佳資產配置權重，最大化每單位風險之報酬。
-                    </p>
-                    <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" class="project-link">View Project ↗</a>
+                <div class="research-progress" style="--current-progress: 50%;" aria-label="腦腫瘤研究進度：目前位於第一階段，50；完成發表為第二階段，100">
+                    <div class="progress-heading">腦腫瘤研究進度</div>
+                    <div class="progress-track" aria-hidden="true">
+                        <span class="progress-fill"></span>
+                        <span class="progress-dot start"></span>
+                        <span class="progress-dot current"></span>
+                        <span class="progress-dot end"></span>
+                    </div>
+                    <div class="progress-scale" aria-hidden="true">
+                        <span class="start">0</span>
+                        <span class="current">50 · (I)</span>
+                        <span class="end">100 · (II)</span>
+                    </div>
+                    <p class="progress-status"><strong>目前（I）</strong> 尋找臨床合作對象進行實際使用｜<strong>100（II）</strong> 研究發表</p>
                 </div>
-            </details>
 
-            <details class="list-item research-entry fade-in">
-                <summary>
-                    <span class="research-entry-title">應用混合效應機器學習於小樣本縱向資料之建模</span>
-                </summary>
-                <div class="research-entry-content">
-                    <p>
-                        本研究為與台大醫院新竹分院之共同研究，專案目前仍在進行中，預期以論文或期刊方式發表，敬請期待後續成果。
-                    </p>
+                <details class="research-entry">
+                    <summary>說明</summary>
+                    <div class="research-entry-content">
+                        <p>
+                            以 Stanford Bunny 幾何模型為例說明演算法核心，並將無從證明的社會科學理論（如都市經濟學）融入現代機器學習方法加以實證。後續更將此演算法框架應用於 AI 醫療領域，透過精準辨識腦腫瘤影像，輔助臨床醫師進行診斷，期能有效降低醫療人員的工作負擔。
+                        </p>
+                        <p style="margin-top: 10px;">
+                            第二次研究在演算法中加入特徵提取工程 (Feature Extraction Engineering)，將腦部MRI影像分為腫瘤區與非腫瘤區，後續研究欲引入Dice Coefficient並持續改良，期許未來開發輔助臨床醫師使用。
+                        </p>
+                    </div>
+                </details>
+                <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+            </div>
+
+            <div class="list-item research-project fade-in">
+                <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
+
+                <div class="research-progress" style="--current-progress: 40%;" aria-label="Factor GCN 研究進度：目前位於第一階段，40；完成發表為第二階段，100">
+                    <div class="progress-heading">Factor GCN 研究進度</div>
+                    <div class="progress-track" aria-hidden="true">
+                        <span class="progress-fill"></span>
+                        <span class="progress-dot start"></span>
+                        <span class="progress-dot current"></span>
+                        <span class="progress-dot end"></span>
+                    </div>
+                    <div class="progress-scale" aria-hidden="true">
+                        <span class="start">0</span>
+                        <span class="current">40 · (I)</span>
+                        <span class="end">100 · (II)</span>
+                    </div>
+                    <p class="progress-status"><strong>目前（I）</strong> 研究進行中｜<strong>100（II）</strong> 研究發表</p>
                 </div>
-            </details>
+
+                <details class="research-entry">
+                    <summary>說明</summary>
+                    <div class="research-entry-content">
+                        <p>
+                            為克服傳統投資組合易受『假性相關』干擾，以及 HRP 模型受限於歷史價格雜訊的痛點，本研究提出基於圖論架構的 Factor GCN 模型。該演算法透過圖卷積神經網路，將長期基本面因子與短期動能特徵進行深度融合，有效過濾市場雜訊，並以端到端（End-to-End）的方式動態輸出最佳資產配置權重，最大化每單位風險之報酬。
+                        </p>
+                    </div>
+                </details>
+                <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+            </div>
+
+            <div class="list-item research-project fade-in">
+                <h3>Mixed-Effects Machine Learning for Small-Sample and Sparse Longitudinal Data</h3>
+                <details class="research-entry">
+                    <summary>說明</summary>
+                    <div class="research-entry-content">
+                        <p>
+                            本研究為與台大醫院新竹分院的共同研究，涉及受限醫療資訊。為遵守資料治理與研究合作規範，將待研究完成並經共同決議確認可公開發表後，再公開演算法與相關內容。
+                        </p>
+                    </div>
+                </details>
+            </div>
         </div>
 
         <div class="research-category">
@@ -1325,6 +1466,12 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            const skillsSection = document.getElementById('skills');
+            const honorsSection = document.getElementById('honors');
+            if (skillsSection && honorsSection) {
+                honorsSection.insertAdjacentElement('afterend', skillsSection);
+            }
+
             // 滑動顯示特效
             const faders = document.querySelectorAll('.fade-in');
 

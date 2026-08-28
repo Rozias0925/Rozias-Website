@@ -293,13 +293,23 @@
             margin-bottom: 0;
         }
 
+        .research-entry {
+            margin-top: 14px;
+        }
+
         .research-entry summary {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) auto;
-            align-items: start;
-            gap: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             cursor: pointer;
             list-style: none;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 2px;
+            transition: color 0.25s ease, border-color 0.25s ease;
         }
 
         .research-entry summary::-webkit-details-marker {
@@ -307,29 +317,17 @@
         }
 
         .research-entry summary::after {
-            content: '+';
-            width: 28px;
-            height: 28px;
-            border: 1px solid var(--black);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1;
-            transition: background-color 0.25s ease, color 0.25s ease;
+            content: '↓';
+            font-size: 0.85rem;
         }
 
         .research-entry[open] summary::after {
-            content: '−';
-            background-color: var(--black);
-            color: #ffffff;
+            content: '↑';
         }
 
-        .research-entry summary:hover::after {
-            background-color: var(--black);
-            color: #ffffff;
+        .research-entry summary:hover {
+            color: var(--gray-medium);
+            border-bottom-color: var(--gray-medium);
         }
 
         .research-entry summary:focus-visible {
@@ -337,14 +335,8 @@
             outline-offset: 8px;
         }
 
-        .research-entry-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            line-height: 1.5;
-        }
-
         .research-entry-content {
-            padding-top: 18px;
+            padding-top: 16px;
         }
 
         .research-entry[open] .research-entry-content {
@@ -360,6 +352,118 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        .research-progress {
+            --current-progress: 0%;
+            margin: 22px 0 12px;
+            padding: 14px 0 8px;
+        }
+
+        .progress-heading {
+            margin-bottom: 15px;
+            color: var(--gray-medium);
+            font-size: 0.78rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .progress-track {
+            height: 16px;
+            margin: 0 5px;
+            position: relative;
+        }
+
+        .progress-track::before,
+        .progress-fill {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 7px;
+            height: 2px;
+        }
+
+        .progress-track::before {
+            background-color: var(--gray-light);
+        }
+
+        .progress-fill {
+            right: auto;
+            width: var(--current-progress);
+            background-color: var(--black);
+        }
+
+        .progress-dot {
+            position: absolute;
+            top: 2px;
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            transform: translateX(-50%);
+        }
+
+        .progress-dot.start {
+            left: 0;
+            transform: none;
+            background-color: var(--black);
+        }
+
+        .progress-dot.current {
+            left: var(--current-progress);
+            width: 16px;
+            height: 16px;
+            top: 0;
+            background-color: var(--black);
+            box-shadow: 0 0 0 4px var(--card-bg), 0 0 0 5px var(--black);
+        }
+
+        .progress-dot.end {
+            right: 0;
+            transform: none;
+        }
+
+        .progress-scale {
+            height: 24px;
+            margin-top: 4px;
+            position: relative;
+            color: var(--gray-medium);
+            font-size: 0.78rem;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-scale span {
+            position: absolute;
+            white-space: nowrap;
+        }
+
+        .progress-scale .start {
+            left: 0;
+        }
+
+        .progress-scale .current {
+            left: var(--current-progress);
+            transform: translateX(-50%);
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .progress-scale .end {
+            right: 0;
+        }
+
+        .progress-status {
+            margin: 4px 0 0;
+            color: var(--gray-medium);
+            font-size: 0.86rem;
+            line-height: 1.7;
+        }
+
+        .progress-status strong {
+            color: var(--black);
+            font-weight: 600;
         }
 
         .research-empty {
@@ -950,10 +1054,10 @@
         <div class="nav-links" id="nav-links">
             <a href="#">Home</a>
             <a href="#about">About</a>
-            <a href="#skills">Skills</a> 
-            <a href="#education">Education</a>
+            <a href="#background">Background</a>
             <a href="#research">Research</a>
             <a href="#honors">Honors</a>
+            <a href="#skills">Skills</a>
             <a href="#contact">Contact</a>
         </div>
 
@@ -1126,8 +1230,8 @@
         </div>
     </section>
 
-    <section id="education" class="content-box">
-        <h2 class="fade-in">EDUCATION & EXPERIENCE</h2>
+    <section id="background" class="content-box">
+        <h2 class="fade-in">BACKGROUND</h2>
         
         <div class="list-item fade-in">
             <h3>National Taiwan Normal University (NTNU) | Dept. of Mathematics</h3>
@@ -1163,43 +1267,80 @@
         <div class="research-category">
             <h3 class="research-category-title fade-in">Research & Publications</h3>
 
-            <details class="list-item research-entry fade-in">
-                <summary>
-                    <span class="research-entry-title">Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</span>
-                </summary>
-                <div class="research-entry-content">
-                    <p>
-                        Utilized the Stanford Bunny geometric model to demonstrate the core of the algorithm, and empirically validated sociology theories (like urban economics) that are typically hard to prove by integrating modern ML methods. Later applied this algorithmic framework to the medical AI field, accurately identifying brain tumor images to assist clinical diagnoses, aiming to effectively reduce the workload of medical professionals.
-                    </p>
-                    <p style="margin-top: 10px;">
-                        The second phase of the research introduced Feature Extraction Engineering to segment MRI images into tumor and non-tumor regions. Future work aims to incorporate the Dice Coefficient for continuous improvement, developing a clinical assistant tool.
-                    </p>
-                    <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" class="project-link">View Project ↗</a>
-                </div>
-            </details>
+            <div class="list-item research-project fade-in">
+                <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
 
-            <details class="list-item research-entry fade-in">
-                <summary>
-                    <span class="research-entry-title">Factor GCN for End-to-End Portfolio Optimization</span>
-                </summary>
-                <div class="research-entry-content">
-                    <p>
-                        To overcome the pain points of traditional portfolios being susceptible to "spurious correlations" and the HRP model being limited by historical price noise, this research proposed a Factor GCN model based on graph theory architecture. Through Graph Convolutional Networks, the algorithm deeply fuses long-term fundamental factors with short-term momentum features, effectively filtering market noise, and dynamically outputs optimal asset allocation weights in an end-to-end manner to maximize the return per unit of risk.
-                    </p>
-                    <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" class="project-link">View Project ↗</a>
+                <div class="research-progress" style="--current-progress: 50%;" aria-label="Brain tumor research progress: currently at Phase I, 50; publication is Phase II, 100">
+                    <div class="progress-heading">Brain Tumor Research Progress</div>
+                    <div class="progress-track" aria-hidden="true">
+                        <span class="progress-fill"></span>
+                        <span class="progress-dot start"></span>
+                        <span class="progress-dot current"></span>
+                        <span class="progress-dot end"></span>
+                    </div>
+                    <div class="progress-scale" aria-hidden="true">
+                        <span class="start">0</span>
+                        <span class="current">50 · (I)</span>
+                        <span class="end">100 · (II)</span>
+                    </div>
+                    <p class="progress-status"><strong>Current (I)</strong> Seeking clinical partners for real-world use | <strong>100 (II)</strong> Publication</p>
                 </div>
-            </details>
 
-            <details class="list-item research-entry fade-in">
-                <summary>
-                    <span class="research-entry-title">Application of Mixed-Effects Machine Learning in Modeling Small Sample Longitudinal Data</span>
-                </summary>
-                <div class="research-entry-content">
-                    <p>
-                        This is a joint research project with National Taiwan University (NTU) Hospital Hsinchu Branch. The project is currently ongoing and is expected to be published as a conference thesis or journal paper. Please stay tuned for the results.
-                    </p>
+                <details class="research-entry">
+                    <summary>Details</summary>
+                    <div class="research-entry-content">
+                        <p>
+                            Utilized the Stanford Bunny geometric model to demonstrate the core of the algorithm, and empirically validated sociology theories (like urban economics) that are typically hard to prove by integrating modern ML methods. Later applied this algorithmic framework to the medical AI field, accurately identifying brain tumor images to assist clinical diagnoses, aiming to effectively reduce the workload of medical professionals.
+                        </p>
+                        <p style="margin-top: 10px;">
+                            The second phase of the research introduced Feature Extraction Engineering to segment MRI images into tumor and non-tumor regions. Future work aims to incorporate the Dice Coefficient for continuous improvement, developing a clinical assistant tool.
+                        </p>
+                    </div>
+                </details>
+                <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+            </div>
+
+            <div class="list-item research-project fade-in">
+                <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
+
+                <div class="research-progress" style="--current-progress: 40%;" aria-label="Factor GCN research progress: currently at Phase I, 40; publication is Phase II, 100">
+                    <div class="progress-heading">Factor GCN Research Progress</div>
+                    <div class="progress-track" aria-hidden="true">
+                        <span class="progress-fill"></span>
+                        <span class="progress-dot start"></span>
+                        <span class="progress-dot current"></span>
+                        <span class="progress-dot end"></span>
+                    </div>
+                    <div class="progress-scale" aria-hidden="true">
+                        <span class="start">0</span>
+                        <span class="current">40 · (I)</span>
+                        <span class="end">100 · (II)</span>
+                    </div>
+                    <p class="progress-status"><strong>Current (I)</strong> Research in progress | <strong>100 (II)</strong> Publication</p>
                 </div>
-            </details>
+
+                <details class="research-entry">
+                    <summary>Details</summary>
+                    <div class="research-entry-content">
+                        <p>
+                            To overcome the pain points of traditional portfolios being susceptible to "spurious correlations" and the HRP model being limited by historical price noise, this research proposed a Factor GCN model based on graph theory architecture. Through Graph Convolutional Networks, the algorithm deeply fuses long-term fundamental factors with short-term momentum features, effectively filtering market noise, and dynamically outputs optimal asset allocation weights in an end-to-end manner to maximize the return per unit of risk.
+                        </p>
+                    </div>
+                </details>
+                <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+            </div>
+
+            <div class="list-item research-project fade-in">
+                <h3>Mixed-Effects Machine Learning for Small-Sample and Sparse Longitudinal Data</h3>
+                <details class="research-entry">
+                    <summary>Details</summary>
+                    <div class="research-entry-content">
+                        <p>
+                            This joint research project with National Taiwan University Hospital Hsinchu Branch involves restricted medical information. To comply with data-governance and research-collaboration requirements, the algorithm and related materials will be released only after the study is completed and a joint decision confirms that publication is permitted.
+                        </p>
+                    </div>
+                </details>
+            </div>
         </div>
 
         <div class="research-category">
@@ -1313,6 +1454,12 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            const skillsSection = document.getElementById('skills');
+            const honorsSection = document.getElementById('honors');
+            if (skillsSection && honorsSection) {
+                honorsSection.insertAdjacentElement('afterend', skillsSection);
+            }
+
             // 滑動顯示特效
             const faders = document.querySelectorAll('.fade-in');
 
