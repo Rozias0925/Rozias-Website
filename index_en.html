@@ -360,14 +360,6 @@
             padding: 14px 0 8px;
         }
 
-        .progress-heading {
-            margin-bottom: 15px;
-            color: var(--gray-medium);
-            font-size: 0.78rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
         .progress-track {
             height: 16px;
             margin: 0 5px;
@@ -411,6 +403,11 @@
             background-color: var(--black);
         }
 
+        .progress-dot.milestone {
+            left: var(--step-position);
+            background-color: var(--black);
+        }
+
         .progress-dot.current {
             left: var(--current-progress);
             width: 16px;
@@ -441,6 +438,11 @@
 
         .progress-scale .start {
             left: 0;
+        }
+
+        .progress-scale .milestone {
+            left: var(--step-position);
+            transform: translateX(-50%);
         }
 
         .progress-scale .current {
@@ -1270,24 +1272,27 @@
             <div class="list-item research-project fade-in">
                 <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
 
-                <div class="research-progress" style="--current-progress: 50%;" aria-label="Brain tumor research progress: currently at Phase I, 50; publication is Phase II, 100">
-                    <div class="progress-heading">Brain Tumor Research Progress</div>
+                <div class="research-progress" style="--current-progress: 75%;" aria-label="Brain tumor research progress: 0, 50, 100, Extension I, Extension II; currently at Extension I">
                     <div class="progress-track" aria-hidden="true">
                         <span class="progress-fill"></span>
                         <span class="progress-dot start"></span>
+                        <span class="progress-dot milestone" style="--step-position: 25%;"></span>
+                        <span class="progress-dot milestone" style="--step-position: 50%;"></span>
                         <span class="progress-dot current"></span>
                         <span class="progress-dot end"></span>
                     </div>
                     <div class="progress-scale" aria-hidden="true">
                         <span class="start">0</span>
-                        <span class="current">50 · (I)</span>
-                        <span class="end">100 · (II)</span>
+                        <span class="milestone" style="--step-position: 25%;">50</span>
+                        <span class="milestone" style="--step-position: 50%;">100</span>
+                        <span class="current">(I)</span>
+                        <span class="end">(II)</span>
                     </div>
-                    <p class="progress-status"><strong>Current (I)</strong> Seeking clinical partners for real-world use | <strong>100 (II)</strong> Publication</p>
+                    <p class="progress-status"><strong>100</strong> Presented at a conference; the original goal has been achieved | <strong>Current (I)</strong> Seeking clinical partners for real-world use | <strong>(II)</strong> Further extension</p>
                 </div>
 
                 <details class="research-entry">
-                    <summary>Details</summary>
+                    <summary>Detail</summary>
                     <div class="research-entry-content">
                         <p>
                             Utilized the Stanford Bunny geometric model to demonstrate the core of the algorithm, and empirically validated sociology theories (like urban economics) that are typically hard to prove by integrating modern ML methods. Later applied this algorithmic framework to the medical AI field, accurately identifying brain tumor images to assist clinical diagnoses, aiming to effectively reduce the workload of medical professionals.
@@ -1303,24 +1308,27 @@
             <div class="list-item research-project fade-in">
                 <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
 
-                <div class="research-progress" style="--current-progress: 40%;" aria-label="Factor GCN research progress: currently at Phase I, 40; publication is Phase II, 100">
-                    <div class="progress-heading">Factor GCN Research Progress</div>
+                <div class="research-progress" style="--current-progress: 75%;" aria-label="Factor GCN research progress: 0, 40, 100, Extension I, Extension II; currently at Extension I">
                     <div class="progress-track" aria-hidden="true">
                         <span class="progress-fill"></span>
                         <span class="progress-dot start"></span>
+                        <span class="progress-dot milestone" style="--step-position: 25%;"></span>
+                        <span class="progress-dot milestone" style="--step-position: 50%;"></span>
                         <span class="progress-dot current"></span>
                         <span class="progress-dot end"></span>
                     </div>
                     <div class="progress-scale" aria-hidden="true">
                         <span class="start">0</span>
-                        <span class="current">40 · (I)</span>
-                        <span class="end">100 · (II)</span>
+                        <span class="milestone" style="--step-position: 25%;">40</span>
+                        <span class="milestone" style="--step-position: 50%;">100</span>
+                        <span class="current">(I)</span>
+                        <span class="end">(II)</span>
                     </div>
-                    <p class="progress-status"><strong>Current (I)</strong> Research in progress | <strong>100 (II)</strong> Publication</p>
+                    <p class="progress-status"><strong>100</strong> Presented at a conference; the original goal has been achieved | <strong>Current (I)</strong> Continuing the collaboration with KGI Securities to integrate GAT, RL, and related techniques into the algorithm | <strong>(II)</strong> Further extension</p>
                 </div>
 
                 <details class="research-entry">
-                    <summary>Details</summary>
+                    <summary>Detail</summary>
                     <div class="research-entry-content">
                         <p>
                             To overcome the pain points of traditional portfolios being susceptible to "spurious correlations" and the HRP model being limited by historical price noise, this research proposed a Factor GCN model based on graph theory architecture. Through Graph Convolutional Networks, the algorithm deeply fuses long-term fundamental factors with short-term momentum features, effectively filtering market noise, and dynamically outputs optimal asset allocation weights in an end-to-end manner to maximize the return per unit of risk.
@@ -1333,7 +1341,7 @@
             <div class="list-item research-project fade-in">
                 <h3>Mixed-Effects Machine Learning for Small-Sample and Sparse Longitudinal Data</h3>
                 <details class="research-entry">
-                    <summary>Details</summary>
+                    <summary>Detail</summary>
                     <div class="research-entry-content">
                         <p>
                             This joint research project with National Taiwan University Hospital Hsinchu Branch involves restricted medical information. To comply with data-governance and research-collaboration requirements, the algorithm and related materials will be released only after the study is completed and a joint decision confirms that publication is permitted.

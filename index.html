@@ -360,14 +360,6 @@
             padding: 14px 0 8px;
         }
 
-        .progress-heading {
-            margin-bottom: 15px;
-            color: var(--gray-medium);
-            font-size: 0.78rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
         .progress-track {
             height: 16px;
             margin: 0 5px;
@@ -411,6 +403,11 @@
             background-color: var(--black);
         }
 
+        .progress-dot.milestone {
+            left: var(--step-position);
+            background-color: var(--black);
+        }
+
         .progress-dot.current {
             left: var(--current-progress);
             width: 16px;
@@ -441,6 +438,11 @@
 
         .progress-scale .start {
             left: 0;
+        }
+
+        .progress-scale .milestone {
+            left: var(--step-position);
+            transform: translateX(-50%);
         }
 
         .progress-scale .current {
@@ -1276,24 +1278,27 @@
             <div class="list-item research-project fade-in">
                 <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
 
-                <div class="research-progress" style="--current-progress: 50%;" aria-label="腦腫瘤研究進度：目前位於第一階段，50；完成發表為第二階段，100">
-                    <div class="progress-heading">腦腫瘤研究進度</div>
+                <div class="research-progress" style="--current-progress: 75%;" aria-label="腦腫瘤研究進度：0、50、100、第一延伸階段、第二延伸階段；目前位於第一延伸階段">
                     <div class="progress-track" aria-hidden="true">
                         <span class="progress-fill"></span>
                         <span class="progress-dot start"></span>
+                        <span class="progress-dot milestone" style="--step-position: 25%;"></span>
+                        <span class="progress-dot milestone" style="--step-position: 50%;"></span>
                         <span class="progress-dot current"></span>
                         <span class="progress-dot end"></span>
                     </div>
                     <div class="progress-scale" aria-hidden="true">
                         <span class="start">0</span>
-                        <span class="current">50 · (I)</span>
-                        <span class="end">100 · (II)</span>
+                        <span class="milestone" style="--step-position: 25%;">50</span>
+                        <span class="milestone" style="--step-position: 50%;">100</span>
+                        <span class="current">(I)</span>
+                        <span class="end">(II)</span>
                     </div>
-                    <p class="progress-status"><strong>目前（I）</strong> 尋找臨床合作對象進行實際使用｜<strong>100（II）</strong> 研究發表</p>
+                    <p class="progress-status"><strong>100</strong> 參加發表會，原定目標已達成｜<strong>目前（I）</strong> 尋找臨床合作對象進行實際使用｜<strong>（II）</strong> 後續延伸</p>
                 </div>
 
                 <details class="research-entry">
-                    <summary>說明</summary>
+                    <summary>Detail</summary>
                     <div class="research-entry-content">
                         <p>
                             以 Stanford Bunny 幾何模型為例說明演算法核心，並將無從證明的社會科學理論（如都市經濟學）融入現代機器學習方法加以實證。後續更將此演算法框架應用於 AI 醫療領域，透過精準辨識腦腫瘤影像，輔助臨床醫師進行診斷，期能有效降低醫療人員的工作負擔。
@@ -1309,24 +1314,27 @@
             <div class="list-item research-project fade-in">
                 <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
 
-                <div class="research-progress" style="--current-progress: 40%;" aria-label="Factor GCN 研究進度：目前位於第一階段，40；完成發表為第二階段，100">
-                    <div class="progress-heading">Factor GCN 研究進度</div>
+                <div class="research-progress" style="--current-progress: 75%;" aria-label="Factor GCN 研究進度：0、40、100、第一延伸階段、第二延伸階段；目前位於第一延伸階段">
                     <div class="progress-track" aria-hidden="true">
                         <span class="progress-fill"></span>
                         <span class="progress-dot start"></span>
+                        <span class="progress-dot milestone" style="--step-position: 25%;"></span>
+                        <span class="progress-dot milestone" style="--step-position: 50%;"></span>
                         <span class="progress-dot current"></span>
                         <span class="progress-dot end"></span>
                     </div>
                     <div class="progress-scale" aria-hidden="true">
                         <span class="start">0</span>
-                        <span class="current">40 · (I)</span>
-                        <span class="end">100 · (II)</span>
+                        <span class="milestone" style="--step-position: 25%;">40</span>
+                        <span class="milestone" style="--step-position: 50%;">100</span>
+                        <span class="current">(I)</span>
+                        <span class="end">(II)</span>
                     </div>
-                    <p class="progress-status"><strong>目前（I）</strong> 研究進行中｜<strong>100（II）</strong> 研究發表</p>
+                    <p class="progress-status"><strong>100</strong> 參加發表會，原定目標已達成｜<strong>目前（I）</strong> 持續與凱基證券合作，將演算法結合 GAT、RL 等技術｜<strong>（II）</strong> 後續延伸</p>
                 </div>
 
                 <details class="research-entry">
-                    <summary>說明</summary>
+                    <summary>Detail</summary>
                     <div class="research-entry-content">
                         <p>
                             為克服傳統投資組合易受『假性相關』干擾，以及 HRP 模型受限於歷史價格雜訊的痛點，本研究提出基於圖論架構的 Factor GCN 模型。該演算法透過圖卷積神經網路，將長期基本面因子與短期動能特徵進行深度融合，有效過濾市場雜訊，並以端到端（End-to-End）的方式動態輸出最佳資產配置權重，最大化每單位風險之報酬。
@@ -1339,7 +1347,7 @@
             <div class="list-item research-project fade-in">
                 <h3>Mixed-Effects Machine Learning for Small-Sample and Sparse Longitudinal Data</h3>
                 <details class="research-entry">
-                    <summary>說明</summary>
+                    <summary>Detail</summary>
                     <div class="research-entry-content">
                         <p>
                             本研究為與台大醫院新竹分院的共同研究，涉及受限醫療資訊。為遵守資料治理與研究合作規範，將待研究完成並經共同決議確認可公開發表後，再公開演算法與相關內容。
