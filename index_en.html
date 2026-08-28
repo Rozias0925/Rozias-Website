@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rozias | Personal Website</title>
     <link rel="icon" href="icon.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         /* 全局設定與黑白灰色彩計畫 */
         :root {
@@ -16,14 +16,20 @@
             --gray-light: #eeeeee;
             --gray-medium: #888888;
             --black: #000000;
+            --font-sans: "Inter", "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Helvetica Neue", Arial, "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+            font-family: var(--font-sans);
             scroll-behavior: smooth;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
         }
 
         body {
@@ -31,6 +37,7 @@
             color: var(--text-color);
             line-height: 1.8;
             overflow-x: hidden;
+            font-synthesis: none;
         }
 
         /* --- 導覽列 --- */
@@ -704,11 +711,11 @@
         }
 
         .handwriting {
-            font-family: 'Klee One', cursive, sans-serif;
-            font-size: 1.15rem;
-            line-height: 2;
+            font-family: var(--font-sans);
+            font-size: 1.08rem;
+            line-height: 1.9;
             color: #333333;
-            letter-spacing: 1px;
+            letter-spacing: 0.25px;
         }
 
         .project-link {
@@ -1222,6 +1229,53 @@
                 margin: 0 auto;
             }
             .hero-meta { min-height: 72px; }
+        }
+        @media (max-width: 600px) {
+            body {
+                line-height: 1.7;
+            }
+            h2 {
+                font-size: 1.5rem;
+                letter-spacing: 1.4px;
+            }
+            .handwriting {
+                font-size: 1rem;
+                line-height: 1.85;
+                letter-spacing: 0;
+            }
+            .list-item h3 {
+                font-size: 1.08rem;
+                line-height: 1.55;
+            }
+            .list-item .meta,
+            .research-category-title,
+            .research-category-title .secondary-title,
+            .combined-panel-title,
+            .skill-category h3,
+            .hint-text,
+            .research-detail-button,
+            .project-link {
+                letter-spacing: 0.4px;
+            }
+            .progress-scale,
+            .progress-scale small {
+                letter-spacing: 0;
+            }
+            #home .name-zh {
+                font-size: clamp(2.65rem, 13vw, 3.35rem);
+                letter-spacing: 8px;
+                margin-right: -8px;
+            }
+            #home .name-en {
+                letter-spacing: 1.2px;
+            }
+            #home .title {
+                font-size: 0.88rem;
+                letter-spacing: 2.8px;
+            }
+            .hero-caption-display {
+                letter-spacing: 0.4px;
+            }
         }
         @media (prefers-reduced-motion: reduce) {
             .hero-slideshow, .hero-slide, .hero-dot { transition: none; }
