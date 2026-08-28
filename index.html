@@ -361,6 +361,71 @@
             animation: reveal-research 0.3s ease-out;
         }
 
+        .research-collaboration {
+            margin-top: 7px;
+            color: var(--gray-medium);
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.7px;
+        }
+
+        .research-note {
+            margin-top: 22px;
+            padding: 18px 20px;
+            border-left: 2px solid var(--black);
+            background: #f7f7f7;
+        }
+
+        .research-note h4 {
+            margin: 0 0 10px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+        }
+
+        .research-note p + p {
+            margin-top: 10px;
+        }
+
+        .research-note .project-link {
+            margin-top: 14px;
+        }
+
+        .research-note-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .research-note-gallery figure {
+            margin: 0;
+        }
+
+        .research-note-gallery img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: contain;
+            border-radius: 8px;
+            background: var(--black);
+        }
+
+        .research-note-gallery figcaption {
+            margin-top: 7px;
+            color: var(--gray-medium);
+            font-size: 0.72rem;
+            line-height: 1.5;
+            letter-spacing: 0.4px;
+        }
+
+        .honor-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
         @keyframes reveal-research {
             from {
                 opacity: 0;
@@ -1282,6 +1347,15 @@
             .hero-caption-display {
                 letter-spacing: 0.4px;
             }
+            .research-collaboration {
+                letter-spacing: 0.2px;
+            }
+            .research-note {
+                padding: 16px;
+            }
+            .research-note-gallery {
+                grid-template-columns: 1fr;
+            }
         }
         @media (prefers-reduced-motion: reduce) {
             .hero-slideshow, .hero-slide, .hero-dot { transition: none; }
@@ -1537,9 +1611,15 @@
             <div class="meta">2025-2026</div>
             <p>114-1學期擔任線性代數(I)助教<br>114-2學期擔任數論助教</p>
             <p>114-1學期獲數學系優良教學助理</p>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>NTNU MATH_教學助理</h3>
+            <div class="meta">115-1 學期</div>
+            <p>擔任科學計算導論（原數值分析（一））助教</p>
+        </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <section id="research" class="content-box">
@@ -1575,7 +1655,7 @@
                 <div class="research-actions">
                     <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="brain-tumor-detail-zh">Detail</button>
                     <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
-                    <a href="assets/posters/brain-tumor-spectral-clustering-poster.pdf" target="_blank" rel="noopener" class="project-link">View Poster ↗</a>
+                    <a href="assets/posters/brain-tumor-spectral-clustering-poster.pdf?v=20260828-2" target="_blank" rel="noopener" class="project-link">View Poster ↗</a>
                 </div>
                 <div class="research-entry-content" id="brain-tumor-detail-zh" hidden>
                     <p>
@@ -1584,11 +1664,18 @@
                     <p style="margin-top: 10px;">
                         第二次研究在演算法中加入特徵提取工程 (Feature Extraction Engineering)，將腦部MRI影像分為腫瘤區與非腫瘤區，後續研究欲引入Dice Coefficient並持續改良，期許未來開發輔助臨床醫師使用。
                     </p>
+                    <aside class="research-note" aria-label="研究貢獻與發表說明">
+                        <h4>Note</h4>
+                        <p>本專題與同系柯心宜同學共同研究。我的主要貢獻涵蓋數學理論研讀、研究構想與方法設計、演算法撰寫，以及後續研究延伸；柯心宜主要參與共同討論與口頭發表。</p>
+                        <p>隨研究持續推進，不同階段成果先後於 2025 校際應用數學研討會、2026 TWSIAM 台灣工業與應用數學會年會，以及 2026 ICOML 最佳化與機器學習國際研討會發表。</p>
+                        <a href="https://drive.google.com/drive/folders/1CkzOHmpti5PjDClmsr1IZX5SwHaY8niI?usp=drive_link" target="_blank" rel="noopener" class="project-link">Watch 1-Minute Intro ↗</a>
+                    </aside>
                 </div>
             </div>
 
             <div class="list-item research-project fade-in">
                 <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
+                <div class="research-collaboration">合作單位：凱基證券 × 凱基投顧</div>
 
                 <div class="research-progress" style="--current-progress: 80%;" aria-label="Factor GCN 研究進度：0% 研究啟動、30% 研讀 GCN 論文、60% 設計演算法雛形、100% 發表會發表、第一延伸階段將 GAT 與 RL 融合進演算法、第二延伸階段系統延伸；目前位於第一延伸階段">
                     <div class="progress-track">
@@ -1619,11 +1706,27 @@
                     <p>
                         為克服傳統投資組合易受『假性相關』干擾，以及 HRP 模型受限於歷史價格雜訊的痛點，本研究提出基於圖論架構的 Factor GCN 模型。該演算法透過圖卷積神經網路，將長期基本面因子與短期動能特徵進行深度融合，有效過濾市場雜訊，並以端到端（End-to-End）的方式動態輸出最佳資產配置權重，最大化每單位風險之報酬。
                     </p>
+                    <aside class="research-note" aria-label="研究指導與發表說明">
+                        <h4>Note</h4>
+                        <p>本專題為個人研究，由凱基證券量化研究員戴立庭指導，提供財務金融領域知識、研究方向與模型改良建議。</p>
+                        <p>研究成果先後於 2026 科學計算學生研討會_量化程式交易，以及 2026 ICOML 最佳化與機器學習國際研討會發表。</p>
+                        <div class="research-note-gallery" aria-label="Factor GCN 研究發表照片">
+                            <figure>
+                                <img src="assets/banner/banner-00.jpg?v=20260828-1" alt="於 2026 科學計算學生研討會發表量化程式交易研究" loading="lazy">
+                                <figcaption>2026 科學計算學生研討會｜量化程式交易</figcaption>
+                            </figure>
+                            <figure>
+                                <img src="assets/banner/banner-01.jpg?v=20260827-2" alt="於 2026 ICOML 進行 Factor GCN 研究海報發表" loading="lazy">
+                                <figcaption>2026 ICOML｜研究海報發表</figcaption>
+                            </figure>
+                        </div>
+                    </aside>
                 </div>
             </div>
 
             <div class="list-item research-project fade-in">
                 <h3>Mixed-Effects Machine Learning for Small-Sample and Sparse Longitudinal Data</h3>
+                <div class="research-collaboration">合作單位：台大醫院新竹分院</div>
                 <div class="research-entry-content">
                     <p>
                         本研究為與台大醫院新竹分院的共同研究，涉及受限醫療資訊。為遵守資料治理與研究合作規範，將待研究完成並經共同決議確認可公開發表後，再公開演算法與相關內容。
@@ -1660,18 +1763,24 @@
 
         <div class="list-item fade-in">
             <h3>International Conference on Optimization and Machine Learning 最佳化與機器學習國際研討會</h3>
-            <div class="meta">2026 | 參賽中</div>  
-            <a href="assets/certificates/optimization-machine-learning-conference-2026.pdf" target="_blank" rel="noopener" class="project-link">查看證書 ↗</a>
+            <div class="meta">2026 | Poster</div>
+            <div class="honor-links">
+                <a href="assets/certificates/optimization-machine-learning-conference-2026.pdf" target="_blank" rel="noopener" class="project-link">查看證書 ↗</a>
+                <a href="https://www.math.ntnu.edu.tw/workshop/icoml2026/" target="_blank" rel="noopener" class="project-link">活動網站 ↗</a>
+            </div>
         </div>
 
         <div class="list-item fade-in">
             <h3>Taiwan Society for Industrial and Applied Mathematics 海報論文最佳人氣獎</h3>
             <div class="meta">2026 | 台灣工業與應用數學會</div>
-            <a href="assets/certificates/tsiamm-best-popularity-poster-award-2026.pdf" target="_blank" rel="noopener" class="project-link">查看證書 ↗</a>
+            <div class="honor-links">
+                <a href="assets/certificates/tsiamm-best-popularity-poster-award-2026.pdf" target="_blank" rel="noopener" class="project-link">查看證書 ↗</a>
+                <a href="https://twsiam2026.math.fju.edu.tw/" target="_blank" rel="noopener" class="project-link">活動網站 ↗</a>
+            </div>
         </div>
 
         <div class="list-item fade-in">
-            <h3>科學計算學生研討會 (量化程式交易) 最佳論文獎</h3>
+            <h3>科學計算學生研討會_量化程式交易 最佳論文獎</h3>
             <div class="meta">2026 | 師大數學系 × 凱基證券</div>
             <a href="assets/certificates/scientific-computing-best-paper-award-2026.pdf" target="_blank" rel="noopener" class="project-link">查看證書 ↗</a>
         </div>
@@ -1732,9 +1841,9 @@
                     <div class="social-links">
                         <a href="https://github.com/Rozias0925" target="_blank" rel="noopener noreferrer">GitHub</a>
                         <span class="divider">|</span>
-                        <a href="https://www.instagram.com/rozias_9_25/" target="_blank">Instagram</a>
+                        <a href="https://www.instagram.com/rozias_9_25/" target="_blank" rel="noopener">Instagram</a>
                         <span class="divider">|</span>
-                        <a href="https://l.messenger.com/l.php?u=https%3A%2F%2Fline.me%2Fti%2Fp%2FM-xq8_Zrvc" target="_blank">LINE</a>
+                        <a href="https://l.messenger.com/l.php?u=https%3A%2F%2Fline.me%2Fti%2Fp%2FM-xq8_Zrvc" target="_blank" rel="noopener">LINE</a>
                     </div>
                 </div>
 

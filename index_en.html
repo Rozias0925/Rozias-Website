@@ -361,6 +361,71 @@
             animation: reveal-research 0.3s ease-out;
         }
 
+        .research-collaboration {
+            margin-top: 7px;
+            color: var(--gray-medium);
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.7px;
+        }
+
+        .research-note {
+            margin-top: 22px;
+            padding: 18px 20px;
+            border-left: 2px solid var(--black);
+            background: #f7f7f7;
+        }
+
+        .research-note h4 {
+            margin: 0 0 10px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+        }
+
+        .research-note p + p {
+            margin-top: 10px;
+        }
+
+        .research-note .project-link {
+            margin-top: 14px;
+        }
+
+        .research-note-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .research-note-gallery figure {
+            margin: 0;
+        }
+
+        .research-note-gallery img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: contain;
+            border-radius: 8px;
+            background: var(--black);
+        }
+
+        .research-note-gallery figcaption {
+            margin-top: 7px;
+            color: var(--gray-medium);
+            font-size: 0.72rem;
+            line-height: 1.5;
+            letter-spacing: 0.4px;
+        }
+
+        .honor-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
         @keyframes reveal-research {
             from {
                 opacity: 0;
@@ -1281,6 +1346,15 @@
             .hero-caption-display {
                 letter-spacing: 0.4px;
             }
+            .research-collaboration {
+                letter-spacing: 0.2px;
+            }
+            .research-note {
+                padding: 16px;
+            }
+            .research-note-gallery {
+                grid-template-columns: 1fr;
+            }
         }
         @media (prefers-reduced-motion: reduce) {
             .hero-slideshow, .hero-slide, .hero-dot { transition: none; }
@@ -1535,9 +1609,15 @@
             <div class="meta">2025-2026</div>
             <p>Fall 2025: Linear Algebra (I)<br>Spring 2026: Number Theory.</p>
             <p>Awarded Outstanding Teaching Assistant for Fall 2025.</p>
+        </div>
+
+        <div class="list-item fade-in">
+            <h3>NTNU MATH_Teaching Assistant</h3>
+            <div class="meta">Fall 2026</div>
+            <p>Introduction to Scientific Computing (formerly Numerical Analysis I).</p>
+        </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <section id="research" class="content-box">
@@ -1570,7 +1650,7 @@
                 <div class="research-actions">
                     <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="brain-tumor-detail-en">Detail</button>
                     <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
-                    <a href="assets/posters/brain-tumor-spectral-clustering-poster.pdf" target="_blank" rel="noopener" class="project-link">View Poster ↗</a>
+                    <a href="assets/posters/brain-tumor-spectral-clustering-poster.pdf?v=20260828-2" target="_blank" rel="noopener" class="project-link">View Poster ↗</a>
                 </div>
                 <div class="research-entry-content" id="brain-tumor-detail-en" hidden>
                     <p>
@@ -1579,11 +1659,18 @@
                     <p style="margin-top: 10px;">
                         The second phase of the research introduced Feature Extraction Engineering to segment MRI images into tumor and non-tumor regions. Future work aims to incorporate the Dice Coefficient for continuous improvement, developing a clinical assistant tool.
                     </p>
+                    <aside class="research-note" aria-label="Research contributions and presentations">
+                        <h4>Note</h4>
+                        <p>This project was conducted jointly with Hsin-Yi Ko, a fellow student in the Department of Mathematics. My primary contributions included mathematical and theoretical study, research conception and methodology design, algorithm implementation, and subsequent extensions; Hsin-Yi Ko primarily contributed through joint discussions and oral presentations.</p>
+                        <p>As the project continued to evolve, successive stages were presented at the 2025 Intercollegiate Applied Mathematics Conference, the 2026 TWSIAM Annual Meeting, and ICOML 2026.</p>
+                        <a href="https://drive.google.com/drive/folders/1CkzOHmpti5PjDClmsr1IZX5SwHaY8niI?usp=drive_link" target="_blank" rel="noopener" class="project-link">Watch 1-Minute Intro ↗</a>
+                    </aside>
                 </div>
             </div>
 
             <div class="list-item research-project fade-in">
                 <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
+                <div class="research-collaboration">In collaboration with KGI Securities × KGI Securities Investment Advisory</div>
 
                 <div class="research-progress" style="--current-progress: 80%;" aria-label="Factor GCN research progress: 0% research started, 30% reviewed GCN papers, 60% designed the algorithm prototype, 100% conference presentation, Extension I integrating GAT and RL into the algorithm, Extension II system extension; currently at Extension I">
                     <div class="progress-track">
@@ -1614,11 +1701,27 @@
                     <p>
                         To overcome the pain points of traditional portfolios being susceptible to "spurious correlations" and the HRP model being limited by historical price noise, this research proposed a Factor GCN model based on graph theory architecture. Through Graph Convolutional Networks, the algorithm deeply fuses long-term fundamental factors with short-term momentum features, effectively filtering market noise, and dynamically outputs optimal asset allocation weights in an end-to-end manner to maximize the return per unit of risk.
                     </p>
+                    <aside class="research-note" aria-label="Research advising and presentations">
+                        <h4>Note</h4>
+                        <p>This is an independent research project advised by 戴立庭, a quantitative researcher at KGI Securities, who provided financial-domain knowledge and guidance on research direction and model refinement.</p>
+                        <p>The project was presented at the 2026 Scientific Computing Student Seminar_Quantitative Trading and ICOML 2026.</p>
+                        <div class="research-note-gallery" aria-label="Factor GCN presentation photos">
+                            <figure>
+                                <img src="assets/banner/banner-00.jpg?v=20260828-1" alt="Presenting quantitative trading research at the 2026 Scientific Computing Student Seminar" loading="lazy">
+                                <figcaption>2026 Scientific Computing Student Seminar | Quantitative Trading</figcaption>
+                            </figure>
+                            <figure>
+                                <img src="assets/banner/banner-01.jpg?v=20260827-2" alt="Presenting the Factor GCN research poster at ICOML 2026" loading="lazy">
+                                <figcaption>ICOML 2026 | Research poster presentation</figcaption>
+                            </figure>
+                        </div>
+                    </aside>
                 </div>
             </div>
 
             <div class="list-item research-project fade-in">
                 <h3>Mixed-Effects Machine Learning for Small-Sample and Sparse Longitudinal Data</h3>
+                <div class="research-collaboration">In collaboration with National Taiwan University Hospital Hsin-Chu Branch</div>
                 <div class="research-entry-content">
                     <p>
                         This joint research project with National Taiwan University Hospital Hsinchu Branch involves restricted medical information. To comply with data-governance and research-collaboration requirements, the algorithm and related materials will be released only after the study is completed and a joint decision confirms that publication is permitted.
@@ -1649,19 +1752,25 @@
 
         <div class="list-item fade-in">
             <h3>International Conference on Optimization and Machine Learning</h3>
-            <div class="meta">2026 | Participant</div>  
-            <a href="assets/certificates/optimization-machine-learning-conference-2026.pdf" target="_blank" rel="noopener" class="project-link">View Certificate ↗</a>
+            <div class="meta">2026 | Poster</div>
+            <div class="honor-links">
+                <a href="assets/certificates/optimization-machine-learning-conference-2026.pdf" target="_blank" rel="noopener" class="project-link">View Certificate ↗</a>
+                <a href="https://www.math.ntnu.edu.tw/workshop/icoml2026/" target="_blank" rel="noopener" class="project-link">Official Website ↗</a>
+            </div>
         </div>
 
         <div class="list-item fade-in">
             <h3>Best Popularity Poster Award</h3>
             <div class="meta">2026 | Taiwan Society for Industrial and Applied Mathematics (TWSIAM)</div>
-            <a href="assets/certificates/tsiamm-best-popularity-poster-award-2026.pdf" target="_blank" rel="noopener" class="project-link">View Certificate ↗</a>
+            <div class="honor-links">
+                <a href="assets/certificates/tsiamm-best-popularity-poster-award-2026.pdf" target="_blank" rel="noopener" class="project-link">View Certificate ↗</a>
+                <a href="https://twsiam2026.math.fju.edu.tw/" target="_blank" rel="noopener" class="project-link">Official Website ↗</a>
+            </div>
         </div>
 
         <div class="list-item fade-in">
-            <h3>Best Paper Award</h3>
-            <div class="meta">2026 | Scientific Computing Student Seminar (Quant Trading) | NTNU Math × KGI Securities</div>
+            <h3>Scientific Computing Student Seminar_Quantitative Trading — Best Paper Award</h3>
+            <div class="meta">2026 | NTNU Math × KGI Securities</div>
             <a href="assets/certificates/scientific-computing-best-paper-award-2026.pdf" target="_blank" rel="noopener" class="project-link">View Certificate ↗</a>
         </div>
 
@@ -1721,9 +1830,9 @@
                     <div class="social-links">
                         <a href="https://github.com/Rozias0925" target="_blank" rel="noopener noreferrer">GitHub</a>
                         <span class="divider">|</span>
-                        <a href="https://www.instagram.com/rozias_9_25/" target="_blank">Instagram</a>
+                        <a href="https://www.instagram.com/rozias_9_25/" target="_blank" rel="noopener">Instagram</a>
                         <span class="divider">|</span>
-                        <a href="https://l.messenger.com/l.php?u=https%3A%2F%2Fline.me%2Fti%2Fp%2FM-xq8_Zrvc" target="_blank">LINE</a>
+                        <a href="https://l.messenger.com/l.php?u=https%3A%2F%2Fline.me%2Fti%2Fp%2FM-xq8_Zrvc" target="_blank" rel="noopener">LINE</a>
                     </div>
                 </div>
 
