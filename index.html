@@ -846,6 +846,64 @@
             margin: 0;
         }
 
+        .combined-section {
+            max-width: 1240px;
+        }
+
+        .background-skills-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+            gap: 48px;
+            align-items: start;
+        }
+
+        .background-panel {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .skills-panel {
+            grid-column: 2;
+            grid-row: 1;
+            border-left: 1px solid var(--gray-light);
+            padding-left: 48px;
+        }
+
+        .combined-panel-title {
+            margin: 0 0 30px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--gray-light);
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .skills-panel .hint-text {
+            margin: -12px 0 28px;
+            padding-left: 0;
+        }
+
+        @media (max-width: 900px) {
+            .background-skills-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .background-panel {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .skills-panel {
+                grid-column: 1;
+                grid-row: 2;
+                border-left: 0;
+                border-top: 1px solid var(--gray-light);
+                padding: 44px 0 0;
+            }
+        }
+
         /* --- 語言切換按鈕 (電腦版) --- */
         /* 使用絕對定位靠右，這樣不會影響到中間選單的完美置中 */
         .lang-switch {
@@ -1153,10 +1211,9 @@
         <div class="nav-links" id="nav-links">
             <a href="#">Home</a>
             <a href="#about">About</a>
-            <a href="#background">Background</a>
+            <a href="#background-skills">Background & Skills</a>
             <a href="#research">Research</a>
             <a href="#honors">Honors</a>
-            <a href="#skills">Skills</a>
             <a href="#contact">Contact</a>
         </div>
 
@@ -1254,9 +1311,13 @@
         </p>
     </section>
 
-    <section id="skills" class="content-box">
-        <h2 class="fade-in">專業技能 / TECHNICAL SKILLS</h2>
-        <p class="fade-in hint-text">※ 點選以下關鍵字可查看學習心得</p>
+    <section id="background-skills" class="content-box combined-section">
+        <h2 class="fade-in">Background & Skills</h2>
+
+        <div class="background-skills-grid">
+            <div id="skills" class="combined-panel skills-panel">
+                <h3 class="combined-panel-title fade-in">Skills</h3>
+                <p class="fade-in hint-text">※ 點選以下關鍵字可查看學習心得</p>
         
         <div class="skills-grid fade-in">
             <div class="skill-category">
@@ -1322,17 +1383,16 @@
                 <div class="tag-panels">
                     <div class="tag-panel" id="ds-1">
                         <p class="handwriting">機器學習是我跨足資料科學的啟端。國立台灣大學有提供一門課程"機器學習導論" 只是我運氣不好沒有加簽到 不過我仍透過其課程錄影學到了大致的運作原理和核心架構。放眼未來，我將目標鎖定於新加坡國立大學（NUS）的資料科學與機器學習碩士學程 (DSML)，期許能在頂尖的學術殿堂中，建構更完整、深厚的機器學習知識體系。</p>                    </div>
-                    </div>
                     <div class="tag-panel" id="ds-2">
                         <p class="handwriting">圖論是我認為能將真實世界的複雜網絡與拓樸結構，最直觀轉化為數學語言的強大工具，而線性代數則是支撐其運作的核心基石。儘管未曾正式修習圖論課程，我卻在研究實務中將其概念深刻實踐。從深究 Graph Laplacian 的頻譜特性，到建構 Graph Convolutional Network (GCN) 與 Graph Attention Network (GAT) 以萃取複雜的節點特徵，圖論與機器學習的結合，是我目前最熱衷且持續突破的研究主軸。</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+                </div>
+            </div>
 
-    <section id="background" class="content-box">
-        <h2 class="fade-in">學術背景 / BACKGROUND</h2>
+            <div id="background" class="combined-panel background-panel">
+                <h3 class="combined-panel-title fade-in">Background</h3>
         
         <div class="list-item fade-in">
             <h3>國立臺灣師範大學 數學系</h3>
@@ -1358,8 +1418,9 @@
             <div class="meta">2025-2026</div>
             <p>114-1學期擔任線性代數(I)助教，114-2學期擔任數論助教</p>
             <p>114-1學期獲數學系優良教學助理</p>
+                </div>
+            </div>
         </div>
-
     </section>
 
     <section id="research" class="content-box">
@@ -1568,12 +1629,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const skillsSection = document.getElementById('skills');
-            const honorsSection = document.getElementById('honors');
-            if (skillsSection && honorsSection) {
-                honorsSection.insertAdjacentElement('afterend', skillsSection);
-            }
-
             document.querySelectorAll('.research-detail-button').forEach(button => {
                 const panel = document.getElementById(button.getAttribute('aria-controls'));
                 if (!panel) return;
