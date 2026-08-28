@@ -407,7 +407,7 @@
             border-radius: 50%;
             background-color: var(--card-bg);
             transform: translateX(-50%);
-            cursor: help;
+            cursor: pointer;
             font: inherit;
         }
 
@@ -792,8 +792,20 @@
         .interactive-tags {
             display: flex;
             flex-wrap: wrap;
+            align-items: flex-start;
             gap: 12px;
             margin-bottom: 10px;
+        }
+
+        .interactive-tags.math-tags {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .math-tags .tag-button {
+            width: 100%;
+            justify-content: space-between;
+            white-space: normal;
         }
 
         .tag-button {
@@ -830,29 +842,43 @@
             transform: rotate(45deg); /* 把 + 轉成 × */
         }
 
-        /* 說明文字面板區 (完全獨立，顯示在膠囊下方) */
+        /* 說明文字面板區：點擊後移至對應膠囊正下方 */
         .tag-panels {
-            position: relative;
+            display: none;
         }
 
         .tag-panel {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.4s ease-in-out;
+            display: none;
             background-color: #fcfcfc;
             border-radius: 12px;
-            padding: 0 20px;
-            border: 1px solid transparent;
+            border: 1px solid var(--gray-light);
         }
 
         /* 說明文字展開時 */
         .tag-panel.active {
-            max-height: 400px;
-            opacity: 1;
+            display: block;
             padding: 20px;
-            border-color: var(--gray-light);
-            margin-top: 5px;
+            animation: tag-panel-reveal 0.35s ease both;
+        }
+
+        .interactive-tags > .tag-panel {
+            flex: 0 0 100%;
+            width: 100%;
+        }
+
+        .math-tags > .tag-panel {
+            grid-column: 1 / -1;
+        }
+
+        @keyframes tag-panel-reveal {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .tag-panel p {
@@ -1354,7 +1380,7 @@
         <div class="skills-grid fade-in">
             <div class="skill-category">
                 <h3>Mathematics</h3>
-                <div class="interactive-tags">
+                <div class="interactive-tags math-tags">
                     <div class="tag-button" data-target="math-1">Algebra/Linear Algebra <span class="plus">+</span></div>
                     <div class="tag-button" data-target="math-2">Probability/Statistics <span class="plus">+</span></div>
                     <div class="tag-button" data-target="math-3">Scientific Computing <span class="plus">+</span></div>
@@ -1440,14 +1466,14 @@
         <div class="list-item fade-in">
             <h3>NTNU MATH_Teaching Assistant</h3>
             <div class="meta">2024-2025</div>
-            <p>Fall 2024: Algebra (I) / Spring 2025: Algebra (II), Introduction to Probability.</p>
+            <p>Fall 2024: Algebra (I)<br>Spring 2025: Algebra (II), Introduction to Probability.</p>
             <p>Awarded Outstanding Teaching Assistant for both semesters.</p>
         </div>
 
         <div class="list-item fade-in">
             <h3>NTNU MATH_Teaching Assistant</h3>
             <div class="meta">2025-2026</div>
-            <p>Fall 2025: Linear Algebra (I) / Spring 2026: Number Theory.</p>
+            <p>Fall 2025: Linear Algebra (I)<br>Spring 2026: Number Theory.</p>
             <p>Awarded Outstanding Teaching Assistant for Fall 2025.</p>
                 </div>
             </div>
@@ -1699,7 +1725,7 @@
                 });
             });
 
-            // 互動式膠囊標籤邏輯 (獨立面板切換 - 修正動畫順序)
+            // Move each skill description directly beneath the selected pill.
             const tagButtons = document.querySelectorAll('.tag-button');
             
             tagButtons.forEach(button => {
@@ -1707,34 +1733,24 @@
                     const targetId = button.getAttribute('data-target');
                     const targetPanel = document.getElementById(targetId);
                     const currentCategory = button.closest('.skill-category');
-                    
-                    // 記錄當前按鈕原本是不是打開的
                     const isActive = button.classList.contains('active');
-                    
-                    // 找出目前該類別中「正在開啟」的按鈕和面板
                     const activeBtn = currentCategory.querySelector('.tag-button.active');
                     const activePanel = currentCategory.querySelector('.tag-panel.active');
                     
                     if (isActive) {
-                        // 1. 如果點擊的是「已經打開」的膠囊，直接關閉它就好
                         button.classList.remove('active');
                         targetPanel.classList.remove('active');
                     } else {
-                        // 2. 如果點擊的是「新的」膠囊
-                        let delay = 0;
-                        
                         if (activePanel) {
-                            // 如果有舊的正在打開，先關閉舊的
                             activeBtn.classList.remove('active');
                             activePanel.classList.remove('active');
-                            delay = 10; // 設定延遲 10 毫秒，等待 CSS 收合動畫播完
                         }
-                        
-                        // 3. 等待 delay 時間後，再打開新的
-                        setTimeout(() => {
+
+                        button.insertAdjacentElement('afterend', targetPanel);
+                        requestAnimationFrame(() => {
                             button.classList.add('active');
                             targetPanel.classList.add('active');
-                        }, delay);
+                        });
                     }
                 });
             });
