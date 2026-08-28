@@ -264,6 +264,51 @@
             text-transform: uppercase;
         }
 
+        .research-category + .research-category {
+            margin-top: 56px;
+            padding-top: 44px;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .research-category-title {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 14px;
+            margin: 0 0 28px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .research-category-title .secondary-title {
+            color: var(--gray-medium);
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+        }
+
+        .research-category .list-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .research-empty {
+            margin: 0;
+            padding-left: 30px;
+            color: var(--gray-medium);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .research-empty::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--black);
+        }
+
         /* 頁尾 */
         footer {
             background-color: var(--black);
@@ -1043,35 +1088,49 @@
     </section>
 
     <section id="research" class="content-box">
-        <h2 class="fade-in">RESEARCH & PUBLICATIONS</h2>
-        
-        <div class="list-item fade-in">
-            <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
-            <div class="meta">2026 | TWSIAM Annual Meeting - Poster Presentation</div>
-            <p>
-                Utilized the Stanford Bunny geometric model to demonstrate the core of the algorithm, and empirically validated sociology theories (like urban economics) that are typically hard to prove by integrating modern ML methods. Later applied this algorithmic framework to the medical AI field, accurately identifying brain tumor images to assist clinical diagnoses, aiming to effectively reduce the workload of medical professionals.
-            </p>
-            <p style="margin-top: 10px;">
-                The second phase of the research introduced Feature Extraction Engineering to segment MRI images into tumor and non-tumor regions. Future work aims to incorporate the Dice Coefficient for continuous improvement, developing a clinical assistant tool.
-            </p>
-            <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" class="project-link">View Project ↗</a>
+        <h2 class="fade-in">RESEARCH</h2>
+
+        <div class="research-category">
+            <h3 class="research-category-title fade-in">Research & Publications</h3>
+
+            <div class="list-item fade-in">
+                <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
+                <div class="meta">2026 | TWSIAM Annual Meeting - Poster Presentation</div>
+                <p>
+                    Utilized the Stanford Bunny geometric model to demonstrate the core of the algorithm, and empirically validated sociology theories (like urban economics) that are typically hard to prove by integrating modern ML methods. Later applied this algorithmic framework to the medical AI field, accurately identifying brain tumor images to assist clinical diagnoses, aiming to effectively reduce the workload of medical professionals.
+                </p>
+                <p style="margin-top: 10px;">
+                    The second phase of the research introduced Feature Extraction Engineering to segment MRI images into tumor and non-tumor regions. Future work aims to incorporate the Dice Coefficient for continuous improvement, developing a clinical assistant tool.
+                </p>
+                <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" class="project-link">View Project ↗</a>
+            </div>
+
+            <div class="list-item fade-in">
+                <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
+                <div class="meta">2026 | International Conference on Optimization and Machine Learning - Poster Presentation</div>
+                <p>
+                    To overcome the pain points of traditional portfolios being susceptible to "spurious correlations" and the HRP model being limited by historical price noise, this research proposed a Factor GCN model based on graph theory architecture. Through Graph Convolutional Networks, the algorithm deeply fuses long-term fundamental factors with short-term momentum features, effectively filtering market noise, and dynamically outputs optimal asset allocation weights in an end-to-end manner to maximize the return per unit of risk.
+                </p>
+                <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" class="project-link">View Project ↗</a>
+            </div>
+
+            <div class="list-item fade-in">
+                <h3>Application of Mixed-Effects Machine Learning in Modeling Small Sample Longitudinal Data</h3>
+                <div class="meta">Ongoing | Joint Research Project</div>
+                <p>
+                    This is a joint research project with National Taiwan University (NTU) Hospital Hsinchu Branch. The project is currently ongoing and is expected to be published as a conference thesis or journal paper. Please stay tuned for the results.
+                </p>
+            </div>
         </div>
 
-        <div class="list-item fade-in">
-            <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
-            <div class="meta">2026 | International Conference on Optimization and Machine Learning - Poster Presentation</div>
-            <p>
-                To overcome the pain points of traditional portfolios being susceptible to "spurious correlations" and the HRP model being limited by historical price noise, this research proposed a Factor GCN model based on graph theory architecture. Through Graph Convolutional Networks, the algorithm deeply fuses long-term fundamental factors with short-term momentum features, effectively filtering market noise, and dynamically outputs optimal asset allocation weights in an end-to-end manner to maximize the return per unit of risk.
-            </p>
-            <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" class="project-link">View Project ↗</a>
+        <div class="research-category">
+            <h3 class="research-category-title fade-in">Independent Projects</h3>
+            <p class="research-empty fade-in">In preparation. Updates will be added here.</p>
         </div>
 
-        <div class="list-item fade-in">
-            <h3>Application of Mixed-Effects Machine Learning in Modeling Small Sample Longitudinal Data</h3>
-            <div class="meta">Ongoing | Joint Research Project</div>
-            <p>
-                This is a joint research project with National Taiwan University (NTU) Hospital Hsinchu Branch. The project is currently ongoing and is expected to be published as a conference thesis or journal paper. Please stay tuned for the results.
-            </p>
+        <div class="research-category">
+            <h3 class="research-category-title fade-in">Technical Experiments</h3>
+            <p class="research-empty fade-in">In preparation. Updates will be added here.</p>
         </div>
     </section>
 

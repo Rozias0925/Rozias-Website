@@ -264,6 +264,51 @@
             text-transform: uppercase;
         }
 
+        .research-category + .research-category {
+            margin-top: 56px;
+            padding-top: 44px;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .research-category-title {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 14px;
+            margin: 0 0 28px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .research-category-title .secondary-title {
+            color: var(--gray-medium);
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+        }
+
+        .research-category .list-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .research-empty {
+            margin: 0;
+            padding-left: 30px;
+            color: var(--gray-medium);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .research-empty::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--black);
+        }
+
         /* 頁尾 */
         footer {
             background-color: var(--black);
@@ -1046,35 +1091,58 @@
     </section>
 
     <section id="research" class="content-box">
-        <h2 class="fade-in">研究與發表 / RESEARCH</h2>
-        
-        <div class="list-item fade-in">
-            <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
-            <div class="meta">2026 | TWSIAM 台灣工業與應用數學會年會 海報發表</div>
-            <p>
-                以 Stanford Bunny 幾何模型為例說明演算法核心，並將無從證明的社會科學理論（如都市經濟學）融入現代機器學習方法加以實證。後續更將此演算法框架應用於 AI 醫療領域，透過精準辨識腦腫瘤影像，輔助臨床醫師進行診斷，期能有效降低醫療人員的工作負擔。
-            </p>
-            <p style="margin-top: 10px;">
-                第二次研究在演算法中加入特徵提取工程 (Feature Extraction Engineering)，將腦部MRI影像分為腫瘤區與非腫瘤區，後續研究欲引入Dice Coefficient並持續改良，期許未來開發輔助臨床醫師使用。
-            </p>
-            <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" class="project-link">View Project ↗</a>
+        <h2 class="fade-in">研究 / RESEARCH</h2>
+
+        <div class="research-category">
+            <h3 class="research-category-title fade-in">
+                學術研究與發表
+                <span class="secondary-title">Research & Publications</span>
+            </h3>
+
+            <div class="list-item fade-in">
+                <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
+                <div class="meta">2026 | TWSIAM 台灣工業與應用數學會年會 海報發表</div>
+                <p>
+                    以 Stanford Bunny 幾何模型為例說明演算法核心，並將無從證明的社會科學理論（如都市經濟學）融入現代機器學習方法加以實證。後續更將此演算法框架應用於 AI 醫療領域，透過精準辨識腦腫瘤影像，輔助臨床醫師進行診斷，期能有效降低醫療人員的工作負擔。
+                </p>
+                <p style="margin-top: 10px;">
+                    第二次研究在演算法中加入特徵提取工程 (Feature Extraction Engineering)，將腦部MRI影像分為腫瘤區與非腫瘤區，後續研究欲引入Dice Coefficient並持續改良，期許未來開發輔助臨床醫師使用。
+                </p>
+                <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" class="project-link">View Project ↗</a>
+            </div>
+
+            <div class="list-item fade-in">
+                <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
+                <div class="meta">2026 | International Conference on Optimization and Machine Learning 海報發表</div>
+                <p>
+                    為克服傳統投資組合易受『假性相關』干擾，以及 HRP 模型受限於歷史價格雜訊的痛點，本研究提出基於圖論架構的 Factor GCN 模型。該演算法透過圖卷積神經網路，將長期基本面因子與短期動能特徵進行深度融合，有效過濾市場雜訊，並以端到端（End-to-End）的方式動態輸出最佳資產配置權重，最大化每單位風險之報酬。
+                </p>
+                <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" class="project-link">View Project ↗</a>
+            </div>
+
+            <div class="list-item fade-in">
+                <h3>應用混合效應機器學習於小樣本縱向資料之建模</h3>
+                <div class="meta">Ongoing | 進行中研究專案</div>
+                <p>
+                    本研究為與台大醫院新竹分院之共同研究，專案目前仍在進行中，預期以論文或期刊方式發表，敬請期待後續成果。
+                </p>
+            </div>
         </div>
 
-        <div class="list-item fade-in">
-            <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
-            <div class="meta">2026 | International Conference on Optimization and Machine Learning 海報發表</div>
-            <p>
-                為克服傳統投資組合易受『假性相關』干擾，以及 HRP 模型受限於歷史價格雜訊的痛點，本研究提出基於圖論架構的 Factor GCN 模型。該演算法透過圖卷積神經網路，將長期基本面因子與短期動能特徵進行深度融合，有效過濾市場雜訊，並以端到端（End-to-End）的方式動態輸出最佳資產配置權重，最大化每單位風險之報酬。
-            </p>
-            <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" class="project-link">View Project ↗</a>
+        <div class="research-category">
+            <h3 class="research-category-title fade-in">
+                自主專案
+                <span class="secondary-title">Independent Projects</span>
+            </h3>
+            <p class="research-empty fade-in">內容籌備中，後續將陸續更新。</p>
         </div>
 
-        <div class="list-item fade-in">
-            <h3>應用混合效應機器學習於小樣本縱向資料之建模</h3>
-            <div class="meta">Ongoing | 進行中研究專案</div>
-            <p>
-                本研究為與台大醫院新竹分院之共同研究，專案目前仍在進行中，預期以論文或期刊方式發表，敬請期待後續成果。
-            </p>
+        <div class="research-category">
+            <h3 class="research-category-title fade-in">
+                技術實驗
+                <span class="secondary-title">Technical Experiments</span>
+            </h3>
+            <p class="research-empty fade-in">內容籌備中，後續將陸續更新。</p>
         </div>
     </section>
 
