@@ -293,44 +293,50 @@
             margin-bottom: 0;
         }
 
-        .research-entry {
+        .research-actions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
             margin-top: 14px;
         }
 
-        .research-entry summary {
+        .research-actions .project-link {
+            margin-top: 0;
+        }
+
+        .research-detail-button {
+            appearance: none;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid var(--black);
+            padding: 0 0 2px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             cursor: pointer;
-            list-style: none;
             color: var(--text-color);
+            font-family: inherit;
             font-size: 0.9rem;
             font-weight: 600;
             letter-spacing: 1px;
-            border-bottom: 1px solid var(--black);
-            padding-bottom: 2px;
             transition: color 0.25s ease, border-color 0.25s ease;
         }
 
-        .research-entry summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .research-entry summary::after {
+        .research-detail-button::after {
             content: '↓';
             font-size: 0.85rem;
         }
 
-        .research-entry[open] summary::after {
+        .research-detail-button[aria-expanded="true"]::after {
             content: '↑';
         }
 
-        .research-entry summary:hover {
+        .research-detail-button:hover {
             color: var(--gray-medium);
             border-bottom-color: var(--gray-medium);
         }
 
-        .research-entry summary:focus-visible {
+        .research-detail-button:focus-visible {
             outline: 1px solid var(--black);
             outline-offset: 8px;
         }
@@ -339,7 +345,11 @@
             padding-top: 16px;
         }
 
-        .research-entry[open] .research-entry-content {
+        .research-entry-content[hidden] {
+            display: none;
+        }
+
+        .research-entry-content.is-open {
             animation: reveal-research 0.3s ease-out;
         }
 
@@ -387,20 +397,75 @@
         }
 
         .progress-dot {
+            appearance: none;
             position: absolute;
             top: 2px;
             width: 12px;
             height: 12px;
+            padding: 0;
             border: 2px solid var(--black);
             border-radius: 50%;
             background-color: var(--card-bg);
             transform: translateX(-50%);
+            cursor: help;
+            font: inherit;
+        }
+
+        .progress-dot::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 50%;
+            bottom: calc(100% + 12px);
+            width: max-content;
+            max-width: min(230px, calc(100vw - 56px));
+            padding: 9px 11px;
+            background-color: var(--black);
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            line-height: 1.5;
+            text-align: left;
+            white-space: normal;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translate(-50%, 4px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+            z-index: 20;
+        }
+
+        .progress-dot:hover,
+        .progress-dot:focus-visible {
+            z-index: 20;
+        }
+
+        .progress-dot:hover::after,
+        .progress-dot:focus-visible::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0);
+        }
+
+        .progress-dot:focus-visible {
+            outline: 1px solid var(--black);
+            outline-offset: 6px;
         }
 
         .progress-dot.start {
             left: 0;
             transform: none;
             background-color: var(--black);
+        }
+
+        .progress-dot.start::after {
+            left: 0;
+            transform: translate(0, 4px);
+        }
+
+        .progress-dot.start:hover::after,
+        .progress-dot.start:focus-visible::after {
+            transform: translate(0, 0);
         }
 
         .progress-dot.milestone {
@@ -422,50 +487,80 @@
             transform: none;
         }
 
+        .progress-dot.end::after {
+            left: auto;
+            right: 0;
+            transform: translate(0, 4px);
+        }
+
+        .progress-dot.end:hover::after,
+        .progress-dot.end:focus-visible::after {
+            transform: translate(0, 0);
+        }
+
         .progress-scale {
-            height: 24px;
-            margin-top: 4px;
-            position: relative;
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            min-height: 66px;
+            margin-top: 8px;
             color: var(--gray-medium);
             font-size: 0.78rem;
             letter-spacing: 0.5px;
         }
 
         .progress-scale span {
-            position: absolute;
-            white-space: nowrap;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            line-height: 1.25;
         }
 
         .progress-scale .start {
-            left: 0;
+            align-items: flex-start;
+            text-align: left;
         }
 
         .progress-scale .milestone {
-            left: var(--step-position);
-            transform: translateX(-50%);
+            transform: none;
         }
 
         .progress-scale .current {
-            left: var(--current-progress);
-            transform: translateX(-50%);
+            transform: none;
             color: var(--black);
             font-weight: 600;
         }
 
         .progress-scale .end {
-            right: 0;
+            align-items: flex-end;
+            text-align: right;
         }
 
-        .progress-status {
-            margin: 4px 0 0;
-            color: var(--gray-medium);
-            font-size: 0.86rem;
-            line-height: 1.7;
-        }
-
-        .progress-status strong {
+        .progress-scale strong {
             color: var(--black);
+            font-size: 0.82rem;
             font-weight: 600;
+        }
+
+        .progress-scale small {
+            margin-top: 6px;
+            font-size: 0.68rem;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 600px) {
+            .progress-dot.current::after {
+                left: auto;
+                right: -10px;
+                transform: translate(0, 4px);
+            }
+
+            .progress-dot.current:hover::after,
+            .progress-dot.current:focus-visible::after {
+                transform: translate(0, 0);
+            }
         }
 
         .research-empty {
@@ -1014,7 +1109,8 @@
         }
         @media (prefers-reduced-motion: reduce) {
             .hero-slideshow, .hero-slide, .hero-dot { transition: none; }
-            .research-entry[open] .research-entry-content { animation: none; }
+            .research-entry-content.is-open { animation: none; }
+            .progress-dot::after { transition: none; }
         }
     </style>
 </head>
@@ -1272,82 +1368,80 @@
             <div class="list-item research-project fade-in">
                 <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
 
-                <div class="research-progress" style="--current-progress: 75%;" aria-label="Brain tumor research progress: 0, 50, 100, Extension I, Extension II; currently at Extension I">
-                    <div class="progress-track" aria-hidden="true">
-                        <span class="progress-fill"></span>
-                        <span class="progress-dot start"></span>
-                        <span class="progress-dot milestone" style="--step-position: 25%;"></span>
-                        <span class="progress-dot milestone" style="--step-position: 50%;"></span>
-                        <span class="progress-dot current"></span>
-                        <span class="progress-dot end"></span>
+                <div class="research-progress" style="--current-progress: 75%;" aria-label="Brain tumor research progress: 0 research started, 50 clustering prototype completed, 100 conference presentation, Extension I clinical partnership and real-world use, Extension II further application; currently at Extension I">
+                    <div class="progress-track">
+                        <span class="progress-fill" aria-hidden="true"></span>
+                        <button type="button" class="progress-dot start" data-tooltip="Established the research problem and spectral-clustering framework" aria-label="0: Established the research problem and spectral-clustering framework"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 25%;" data-tooltip="Completed the brain MRI clustering prototype and feature extraction" aria-label="50: Completed the brain MRI clustering prototype and feature extraction"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 50%;" data-tooltip="Presented at a conference and achieved the original research goal" aria-label="100: Presented at a conference and achieved the original research goal"></button>
+                        <button type="button" class="progress-dot current" data-tooltip="Seeking clinical partners for real-world use and feedback" aria-label="Current Extension I: Seeking clinical partners for real-world use and feedback"></button>
+                        <button type="button" class="progress-dot end" data-tooltip="Refine the method based on clinical results and extend its applications" aria-label="Extension II: Refine the method based on clinical results and extend its applications"></button>
                     </div>
                     <div class="progress-scale" aria-hidden="true">
-                        <span class="start">0</span>
-                        <span class="milestone" style="--step-position: 25%;">50</span>
-                        <span class="milestone" style="--step-position: 50%;">100</span>
-                        <span class="current">(I)</span>
-                        <span class="end">(II)</span>
+                        <span class="start"><strong>0</strong><small>Research started</small></span>
+                        <span class="milestone"><strong>50</strong><small>Clustering prototype completed</small></span>
+                        <span class="milestone"><strong>100</strong><small>Conference presentation</small></span>
+                        <span class="current"><strong>(I)</strong><small>Clinical partnership and real-world use</small></span>
+                        <span class="end"><strong>(II)</strong><small>Further application</small></span>
                     </div>
-                    <p class="progress-status"><strong>100</strong> Presented at a conference; the original goal has been achieved | <strong>Current (I)</strong> Seeking clinical partners for real-world use | <strong>(II)</strong> Further extension</p>
                 </div>
 
-                <details class="research-entry">
-                    <summary>Detail</summary>
-                    <div class="research-entry-content">
-                        <p>
-                            Utilized the Stanford Bunny geometric model to demonstrate the core of the algorithm, and empirically validated sociology theories (like urban economics) that are typically hard to prove by integrating modern ML methods. Later applied this algorithmic framework to the medical AI field, accurately identifying brain tumor images to assist clinical diagnoses, aiming to effectively reduce the workload of medical professionals.
-                        </p>
-                        <p style="margin-top: 10px;">
-                            The second phase of the research introduced Feature Extraction Engineering to segment MRI images into tumor and non-tumor regions. Future work aims to incorporate the Dice Coefficient for continuous improvement, developing a clinical assistant tool.
-                        </p>
-                    </div>
-                </details>
-                <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+                <div class="research-actions">
+                    <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="brain-tumor-detail-en">Detail</button>
+                    <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+                </div>
+                <div class="research-entry-content" id="brain-tumor-detail-en" hidden>
+                    <p>
+                        Utilized the Stanford Bunny geometric model to demonstrate the core of the algorithm, and empirically validated sociology theories (like urban economics) that are typically hard to prove by integrating modern ML methods. Later applied this algorithmic framework to the medical AI field, accurately identifying brain tumor images to assist clinical diagnoses, aiming to effectively reduce the workload of medical professionals.
+                    </p>
+                    <p style="margin-top: 10px;">
+                        The second phase of the research introduced Feature Extraction Engineering to segment MRI images into tumor and non-tumor regions. Future work aims to incorporate the Dice Coefficient for continuous improvement, developing a clinical assistant tool.
+                    </p>
+                </div>
             </div>
 
             <div class="list-item research-project fade-in">
                 <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
 
-                <div class="research-progress" style="--current-progress: 75%;" aria-label="Factor GCN research progress: 0, 40, 100, Extension I, Extension II; currently at Extension I">
-                    <div class="progress-track" aria-hidden="true">
-                        <span class="progress-fill"></span>
-                        <span class="progress-dot start"></span>
-                        <span class="progress-dot milestone" style="--step-position: 25%;"></span>
-                        <span class="progress-dot milestone" style="--step-position: 50%;"></span>
-                        <span class="progress-dot current"></span>
-                        <span class="progress-dot end"></span>
+                <div class="research-progress" style="--current-progress: 75%;" aria-label="Factor GCN research progress: 0 research started, 40 model prototype completed, 100 conference presentation, Extension I KGI collaboration with GAT and RL integration, Extension II system extension; currently at Extension I">
+                    <div class="progress-track">
+                        <span class="progress-fill" aria-hidden="true"></span>
+                        <button type="button" class="progress-dot start" data-tooltip="Defined the end-to-end portfolio-optimization research direction" aria-label="0: Defined the end-to-end portfolio-optimization research direction"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 25%;" data-tooltip="Completed the Factor GCN prototype and weight-output pipeline" aria-label="40: Completed the Factor GCN prototype and weight-output pipeline"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 50%;" data-tooltip="Presented at a conference and achieved the original research goal" aria-label="100: Presented at a conference and achieved the original research goal"></button>
+                        <button type="button" class="progress-dot current" data-tooltip="Continuing the KGI Securities collaboration to integrate GAT, RL, and related techniques" aria-label="Current Extension I: Continuing the KGI Securities collaboration to integrate GAT, RL, and related techniques"></button>
+                        <button type="button" class="progress-dot end" data-tooltip="Extend the complete system and explore future deployment" aria-label="Extension II: Extend the complete system and explore future deployment"></button>
                     </div>
                     <div class="progress-scale" aria-hidden="true">
-                        <span class="start">0</span>
-                        <span class="milestone" style="--step-position: 25%;">40</span>
-                        <span class="milestone" style="--step-position: 50%;">100</span>
-                        <span class="current">(I)</span>
-                        <span class="end">(II)</span>
+                        <span class="start"><strong>0</strong><small>Research started</small></span>
+                        <span class="milestone"><strong>40</strong><small>Model prototype completed</small></span>
+                        <span class="milestone"><strong>100</strong><small>Conference presentation</small></span>
+                        <span class="current"><strong>(I)</strong><small>KGI collaboration・GAT / RL</small></span>
+                        <span class="end"><strong>(II)</strong><small>System extension</small></span>
                     </div>
-                    <p class="progress-status"><strong>100</strong> Presented at a conference; the original goal has been achieved | <strong>Current (I)</strong> Continuing the collaboration with KGI Securities to integrate GAT, RL, and related techniques into the algorithm | <strong>(II)</strong> Further extension</p>
                 </div>
 
-                <details class="research-entry">
-                    <summary>Detail</summary>
-                    <div class="research-entry-content">
-                        <p>
-                            To overcome the pain points of traditional portfolios being susceptible to "spurious correlations" and the HRP model being limited by historical price noise, this research proposed a Factor GCN model based on graph theory architecture. Through Graph Convolutional Networks, the algorithm deeply fuses long-term fundamental factors with short-term momentum features, effectively filtering market noise, and dynamically outputs optimal asset allocation weights in an end-to-end manner to maximize the return per unit of risk.
-                        </p>
-                    </div>
-                </details>
-                <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+                <div class="research-actions">
+                    <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="factor-gcn-detail-en">Detail</button>
+                    <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+                </div>
+                <div class="research-entry-content" id="factor-gcn-detail-en" hidden>
+                    <p>
+                        To overcome the pain points of traditional portfolios being susceptible to "spurious correlations" and the HRP model being limited by historical price noise, this research proposed a Factor GCN model based on graph theory architecture. Through Graph Convolutional Networks, the algorithm deeply fuses long-term fundamental factors with short-term momentum features, effectively filtering market noise, and dynamically outputs optimal asset allocation weights in an end-to-end manner to maximize the return per unit of risk.
+                    </p>
+                </div>
             </div>
 
             <div class="list-item research-project fade-in">
                 <h3>Mixed-Effects Machine Learning for Small-Sample and Sparse Longitudinal Data</h3>
-                <details class="research-entry">
-                    <summary>Detail</summary>
-                    <div class="research-entry-content">
-                        <p>
-                            This joint research project with National Taiwan University Hospital Hsinchu Branch involves restricted medical information. To comply with data-governance and research-collaboration requirements, the algorithm and related materials will be released only after the study is completed and a joint decision confirms that publication is permitted.
-                        </p>
-                    </div>
-                </details>
+                <div class="research-actions">
+                    <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="mixed-effects-detail-en">Detail</button>
+                </div>
+                <div class="research-entry-content" id="mixed-effects-detail-en" hidden>
+                    <p>
+                        This joint research project with National Taiwan University Hospital Hsinchu Branch involves restricted medical information. To comply with data-governance and research-collaboration requirements, the algorithm and related materials will be released only after the study is completed and a joint decision confirms that publication is permitted.
+                    </p>
+                </div>
             </div>
         </div>
 
@@ -1467,6 +1561,18 @@
             if (skillsSection && honorsSection) {
                 honorsSection.insertAdjacentElement('afterend', skillsSection);
             }
+
+            document.querySelectorAll('.research-detail-button').forEach(button => {
+                const panel = document.getElementById(button.getAttribute('aria-controls'));
+                if (!panel) return;
+
+                button.addEventListener('click', () => {
+                    const willOpen = button.getAttribute('aria-expanded') !== 'true';
+                    button.setAttribute('aria-expanded', String(willOpen));
+                    panel.hidden = !willOpen;
+                    panel.classList.toggle('is-open', willOpen);
+                });
+            });
 
             // 滑動顯示特效
             const faders = document.querySelectorAll('.fade-in');

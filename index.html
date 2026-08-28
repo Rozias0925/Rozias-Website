@@ -293,44 +293,50 @@
             margin-bottom: 0;
         }
 
-        .research-entry {
+        .research-actions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
             margin-top: 14px;
         }
 
-        .research-entry summary {
+        .research-actions .project-link {
+            margin-top: 0;
+        }
+
+        .research-detail-button {
+            appearance: none;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid var(--black);
+            padding: 0 0 2px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             cursor: pointer;
-            list-style: none;
             color: var(--text-color);
+            font-family: inherit;
             font-size: 0.9rem;
             font-weight: 600;
             letter-spacing: 1px;
-            border-bottom: 1px solid var(--black);
-            padding-bottom: 2px;
             transition: color 0.25s ease, border-color 0.25s ease;
         }
 
-        .research-entry summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .research-entry summary::after {
+        .research-detail-button::after {
             content: '↓';
             font-size: 0.85rem;
         }
 
-        .research-entry[open] summary::after {
+        .research-detail-button[aria-expanded="true"]::after {
             content: '↑';
         }
 
-        .research-entry summary:hover {
+        .research-detail-button:hover {
             color: var(--gray-medium);
             border-bottom-color: var(--gray-medium);
         }
 
-        .research-entry summary:focus-visible {
+        .research-detail-button:focus-visible {
             outline: 1px solid var(--black);
             outline-offset: 8px;
         }
@@ -339,7 +345,11 @@
             padding-top: 16px;
         }
 
-        .research-entry[open] .research-entry-content {
+        .research-entry-content[hidden] {
+            display: none;
+        }
+
+        .research-entry-content.is-open {
             animation: reveal-research 0.3s ease-out;
         }
 
@@ -387,20 +397,75 @@
         }
 
         .progress-dot {
+            appearance: none;
             position: absolute;
             top: 2px;
             width: 12px;
             height: 12px;
+            padding: 0;
             border: 2px solid var(--black);
             border-radius: 50%;
             background-color: var(--card-bg);
             transform: translateX(-50%);
+            cursor: help;
+            font: inherit;
+        }
+
+        .progress-dot::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 50%;
+            bottom: calc(100% + 12px);
+            width: max-content;
+            max-width: min(230px, calc(100vw - 56px));
+            padding: 9px 11px;
+            background-color: var(--black);
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            line-height: 1.5;
+            text-align: left;
+            white-space: normal;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translate(-50%, 4px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+            z-index: 20;
+        }
+
+        .progress-dot:hover,
+        .progress-dot:focus-visible {
+            z-index: 20;
+        }
+
+        .progress-dot:hover::after,
+        .progress-dot:focus-visible::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0);
+        }
+
+        .progress-dot:focus-visible {
+            outline: 1px solid var(--black);
+            outline-offset: 6px;
         }
 
         .progress-dot.start {
             left: 0;
             transform: none;
             background-color: var(--black);
+        }
+
+        .progress-dot.start::after {
+            left: 0;
+            transform: translate(0, 4px);
+        }
+
+        .progress-dot.start:hover::after,
+        .progress-dot.start:focus-visible::after {
+            transform: translate(0, 0);
         }
 
         .progress-dot.milestone {
@@ -422,50 +487,80 @@
             transform: none;
         }
 
+        .progress-dot.end::after {
+            left: auto;
+            right: 0;
+            transform: translate(0, 4px);
+        }
+
+        .progress-dot.end:hover::after,
+        .progress-dot.end:focus-visible::after {
+            transform: translate(0, 0);
+        }
+
         .progress-scale {
-            height: 24px;
-            margin-top: 4px;
-            position: relative;
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            min-height: 66px;
+            margin-top: 8px;
             color: var(--gray-medium);
             font-size: 0.78rem;
             letter-spacing: 0.5px;
         }
 
         .progress-scale span {
-            position: absolute;
-            white-space: nowrap;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            line-height: 1.25;
         }
 
         .progress-scale .start {
-            left: 0;
+            align-items: flex-start;
+            text-align: left;
         }
 
         .progress-scale .milestone {
-            left: var(--step-position);
-            transform: translateX(-50%);
+            transform: none;
         }
 
         .progress-scale .current {
-            left: var(--current-progress);
-            transform: translateX(-50%);
+            transform: none;
             color: var(--black);
             font-weight: 600;
         }
 
         .progress-scale .end {
-            right: 0;
+            align-items: flex-end;
+            text-align: right;
         }
 
-        .progress-status {
-            margin: 4px 0 0;
-            color: var(--gray-medium);
-            font-size: 0.86rem;
-            line-height: 1.7;
-        }
-
-        .progress-status strong {
+        .progress-scale strong {
             color: var(--black);
+            font-size: 0.82rem;
             font-weight: 600;
+        }
+
+        .progress-scale small {
+            margin-top: 6px;
+            font-size: 0.68rem;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 600px) {
+            .progress-dot.current::after {
+                left: auto;
+                right: -10px;
+                transform: translate(0, 4px);
+            }
+
+            .progress-dot.current:hover::after,
+            .progress-dot.current:focus-visible::after {
+                transform: translate(0, 0);
+            }
         }
 
         .research-empty {
@@ -1015,7 +1110,8 @@
         }
         @media (prefers-reduced-motion: reduce) {
             .hero-slideshow, .hero-slide, .hero-dot { transition: none; }
-            .research-entry[open] .research-entry-content { animation: none; }
+            .research-entry-content.is-open { animation: none; }
+            .progress-dot::after { transition: none; }
         }
     </style>
 </head>
@@ -1278,82 +1374,80 @@
             <div class="list-item research-project fade-in">
                 <h3>Graph Laplacian & Spectral Clustering: Applications in Geometric Models, Urban Networks, and Medical Imaging</h3>
 
-                <div class="research-progress" style="--current-progress: 75%;" aria-label="腦腫瘤研究進度：0、50、100、第一延伸階段、第二延伸階段；目前位於第一延伸階段">
-                    <div class="progress-track" aria-hidden="true">
-                        <span class="progress-fill"></span>
-                        <span class="progress-dot start"></span>
-                        <span class="progress-dot milestone" style="--step-position: 25%;"></span>
-                        <span class="progress-dot milestone" style="--step-position: 50%;"></span>
-                        <span class="progress-dot current"></span>
-                        <span class="progress-dot end"></span>
+                <div class="research-progress" style="--current-progress: 75%;" aria-label="腦腫瘤研究進度：0 研究啟動、50 分群原型完成、100 發表會發表、第一延伸階段臨床合作與實際使用、第二延伸階段應用延伸；目前位於第一延伸階段">
+                    <div class="progress-track">
+                        <span class="progress-fill" aria-hidden="true"></span>
+                        <button type="button" class="progress-dot start" data-tooltip="建立研究問題與光譜分群架構" aria-label="0：建立研究問題與光譜分群架構"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 25%;" data-tooltip="完成腦部 MRI 分群原型與特徵提取" aria-label="50：完成腦部 MRI 分群原型與特徵提取"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 50%;" data-tooltip="完成發表會發表，達成原定研究目標" aria-label="100：完成發表會發表，達成原定研究目標"></button>
+                        <button type="button" class="progress-dot current" data-tooltip="尋找臨床合作對象，進行實際使用與回饋" aria-label="目前第一延伸階段：尋找臨床合作對象，進行實際使用與回饋"></button>
+                        <button type="button" class="progress-dot end" data-tooltip="依臨床結果持續改良並延伸應用" aria-label="第二延伸階段：依臨床結果持續改良並延伸應用"></button>
                     </div>
                     <div class="progress-scale" aria-hidden="true">
-                        <span class="start">0</span>
-                        <span class="milestone" style="--step-position: 25%;">50</span>
-                        <span class="milestone" style="--step-position: 50%;">100</span>
-                        <span class="current">(I)</span>
-                        <span class="end">(II)</span>
+                        <span class="start"><strong>0</strong><small>研究啟動</small></span>
+                        <span class="milestone"><strong>50</strong><small>分群原型完成</small></span>
+                        <span class="milestone"><strong>100</strong><small>發表會發表</small></span>
+                        <span class="current"><strong>(I)</strong><small>臨床合作與實際使用</small></span>
+                        <span class="end"><strong>(II)</strong><small>應用延伸</small></span>
                     </div>
-                    <p class="progress-status"><strong>100</strong> 參加發表會，原定目標已達成｜<strong>目前（I）</strong> 尋找臨床合作對象進行實際使用｜<strong>（II）</strong> 後續延伸</p>
                 </div>
 
-                <details class="research-entry">
-                    <summary>Detail</summary>
-                    <div class="research-entry-content">
-                        <p>
-                            以 Stanford Bunny 幾何模型為例說明演算法核心，並將無從證明的社會科學理論（如都市經濟學）融入現代機器學習方法加以實證。後續更將此演算法框架應用於 AI 醫療領域，透過精準辨識腦腫瘤影像，輔助臨床醫師進行診斷，期能有效降低醫療人員的工作負擔。
-                        </p>
-                        <p style="margin-top: 10px;">
-                            第二次研究在演算法中加入特徵提取工程 (Feature Extraction Engineering)，將腦部MRI影像分為腫瘤區與非腫瘤區，後續研究欲引入Dice Coefficient並持續改良，期許未來開發輔助臨床醫師使用。
-                        </p>
-                    </div>
-                </details>
-                <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+                <div class="research-actions">
+                    <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="brain-tumor-detail-zh">Detail</button>
+                    <a href="https://rozias0925.github.io/FY26-Graph-Clustering-Intro/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+                </div>
+                <div class="research-entry-content" id="brain-tumor-detail-zh" hidden>
+                    <p>
+                        以 Stanford Bunny 幾何模型為例說明演算法核心，並將無從證明的社會科學理論（如都市經濟學）融入現代機器學習方法加以實證。後續更將此演算法框架應用於 AI 醫療領域，透過精準辨識腦腫瘤影像，輔助臨床醫師進行診斷，期能有效降低醫療人員的工作負擔。
+                    </p>
+                    <p style="margin-top: 10px;">
+                        第二次研究在演算法中加入特徵提取工程 (Feature Extraction Engineering)，將腦部MRI影像分為腫瘤區與非腫瘤區，後續研究欲引入Dice Coefficient並持續改良，期許未來開發輔助臨床醫師使用。
+                    </p>
+                </div>
             </div>
 
             <div class="list-item research-project fade-in">
                 <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
 
-                <div class="research-progress" style="--current-progress: 75%;" aria-label="Factor GCN 研究進度：0、40、100、第一延伸階段、第二延伸階段；目前位於第一延伸階段">
-                    <div class="progress-track" aria-hidden="true">
-                        <span class="progress-fill"></span>
-                        <span class="progress-dot start"></span>
-                        <span class="progress-dot milestone" style="--step-position: 25%;"></span>
-                        <span class="progress-dot milestone" style="--step-position: 50%;"></span>
-                        <span class="progress-dot current"></span>
-                        <span class="progress-dot end"></span>
+                <div class="research-progress" style="--current-progress: 75%;" aria-label="Factor GCN 研究進度：0 研究啟動、40 模型原型完成、100 發表會發表、第一延伸階段凱基合作並結合 GAT 與 RL、第二延伸階段系統延伸；目前位於第一延伸階段">
+                    <div class="progress-track">
+                        <span class="progress-fill" aria-hidden="true"></span>
+                        <button type="button" class="progress-dot start" data-tooltip="確立端到端投資組合最佳化研究方向" aria-label="0：確立端到端投資組合最佳化研究方向"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 25%;" data-tooltip="完成 Factor GCN 模型原型與權重輸出流程" aria-label="40：完成 Factor GCN 模型原型與權重輸出流程"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 50%;" data-tooltip="完成發表會發表，達成原定研究目標" aria-label="100：完成發表會發表，達成原定研究目標"></button>
+                        <button type="button" class="progress-dot current" data-tooltip="持續與凱基證券合作，將演算法結合 GAT、RL 等技術" aria-label="目前第一延伸階段：持續與凱基證券合作，將演算法結合 GAT、RL 等技術"></button>
+                        <button type="button" class="progress-dot end" data-tooltip="延伸完整系統與後續部署方向" aria-label="第二延伸階段：延伸完整系統與後續部署方向"></button>
                     </div>
                     <div class="progress-scale" aria-hidden="true">
-                        <span class="start">0</span>
-                        <span class="milestone" style="--step-position: 25%;">40</span>
-                        <span class="milestone" style="--step-position: 50%;">100</span>
-                        <span class="current">(I)</span>
-                        <span class="end">(II)</span>
+                        <span class="start"><strong>0</strong><small>研究啟動</small></span>
+                        <span class="milestone"><strong>40</strong><small>模型原型完成</small></span>
+                        <span class="milestone"><strong>100</strong><small>發表會發表</small></span>
+                        <span class="current"><strong>(I)</strong><small>凱基合作・GAT／RL</small></span>
+                        <span class="end"><strong>(II)</strong><small>系統延伸</small></span>
                     </div>
-                    <p class="progress-status"><strong>100</strong> 參加發表會，原定目標已達成｜<strong>目前（I）</strong> 持續與凱基證券合作，將演算法結合 GAT、RL 等技術｜<strong>（II）</strong> 後續延伸</p>
                 </div>
 
-                <details class="research-entry">
-                    <summary>Detail</summary>
-                    <div class="research-entry-content">
-                        <p>
-                            為克服傳統投資組合易受『假性相關』干擾，以及 HRP 模型受限於歷史價格雜訊的痛點，本研究提出基於圖論架構的 Factor GCN 模型。該演算法透過圖卷積神經網路，將長期基本面因子與短期動能特徵進行深度融合，有效過濾市場雜訊，並以端到端（End-to-End）的方式動態輸出最佳資產配置權重，最大化每單位風險之報酬。
-                        </p>
-                    </div>
-                </details>
-                <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+                <div class="research-actions">
+                    <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="factor-gcn-detail-zh">Detail</button>
+                    <a href="https://rozias0925.github.io/FY26-Graph-Portfolio/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+                </div>
+                <div class="research-entry-content" id="factor-gcn-detail-zh" hidden>
+                    <p>
+                        為克服傳統投資組合易受『假性相關』干擾，以及 HRP 模型受限於歷史價格雜訊的痛點，本研究提出基於圖論架構的 Factor GCN 模型。該演算法透過圖卷積神經網路，將長期基本面因子與短期動能特徵進行深度融合，有效過濾市場雜訊，並以端到端（End-to-End）的方式動態輸出最佳資產配置權重，最大化每單位風險之報酬。
+                    </p>
+                </div>
             </div>
 
             <div class="list-item research-project fade-in">
                 <h3>Mixed-Effects Machine Learning for Small-Sample and Sparse Longitudinal Data</h3>
-                <details class="research-entry">
-                    <summary>Detail</summary>
-                    <div class="research-entry-content">
-                        <p>
-                            本研究為與台大醫院新竹分院的共同研究，涉及受限醫療資訊。為遵守資料治理與研究合作規範，將待研究完成並經共同決議確認可公開發表後，再公開演算法與相關內容。
-                        </p>
-                    </div>
-                </details>
+                <div class="research-actions">
+                    <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="mixed-effects-detail-zh">Detail</button>
+                </div>
+                <div class="research-entry-content" id="mixed-effects-detail-zh" hidden>
+                    <p>
+                        本研究為與台大醫院新竹分院的共同研究，涉及受限醫療資訊。為遵守資料治理與研究合作規範，將待研究完成並經共同決議確認可公開發表後，再公開演算法與相關內容。
+                    </p>
+                </div>
             </div>
         </div>
 
@@ -1479,6 +1573,18 @@
             if (skillsSection && honorsSection) {
                 honorsSection.insertAdjacentElement('afterend', skillsSection);
             }
+
+            document.querySelectorAll('.research-detail-button').forEach(button => {
+                const panel = document.getElementById(button.getAttribute('aria-controls'));
+                if (!panel) return;
+
+                button.addEventListener('click', () => {
+                    const willOpen = button.getAttribute('aria-expanded') !== 'true';
+                    button.setAttribute('aria-expanded', String(willOpen));
+                    panel.hidden = !willOpen;
+                    panel.classList.toggle('is-open', willOpen);
+                });
+            });
 
             // 滑動顯示特效
             const faders = document.querySelectorAll('.fade-in');
