@@ -864,8 +864,74 @@
             margin: 30px 0 10px;
         }
 
+        .about-introduction.handwriting {
+            font-size: 0.98rem;
+            line-height: 1.9;
+            letter-spacing: 0.7px;
+        }
+
         .about-introduction p {
             margin: 0 0 22px;
+        }
+
+        .about-disclosures {
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .about-disclosure {
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .about-disclosure summary {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 22px 0;
+            cursor: pointer;
+        }
+
+        .about-disclosure summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .about-disclosure summary:focus-visible {
+            outline: 2px solid var(--black);
+            outline-offset: 5px;
+        }
+
+        .about-disclosure-title {
+            font-size: 1.14rem;
+            font-weight: 600;
+            line-height: 1.5;
+            letter-spacing: 0.7px;
+        }
+
+        .about-disclosure-action {
+            flex: 0 0 auto;
+            color: var(--gray-medium);
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.25s ease;
+        }
+
+        .about-disclosure:hover .about-disclosure-action,
+        .about-disclosure[open] .about-disclosure-action {
+            color: var(--black);
+        }
+
+        .about-disclosure-body {
+            padding: 0 0 28px;
+        }
+
+        .about-disclosure-body p {
+            margin: 0;
+        }
+
+        .about-empty {
+            min-height: 2px;
         }
 
         .handwriting {
@@ -1423,8 +1489,24 @@
             .about-introduction {
                 margin-top: 26px;
             }
+            .about-introduction.handwriting {
+                font-size: 0.98rem;
+                line-height: 1.9;
+                letter-spacing: 0;
+            }
             .about-introduction p {
                 margin-bottom: 20px;
+            }
+            .about-disclosure summary {
+                gap: 14px;
+                padding: 19px 0;
+            }
+            .about-disclosure-title {
+                font-size: 1.02rem;
+                letter-spacing: 0.35px;
+            }
+            .about-disclosure-action {
+                letter-spacing: 0.35px;
             }
             .list-item h3 {
                 font-size: 1.08rem;
@@ -1593,11 +1675,11 @@
     <section id="about" class="content-box">
         <h2 class="fade-in">簡介 / ABOUT</h2>
         <div class="about-profile fade-in">
+            <p class="about-name">文君豪</p>
             <div class="about-name-row">
-                <p class="about-name">文君豪</p>
+                <p class="about-name-en">Chun-Hao, Wen | Rozias Wen</p>
                 <a href="#contact" class="project-link about-contact-link">Contact ↓</a>
             </div>
-            <p class="about-name-en">Chun-Hao, Wen | Rozias Wen</p>
             <p class="about-academic-meta">國立臺灣師範大學數學系｜B.S. Candidate in Mathematics, 2026</p>
             <p class="about-subjects">Algebra · Linear Algebra · Scientific Computing · Graph Learning · Machine Learning</p>
             <div class="about-introduction handwriting">
@@ -1606,6 +1688,54 @@
                 <p>從 Graph Laplacian 的應用起步，我以過去熟悉的代數視角，深入研究泛函分析的譜理論。除了應用於剖析譜分群 (Spectral Clustering) 上的幾何特性，我更進一步鑽研深層的圖卷積理論 (Graph Convolutional Networks)。憑藉著純數培養出的嚴謹邏輯，我一點一滴撬開了機器學習領域的大門。</p>
                 <p>從實作腦腫瘤 MRI 影像分割系統、開發基於圖論與機器學習的量化交易演算法，到以進階演算法分析心肌梗塞相關機轉的醫療數據，我持續擴充跨領域所需的工程與統計技能。我期許自己能不斷將抽象的數學邏輯，轉化為解決真實世界問題的實務視角，有朝一日在資料科學與人工智慧領域中，開創出屬於自己的一席之地。</p>
             </div>
+        </div>
+
+        <div class="about-disclosures">
+            <details class="about-disclosure fade-in">
+                <summary>
+                    <span class="about-disclosure-title">我是怎樣的人？</span>
+                    <span class="about-disclosure-action">閱讀</span>
+                </summary>
+                <div class="about-disclosure-body about-empty" aria-hidden="true"></div>
+            </details>
+
+            <details class="about-disclosure fade-in">
+                <summary>
+                    <span class="about-disclosure-title">數學如何改變我？</span>
+                    <span class="about-disclosure-action">閱讀</span>
+                </summary>
+                <div class="about-disclosure-body">
+                    <p class="handwriting">代數學與線性代數讓我第一次深刻感受到，數學不只是計算，而是一種理解結構與關係的語言。對抽象結構的著迷，曾讓我很想繼續在純數學裡深耕；這份好奇也驅使我利用暑期自修 Galois Theory，並進一步探索 Homological Algebra。即使後來研究方向延伸到新的領域，這段訓練仍是我看待問題、建立模型與追求嚴謹性的起點。</p>
+                </div>
+            </details>
+
+            <details class="about-disclosure fade-in">
+                <summary>
+                    <span class="about-disclosure-title">為什麼是新加坡？</span>
+                    <span class="about-disclosure-action">閱讀</span>
+                </summary>
+                <div class="about-disclosure-body">
+                    <p class="handwriting">2018 年初次造訪新加坡時，我便對城市的發展與秩序留下深刻印象；2025 年初再次前往，並與當地學生交流後，我更清楚看見自己嚮往的學習環境：有效率、積極上進，也對自己有嚴格的要求。我願意把它稱為心中的烏托邦。這份嚮往讓我把目標放在新加坡國立大學或南洋理工大學，期望在機器學習、資料科學或人工智慧相關領域繼續深造。</p>
+                </div>
+            </details>
+
+            <details class="about-disclosure fade-in">
+                <summary>
+                    <span class="about-disclosure-title">我如何找到下一個方向？</span>
+                    <span class="about-disclosure-action">閱讀</span>
+                </summary>
+                <div class="about-disclosure-body">
+                    <p class="handwriting">走向機器學習，並不是因為否定純數學，而是我重新評估自己的個性、喜好與想處理的問題後，做出的主動選擇。2025 年校際應用數學秋季研討會的最佳論文獎，讓我看見自己也能把數學想法帶進新的問題；而科學計算的學習，則讓我理解模型、資料與演算法之間的連結。從 Graph Laplacian 到 GCN，我發現過去的純數與邏輯訓練沒有被留在原地，而是為我打開了通往 ML 的新門。</p>
+                </div>
+            </details>
+
+            <details class="about-disclosure fade-in">
+                <summary>
+                    <span class="about-disclosure-title">我正在推進什麼？</span>
+                    <span class="about-disclosure-action">閱讀</span>
+                </summary>
+                <div class="about-disclosure-body about-empty" aria-hidden="true"></div>
+            </details>
         </div>
     </section>
 

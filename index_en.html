@@ -864,8 +864,74 @@
             margin: 30px 0 10px;
         }
 
+        .about-introduction.handwriting {
+            font-size: 0.98rem;
+            line-height: 1.9;
+            letter-spacing: 0.7px;
+        }
+
         .about-introduction p {
             margin: 0 0 22px;
+        }
+
+        .about-disclosures {
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .about-disclosure {
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .about-disclosure summary {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 22px 0;
+            cursor: pointer;
+        }
+
+        .about-disclosure summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .about-disclosure summary:focus-visible {
+            outline: 2px solid var(--black);
+            outline-offset: 5px;
+        }
+
+        .about-disclosure-title {
+            font-size: 1.14rem;
+            font-weight: 600;
+            line-height: 1.5;
+            letter-spacing: 0.7px;
+        }
+
+        .about-disclosure-action {
+            flex: 0 0 auto;
+            color: var(--gray-medium);
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.25s ease;
+        }
+
+        .about-disclosure:hover .about-disclosure-action,
+        .about-disclosure[open] .about-disclosure-action {
+            color: var(--black);
+        }
+
+        .about-disclosure-body {
+            padding: 0 0 28px;
+        }
+
+        .about-disclosure-body p {
+            margin: 0;
+        }
+
+        .about-empty {
+            min-height: 2px;
         }
 
         .handwriting {
@@ -1422,8 +1488,24 @@
             .about-introduction {
                 margin-top: 26px;
             }
+            .about-introduction.handwriting {
+                font-size: 0.98rem;
+                line-height: 1.9;
+                letter-spacing: 0;
+            }
             .about-introduction p {
                 margin-bottom: 20px;
+            }
+            .about-disclosure summary {
+                gap: 14px;
+                padding: 19px 0;
+            }
+            .about-disclosure-title {
+                font-size: 1.02rem;
+                letter-spacing: 0.35px;
+            }
+            .about-disclosure-action {
+                letter-spacing: 0.35px;
             }
             .list-item h3 {
                 font-size: 1.08rem;
@@ -1592,11 +1674,11 @@
     <section id="about" class="content-box">
         <h2 class="fade-in">ABOUT ME</h2>
         <div class="about-profile fade-in">
+            <p class="about-name">Chun-Hao Wen</p>
             <div class="about-name-row">
-                <p class="about-name">Chun-Hao Wen</p>
+                <p class="about-name-en">Rozias Wen</p>
                 <a href="#contact" class="project-link about-contact-link">Contact ↓</a>
             </div>
-            <p class="about-name-en">Rozias Wen</p>
             <p class="about-academic-meta">National Taiwan Normal University, Department of Mathematics | B.S. Candidate in Mathematics, 2026</p>
             <p class="about-subjects">Algebra · Linear Algebra · Scientific Computing · Graph Learning · Machine Learning</p>
             <div class="about-introduction handwriting">
@@ -1605,6 +1687,54 @@
                 <p>Starting with the applications of the Graph Laplacian, I applied my familiar algebraic perspective to delve into the spectral theory of functional analysis. Beyond analyzing its geometric properties in Spectral Clustering, I further explored advanced Graph Convolutional Networks (GCN). Relying on the rigorous logic cultivated through pure mathematics, I progressively unlocked the doors to the machine learning domain.</p>
                 <p>From implementing a brain tumor MRI segmentation system and developing quantitative trading algorithms based on graph theory and machine learning, to applying advanced algorithms to analyze real-world medical data on myocardial infarction mechanisms, I continuously expand my cross-disciplinary engineering and statistical skills. I aspire to keep translating abstract mathematical logic into practical perspectives for solving real-world problems, ultimately carving out my own niche in the fields of Data Science and Artificial Intelligence.</p>
             </div>
+        </div>
+
+        <div class="about-disclosures">
+            <details class="about-disclosure fade-in">
+                <summary>
+                    <span class="about-disclosure-title">Who I Am</span>
+                    <span class="about-disclosure-action">Read</span>
+                </summary>
+                <div class="about-disclosure-body about-empty" aria-hidden="true"></div>
+            </details>
+
+            <details class="about-disclosure fade-in">
+                <summary>
+                    <span class="about-disclosure-title">How Mathematics Shaped Me</span>
+                    <span class="about-disclosure-action">Read</span>
+                </summary>
+                <div class="about-disclosure-body">
+                    <p class="handwriting">Algebra and linear algebra first made the idea of mathematical structure feel tangible to me. I came to see mathematics not simply as calculation, but as a language for understanding relationships and form. That fascination once made me want to continue deeply into pure mathematics; it also led me to self-study Galois Theory over the summer and explore Homological Algebra. Even as my research interests expanded, this training remains the starting point for how I frame problems, build models, and pursue rigor.</p>
+                </div>
+            </details>
+
+            <details class="about-disclosure fade-in">
+                <summary>
+                    <span class="about-disclosure-title">Why Singapore?</span>
+                    <span class="about-disclosure-action">Read</span>
+                </summary>
+                <div class="about-disclosure-body">
+                    <p class="handwriting">My first visit to Singapore in 2018 left a strong impression of a city shaped by development and order. Returning in early 2025 and speaking with local students made the learning environment I seek much clearer: efficient, ambitious, and grounded in high personal standards. It is a place I would honestly call my own idea of a utopia. That aspiration has led me to set my sights on graduate study in machine learning, data science, or artificial intelligence at NUS or NTU.</p>
+                </div>
+            </details>
+
+            <details class="about-disclosure fade-in">
+                <summary>
+                    <span class="about-disclosure-title">Finding My Next Direction</span>
+                    <span class="about-disclosure-action">Read</span>
+                </summary>
+                <div class="about-disclosure-body">
+                    <p class="handwriting">Moving toward machine learning was not a rejection of pure mathematics. It was a deliberate choice after reflecting on my temperament, interests, and the kinds of problems I want to work on. Receiving the Best Paper Award at the 2025 Intercollegiate Applied Mathematics Autumn Conference showed me that my mathematical ideas could travel into new settings, while scientific computing revealed the connection among models, data, and algorithms. From Graph Laplacian to GCN, I found that my training in pure mathematics and logical reasoning had not been left behind; it had opened a new door into ML.</p>
+                </div>
+            </details>
+
+            <details class="about-disclosure fade-in">
+                <summary>
+                    <span class="about-disclosure-title">What I Am Working On</span>
+                    <span class="about-disclosure-action">Read</span>
+                </summary>
+                <div class="about-disclosure-body about-empty" aria-hidden="true"></div>
+            </details>
         </div>
     </section>
 
