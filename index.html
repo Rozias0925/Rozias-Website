@@ -829,9 +829,20 @@
         .about-name-row {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 20px;
+            justify-content: flex-start;
+            gap: 14px;
             flex-wrap: wrap;
+        }
+
+        .about-profile-header {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(170px, 220px);
+            gap: clamp(28px, 5vw, 56px);
+            align-items: start;
+        }
+
+        .about-photo-reserve {
+            min-height: 215px;
         }
 
         .about-name-en {
@@ -865,13 +876,14 @@
         }
 
         .about-introduction.handwriting {
+            font-family: "Klee One", cursive, sans-serif;
             font-size: 0.98rem;
-            line-height: 1.9;
-            letter-spacing: 0.7px;
+            line-height: 1.68;
+            letter-spacing: 0.45px;
         }
 
         .about-introduction p {
-            margin: 0 0 22px;
+            margin: 0 0 14px;
         }
 
         .about-disclosures {
@@ -1481,6 +1493,12 @@
                 align-items: flex-start;
                 gap: 12px;
             }
+            .about-profile-header {
+                grid-template-columns: 1fr;
+            }
+            .about-photo-reserve {
+                display: none;
+            }
             .about-name-en,
             .about-academic-meta,
             .about-subjects {
@@ -1491,11 +1509,11 @@
             }
             .about-introduction.handwriting {
                 font-size: 0.98rem;
-                line-height: 1.9;
+                line-height: 1.68;
                 letter-spacing: 0;
             }
             .about-introduction p {
-                margin-bottom: 20px;
+                margin-bottom: 14px;
             }
             .about-disclosure summary {
                 gap: 14px;
@@ -1675,13 +1693,18 @@
     <section id="about" class="content-box">
         <h2 class="fade-in">簡介 / ABOUT</h2>
         <div class="about-profile fade-in">
-            <p class="about-name">文君豪</p>
-            <div class="about-name-row">
-                <p class="about-name-en">Chun-Hao, Wen | Rozias Wen</p>
-                <a href="#contact" class="project-link about-contact-link">Contact ↓</a>
+            <div class="about-profile-header">
+                <div class="about-profile-info">
+                    <p class="about-name">文君豪</p>
+                    <div class="about-name-row">
+                        <p class="about-name-en">Chun-Hao, Wen | Rozias Wen</p>
+                        <a href="#contact" class="project-link about-contact-link">Contact ↓</a>
+                    </div>
+                    <p class="about-academic-meta">國立臺灣師範大學數學系｜B.S. Candidate in Mathematics, 2026</p>
+                    <p class="about-subjects">Algebra · Linear Algebra · Scientific Computing · Graph Learning · Machine Learning</p>
+                </div>
+                <div class="about-photo-reserve" aria-hidden="true"></div>
             </div>
-            <p class="about-academic-meta">國立臺灣師範大學數學系｜B.S. Candidate in Mathematics, 2026</p>
-            <p class="about-subjects">Algebra · Linear Algebra · Scientific Computing · Graph Learning · Machine Learning</p>
             <div class="about-introduction handwriting">
                 <p>你好，我是文君豪，目前就讀於國立臺灣師範大學數學系 (2022-2026)。</p>
                 <p>在大學前五個學期，我沉浸於代數領域的嚴謹訓練，從線性代數、代數學，一路鑽研至 Galois Theory 與同調代數。但在深思熟慮後，我決定帶著這些扎實的理論底蘊，正式踏入應用數學與資料科學領域。</p>
