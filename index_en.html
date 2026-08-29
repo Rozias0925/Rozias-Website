@@ -369,6 +369,22 @@
             letter-spacing: 0.7px;
         }
 
+        .research-collaboration a {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+        }
+
+        .research-collaboration a:hover {
+            color: var(--text-color);
+        }
+
+        .research-collaboration .partner-link-arrow {
+            display: inline-block;
+            margin-left: 5px;
+        }
+
         .research-note {
             margin-top: 22px;
             padding: 18px 20px;
@@ -987,17 +1003,17 @@
 
         .simulation-placeholder {
             padding: 0 0 2px;
-            color: var(--gray-medium);
+            color: var(--text-color);
             border: 0;
-            border-bottom: 1px solid var(--gray-light);
+            border-bottom: 1px solid var(--black);
             background: transparent;
             cursor: default;
-            opacity: 0.75;
+            opacity: 1;
         }
 
         .simulation-placeholder:hover {
-            color: var(--gray-medium);
-            border-bottom-color: var(--gray-light);
+            color: var(--text-color);
+            border-bottom-color: var(--black);
         }
 
         .fade-in {
@@ -1973,7 +1989,7 @@
 
             <div class="list-item research-project fade-in">
                 <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
-                <div class="research-collaboration">In collaboration with KGI Securities × KGI Securities Investment Advisory</div>
+                <div class="research-collaboration">In collaboration with <a href="https://www.kgi.com.tw/zh-tw/" target="_blank" rel="noopener">KGI Securities<span class="partner-link-arrow" aria-hidden="true">↗</span></a> × <a href="https://www.kgisia.com.tw/zh-tw/" target="_blank" rel="noopener">KGI Securities Investment Advisory<span class="partner-link-arrow" aria-hidden="true">↗</span></a></div>
 
                 <div class="research-progress" style="--current-progress: 80%;" aria-label="Factor GCN research progress: 0% research started, 30% reviewed GCN papers, 60% designed the algorithm prototype, 100% conference presentation, Extension I integrating GAT and RL into the algorithm, Extension II system extension; currently at Extension I">
                     <div class="progress-track">
@@ -2024,7 +2040,7 @@
 
             <div class="list-item research-project fade-in">
                 <h3>Mixed-Effects Machine Learning for Small-Sample and Sparse Longitudinal Data</h3>
-                <div class="research-collaboration">In collaboration with National Taiwan University Hospital Hsin-Chu Branch</div>
+                <div class="research-collaboration">In collaboration with <a href="https://www.hch.gov.tw/" target="_blank" rel="noopener">National Taiwan University Hospital Hsin-Chu Branch<span class="partner-link-arrow" aria-hidden="true">↗</span></a></div>
                 <div class="research-entry-content">
                     <p>
                         This joint study with National Taiwan University Hospital Hsinchu Branch involves restricted medical information and patient data. To comply with data-governance and research-collaboration requirements, only code from the simulation stage is currently public. The remaining research materials will be released after the study is complete and the collaborating team jointly confirms that the content may be made public.

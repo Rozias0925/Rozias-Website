@@ -369,6 +369,22 @@
             letter-spacing: 0.7px;
         }
 
+        .research-collaboration a {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+        }
+
+        .research-collaboration a:hover {
+            color: var(--text-color);
+        }
+
+        .research-collaboration .partner-link-arrow {
+            display: inline-block;
+            margin-left: 5px;
+        }
+
         .research-note {
             margin-top: 22px;
             padding: 18px 20px;
@@ -980,17 +996,17 @@
 
         .simulation-placeholder {
             padding: 0 0 2px;
-            color: var(--gray-medium);
+            color: var(--text-color);
             border: 0;
-            border-bottom: 1px solid var(--gray-light);
+            border-bottom: 1px solid var(--black);
             background: transparent;
             cursor: default;
-            opacity: 0.75;
+            opacity: 1;
         }
 
         .simulation-placeholder:hover {
-            color: var(--gray-medium);
-            border-bottom-color: var(--gray-light);
+            color: var(--text-color);
+            border-bottom-color: var(--black);
         }
 
         .fade-in {
@@ -1969,7 +1985,7 @@
 
             <div class="list-item research-project fade-in">
                 <h3>Factor GCN for End-to-End Portfolio Optimization</h3>
-                <div class="research-collaboration">合作單位：凱基證券 × 凱基投顧</div>
+                <div class="research-collaboration">合作單位：<a href="https://www.kgi.com.tw/zh-tw/" target="_blank" rel="noopener">凱基證券<span class="partner-link-arrow" aria-hidden="true">↗</span></a> × <a href="https://www.kgisia.com.tw/zh-tw/" target="_blank" rel="noopener">凱基投顧<span class="partner-link-arrow" aria-hidden="true">↗</span></a></div>
 
                 <div class="research-progress" style="--current-progress: 80%;" aria-label="Factor GCN 研究進度：0% 研究啟動、30% 研讀 GCN 論文、60% 設計演算法雛形、100% 發表會發表、第一延伸階段將 GAT 與 RL 融合進演算法、第二延伸階段系統延伸；目前位於第一延伸階段">
                     <div class="progress-track">
@@ -2020,7 +2036,7 @@
 
             <div class="list-item research-project fade-in">
                 <h3>Mixed-Effects Machine Learning for Small-Sample and Sparse Longitudinal Data</h3>
-                <div class="research-collaboration">合作單位：台大醫院新竹分院</div>
+                <div class="research-collaboration">合作單位：<a href="https://www.hch.gov.tw/" target="_blank" rel="noopener">台大醫院新竹分院<span class="partner-link-arrow" aria-hidden="true">↗</span></a></div>
                 <div class="research-entry-content">
                     <p>
                         本研究與台大醫院新竹分院共同進行，涉及受限醫療資訊與病人個人資料。為遵循資料治理與研究合作規範，目前僅公開模擬階段之程式碼；其餘研究內容將待研究完成，並經合作團隊共同確認可公開發表後，再行公開。
