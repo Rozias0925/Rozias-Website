@@ -985,6 +985,21 @@
             border-bottom-color: var(--gray-medium);
         }
 
+        .simulation-placeholder {
+            padding: 0 0 2px;
+            color: var(--gray-medium);
+            border: 0;
+            border-bottom: 1px solid var(--gray-light);
+            background: transparent;
+            cursor: default;
+            opacity: 0.75;
+        }
+
+        .simulation-placeholder:hover {
+            color: var(--gray-medium);
+            border-bottom-color: var(--gray-light);
+        }
+
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -2014,6 +2029,7 @@
                     <p>
                         This joint study with National Taiwan University Hospital Hsinchu Branch involves restricted medical information and patient data. To comply with data-governance and research-collaboration requirements, only code from the simulation stage is currently public. The remaining research materials will be released after the study is complete and the collaborating team jointly confirms that the content may be made public.
                     </p>
+                    <button type="button" class="project-link simulation-placeholder" disabled>View Simulation</button>
                 </div>
             </div>
         </div>

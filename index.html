@@ -978,6 +978,21 @@
             border-bottom-color: var(--gray-medium);
         }
 
+        .simulation-placeholder {
+            padding: 0 0 2px;
+            color: var(--gray-medium);
+            border: 0;
+            border-bottom: 1px solid var(--gray-light);
+            background: transparent;
+            cursor: default;
+            opacity: 0.75;
+        }
+
+        .simulation-placeholder:hover {
+            color: var(--gray-medium);
+            border-bottom-color: var(--gray-light);
+        }
+
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -2010,6 +2025,7 @@
                     <p>
                         本研究與台大醫院新竹分院共同進行，涉及受限醫療資訊與病人個人資料。為遵循資料治理與研究合作規範，目前僅公開模擬階段之程式碼；其餘研究內容將待研究完成，並經合作團隊共同確認可公開發表後，再行公開。
                     </p>
+                    <button type="button" class="project-link simulation-placeholder" disabled>View Simulation</button>
                 </div>
             </div>
         </div>
