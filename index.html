@@ -826,6 +826,14 @@
             letter-spacing: 0.12em;
         }
 
+        .about-name-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
         .about-name-en {
             margin: 10px 0 0;
             color: #555555;
@@ -849,75 +857,15 @@
         }
 
         .about-contact-link {
-            margin-top: 24px;
+            margin-top: 0;
         }
 
-        .about-lead {
-            margin: 34px 0 40px;
-            font-size: 1.18rem;
-            line-height: 2;
-            color: #333333;
-            letter-spacing: 0.8px;
+        .about-introduction {
+            margin: 30px 0 10px;
         }
 
-        .about-disclosures {
-            border-top: 1px solid var(--gray-light);
-        }
-
-        .about-disclosure {
-            border-bottom: 1px solid var(--gray-light);
-        }
-
-        .about-disclosure summary {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-            padding: 22px 0;
-            cursor: pointer;
-        }
-
-        .about-disclosure summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .about-disclosure summary:focus-visible {
-            outline: 2px solid var(--black);
-            outline-offset: 5px;
-        }
-
-        .about-disclosure-title {
-            font-size: 1.14rem;
-            font-weight: 600;
-            line-height: 1.5;
-            letter-spacing: 0.7px;
-        }
-
-        .about-disclosure-action {
-            flex: 0 0 auto;
-            color: var(--gray-medium);
-            font-size: 0.78rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: color 0.25s ease;
-        }
-
-        .about-disclosure:hover .about-disclosure-action,
-        .about-disclosure[open] .about-disclosure-action {
-            color: var(--black);
-        }
-
-        .about-disclosure-body {
-            padding: 0 0 28px;
-        }
-
-        .about-disclosure-body p {
-            margin: 0;
-        }
-
-        .about-empty {
-            min-height: 2px;
+        .about-introduction p {
+            margin: 0 0 22px;
         }
 
         .handwriting {
@@ -1463,24 +1411,20 @@
                 font-size: 2rem;
                 letter-spacing: 0.08em;
             }
+            .about-name-row {
+                align-items: flex-start;
+                gap: 12px;
+            }
             .about-name-en,
             .about-academic-meta,
-            .about-subjects,
-            .about-disclosure-title,
-            .about-disclosure-action {
+            .about-subjects {
                 letter-spacing: 0.35px;
             }
-            .about-lead {
-                font-size: 1.03rem;
-                line-height: 1.9;
-                letter-spacing: 0;
+            .about-introduction {
+                margin-top: 26px;
             }
-            .about-disclosure summary {
-                gap: 14px;
-                padding: 19px 0;
-            }
-            .about-disclosure-title {
-                font-size: 1.02rem;
+            .about-introduction p {
+                margin-bottom: 20px;
             }
             .list-item h3 {
                 font-size: 1.08rem;
@@ -1649,31 +1593,19 @@
     <section id="about" class="content-box">
         <h2 class="fade-in">簡介 / ABOUT</h2>
         <div class="about-profile fade-in">
-            <p class="about-name">文君豪</p>
+            <div class="about-name-row">
+                <p class="about-name">文君豪</p>
+                <a href="#contact" class="project-link about-contact-link">Contact ↓</a>
+            </div>
             <p class="about-name-en">Chun-Hao, Wen | Rozias Wen</p>
             <p class="about-academic-meta">國立臺灣師範大學數學系｜B.S. Candidate in Mathematics, 2026</p>
             <p class="about-subjects">Algebra · Linear Algebra · Scientific Computing · Graph Learning · Machine Learning</p>
-            <a href="#contact" class="project-link about-contact-link">Contact ↓</a>
-        </div>
-
-        <div class="about-disclosures">
-            <details class="about-disclosure fade-in">
-                <summary>
-                    <span class="about-disclosure-title">完整簡介</span>
-                    <span class="about-disclosure-action">閱讀</span>
-                </summary>
-                <div class="about-disclosure-body">
-                    <p class="handwriting">你好，我是文君豪，目前就讀於國立臺灣師範大學數學系。在修習代數學與線性代數的過程中，我培養了對純數學的熱愛與高敏感度。這份熱情驅使我利用暑假期間自修《Galois Theory》，並進一步探索同調代數的廣闊領域。</p>
-                    <br>
-                    <p class="handwriting">在深入純數之際，新加坡一直是我非常嚮往的城市。2018 年初次造訪時，我便對其先進的城市發展與高度自律的精神印象深刻；而 2025 年的再次拜訪，更成為我人生重要的轉捩點。當時我有幸與當地學生深入交流，他們展現出的極高效率、積極上進與對自我的嚴格要求深深打動了我，因為這些特質恰好與我對自身的期許不謀而合。</p>
-                    <br>
-                    <p class="handwriting">那段期間，我正好榮獲了 2025 校際應用數學秋季研討會「最佳論文獎」的殊榮。然而，在這份肯定的背後，未來的生涯走向卻帶給我極大的壓力。在審慎評估自身個性與嚮往的生活藍圖後，我對繼續深耕「純數」這條路產生了猶豫。這趟旅程宛如一劑強心針，回臺灣後，我更加確信新加坡就是我渴望置身的環境。新加坡擁有亞洲最頂尖的學府——新加坡國立大學與南洋理工大學，在各個前沿領域皆具備深厚的資源。如此完美的烏托邦怎會不讓人心動呢？</p>
-                    <br>
-                    <p class="handwriting">這份嚮往促使我立下了明確的目標：期望能進入這兩所頂尖學府之一，攻讀機器學習、資料科學與人工智慧相關的碩士學程。為此，我決心將專研領域從純代數向外拓展，期許能用這兩年的時間，淬鍊出一份足以說服頂尖學術機構的堅實背景。</p>
-                    <br>
-                    <p class="handwriting">恰逢人工智慧崛起的黃金年代，「如何讓無生命的機器學會思考？」這個問題深深吸引了我。在修習「科學計算導論」與「科學計算特論」後，我進一步掌握了以數據為核心、策略性解決問題的思維。憑藉著在代數領域的優勢，我開始從線性代數的視角切入，由研究 Graph Laplacian 起步，著手解決機器學習中的分類問題；隨後更實際融入圖卷積神經網路（GCN），設計出一套以資產配置為目標的投資演算法，正式跨足資料科學與機器學習領域。在參與多場工作坊與學術研討會並獲得肯定後，我更加堅定了朝此方向發展的信念。期許自己能持續將嚴謹的數學邏輯，轉化為解決真實世界問題的演算法，有朝一日在資料科學領域中，開創出屬於自己的一席之地。</p>
-                </div>
-            </details>
+            <div class="about-introduction handwriting">
+                <p>你好，我是文君豪，目前就讀於國立臺灣師範大學數學系 (2022-2026)。</p>
+                <p>在大學前五個學期，我沉浸於代數領域的嚴謹訓練，從線性代數、代數學，一路鑽研至 Galois Theory 與同調代數。但在深思熟慮後，我決定帶著這些扎實的理論底蘊，正式踏入應用數學與資料科學領域。</p>
+                <p>從 Graph Laplacian 的應用起步，我以過去熟悉的代數視角，深入研究泛函分析的譜理論。除了應用於剖析譜分群 (Spectral Clustering) 上的幾何特性，我更進一步鑽研深層的圖卷積理論 (Graph Convolutional Networks)。憑藉著純數培養出的嚴謹邏輯，我一點一滴撬開了機器學習領域的大門。</p>
+                <p>從實作腦腫瘤 MRI 影像分割系統、開發基於圖論與機器學習的量化交易演算法，到以進階演算法分析心肌梗塞相關機轉的醫療數據，我持續擴充跨領域所需的工程與統計技能。我期許自己能不斷將抽象的數學邏輯，轉化為解決真實世界問題的實務視角，有朝一日在資料科學與人工智慧領域中，開創出屬於自己的一席之地。</p>
+            </div>
         </div>
     </section>
 

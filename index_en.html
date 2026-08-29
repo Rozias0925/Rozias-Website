@@ -826,6 +826,14 @@
             letter-spacing: 0.12em;
         }
 
+        .about-name-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
         .about-name-en {
             margin: 10px 0 0;
             color: #555555;
@@ -849,75 +857,15 @@
         }
 
         .about-contact-link {
-            margin-top: 24px;
+            margin-top: 0;
         }
 
-        .about-lead {
-            margin: 34px 0 40px;
-            font-size: 1.18rem;
-            line-height: 2;
-            color: #333333;
-            letter-spacing: 0.8px;
+        .about-introduction {
+            margin: 30px 0 10px;
         }
 
-        .about-disclosures {
-            border-top: 1px solid var(--gray-light);
-        }
-
-        .about-disclosure {
-            border-bottom: 1px solid var(--gray-light);
-        }
-
-        .about-disclosure summary {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-            padding: 22px 0;
-            cursor: pointer;
-        }
-
-        .about-disclosure summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .about-disclosure summary:focus-visible {
-            outline: 2px solid var(--black);
-            outline-offset: 5px;
-        }
-
-        .about-disclosure-title {
-            font-size: 1.14rem;
-            font-weight: 600;
-            line-height: 1.5;
-            letter-spacing: 0.7px;
-        }
-
-        .about-disclosure-action {
-            flex: 0 0 auto;
-            color: var(--gray-medium);
-            font-size: 0.78rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: color 0.25s ease;
-        }
-
-        .about-disclosure:hover .about-disclosure-action,
-        .about-disclosure[open] .about-disclosure-action {
-            color: var(--black);
-        }
-
-        .about-disclosure-body {
-            padding: 0 0 28px;
-        }
-
-        .about-disclosure-body p {
-            margin: 0;
-        }
-
-        .about-empty {
-            min-height: 2px;
+        .about-introduction p {
+            margin: 0 0 22px;
         }
 
         .handwriting {
@@ -1462,24 +1410,20 @@
                 font-size: 2rem;
                 letter-spacing: 0.08em;
             }
+            .about-name-row {
+                align-items: flex-start;
+                gap: 12px;
+            }
             .about-name-en,
             .about-academic-meta,
-            .about-subjects,
-            .about-disclosure-title,
-            .about-disclosure-action {
+            .about-subjects {
                 letter-spacing: 0.35px;
             }
-            .about-lead {
-                font-size: 1.03rem;
-                line-height: 1.9;
-                letter-spacing: 0;
+            .about-introduction {
+                margin-top: 26px;
             }
-            .about-disclosure summary {
-                gap: 14px;
-                padding: 19px 0;
-            }
-            .about-disclosure-title {
-                font-size: 1.02rem;
+            .about-introduction p {
+                margin-bottom: 20px;
             }
             .list-item h3 {
                 font-size: 1.08rem;
@@ -1648,31 +1592,19 @@
     <section id="about" class="content-box">
         <h2 class="fade-in">ABOUT ME</h2>
         <div class="about-profile fade-in">
-            <p class="about-name">Chun-Hao Wen</p>
+            <div class="about-name-row">
+                <p class="about-name">Chun-Hao Wen</p>
+                <a href="#contact" class="project-link about-contact-link">Contact ↓</a>
+            </div>
             <p class="about-name-en">Rozias Wen</p>
             <p class="about-academic-meta">National Taiwan Normal University, Department of Mathematics | B.S. Candidate in Mathematics, 2026</p>
             <p class="about-subjects">Algebra · Linear Algebra · Scientific Computing · Graph Learning · Machine Learning</p>
-            <a href="#contact" class="project-link about-contact-link">Contact ↓</a>
-        </div>
-
-        <div class="about-disclosures">
-            <details class="about-disclosure fade-in">
-                <summary>
-                    <span class="about-disclosure-title">Full Introduction</span>
-                    <span class="about-disclosure-action">Read</span>
-                </summary>
-                <div class="about-disclosure-body">
-                    <p class="handwriting">Hello, I am Chun-Hao Wen, currently an undergraduate student majoring in Mathematics at National Taiwan Normal University (NTNU). Through studying Algebra and Linear Algebra, I developed a profound passion and high sensitivity for pure mathematics. This enthusiasm drove me to self-study Galois Theory over the summer and further explore the expansive field of Homological Algebra.</p>
-                    <br>
-                    <p class="handwriting">While delving deep into pure mathematics, <i>Singapore</i> has always been a city I deeply admire. During my first visit in 2018, I was highly impressed by its <i>advanced urban development</i> and <i>spirit of high self-discipline</i>. My second visit in 2025 became a crucial turning point in my life. I had the privilege of engaging in in-depth conversations with local students, whose <i>extreme efficiency</i>, <i>drive for excellence</i>, and <i>strict self-demands</i> deeply resonated with my own personal expectations.</p>
-                    <br>
-                    <p class="handwriting">During that period, I was honored to receive the "<i>Best Thesis Award</i>" at the 2025 Intercollegiate Applied Mathematics Autumn Conference. However, behind this recognition, the future direction of my career brought me immense pressure. After carefully evaluating my personality and the life blueprint I envisioned, I hesitated about continuing solely on the path of pure mathematics. The trip to Singapore acted as a shot in the arm; upon returning to Taiwan, I was even more certain that Singapore is the environment I aspire to be in. Housing Asia's top institutions—the <i>National University of Singapore (NUS)</i> and <i>Nanyang Technological University (NTU)</i>—it possesses profound resources across cutting-edge fields. How could such a perfect utopia not be captivating?</p>
-                    <br>
-                    <p class="handwriting">This admiration prompted me to set a clear goal: to gain admission into one of these top-tier institutions for a Master's program in <i>Machine Learning</i>, <i>Data Science</i>, or <i>Artificial Intelligence</i>. To achieve this, I decided to expand my research focus beyond pure algebra, hoping to use these two years to forge a robust, cross-disciplinary background compelling enough for top academic institutions.</p>
-                    <br>
-                    <p class="handwriting">Coinciding with the golden era of Artificial Intelligence, the question "<i>How can inanimate machines learn to think?</i>" deeply fascinated me. After taking "Introduction to Scientific Computing" and "Special Topics in Scientific Computing," I mastered a data-centric, strategic problem-solving mindset. Leveraging my strengths in algebra, I approached machine learning from the perspective of linear algebra—starting with Graph Laplacian to solve classification problems, and subsequently integrating Graph Convolutional Networks (GCN) to design an end-to-end investment algorithm for portfolio optimization, officially stepping into the realm of Data Science. Following recognitions from various workshops and academic conferences, my conviction to pursue this path has only strengthened. I aspire to continue translating rigorous mathematical logic into algorithms that solve real-world problems, eventually carving out my own niche in the field of Data Science.</p>
-                </div>
-            </details>
+            <div class="about-introduction handwriting">
+                <p>Hello, I am Chun-Hao Wen, an undergraduate student majoring in Mathematics at National Taiwan Normal University (2022-2026).</p>
+                <p>During my first five semesters, I immersed myself in the rigorous training of Algebra, delving deeply into Linear Algebra, Abstract Algebra, Galois Theory, and Homological Algebra. However, after careful consideration, I decided to leverage this solid theoretical foundation to formally step into the fields of applied mathematics and data science.</p>
+                <p>Starting with the applications of the Graph Laplacian, I applied my familiar algebraic perspective to delve into the spectral theory of functional analysis. Beyond analyzing its geometric properties in Spectral Clustering, I further explored advanced Graph Convolutional Networks (GCN). Relying on the rigorous logic cultivated through pure mathematics, I progressively unlocked the doors to the machine learning domain.</p>
+                <p>From implementing a brain tumor MRI segmentation system and developing quantitative trading algorithms based on graph theory and machine learning, to applying advanced algorithms to analyze real-world medical data on myocardial infarction mechanisms, I continuously expand my cross-disciplinary engineering and statistical skills. I aspire to keep translating abstract mathematical logic into practical perspectives for solving real-world problems, ultimately carving out my own niche in the fields of Data Science and Artificial Intelligence.</p>
+            </div>
         </div>
     </section>
 
