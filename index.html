@@ -559,11 +559,17 @@
 
         .progress-dot.current {
             left: var(--current-progress);
-            width: 16px;
-            height: 16px;
-            top: 0;
+            width: 12px;
+            height: 12px;
+            top: 2px;
             background-color: var(--black);
-            box-shadow: 0 0 0 4px var(--card-bg), 0 0 0 5px var(--black);
+            box-shadow: none;
+            animation: progress-current-blink 1.25s ease-in-out infinite;
+        }
+
+        @keyframes progress-current-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.28; }
         }
 
         .progress-dot.end {
@@ -646,6 +652,10 @@
 
         .progress-scale.six-step span {
             width: 15%;
+        }
+
+        .progress-scale.five-step {
+            min-height: 80px;
         }
 
         @media (max-width: 600px) {
@@ -1613,6 +1623,7 @@
             .hero-slideshow, .hero-slide, .hero-dot { transition: none; }
             .research-entry-content.is-open { animation: none; }
             .progress-dot::after { transition: none; }
+            .progress-dot.current { animation: none; }
         }
     </style>
 </head>
@@ -2037,11 +2048,29 @@
             <div class="list-item research-project fade-in">
                 <h3>Mixed-Effects Machine Learning for Small-Sample and Sparse Longitudinal Data</h3>
                 <div class="research-collaboration">合作單位：<a href="https://www.hch.gov.tw/" target="_blank" rel="noopener">台大醫院新竹分院<span class="partner-link-arrow" aria-hidden="true">↗</span></a></div>
+
+                <div class="research-progress" style="--current-progress: 25%;" aria-label="醫療研究進度：研讀資料與文獻、進行模擬與決定分析策略、實驗進行與醫療討論、研究完成與論文撰寫、發表；目前位於進行模擬與決定分析策略">
+                    <div class="progress-track">
+                        <span class="progress-fill" aria-hidden="true"></span>
+                        <button type="button" class="progress-dot start" data-tooltip="研讀相關資料與文獻，建立研究問題與方法脈絡" aria-label="第一階段：研讀資料與文獻"></button>
+                        <button type="button" class="progress-dot current" data-tooltip="進行模擬，並決定後續的分析策略" aria-label="目前第二階段：進行模擬與決定分析策略"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 50%;" data-tooltip="進行實驗，並持續與醫療端討論研究方向" aria-label="第三階段：實驗進行與醫療討論"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 75%;" data-tooltip="完成研究結果整理與論文撰寫" aria-label="第四階段：研究完成與論文撰寫"></button>
+                        <button type="button" class="progress-dot end" data-tooltip="完成公開發表" aria-label="第五階段：發表"></button>
+                    </div>
+                    <div class="progress-scale five-step" aria-hidden="true">
+                        <span class="start"><strong>01</strong><small>研讀資料與文獻</small></span>
+                        <span class="current"><strong>02</strong><small>進行模擬與<br>決定分析策略</small></span>
+                        <span class="milestone" style="--step-position: 50%;"><strong>03</strong><small>實驗進行與<br>醫療討論</small></span>
+                        <span class="milestone" style="--step-position: 75%;"><strong>04</strong><small>研究完成與<br>論文撰寫</small></span>
+                        <span class="end"><strong>05</strong><small>發表</small></span>
+                    </div>
+                </div>
                 <div class="research-entry-content">
                     <p>
                         本研究與台大醫院新竹分院共同進行，涉及受限醫療資訊與病人個人資料。為遵循資料治理與研究合作規範，目前僅公開模擬階段之程式碼；其餘研究內容將待研究完成，並經合作團隊共同確認可公開發表後，再行公開。
                     </p>
-                    <button type="button" class="project-link simulation-placeholder" disabled>View Simulation</button>
+                    <button type="button" class="project-link simulation-placeholder" disabled>View Simulation ↗</button>
                 </div>
             </div>
         </div>

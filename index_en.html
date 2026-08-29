@@ -559,11 +559,17 @@
 
         .progress-dot.current {
             left: var(--current-progress);
-            width: 16px;
-            height: 16px;
-            top: 0;
+            width: 12px;
+            height: 12px;
+            top: 2px;
             background-color: var(--black);
-            box-shadow: 0 0 0 4px var(--card-bg), 0 0 0 5px var(--black);
+            box-shadow: none;
+            animation: progress-current-blink 1.25s ease-in-out infinite;
+        }
+
+        @keyframes progress-current-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.28; }
         }
 
         .progress-dot.end {
@@ -646,6 +652,10 @@
 
         .progress-scale.six-step span {
             width: 15%;
+        }
+
+        .progress-scale.five-step {
+            min-height: 80px;
         }
 
         @media (max-width: 600px) {
@@ -1620,6 +1630,7 @@
             .hero-slideshow, .hero-slide, .hero-dot { transition: none; }
             .research-entry-content.is-open { animation: none; }
             .progress-dot::after { transition: none; }
+            .progress-dot.current { animation: none; }
         }
     </style>
 </head>
@@ -2041,11 +2052,29 @@
             <div class="list-item research-project fade-in">
                 <h3>Mixed-Effects Machine Learning for Small-Sample and Sparse Longitudinal Data</h3>
                 <div class="research-collaboration">In collaboration with <a href="https://www.hch.gov.tw/" target="_blank" rel="noopener">National Taiwan University Hospital Hsin-Chu Branch<span class="partner-link-arrow" aria-hidden="true">↗</span></a></div>
+
+                <div class="research-progress" style="--current-progress: 25%;" aria-label="Medical research progress: literature and data review, simulation and analysis strategy, experiments and clinical discussion, study completion and manuscript writing, presentation; currently at simulation and analysis strategy">
+                    <div class="progress-track">
+                        <span class="progress-fill" aria-hidden="true"></span>
+                        <button type="button" class="progress-dot start" data-tooltip="Review relevant data and literature to establish the research question and methodology" aria-label="Phase one: Literature and data review"></button>
+                        <button type="button" class="progress-dot current" data-tooltip="Run simulations and determine the analysis strategy" aria-label="Current phase two: Simulation and analysis strategy"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 50%;" data-tooltip="Conduct experiments and continue discussion with clinical collaborators" aria-label="Phase three: Experiments and clinical discussion"></button>
+                        <button type="button" class="progress-dot milestone" style="--step-position: 75%;" data-tooltip="Consolidate results and write the manuscript" aria-label="Phase four: Study completion and manuscript writing"></button>
+                        <button type="button" class="progress-dot end" data-tooltip="Complete public presentation" aria-label="Phase five: Presentation"></button>
+                    </div>
+                    <div class="progress-scale five-step" aria-hidden="true">
+                        <span class="start"><strong>01</strong><small>Literature and<br>data review</small></span>
+                        <span class="current"><strong>02</strong><small>Simulation and<br>analysis strategy</small></span>
+                        <span class="milestone" style="--step-position: 50%;"><strong>03</strong><small>Experiments and<br>clinical discussion</small></span>
+                        <span class="milestone" style="--step-position: 75%;"><strong>04</strong><small>Study completion &amp;<br>manuscript writing</small></span>
+                        <span class="end"><strong>05</strong><small>Presentation</small></span>
+                    </div>
+                </div>
                 <div class="research-entry-content">
                     <p>
                         This joint study with National Taiwan University Hospital Hsinchu Branch involves restricted medical information and patient data. To comply with data-governance and research-collaboration requirements, only code from the simulation stage is currently public. The remaining research materials will be released after the study is complete and the collaborating team jointly confirms that the content may be made public.
                     </p>
-                    <button type="button" class="project-link simulation-placeholder" disabled>View Simulation</button>
+                    <button type="button" class="project-link simulation-placeholder" disabled>View Simulation ↗</button>
                 </div>
             </div>
         </div>
