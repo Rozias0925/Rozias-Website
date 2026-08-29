@@ -2352,7 +2352,7 @@
                 const stop = () => { window.clearInterval(timer); };
                 const start = () => {
                     stop();
-                    if (!paused && visibleSlides().length > 1) timer = window.setInterval(() => update(activeIndex + 1), 6000);
+                    if (!paused && visibleSlides().length > 1) timer = window.setInterval(() => update(activeIndex + 1), 3500);
                 };
                 const refresh = () => {
                     const slides = visibleSlides();
