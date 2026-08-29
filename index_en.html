@@ -563,7 +563,6 @@
             top: 0;
             background-color: var(--black);
             box-shadow: 0 0 0 4px var(--card-bg), 0 0 0 5px var(--black);
-            animation: progress-current-marker 1.35s ease-in-out infinite;
         }
 
         .progress-dot.current::before {
@@ -578,13 +577,8 @@
         }
 
         @keyframes progress-current-ripple {
-            0% { transform: scale(0.85); opacity: 0.9; }
+            0% { transform: scale(1); opacity: 0.9; }
             100% { transform: scale(2.2); opacity: 0; }
-        }
-
-        @keyframes progress-current-marker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.65; }
         }
 
         .progress-dot.end {
@@ -1644,7 +1638,6 @@
             .hero-slideshow, .hero-slide, .hero-dot { transition: none; }
             .research-entry-content.is-open { animation: none; }
             .progress-dot::after { transition: none; }
-            .progress-dot.current,
             .progress-dot.current::before { animation: none; }
             .progress-dot.current::before { display: none; }
         }
