@@ -353,10 +353,6 @@
             padding-top: 16px;
         }
 
-        .medical-research-content {
-            padding-top: 0;
-        }
-
         .medical-research-progress {
             margin-bottom: 2px;
         }
@@ -2085,11 +2081,14 @@
                         <span class="end"><small>Paper<br>presentation</small></span>
                     </div>
                 </div>
-                <div class="research-entry-content medical-research-content">
+                <div class="research-actions">
+                    <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="medical-research-detail-en">Detail</button>
+                    <a href="simulation.html" target="_blank" rel="noopener" class="project-link simulation-placeholder">View Simulation ↗</a>
+                </div>
+                <div class="research-entry-content" id="medical-research-detail-en" hidden>
                     <p>
                         This joint study with National Taiwan University Hospital Hsinchu Branch involves restricted medical information and patient data. To comply with data-governance and research-collaboration requirements, only code from the simulation stage is currently public. The remaining research materials will be released after the study is complete and the collaborating team jointly confirms that the content may be made public.
                     </p>
-                    <a href="simulation.html" target="_blank" rel="noopener" class="project-link simulation-placeholder">View Simulation ↗</a>
                 </div>
             </div>
         </div>
