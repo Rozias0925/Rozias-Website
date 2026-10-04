@@ -5,7 +5,7 @@
 請使用下列檔名，按鈕就會自動正確開啟對應證書：
 
 - `ibm-data-science-professional-certificate.pdf`
-- `optimization-machine-learning-conference-2026.pdf`
+- `icoml-participation-certificate-2026.pdf`（ICOML 參與證明，非獎項）
 - `tsiamm-best-popularity-poster-award-2026.pdf`
 - `scientific-computing-best-paper-award-2026.pdf`
 - `intercollegiate-applied-math-best-paper-award-2025.pdf`
