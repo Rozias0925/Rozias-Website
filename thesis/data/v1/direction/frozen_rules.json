@@ -1,0 +1,68 @@
+{
+  "description": "Reviewed projection of final prevalidation decision settings; calibration records omitted.",
+  "fingerprints": {
+    "config_sha256": "56b4b47ec4ee4cacaf1b260eac78583267ef28dc06933687707daec46c3d691c",
+    "code_sha256": "16e539a55a2fcca85cda23ef66d626b68cc4e3a091e0873d3ee9d196fd2fd6ae"
+  },
+  "models": {
+    "Mean": {
+      "gain": 0.0,
+      "margin": 1.0,
+      "abstain_only": true
+    },
+    "LMM": {
+      "gain": 0.05,
+      "margin": 0.5,
+      "abstain_only": false
+    },
+    "GAM": {
+      "gain": 0.01,
+      "margin": 0.2,
+      "abstain_only": false
+    },
+    "RF": {
+      "gain": 0.01,
+      "margin": 0.3,
+      "abstain_only": false
+    },
+    "GPR": {
+      "gain": 0.01,
+      "margin": 0.5,
+      "abstain_only": false
+    },
+    "MERF": {
+      "gain": 0.01,
+      "margin": 0.3,
+      "abstain_only": false
+    }
+  },
+  "policy": {
+    "ordinary": {
+      "direction_model": "MERF",
+      "shape_model": "LMM"
+    },
+    "missing_or_sparse": {
+      "direction_model": "RF",
+      "shape_model": "LMM"
+    },
+    "high_between_id_variation": {
+      "direction_model": "RF",
+      "shape_model": "RF"
+    },
+    "effect_modifier_model": "GPR"
+  },
+  "hard_safety_controls": {
+    "ordinary": [
+      "D0",
+      "D1",
+      "D7"
+    ],
+    "missing_or_sparse": [
+      "D12"
+    ],
+    "high_between_id_variation": [
+      "D11"
+    ]
+  },
+  "d8_role": "assumption_violation_stress_only"
+}
