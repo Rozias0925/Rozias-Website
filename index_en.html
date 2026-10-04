@@ -312,19 +312,20 @@
             margin-top: 0;
         }
 
-        .research-actions .thesis-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #222222;
-            border-radius: 18px;
-            padding: 5px 14px;
-        }
-
-        .research-actions .thesis-button:hover {
-            background-color: #222222;
-            color: #ffffff;
-            border-color: #222222;
+        .research-actions .thesis-placeholder,
+        .research-actions .thesis-placeholder:hover {
+            appearance: none;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid currentColor;
+            border-radius: 0;
+            padding: 0 0 2px;
+            font-family: inherit;
+            line-height: inherit;
+            letter-spacing: inherit;
+            color: #858585;
+            opacity: 1;
+            cursor: default;
         }
 
         .research-detail-button {
@@ -2094,7 +2095,8 @@
                 </div>
                 <div class="research-actions">
                     <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="medical-research-detail-en">Detail</button>
-                    <a href="https://rozias0925.github.io/Rozias-Website/thesis/#en-overview" target="_blank" rel="noopener noreferrer" class="project-link thesis-button" aria-label="Thesis: Synthetic-data simulation study report">Thesis ↗</a>
+                    <a href="https://rozias0925.github.io/Rozias-Website/thesis/#en-overview" target="_blank" rel="noopener noreferrer" class="project-link">View Simulation ↗</a>
+                    <button type="button" class="project-link thesis-placeholder" disabled>Thesis ↗</button>
                 </div>
                 <div class="research-entry-content" id="medical-research-detail-en" hidden>
                     <p>
