@@ -1,0 +1,297 @@
+{
+  "core": [
+    {
+      "kind": "main",
+      "code": "S0",
+      "title": "Null biomarker signal",
+      "relation": "null",
+      "n_ids": 50,
+      "n_visits": 4,
+      "n_true_biomarkers": 0,
+      "signal_strength": 0.0,
+      "icc": 0.25
+    },
+    {
+      "kind": "main",
+      "code": "S1",
+      "title": "Linear biomarker effect",
+      "relation": "linear",
+      "n_ids": 50,
+      "n_visits": 4,
+      "n_true_biomarkers": 1,
+      "signal_strength": 0.6,
+      "icc": 0.25
+    },
+    {
+      "kind": "main",
+      "code": "S2",
+      "title": "Smooth nonlinear biomarker effect",
+      "relation": "smooth",
+      "n_ids": 50,
+      "n_visits": 4,
+      "n_true_biomarkers": 1,
+      "signal_strength": 0.6,
+      "icc": 0.25
+    },
+    {
+      "kind": "main",
+      "code": "S3",
+      "title": "Threshold biomarker effect",
+      "relation": "threshold",
+      "n_ids": 50,
+      "n_visits": 4,
+      "n_true_biomarkers": 1,
+      "signal_strength": 0.6,
+      "icc": 0.25
+    },
+    {
+      "kind": "main",
+      "code": "S4",
+      "title": "DM effect modification",
+      "relation": "interaction",
+      "n_ids": 50,
+      "n_visits": 4,
+      "n_true_biomarkers": 2,
+      "signal_strength": 0.6,
+      "icc": 0.25,
+      "dm_interaction_multiplier": 0.75
+    },
+    {
+      "kind": "main",
+      "code": "F1",
+      "title": "Weak secondary biomarker",
+      "relation": "smooth",
+      "n_ids": 50,
+      "n_visits": 4,
+      "n_true_biomarkers": 2,
+      "signal_strength": 0.3,
+      "second_signal_ratio": 0.35,
+      "icc": 0.25
+    },
+    {
+      "kind": "main",
+      "code": "S6",
+      "title": "Strong subject heterogeneity",
+      "relation": "smooth",
+      "n_ids": 50,
+      "n_visits": 4,
+      "n_true_biomarkers": 1,
+      "signal_strength": 0.6,
+      "icc": 0.55
+    },
+    {
+      "kind": "main",
+      "code": "F2",
+      "title": "Weak signal with correlated decoys",
+      "relation": "smooth",
+      "n_ids": 50,
+      "n_visits": 4,
+      "n_true_biomarkers": 1,
+      "signal_strength": 0.3,
+      "icc": 0.25,
+      "correlated_decoys": true,
+      "decoy_correlations": [
+        0.9,
+        0.95
+      ]
+    },
+    {
+      "kind": "main",
+      "code": "F3",
+      "title": "Practical sparse setting with moderate decoys",
+      "relation": "smooth",
+      "n_ids": 50,
+      "n_visits": 4,
+      "n_true_biomarkers": 2,
+      "signal_strength": 0.35,
+      "second_signal_ratio": 0.5,
+      "icc": 0.25,
+      "correlated_decoys": true,
+      "decoy_correlations": [
+        0.8,
+        0.85
+      ],
+      "missing_kind": "MAR",
+      "missing_rate": 0.2,
+      "dropout_rate": 0.2
+    },
+    {
+      "kind": "main",
+      "code": "S9",
+      "title": "Combined difficult setting",
+      "relation": "threshold",
+      "n_ids": 50,
+      "n_visits": 4,
+      "n_true_biomarkers": 2,
+      "signal_strength": 0.6,
+      "icc": 0.25,
+      "correlated_decoys": true,
+      "decoy_correlations": [
+        0.85,
+        0.95
+      ],
+      "missing_kind": "MAR",
+      "missing_rate": 0.2,
+      "dropout_rate": 0.2,
+      "outlier_rate": 0.05
+    },
+    {
+      "kind": "sample_size_sensitivity",
+      "code": "S2_N25_V2",
+      "title": "Smooth nonlinear: 25 IDs x 2 visits",
+      "relation": "smooth",
+      "n_ids": 25,
+      "n_visits": 2,
+      "n_true_biomarkers": 1,
+      "signal_strength": 0.6,
+      "icc": 0.25,
+      "base_scenario": "S2"
+    },
+    {
+      "kind": "sample_size_sensitivity",
+      "code": "S2_N25_V4",
+      "title": "Smooth nonlinear: 25 IDs x 4 visits",
+      "relation": "smooth",
+      "n_ids": 25,
+      "n_visits": 4,
+      "n_true_biomarkers": 1,
+      "signal_strength": 0.6,
+      "icc": 0.25,
+      "base_scenario": "S2"
+    },
+    {
+      "kind": "sample_size_sensitivity",
+      "code": "S2_N50_V2",
+      "title": "Smooth nonlinear: 50 IDs x 2 visits",
+      "relation": "smooth",
+      "n_ids": 50,
+      "n_visits": 2,
+      "n_true_biomarkers": 1,
+      "signal_strength": 0.6,
+      "icc": 0.25,
+      "base_scenario": "S2"
+    },
+    {
+      "kind": "sample_size_sensitivity",
+      "code": "S2_N100_V2",
+      "title": "Smooth nonlinear: 100 IDs x 2 visits",
+      "relation": "smooth",
+      "n_ids": 100,
+      "n_visits": 2,
+      "n_true_biomarkers": 1,
+      "signal_strength": 0.6,
+      "icc": 0.25,
+      "base_scenario": "S2"
+    },
+    {
+      "kind": "sample_size_sensitivity",
+      "code": "S2_N100_V4",
+      "title": "Smooth nonlinear: 100 IDs x 4 visits",
+      "relation": "smooth",
+      "n_ids": 100,
+      "n_visits": 4,
+      "n_true_biomarkers": 1,
+      "signal_strength": 0.6,
+      "icc": 0.25,
+      "base_scenario": "S2"
+    }
+  ],
+  "direction": [
+    {
+      "n_ids": 50,
+      "n_visits": 4,
+      "code": "D0",
+      "title": "No additional relationship conditional on controls",
+      "relation": "null"
+    },
+    {
+      "n_ids": 50,
+      "n_visits": 4,
+      "code": "D1",
+      "title": "Linear Gaussian: direction not identifiable from these assumptions",
+      "relation": "linear",
+      "strength": 0.6,
+      "nonidentifiable": true
+    },
+    {
+      "n_ids": 50,
+      "n_visits": 4,
+      "code": "D2",
+      "title": "Linear non-Gaussian innovations",
+      "relation": "linear",
+      "strength": 0.6,
+      "non_gaussian": true
+    },
+    {
+      "n_ids": 50,
+      "n_visits": 4,
+      "code": "D3",
+      "title": "Smooth nonlinear response",
+      "relation": "smooth",
+      "strength": 0.6
+    },
+    {
+      "n_ids": 50,
+      "n_visits": 4,
+      "code": "D4",
+      "title": "Continuous slope change above a threshold",
+      "relation": "hinge",
+      "strength": 0.6,
+      "threshold": 0.25
+    },
+    {
+      "n_ids": 50,
+      "n_visits": 4,
+      "code": "D5",
+      "title": "Weak smooth response",
+      "relation": "smooth",
+      "strength": 0.3
+    },
+    {
+      "n_ids": 50,
+      "n_visits": 4,
+      "code": "D6",
+      "title": "Strong individual heterogeneity",
+      "relation": "smooth",
+      "strength": 0.6,
+      "icc": 0.55
+    },
+    {
+      "n_ids": 50,
+      "n_visits": 4,
+      "code": "D7",
+      "title": "Observed common cause; no direct edge",
+      "relation": "null",
+      "observed_confounding": true
+    },
+    {
+      "n_ids": 50,
+      "n_visits": 4,
+      "code": "D8",
+      "title": "Hidden common cause; no direct edge",
+      "relation": "null",
+      "hidden_confounding": true
+    },
+    {
+      "n_ids": 50,
+      "n_visits": 4,
+      "code": "D9",
+      "title": "Smooth response with MAR, dropout and outliers",
+      "relation": "smooth",
+      "strength": 0.6,
+      "missing_rate": 0.2,
+      "dropout_id_rate": 0.2,
+      "outlier_rate": 0.05
+    },
+    {
+      "n_ids": 50,
+      "n_visits": 4,
+      "code": "D10",
+      "title": "Modifier-dependent slope: supplementary response-shape diagnostic",
+      "relation": "modifier",
+      "strength": 0.6,
+      "modifier_strength": 0.8,
+      "modifier_threshold": 0.25
+    }
+  ]
+}

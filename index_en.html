@@ -313,6 +313,22 @@
             margin-top: 0;
         }
 
+        .research-actions .thesis-placeholder,
+        .research-actions .thesis-placeholder:hover {
+            appearance: none;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid currentColor;
+            border-radius: 0;
+            padding: 0 0 2px;
+            font-family: inherit;
+            line-height: inherit;
+            letter-spacing: inherit;
+            color: #858585;
+            opacity: 1;
+            cursor: default;
+        }
+
         .research-detail-button {
             appearance: none;
             background: transparent;
@@ -2080,11 +2096,12 @@
                 </div>
                 <div class="research-actions">
                     <button type="button" class="research-detail-button" aria-expanded="false" aria-controls="medical-research-detail-en">Detail</button>
-                    <a href="simulation.html" target="_blank" rel="noopener" class="project-link simulation-placeholder">View Simulation ↗</a>
+                    <a href="https://rozias0925.github.io/Rozias-Website/thesis/#en-overview" target="_blank" rel="noopener noreferrer" class="project-link">View Simulation ↗</a>
+                    <button type="button" class="project-link thesis-placeholder" disabled>Thesis ↗</button>
                 </div>
                 <div class="research-entry-content" id="medical-research-detail-en" hidden>
                     <p>
-                        This joint study with National Taiwan University Hospital Hsinchu Branch involves restricted medical information and patient data. To comply with data-governance and research-collaboration requirements, only code from the simulation stage is currently public. The remaining research materials will be released after the study is complete and the collaborating team jointly confirms that the content may be made public.
+                        This joint study with National Taiwan University Hospital Hsinchu Branch now includes a public simulation report covering the designs, scenarios, and aggregate results of two studies on small-sample longitudinal prediction, variable selection, function recovery, and direction identification. All simulation data are synthetic; no patient information was used.
                     </p>
                 </div>
             </div>

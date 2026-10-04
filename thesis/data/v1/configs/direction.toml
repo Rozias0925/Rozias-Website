@@ -1,0 +1,122 @@
+# All parameters are prespecified synthetic values. No private-data dependency.
+[design]
+run_name = "direction_v1"
+seed = 20260913
+models = ["Mean", "LMM", "GAM", "RF", "GPR", "MERF"]
+n_ids = 50
+months = [3, 6, 9, 12]
+folds = 3
+reference_n_ids = 200
+curve_points = 41
+ale_bins = 12
+bootstrap_repetitions = 0
+
+[execution]
+smoke_repetitions = 1
+pilot_repetitions = 10
+calibration_repetitions = 30
+validation_repetitions = 200
+maximum_repetitions = 500
+batch_size = 25
+rate_mcse = 0.03
+continuous_mcse = 0.02
+
+[decision]
+gain_grid = [0.0, 0.01, 0.025, 0.05, 0.1]
+margin_grid = [0.05, 0.1, 0.2, 0.3, 0.5, 0.75]
+maximum_calibration_false_arrow_rate = 0.05
+minimum_bucket_cases = 20
+
+[models.Mean.parameters]
+[models.LMM.options]
+primary_optimizer = "lbfgs"
+fallback_optimizer = "powell"
+max_iterations = 300
+[models.GAM.parameters]
+n_knots = 5
+degree = 3
+ridge_alpha = 10.0
+[models.RF.parameters]
+n_estimators = 300
+min_samples_leaf = 5
+max_features = 0.5
+[models.GPR.parameters]
+kernel = "Matern32"
+[models.GPR.options]
+length_scale_lower = 0.01
+length_scale_upper = 1000.0
+noise_lower = 0.00001
+noise_upper = 10.0
+optimizer_restarts = 0
+[models.MERF.parameters]
+n_estimators = 300
+min_samples_leaf = 5
+max_features = 0.5
+max_iterations = 25
+gll_early_stop_threshold = 0.001
+[models.MERF.options]
+log_training = false
+
+[[scenarios]]
+code = "D0"
+title = "No additional relationship conditional on controls"
+relation = "null"
+[[scenarios]]
+code = "D1"
+title = "Linear Gaussian: direction not identifiable from these assumptions"
+relation = "linear"
+strength = 0.6
+nonidentifiable = true
+[[scenarios]]
+code = "D2"
+title = "Linear non-Gaussian innovations"
+relation = "linear"
+strength = 0.6
+non_gaussian = true
+[[scenarios]]
+code = "D3"
+title = "Smooth nonlinear response"
+relation = "smooth"
+strength = 0.6
+[[scenarios]]
+code = "D4"
+title = "Continuous slope change above a threshold"
+relation = "hinge"
+strength = 0.6
+threshold = 0.25
+[[scenarios]]
+code = "D5"
+title = "Weak smooth response"
+relation = "smooth"
+strength = 0.3
+[[scenarios]]
+code = "D6"
+title = "Strong individual heterogeneity"
+relation = "smooth"
+strength = 0.6
+icc = 0.55
+[[scenarios]]
+code = "D7"
+title = "Observed common cause; no direct edge"
+relation = "null"
+observed_confounding = true
+[[scenarios]]
+code = "D8"
+title = "Hidden common cause; no direct edge"
+relation = "null"
+hidden_confounding = true
+[[scenarios]]
+code = "D9"
+title = "Smooth response with MAR, dropout and outliers"
+relation = "smooth"
+strength = 0.6
+missing_rate = 0.2
+dropout_id_rate = 0.2
+outlier_rate = 0.05
+[[scenarios]]
+code = "D10"
+title = "Modifier-dependent slope: supplementary response-shape diagnostic"
+relation = "modifier"
+strength = 0.6
+modifier_threshold = 0.25
+modifier_strength = 0.8

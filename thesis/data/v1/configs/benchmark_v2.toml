@@ -1,0 +1,214 @@
+[benchmark]
+run_name = "benchmark_v2"
+master_seed = 20260827
+models = ["Mean", "LMM", "GAM", "RF", "GPR", "MERF"]
+base_features = ["Temperature", "MonthScaled", "Age", "Sex", "DM", "HTN", "CKD", "eGFR"]
+biomarker_count = 14
+test_n_ids = 2000
+importance_n_ids = 250
+permutation_repeats = 3
+ale_bins = 20
+interaction_grid_points = 15
+tuning_folds = 3
+outcome_column = "log_TnT"
+output_root = "outputs"
+save_predictions = false
+
+[monte_carlo]
+pilot_repetitions = 30
+formal_min_repetitions = 200
+formal_max_repetitions = 500
+batch_size = 25
+continuous_mcse_threshold = 0.02
+rate_mcse_threshold = 0.03
+relative_equivalence_margin = 0.05
+rate_equivalence_margin = 0.05
+
+[pathway]
+enabled = false
+models = ["LMM", "GAM", "RF", "GPR", "MERF"]
+scenarios = ["S0", "S1", "S2", "S4", "F2", "S9"]
+
+[models.mean]
+
+[models.lmm]
+primary_optimizer = "lbfgs"
+fallback_optimizer = "powell"
+max_iterations = 300
+
+[models.gam]
+n_knots = [3, 5]
+ridge_alpha = [0.1, 1.0, 10.0]
+degree = 3
+
+[models.rf]
+n_estimators = 500
+min_samples_leaf = [3, 5, 10]
+max_features = ["sqrt", "0.5"]
+
+[models.gpr]
+kernels = ["RBF", "Matern32"]
+optimizer_restarts = 1
+length_scale_lower = 0.01
+length_scale_upper = 100.0
+noise_lower = 0.00001
+noise_upper = 10.0
+
+[models.merf]
+n_estimators = 300
+min_samples_leaf = [3, 5, 10]
+max_features = ["sqrt", "0.5"]
+max_iterations = 25
+gll_early_stop_threshold = 0.001
+log_training = false
+
+[[scenarios]]
+code = "S0"
+title = "Null biomarker signal"
+relation = "null"
+n_ids = 50
+n_visits = 4
+n_true_biomarkers = 0
+signal_strength = 0.0
+icc = 0.25
+
+[[scenarios]]
+code = "S1"
+title = "Linear biomarker effect"
+relation = "linear"
+n_ids = 50
+n_visits = 4
+n_true_biomarkers = 1
+signal_strength = 0.60
+icc = 0.25
+
+[[scenarios]]
+code = "S2"
+title = "Smooth nonlinear biomarker effect"
+relation = "smooth"
+n_ids = 50
+n_visits = 4
+n_true_biomarkers = 1
+signal_strength = 0.60
+icc = 0.25
+
+[[scenarios]]
+code = "S3"
+title = "Threshold biomarker effect"
+relation = "threshold"
+n_ids = 50
+n_visits = 4
+n_true_biomarkers = 1
+signal_strength = 0.60
+icc = 0.25
+
+[[scenarios]]
+code = "S4"
+title = "DM effect modification"
+relation = "interaction"
+n_ids = 50
+n_visits = 4
+n_true_biomarkers = 2
+signal_strength = 0.60
+icc = 0.25
+dm_interaction_multiplier = 0.75
+
+[[scenarios]]
+code = "F1"
+title = "Weak secondary biomarker"
+relation = "smooth"
+n_ids = 50
+n_visits = 4
+n_true_biomarkers = 2
+signal_strength = 0.30
+second_signal_ratio = 0.35
+icc = 0.25
+
+[[scenarios]]
+code = "S6"
+title = "Strong subject heterogeneity"
+relation = "smooth"
+n_ids = 50
+n_visits = 4
+n_true_biomarkers = 1
+signal_strength = 0.60
+icc = 0.55
+
+[[scenarios]]
+code = "F2"
+title = "Weak signal with correlated decoys"
+relation = "smooth"
+n_ids = 50
+n_visits = 4
+n_true_biomarkers = 1
+signal_strength = 0.30
+icc = 0.25
+correlated_decoys = true
+decoy_correlations = [0.90, 0.95]
+
+[[scenarios]]
+code = "F3"
+title = "Practical sparse setting with moderate decoys"
+relation = "smooth"
+n_ids = 50
+n_visits = 4
+n_true_biomarkers = 2
+signal_strength = 0.35
+second_signal_ratio = 0.50
+icc = 0.25
+correlated_decoys = true
+decoy_correlations = [0.80, 0.85]
+missing_kind = "MAR"
+missing_rate = 0.20
+dropout_rate = 0.20
+
+[[scenarios]]
+code = "S9"
+title = "Combined difficult setting"
+relation = "threshold"
+n_ids = 50
+n_visits = 4
+n_true_biomarkers = 2
+signal_strength = 0.60
+icc = 0.25
+correlated_decoys = true
+decoy_correlations = [0.85, 0.95]
+missing_kind = "MAR"
+missing_rate = 0.20
+dropout_rate = 0.20
+outlier_rate = 0.05
+
+[[sensitivity]]
+code = "S2_N25_V2"
+title = "Smooth nonlinear: 25 IDs x 2 visits"
+base_scenario = "S2"
+n_ids = 25
+n_visits = 2
+
+[[sensitivity]]
+code = "S2_N25_V4"
+title = "Smooth nonlinear: 25 IDs x 4 visits"
+base_scenario = "S2"
+n_ids = 25
+n_visits = 4
+
+[[sensitivity]]
+code = "S2_N50_V2"
+title = "Smooth nonlinear: 50 IDs x 2 visits"
+base_scenario = "S2"
+n_ids = 50
+n_visits = 2
+
+[[sensitivity]]
+code = "S2_N100_V2"
+title = "Smooth nonlinear: 100 IDs x 2 visits"
+base_scenario = "S2"
+n_ids = 100
+n_visits = 2
+
+[[sensitivity]]
+code = "S2_N100_V4"
+title = "Smooth nonlinear: 100 IDs x 4 visits"
+base_scenario = "S2"
+n_ids = 100
+n_visits = 4
