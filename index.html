@@ -7,6 +7,7 @@
     <title>Rozias | 個人網站</title>
     <link rel="icon" href="assets/optimized/favicon.png" type="image/png">
     <script src="assets/site.js" defer></script>
+    <script src="assets/skills-wall.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Klee+One:wght@400;600&family=Noto+Sans+TC:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         /* 全局設定與黑白灰色彩計畫 */
@@ -1079,207 +1080,7 @@
             transform: rotate(180deg);
         }
         
-        /* --- 專業技能 (獨立面板切換設計) --- */
-        /* --- 區塊操作提示小字 --- */
-        .hint-text {
-            color: var(--gray-medium);
-            font-size: 0.85rem;
-            margin-top: -35px;    /* 往上拉近標題 */
-            margin-bottom: 40px;  /* 往下推開膠囊內容 */
-            padding-left: 20px;   /* 讓它跟標題的文字左側對齊 */
-            letter-spacing: 1px;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-top: 10px;
-        }
-
-        .skill-category h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--text-color);
-            border-bottom: 2px solid var(--gray-light);
-            padding-bottom: 12px;
-            letter-spacing: 1px;
-        }
-
-        /* 標籤按鈕區 (完全獨立於文字) */
-        .interactive-tags {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
-
-        .interactive-tags.stacked-tags {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr);
-        }
-
-        .stacked-tags .tag-button {
-            width: 100%;
-            justify-content: space-between;
-            white-space: normal;
-        }
-
-        .tag-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: #f8f8f8;
-            color: var(--text-color);
-            padding: 8px 18px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            border: 1px solid var(--gray-light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            user-select: none;
-            white-space: nowrap;
-        }
-
-        /* 按鈕啟動與懸浮樣式 */
-        .tag-button:hover, .tag-button.active {
-            background-color: var(--black);
-            color: #ffffff;
-            border-color: var(--black);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .tag-button .plus {
-            font-size: 1.1rem;
-            font-weight: 300;
-            transition: transform 0.4s ease;
-        }
-
-        .tag-button.active .plus {
-            transform: rotate(45deg); /* 把 + 轉成 × */
-        }
-
-        /* 說明文字面板區：點擊後移至對應膠囊正下方 */
-        .tag-panels {
-            display: none;
-        }
-
-        .tag-panel {
-            display: none;
-            background-color: #fcfcfc;
-            border-radius: 12px;
-            border: 1px solid var(--gray-light);
-        }
-
-        /* 說明文字展開時 */
-        .tag-panel.active {
-            display: block;
-            padding: 20px;
-            animation: tag-panel-reveal 0.35s ease both;
-        }
-
-        .interactive-tags > .tag-panel {
-            flex: 0 0 100%;
-            width: 100%;
-        }
-
-        .stacked-tags > .tag-panel {
-            grid-column: 1 / -1;
-        }
-
-        @keyframes tag-panel-reveal {
-            from {
-                opacity: 0;
-                transform: translateY(-6px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .tag-panel p {
-            margin: 0;
-        }
-
-        .combined-section {
-            max-width: 1000px;
-        }
-
-        .background-skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 32px;
-            align-items: start;
-        }
-
-        .background-panel {
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-        .skills-panel {
-            grid-column: 2;
-            grid-row: 1;
-            border-left: 1px solid var(--gray-light);
-            padding-left: 32px;
-        }
-
-        .combined-panel-title {
-            margin: 0 0 30px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--gray-light);
-            font-size: 1.15rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .skills-panel-heading {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
-            gap: 6px 14px;
-            margin-bottom: 30px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--gray-light);
-        }
-
-        .skills-panel-heading .combined-panel-title {
-            margin: 0;
-            padding: 0;
-            border-bottom: 0;
-        }
-
-        .skills-panel-heading .hint-text {
-            margin: 0;
-            padding: 0;
-            font-size: 0.72rem;
-        }
-
-        @media (max-width: 900px) {
-            .background-skills-grid {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .background-panel {
-                grid-column: 1;
-                grid-row: 1;
-            }
-
-            .skills-panel {
-                grid-column: 1;
-                grid-row: 2;
-                border-left: 0;
-                border-top: 1px solid var(--gray-light);
-                padding: 44px 0 0;
-            }
-        }
-
-        /* --- 語言切換按鈕 (電腦版) --- */
+        /* --- 語言切換按鈕 --- */
         /* 使用絕對定位靠右，這樣不會影響到中間選單的完美置中 */
         .lang-switch {
             position: absolute;
@@ -1349,10 +1150,6 @@
                 width: 70vw; 
             }
 
-            .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 35px;
-            }
 
             #home .name-zh {
                 font-size: 2.5rem;   
@@ -1609,9 +1406,6 @@
             .list-item .meta,
             .research-category-title,
             .research-category-title .secondary-title,
-            .combined-panel-title,
-            .skill-category h3,
-            .hint-text,
             .research-detail-button,
             .project-link {
                 letter-spacing: 0.4px;
@@ -1653,6 +1447,7 @@
             .progress-dot.current::before { display: none; }
         }
     </style>
+    <link rel="stylesheet" href="assets/profile.css">
 </head>
 
 <body>
@@ -1692,7 +1487,8 @@
         <div class="nav-links" id="nav-links">
             <a href="#">Home</a>
             <a href="#about">About</a>
-            <a href="#background-skills">Background & Skills</a>
+            <a href="#background">Background</a>
+            <a href="#skills">Skills</a>
             <a href="#research">Research</a>
             <a href="#honors">Honors</a>
             <a href="#contact">Contact</a>
@@ -1838,124 +1634,90 @@
         </div>
     </section>
 
-    <section id="background-skills" class="content-box combined-section">
-        <h2 class="fade-in">Background & Skills</h2>
+    <section id="background" class="content-box">
+        <span id="background-skills" class="legacy-profile-anchor" aria-hidden="true"></span>
+        <h2 class="fade-in">Background</h2>
+        <div class="background-layout">
+            <div class="background-study fade-in">
+                <p class="profile-eyebrow">Mathematical foundations</p>
+                <h3 class="background-degree">數學系</h3>
+                <p class="background-school">國立臺灣師範大學<br>Department of Mathematics</p>
+                <p class="background-years">2022 — 2026</p>
+                <p class="background-note">學士班修業期間 · 2022–2026<br>111-2 學期因家事休學</p>
+            </div>
+            <div class="background-story fade-in">
+                <h3>以數學為起點，將理解帶進教學與實作。</h3>
+                <p data-background-paragraph="0">我的學術背景建立於國立臺灣師範大學數學系的訓練。從代數與線性代數出發，我逐步把對數學結構的理解帶入科學計算、圖論與機器學習，在理論與實作之間持續探索。</p>
+                <p data-background-paragraph="1">教學也是這段歷程的重要部分。2023–2024 年，我在 elevo 艾樂維教育科技股份有限公司擔任國中及高中數學科講師；在師大，我於 113-1 學期擔任代數學（I）助教，113-2 學期擔任代數學（II）與機率導論助教，並在這兩個學期獲得數學系優良教學助理。</p>
+                <p data-background-paragraph="2">之後，我於 114-1 學期擔任線性代數（I）助教，並再次獲得優良教學助理；114-2 學期擔任數論助教，115-1 學期則擔任科學計算導論助教。這些課程橫跨代數、機率與計算，也連結了我持續累積的數學與程式實作經驗。</p>
+            </div>
+        </div>
+    </section>
 
-        <div class="background-skills-grid">
-            <div id="skills" class="combined-panel skills-panel">
-                <div class="skills-panel-heading fade-in">
-                    <h3 class="combined-panel-title">Skills</h3>
-                    <p class="hint-text">※ 點選以下關鍵字可查看學習心得</p>
+    <section id="skills" class="content-box">
+        <h2 class="fade-in">Skills</h2>
+        <div class="skills-layout">
+            <div id="skills-established" class="skills-established fade-in">
+                <p class="profile-eyebrow">My toolkit</p>
+                <h3 class="skills-column-heading">已掌握的能力</h3>
+                <p class="skills-intro">從數學基礎到程式實作，構成我目前的工具箱。</p>
+                <div class="skill-category">
+                    <h4>Mathematics</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Algebra / Linear Algebra</span>
+                        <span class="skill-tag">Probability / Statistics</span>
+                        <span class="skill-tag">Scientific Computing</span>
+                        <span class="skill-tag">Linear Programming</span>
+                        <span class="skill-tag">Advanced Calculus</span>
+                        <span class="skill-tag">Complex Analysis</span>
+                    </div>
                 </div>
-        
-        <div class="skills-grid fade-in">
-            <div class="skill-category">
-                <h3>Mathematics</h3>
-                <div class="interactive-tags stacked-tags">
-                    <div class="tag-button" data-target="math-1">Algebra/Linear Algebra <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="math-2">Probability/Statistics <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="math-3">Scientific Computing <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="math-4">Linear Programming/Convex Optimization <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="math-5">Functional Analysis <span class="plus">+</span></div>
-
-
+                <div class="skill-category">
+                    <h4>Programming</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C / C++</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">MATLAB</span>
+                    </div>
                 </div>
-                <div class="tag-panels">
-                    <div class="tag-panel" id="math-1">
-                        <p class="handwriting">代數學探討的是數學的「結構」本質。在撰寫程式或分析真實世界問題時，代數與線性代數能幫助我在腦中快速建構出清晰的數學模型。現實生活中線性關係隨處可見，尤其在電腦科學中，矩陣與向量空間的概念更是資料處理、圖論架構與現代機器學習最核心的底層邏輯。</p>
-                    </div>
-                    <div class="tag-panel" id="math-2">
-                        <p class="handwriting">機率與統計是量化「不確定性」的科學，為機器學習提供了嚴謹的數學視角。它使我能洞悉資料背後的分佈規律、精準評估風險；在面對真實世界中充滿雜訊或複雜結構的數據時，不僅能藉此建構出適應各種情境的預測模型，更能透過嚴密釐清各類誤差，為檢驗模型優劣提供客觀且扎實的判斷準則。</p>
-                    </div>
-                    <div class="tag-panel" id="math-3">
-                        <p class="handwriting">科學計算是連接純數理論與電腦實作的關鍵。在追求理論精確之餘，實務上更須妥善處理電腦運算時無可避免的誤差與極限逼近。它訓練我建立起以「運算成本」、「演算法效率」及「收斂性」為核心的思維模式，以嚴謹的數學知識，為解決真實世界問題的高效程式碼提供精準的想法與嚴謹的證明。</p>
-                    </div>
-                    <div class="tag-panel" id="math-4">
-                        <p class="handwriting">修習並研究中</p>
-                    </div>
-                    <div class="tag-panel" id="math-5">
-                        <p class="handwriting">泛函分析是探討函數空間與算子理論的核心數學分支。為了更透徹地理解 Spectral Theory 在 Graph Laplacian 中的底層邏輯，我展開了這門學科的自主研修。透過剖析無限維空間的性質與算子行為，我期望對機器學習中的最佳化問題具備更宏觀的視角，也為深入探究模型的泛化能力打下了堅實的理論底蘊。</p>
+                <div class="skill-category">
+                    <h4>Data Science</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Data Preprocessing</span>
+                        <span class="skill-tag">Feature Engineering</span>
+                        <span class="skill-tag">Spectral Clustering</span>
+                        <span class="skill-tag">Model Evaluation</span>
+                        <span class="skill-tag">Monte Carlo Simulation</span>
+                        <span class="skill-tag">Model Interpretation</span>
                     </div>
                 </div>
             </div>
-
-            <div class="skill-category">
-                <h3>Programming Languages</h3>
-                <div class="interactive-tags stacked-tags">
-                    <div class="tag-button" data-target="prog-1">Python <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="prog-2">C / C++ <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="prog-3">SQL <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="prog-4">MATLAB <span class="plus">+</span></div>
-                </div>
-                <div class="tag-panels">
-                    <div class="tag-panel" id="prog-1">
-                        <p class="handwriting">作為實現資料科學的主力語言，自高中起便深耕的 Python 為我提供了強大且靈活的開發特性。在科學計算特論課程中，它在不同的技術層面皆提供強大的協助：從繁雜的資料清洗、建構複雜的模型，到最終的數據視覺化，皆一手包辦的它成為最強大的助攻之一。</p>
+            <div id="skills-exploring" class="skills-exploring fade-in">
+                <p class="profile-eyebrow">Work in progress</p>
+                <h3 class="skills-column-heading">正在鑽研</h3>
+                <p class="skills-intro">從數學理論到模型與應用，這些是我持續深入、反覆推敲的研究關鍵字。</p>
+                <div class="learning-monitor">
+                    <div class="monitor-toolbar">
+                        <span class="monitor-channel">Now exploring</span>
+                        <button type="button" class="wall-toggle" data-wall-toggle data-pause-label="暫停" data-resume-label="繼續" aria-pressed="false" aria-controls="learning-wall">
+                            <span data-wall-toggle-icon aria-hidden="true">Ⅱ</span>
+                            <span data-wall-toggle-label>暫停</span>
+                        </button>
                     </div>
-                    <div class="tag-panel" id="prog-2">
-                        <p class="handwriting">學習 C 語言是對底層運算思維與記憶體管理的極致淬鍊，也是我在國立臺灣科技大學（NTUST）修習期間收穫最豐的技能之一。它訓練我以電腦硬體的視角剖析程式，深刻理解指令編譯與底層運行的原理，為日後實作高效能演算法與複雜資料結構，打下了無可取代的扎實基礎。</p>
-                    </div>
-                    <div class="tag-panel" id="prog-3">
-                        <p class="handwriting">透過 IBM Data Science 專業認證課程的洗禮，我掌握了這項駕馭與萃取真實世界龐大數據的必備利器。對於具備嚴謹邏輯訓練的數學系學生而言，SQL 的關聯式思維極具共鳴，使我能以極高的效率，從海量資料庫中精煉出建模所需的關鍵特徵。</p>
-                    </div>
-                    <div class="tag-panel" id="prog-4">
-                        <p class="handwriting">MATLAB 是我在大學期間深入掌握的重要數學語言。它提供了無與倫比的矩陣運算與數值分析環境；對我而言，它不僅是一台「超大型的科學計算機」，更是我在建構純數模型與快速驗證演算法原型時，最得心應手的強大引擎。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Data Science & Machine Learning</h3>
-                <div class="interactive-tags stacked-tags">
-                    <div class="tag-button" data-target="ds-1">Machine Learning and Deep Learning <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="ds-2">Application of Graph Theory <span class="plus">+</span></div>
-                </div>
-                <div class="tag-panels">
-                    <div class="tag-panel" id="ds-1">
-                        <p class="handwriting">機器學習是我跨足資料科學的啟端。國立台灣大學有提供一門課程"機器學習導論" 只是我運氣不好沒有加簽到 不過我仍透過其課程錄影學到了大致的運作原理和核心架構。放眼未來，我將目標鎖定於新加坡國立大學（NUS）的資料科學與機器學習碩士學程 (DSML)，期許能在頂尖的學術殿堂中，建構更完整、深厚的機器學習知識體系。</p>                    </div>
-                    <div class="tag-panel" id="ds-2">
-                        <p class="handwriting">圖論是我認為能將真實世界的複雜網絡與拓樸結構，最直觀轉化為數學語言的強大工具，而線性代數則是支撐其運作的核心基石。儘管未曾正式修習圖論課程，我卻在研究實務中將其概念深刻實踐。從深究 Graph Laplacian 的頻譜特性，到建構 Graph Convolutional Network (GCN) 與 Graph Attention Network (GAT) 以萃取複雜的節點特徵，圖論與機器學習的結合，是我目前最熱衷且持續突破的研究主軸。</p>
+                    <div id="learning-wall" class="learning-wall" data-skills-wall role="group" aria-label="目前正在鑽研的主題">
+                        <span class="learning-keyword" data-weight="large">Functional Analysis</span>
+                        <span class="learning-keyword" data-weight="medium">Spectral Graph Theory</span>
+                        <span class="learning-keyword" data-weight="medium">Convex Optimization</span>
+                        <span class="learning-keyword" data-weight="large">Graph Neural Networks</span>
+                        <span class="learning-keyword" data-weight="medium">Regression Analysis</span>
+                        <span class="learning-keyword" data-weight="medium">Deep Learning</span>
+                        <span class="learning-keyword" data-weight="medium">Monte Carlo Simulation</span>
+                        <span class="learning-keyword" data-weight="medium">Machine Learning</span>
                     </div>
                 </div>
             </div>
-                </div>
-            </div>
-
-            <div id="background" class="combined-panel background-panel">
-                <h3 class="combined-panel-title fade-in">Background</h3>
-        
-        <div class="list-item fade-in">
-            <h3>國立臺灣師範大學 數學系</h3>
-            <div class="meta">學士學位 | 2022-2026</div>
-            <p>※111-2學期因家事休學</p>
         </div>
-
-        <div class="list-item fade-in">
-            <h3>elevo_艾樂維教育科技股份有限公司</h3>
-            <div class="meta">2023-2024</div>
-            <p>擔任國中及高中數學科講師</p>
-        </div>
-
-        <div class="list-item fade-in">
-            <h3>NTNU MATH_教學助理</h3>
-            <div class="meta">2024-2025</div>
-            <p>113-1學期擔任代數學(I)助教<br>113-2學期擔任代數學(II)、機率導論助教</p>
-            <p>113-1、113-2兩學期皆獲數學系優良教學助理</p>
-        </div>
-
-        <div class="list-item fade-in">
-            <h3>NTNU MATH_教學助理</h3>
-            <div class="meta">2025-2026</div>
-            <p>114-1學期擔任線性代數(I)助教<br>114-2學期擔任數論助教</p>
-            <p>114-1學期獲數學系優良教學助理</p>
-        </div>
-
-        <div class="list-item fade-in">
-            <h3>NTNU MATH_教學助理</h3>
-            <div class="meta">2026</div>
-            <p>115-1學期擔任科學計算導論助教</p>
-        </div>
-                </div>
-            </div>
     </section>
 
     <section id="research" class="content-box">
@@ -2314,35 +2076,6 @@
                 });
             });
 
-            // 互動式膠囊標籤邏輯：將說明移至被點擊的膠囊正下方
-            const tagButtons = document.querySelectorAll('.tag-button');
-            
-            tagButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetId = button.getAttribute('data-target');
-                    const targetPanel = document.getElementById(targetId);
-                    const currentCategory = button.closest('.skill-category');
-                    const isActive = button.classList.contains('active');
-                    const activeBtn = currentCategory.querySelector('.tag-button.active');
-                    const activePanel = currentCategory.querySelector('.tag-panel.active');
-                    
-                    if (isActive) {
-                        button.classList.remove('active');
-                        targetPanel.classList.remove('active');
-                    } else {
-                        if (activePanel) {
-                            activeBtn.classList.remove('active');
-                            activePanel.classList.remove('active');
-                        }
-
-                        button.insertAdjacentElement('afterend', targetPanel);
-                        requestAnimationFrame(() => {
-                            button.classList.add('active');
-                            targetPanel.classList.add('active');
-                        });
-                    }
-                });
-            });
 
         });
 

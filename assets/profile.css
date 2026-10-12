@@ -1,0 +1,397 @@
+/* Profile sections with a quiet, light canvas for the learning keywords. */
+#background,
+#skills {
+    width: calc(100% - 48px);
+    max-width: 1080px;
+    padding: 60px 52px;
+    scroll-margin-top: 96px;
+}
+
+#background h2,
+#skills h2 {
+    margin-bottom: 36px;
+}
+
+.legacy-profile-anchor {
+    position: absolute;
+    top: 0;
+    scroll-margin-top: 96px;
+}
+
+.profile-eyebrow {
+    color: #777777;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+.background-layout {
+    display: grid;
+    grid-template-columns: 0.8fr 1.7fr;
+    gap: 56px;
+    align-items: start;
+}
+
+.background-degree {
+    margin: 18px 0 12px;
+    font-size: clamp(1.55rem, 2.6vw, 2rem);
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.5;
+}
+
+.background-school {
+    color: #555555;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.background-years {
+    margin-top: 26px;
+    font-size: 1.55rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    line-height: 1.5;
+}
+
+.background-note {
+    margin-top: 10px;
+    color: #888888;
+    font-size: 0.73rem;
+    line-height: 1.7;
+}
+
+.background-story h3 {
+    margin: 0 0 22px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+}
+
+.background-story p {
+    color: #555555;
+    font-size: 0.94rem;
+    line-height: 2;
+}
+
+.background-story p + p {
+    margin-top: 20px;
+}
+
+.skills-layout {
+    display: grid;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: 44px;
+    align-items: start;
+}
+
+.skills-established,
+.skills-exploring {
+    min-width: 0;
+}
+
+.skills-column-heading {
+    margin: 8px 0 10px;
+    font-size: 1.35rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.skills-intro {
+    margin-bottom: 28px;
+    color: #777777;
+    font-size: 0.81rem;
+    line-height: 1.8;
+}
+
+.skill-category + .skill-category {
+    margin-top: 26px;
+}
+
+.skill-category h4 {
+    margin-bottom: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 9px;
+}
+
+.skill-tag {
+    display: inline-block;
+    max-width: 100%;
+    padding: 7px 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    background: #fafafa;
+    color: #333333;
+    font-size: 0.78rem;
+    line-height: 1.65;
+}
+
+.wall-toggle:focus-visible {
+    outline: 2px solid #647c8a;
+    outline-offset: 4px;
+}
+
+.learning-monitor {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e6e8e6;
+    border-radius: 24px;
+    background: #fafbf9;
+    color: #35444b;
+    box-shadow: 0 18px 48px -30px rgba(66, 87, 99, 0.25);
+}
+
+.monitor-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 60px;
+    padding: 16px 22px;
+    border-bottom: 1px solid #e8ece8;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.monitor-channel {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+    gap: 9px;
+    color: #56686a;
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.35px;
+    line-height: 1.8;
+}
+
+.monitor-channel::before {
+    content: '';
+    flex: none;
+    width: 12px;
+    height: 12px;
+    background: #8aa49a;
+    clip-path: polygon(50% 0, 63% 37%, 100% 50%, 63% 63%, 50% 100%, 37% 63%, 0 50%, 37% 37%);
+}
+
+.wall-toggle {
+    appearance: none;
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 10px;
+    border: 1px solid #e1e7e2;
+    border-radius: 20px;
+    background: #f8faf7;
+    color: #5b6b64;
+    font: inherit;
+    font-size: 0.64rem;
+    line-height: 1.5;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.wall-toggle:hover {
+    border-color: #b9cac0;
+    background: #edf3ed;
+    color: #354b3f;
+}
+
+.learning-wall {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    gap: 20px;
+    min-height: 352px;
+    padding: 24px;
+    overflow: hidden;
+    isolation: isolate;
+    background: radial-gradient(ellipse at 8% 14%, #e9eff9 0%, transparent 60%),
+        radial-gradient(ellipse at 95% 95%, #f5e9dc 0%, transparent 60%),
+        radial-gradient(ellipse at 82% 22%, #eef2e9 0%, transparent 50%),
+        #faf9f6;
+}
+
+.learning-wall::before {
+    content: '';
+    position: absolute;
+    width: 310px;
+    height: 310px;
+    top: -95px;
+    right: -105px;
+    z-index: -1;
+    border: 1px solid rgba(124, 153, 139, 0.14);
+    border-radius: 50%;
+    box-shadow: 0 0 0 28px rgba(255, 255, 255, 0.22),
+        0 0 0 29px rgba(124, 153, 139, 0.07);
+    pointer-events: none;
+}
+
+.learning-wall::after {
+    content: '';
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    bottom: -140px;
+    left: -50px;
+    z-index: -1;
+    border: 1px solid rgba(146, 155, 179, 0.16);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.learning-keyword {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    padding: 7px 12px;
+    border: 1px solid rgba(205, 213, 219, 0.6);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.78);
+    color: #485466;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.025em;
+    box-shadow: 0 4px 12px -8px rgba(49, 67, 83, 0.2);
+    white-space: nowrap;
+}
+
+.learning-keyword[data-weight="large"] {
+    border-color: rgba(182, 203, 193, 0.75);
+    background: rgba(242, 248, 243, 0.92);
+    color: #405d50;
+}
+
+.learning-keyword:nth-child(3n) {
+    border-color: rgba(220, 204, 188, 0.7);
+    background: rgba(255, 249, 242, 0.92);
+    color: #765f4e;
+}
+
+.learning-wall[data-wall-ready="true"] {
+    display: block;
+    height: 352px;
+    padding: 0;
+}
+
+.learning-wall[data-wall-ready="true"] .learning-keyword {
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+    .nav-links a {
+        margin: 0 10px;
+        font-size: 0.78rem;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 900px) {
+    #background,
+    #skills {
+        padding: 44px 32px;
+    }
+    .background-layout {
+        grid-template-columns: 0.8fr 1.5fr;
+        gap: 32px;
+    }
+    .skills-layout {
+        gap: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    #background,
+    #skills {
+        width: calc(100% - 40px);
+        margin: 40px auto;
+        padding: 40px 25px;
+    }
+    .background-layout,
+    .skills-layout {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+    .background-study {
+        padding-bottom: 28px;
+        border-bottom: 1px solid #eeeeee;
+    }
+    .background-degree {
+        margin: 12px 0 6px;
+    }
+    .background-years {
+        margin-top: 14px;
+    }
+    .background-story h3 {
+        font-size: 1.12rem;
+    }
+    .skills-exploring {
+        padding-top: 30px;
+        border-top: 1px solid #eeeeee;
+    }
+    .skills-intro {
+        margin-bottom: 22px;
+    }
+    .monitor-toolbar {
+        padding: 12px 13px;
+        gap: 8px;
+    }
+    .monitor-channel {
+        gap: 7px;
+        font-size: 0.71rem;
+    }
+    .learning-wall,
+    .learning-wall[data-wall-ready="true"] {
+        min-height: 320px;
+        height: 320px;
+    }
+}
+
+@media (max-width: 420px) {
+    .monitor-toolbar {
+        padding: 11px 10px;
+    }
+    .monitor-channel {
+        font-size: 0.65rem;
+        gap: 5px;
+    }
+    .wall-toggle {
+        gap: 5px;
+        padding: 4px 7px;
+        font-size: 0.6rem;
+    }
+    .learning-keyword {
+        padding: 5px 8px;
+        border-radius: 11px;
+    }
+    .learning-wall,
+    .learning-wall[data-wall-ready="true"] {
+        min-height: 296px;
+        height: 296px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wall-toggle {
+        transition: none;
+    }
+}

@@ -7,6 +7,7 @@
     <title>Rozias | Personal Website</title>
     <link rel="icon" href="assets/optimized/favicon.png" type="image/png">
     <script src="assets/site.js" defer></script>
+    <script src="assets/skills-wall.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Klee+One:wght@400;600&family=Noto+Sans+TC:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         /* 全局設定與黑白灰色彩計畫 */
@@ -1086,206 +1087,7 @@
             transform: rotate(180deg);
         }
         
-        /* --- 專業技能 (獨立面板切換設計) --- */
-        /* --- 區塊操作提示小字 --- */
-        .hint-text {
-            color: var(--gray-medium);
-            font-size: 0.85rem;
-            margin-top: -35px;    /* 往上拉近標題 */
-            margin-bottom: 40px;  /* 往下推開膠囊內容 */
-            padding-left: 20px;   /* 讓它跟標題的文字左側對齊 */
-            letter-spacing: 1px;
-        }
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-top: 10px;
-        }
-
-        .skill-category h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--text-color);
-            border-bottom: 2px solid var(--gray-light);
-            padding-bottom: 12px;
-            letter-spacing: 1px;
-        }
-
-        /* 標籤按鈕區 (完全獨立於文字) */
-        .interactive-tags {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
-
-        .interactive-tags.stacked-tags {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr);
-        }
-
-        .stacked-tags .tag-button {
-            width: 100%;
-            justify-content: space-between;
-            white-space: normal;
-        }
-
-        .tag-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: #f8f8f8;
-            color: var(--text-color);
-            padding: 8px 18px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            border: 1px solid var(--gray-light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            user-select: none;
-            white-space: nowrap;
-        }
-
-        /* 按鈕啟動與懸浮樣式 */
-        .tag-button:hover, .tag-button.active {
-            background-color: var(--black);
-            color: #ffffff;
-            border-color: var(--black);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .tag-button .plus {
-            font-size: 1.1rem;
-            font-weight: 300;
-            transition: transform 0.4s ease;
-        }
-
-        .tag-button.active .plus {
-            transform: rotate(45deg); /* 把 + 轉成 × */
-        }
-
-        /* 說明文字面板區：點擊後移至對應膠囊正下方 */
-        .tag-panels {
-            display: none;
-        }
-
-        .tag-panel {
-            display: none;
-            background-color: #fcfcfc;
-            border-radius: 12px;
-            border: 1px solid var(--gray-light);
-        }
-
-        /* 說明文字展開時 */
-        .tag-panel.active {
-            display: block;
-            padding: 20px;
-            animation: tag-panel-reveal 0.35s ease both;
-        }
-
-        .interactive-tags > .tag-panel {
-            flex: 0 0 100%;
-            width: 100%;
-        }
-
-        .stacked-tags > .tag-panel {
-            grid-column: 1 / -1;
-        }
-
-        @keyframes tag-panel-reveal {
-            from {
-                opacity: 0;
-                transform: translateY(-6px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .tag-panel p {
-            margin: 0;
-        }
-
-        .combined-section {
-            max-width: 1000px;
-        }
-
-        .background-skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 32px;
-            align-items: start;
-        }
-
-        .background-panel {
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-        .skills-panel {
-            grid-column: 2;
-            grid-row: 1;
-            border-left: 1px solid var(--gray-light);
-            padding-left: 32px;
-        }
-
-        .combined-panel-title {
-            margin: 0 0 30px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--gray-light);
-            font-size: 1.15rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .skills-panel-heading {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
-            gap: 6px 14px;
-            margin-bottom: 30px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--gray-light);
-        }
-
-        .skills-panel-heading .combined-panel-title {
-            margin: 0;
-            padding: 0;
-            border-bottom: 0;
-        }
-
-        .skills-panel-heading .hint-text {
-            margin: 0;
-            padding: 0;
-            font-size: 0.72rem;
-        }
-
-        @media (max-width: 900px) {
-            .background-skills-grid {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .background-panel {
-                grid-column: 1;
-                grid-row: 1;
-            }
-
-            .skills-panel {
-                grid-column: 1;
-                grid-row: 2;
-                border-left: 0;
-                border-top: 1px solid var(--gray-light);
-                padding: 44px 0 0;
-            }
-        }
-
-        /* --- 語言切換按鈕 (電腦版) --- */
+        /* --- 語言切換按鈕 --- */
         /* 使用絕對定位靠右，這樣不會影響到中間選單的完美置中 */
         .lang-switch {
             position: absolute;
@@ -1355,10 +1157,6 @@
                 width: 70vw; 
             }
 
-            .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 35px;
-            }
 
             #home .name-zh {
                 font-size: 2.5rem;   
@@ -1616,9 +1414,6 @@
             .list-item .meta,
             .research-category-title,
             .research-category-title .secondary-title,
-            .combined-panel-title,
-            .skill-category h3,
-            .hint-text,
             .research-detail-button,
             .project-link {
                 letter-spacing: 0.4px;
@@ -1660,6 +1455,7 @@
             .progress-dot.current::before { display: none; }
         }
     </style>
+    <link rel="stylesheet" href="assets/profile.css">
 </head>
 
 <body>
@@ -1699,7 +1495,8 @@
         <div class="nav-links" id="nav-links">
             <a href="#">Home</a>
             <a href="#about">About</a>
-            <a href="#background-skills">Background & Skills</a>
+            <a href="#background">Background</a>
+            <a href="#skills">Skills</a>
             <a href="#research">Research</a>
             <a href="#honors">Honors</a>
             <a href="#contact">Contact</a>
@@ -1846,123 +1643,90 @@
         </div>
     </section>
 
-    <section id="background-skills" class="content-box combined-section">
-        <h2 class="fade-in">Background & Skills</h2>
+    <section id="background" class="content-box">
+        <span id="background-skills" class="legacy-profile-anchor" aria-hidden="true"></span>
+        <h2 class="fade-in">Background</h2>
+        <div class="background-layout">
+            <div class="background-study fade-in">
+                <p class="profile-eyebrow">Mathematical foundations</p>
+                <h3 class="background-degree">Mathematics</h3>
+                <p class="background-school">National Taiwan Normal University<br>Department of Mathematics</p>
+                <p class="background-years">2022 — 2026</p>
+                <p class="background-note">B.S. studies · 2022–2026<br>Leave of absence in Spring 2023 for family matters.</p>
+            </div>
+            <div class="background-story fade-in">
+                <h3>From mathematical understanding to teaching and practice.</h3>
+                <p data-background-paragraph="0">My academic background is rooted in mathematical training at National Taiwan Normal University. Beginning with algebra and linear algebra, I gradually brought my understanding of mathematical structure into scientific computing, graph theory, and machine learning.</p>
+                <p data-background-paragraph="1">Teaching has been an important part of this journey. From 2023 to 2024, I taught mathematics to middle and high school students at elevo Education Technology Co. At NTNU, I served as a teaching assistant for Algebra (I) in Fall 2024, followed by Algebra (II) and Introduction to Probability in Spring 2025. I received the Department of Mathematics’ Outstanding Teaching Assistant award in both semesters.</p>
+                <p data-background-paragraph="2">I continued as a teaching assistant for Linear Algebra (I) in Fall 2025, receiving the award again, and for Number Theory in Spring 2026. In Fall 2026, I serve as a teaching assistant for Introduction to Scientific Computing. These courses connect my mathematical training with my programming practice.</p>
+            </div>
+        </div>
+    </section>
 
-        <div class="background-skills-grid">
-            <div id="skills" class="combined-panel skills-panel">
-                <div class="skills-panel-heading fade-in">
-                    <h3 class="combined-panel-title">Skills</h3>
-                    <p class="hint-text">※ Click the keywords below to view learning insights</p>
+    <section id="skills" class="content-box">
+        <h2 class="fade-in">Skills</h2>
+        <div class="skills-layout">
+            <div id="skills-established" class="skills-established fade-in">
+                <p class="profile-eyebrow">My toolkit</p>
+                <h3 class="skills-column-heading">Skills I work with</h3>
+                <p class="skills-intro">The foundations and tools behind my work.</p>
+                <div class="skill-category">
+                    <h4>Mathematics</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Algebra / Linear Algebra</span>
+                        <span class="skill-tag">Probability / Statistics</span>
+                        <span class="skill-tag">Scientific Computing</span>
+                        <span class="skill-tag">Linear Programming</span>
+                        <span class="skill-tag">Advanced Calculus</span>
+                        <span class="skill-tag">Complex Analysis</span>
+                    </div>
                 </div>
-        
-        <div class="skills-grid fade-in">
-            <div class="skill-category">
-                <h3>Mathematics</h3>
-                <div class="interactive-tags stacked-tags">
-                    <div class="tag-button" data-target="math-1">Algebra/Linear Algebra <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="math-2">Probability/Statistics <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="math-3">Scientific Computing <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="math-4">Linear Programming/Convex Optimization <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="math-5">Functional Analysis <span class="plus">+</span></div>
+                <div class="skill-category">
+                    <h4>Programming</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C / C++</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">MATLAB</span>
+                    </div>
                 </div>
-                <div class="tag-panels">
-                    <div class="tag-panel" id="math-1">
-                        <p class="handwriting">Algebra explores the "structural" nature of mathematics. When writing code or analyzing real-world problems, algebra and linear algebra help me rapidly construct clear mathematical models in my mind. Linear relationships are ubiquitous in real life; especially in computer science, the concepts of matrices and vector spaces serve as the core foundational logic for data processing, graph architectures, and modern machine learning.</p>
-                    </div>
-                    <div class="tag-panel" id="math-2">
-                        <p class="handwriting">Probability and statistics are the sciences of quantifying "uncertainty," providing a rigorous mathematical perspective for ML. They enable me to uncover the underlying distribution patterns of data and accurately assess risks. When facing real-world data full of noise or complex structures, this knowledge allows me to build robust prediction models tailored to various scenarios and establish objective, solid criteria for evaluating model performance by strictly clarifying different types of errors.</p>
-                    </div>
-                    <div class="tag-panel" id="math-3">
-                        <p class="handwriting">Scientific computing is the critical bridge connecting pure mathematical theory with computer implementation. While pursuing theoretical precision, handling inevitable computational errors and limit approximations in practice is crucial. It trained me to build a mindset centered on "computational cost," "algorithm efficiency," and "convergence," applying rigorous mathematical knowledge to provide precise ideas and strict proofs for efficient code that solves real-world problems.</p>
-                    </div>
-                    <div class="tag-panel" id="math-4">
-                        <p class="handwriting">Currently studying and actively researching in this domain.</p>
-                    </div>
-                    <div class="tag-panel" id="math-5">
-                        <p class="handwriting">Functional analysis is a core mathematical branch exploring function spaces and operator theory. To thoroughly understand the foundational logic of Spectral Theory within Graph Laplacian, I initiated a self-study of this subject. By analyzing the properties of infinite-dimensional spaces and operator behaviors, I aim to gain a macroscopic perspective on optimization problems in machine learning and lay a solid theoretical foundation for delving into model generalization.</p>
+                <div class="skill-category">
+                    <h4>Data Science</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Data Preprocessing</span>
+                        <span class="skill-tag">Feature Engineering</span>
+                        <span class="skill-tag">Spectral Clustering</span>
+                        <span class="skill-tag">Model Evaluation</span>
+                        <span class="skill-tag">Monte Carlo Simulation</span>
+                        <span class="skill-tag">Model Interpretation</span>
                     </div>
                 </div>
             </div>
-
-            <div class="skill-category">
-                <h3>Programming Languages</h3>
-                <div class="interactive-tags stacked-tags">
-                    <div class="tag-button" data-target="prog-1">Python <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="prog-2">C / C++ <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="prog-3">SQL <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="prog-4">MATLAB <span class="plus">+</span></div>
-                </div>
-                <div class="tag-panels">
-                    <div class="tag-panel" id="prog-1">
-                        <p class="handwriting">As the primary language for realizing data science, Python, which I have cultivated since high school, offers powerful and flexible development features. In the Special Topics in Scientific Computing course, it provided tremendous assistance across various technical levels: from complex data cleaning and building intricate models to the final data visualization, it has been my most powerful asset.</p>
+            <div id="skills-exploring" class="skills-exploring fade-in">
+                <p class="profile-eyebrow">Work in progress</p>
+                <h3 class="skills-column-heading">Currently exploring</h3>
+                <p class="skills-intro">Questions and ideas I am continuing to study, from mathematical theory to models and applications.</p>
+                <div class="learning-monitor">
+                    <div class="monitor-toolbar">
+                        <span class="monitor-channel">Now exploring</span>
+                        <button type="button" class="wall-toggle" data-wall-toggle data-pause-label="Pause" data-resume-label="Resume" aria-pressed="false" aria-controls="learning-wall">
+                            <span data-wall-toggle-icon aria-hidden="true">Ⅱ</span>
+                            <span data-wall-toggle-label>Pause</span>
+                        </button>
                     </div>
-                    <div class="tag-panel" id="prog-2">
-                        <p class="handwriting">Learning C language is the ultimate refinement of low-level computational thinking and memory management, and one of the most rewarding skills I acquired while studying at the National Taiwan University of Science and Technology (NTUST). It trained me to analyze programs from a hardware perspective and deeply understand the principles of instruction compilation and low-level execution, laying an irreplaceable foundation for implementing high-performance algorithms and complex data structures.</p>
-                    </div>
-                    <div class="tag-panel" id="prog-3">
-                        <p class="handwriting">Through the IBM Data Science Professional Certificate program, I mastered this essential tool for navigating and extracting massive real-world datasets. For a math major with rigorous logical training, the relational thinking of SQL resonates strongly, allowing me to highly efficiently refine key features required for modeling from vast databases.</p>
-                    </div>
-                    <div class="tag-panel" id="prog-4">
-                        <p class="handwriting">MATLAB is a vital mathematical language I deeply mastered during college. It provides an unparalleled environment for matrix operations and numerical analysis; to me, it is not merely a "giant scientific calculator" but my most proficient engine when constructing pure math models and rapidly verifying algorithm prototypes.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Data Science & Machine Learning</h3>
-                <div class="interactive-tags stacked-tags">
-                    <div class="tag-button" data-target="ds-1">Machine Learning and Deep Learning <span class="plus">+</span></div>
-                    <div class="tag-button" data-target="ds-2">Application of Graph Theory <span class="plus">+</span></div>
-                </div>
-                <div class="tag-panels">
-                    <div class="tag-panel" id="ds-1">
-                        <p class="handwriting">Machine learning is my starting point in data science. Although I couldn't formally enroll in the "Introduction to Machine Learning" course at NTU due to capacity limits, I learned its core architectures and operational principles through recorded lectures. Looking forward, I am setting my sights on the Master's program in Data Science and Machine Learning (DSML) at the National University of Singapore (NUS), hoping to construct a more complete and profound ML knowledge system in a top-tier academic institution.</p>
-                    </div>
-                    <div class="tag-panel" id="ds-2">
-                        <p class="handwriting">Graph theory is, in my view, the most intuitive and powerful tool to translate the complex networks and topological structures of the real world into mathematical language, with linear algebra acting as its core operational foundation. Even without formally taking a graph theory course, I have deeply implemented its concepts in my research. From investigating the spectral properties of Graph Laplacian to constructing Graph Convolutional Networks (GCN) and Graph Attention Networks (GAT) to extract complex node features, the integration of graph theory and machine learning is my current and most passionate research focus.</p>
+                    <div id="learning-wall" class="learning-wall" data-skills-wall role="group" aria-label="Topics I am currently studying">
+                        <span class="learning-keyword" data-weight="large">Functional Analysis</span>
+                        <span class="learning-keyword" data-weight="medium">Spectral Graph Theory</span>
+                        <span class="learning-keyword" data-weight="medium">Convex Optimization</span>
+                        <span class="learning-keyword" data-weight="large">Graph Neural Networks</span>
+                        <span class="learning-keyword" data-weight="medium">Regression Analysis</span>
+                        <span class="learning-keyword" data-weight="medium">Deep Learning</span>
+                        <span class="learning-keyword" data-weight="medium">Monte Carlo Simulation</span>
+                        <span class="learning-keyword" data-weight="medium">Machine Learning</span>
                     </div>
                 </div>
             </div>
-                </div>
-            </div>
-
-            <div id="background" class="combined-panel background-panel">
-                <h3 class="combined-panel-title fade-in">Background</h3>
-        
-        <div class="list-item fade-in">
-            <h3>National Taiwan Normal University (NTNU) | Dept. of Mathematics</h3>
-            <div class="meta">Bachelor of Science | 2022-2026</div>
-            <p>* Leave of absence in Spring 2023 due to family matters.</p>
         </div>
-
-        <div class="list-item fade-in">
-            <h3>elevo Education Technology Co.</h3>
-            <div class="meta">2023-2024</div>
-            <p>Mathematics Instructor for Middle and High School students.</p>
-        </div>
-
-        <div class="list-item fade-in">
-            <h3>NTNU MATH_Teaching Assistant</h3>
-            <div class="meta">2024-2025</div>
-            <p>Fall 2024: Algebra (I)<br>Spring 2025: Algebra (II), Introduction to Probability.</p>
-            <p>Awarded Outstanding Teaching Assistant for both semesters.</p>
-        </div>
-
-        <div class="list-item fade-in">
-            <h3>NTNU MATH_Teaching Assistant</h3>
-            <div class="meta">2025-2026</div>
-            <p>Fall 2025: Linear Algebra (I)<br>Spring 2026: Number Theory.</p>
-            <p>Awarded Outstanding Teaching Assistant for Fall 2025.</p>
-        </div>
-
-        <div class="list-item fade-in">
-            <h3>NTNU MATH_Teaching Assistant</h3>
-            <div class="meta">2026</div>
-            <p>Fall 2026: Introduction to Scientific Computing.</p>
-        </div>
-                </div>
-            </div>
     </section>
 
     <section id="research" class="content-box">
@@ -2312,35 +2076,6 @@
                 });
             });
 
-            // Move each skill description directly beneath the selected pill.
-            const tagButtons = document.querySelectorAll('.tag-button');
-            
-            tagButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetId = button.getAttribute('data-target');
-                    const targetPanel = document.getElementById(targetId);
-                    const currentCategory = button.closest('.skill-category');
-                    const isActive = button.classList.contains('active');
-                    const activeBtn = currentCategory.querySelector('.tag-button.active');
-                    const activePanel = currentCategory.querySelector('.tag-panel.active');
-                    
-                    if (isActive) {
-                        button.classList.remove('active');
-                        targetPanel.classList.remove('active');
-                    } else {
-                        if (activePanel) {
-                            activeBtn.classList.remove('active');
-                            activePanel.classList.remove('active');
-                        }
-
-                        button.insertAdjacentElement('afterend', targetPanel);
-                        requestAnimationFrame(() => {
-                            button.classList.add('active');
-                            targetPanel.classList.add('active');
-                        });
-                    }
-                });
-            });
 
         });
 

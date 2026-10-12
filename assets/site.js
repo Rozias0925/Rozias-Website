@@ -29,11 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
             add('profile', section.querySelector('.about-profile-header'));
             section.querySelectorAll('.about-introduction > p').forEach((element, index) => add('intro-' + index, element));
             section.querySelectorAll('.about-disclosure').forEach((element, index) => add('story-' + index, element));
-        } else if (section.id === 'background-skills') {
-            section.querySelectorAll('.background-panel .list-item').forEach((element, index) => add('background-' + index, element));
+        } else if (section.id === 'background') {
+            add('study', section.querySelector('.background-study'));
+            add('story', section.querySelector('.background-story'));
+            section.querySelectorAll('[data-background-paragraph]').forEach(element =>
+                add('paragraph-' + element.dataset.backgroundParagraph, element));
+        } else if (section.id === 'skills') {
+            add('established', section.querySelector('.skills-established'));
+            add('exploring', section.querySelector('.skills-exploring'));
             section.querySelectorAll('.skill-category').forEach((element, index) => add('category-' + index, element));
-            section.querySelectorAll('.tag-button').forEach(element => add('skill-' + element.dataset.target, element));
-            section.querySelectorAll('.tag-panel').forEach(element => add('panel-' + element.id, element));
         } else if (section.id === 'research') {
             section.querySelectorAll('.research-category').forEach((category, categoryIndex) => {
                 add('category-' + categoryIndex, category.querySelector('.research-category-title'));
@@ -64,8 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .filter(anchor => anchor.rect.height > 0 && anchor.rect.top <= offset);
         const containing = visible.filter(anchor => anchor.rect.bottom > offset)
             .sort((left, right) => left.rect.height - right.rect.height);
-        const anchor = containing.find(item => item.element.matches('.tag-panel.active'))
-            || containing[0] || visible.sort((left, right) => right.rect.top - left.rect.top)[0];
+        const anchor = containing[0] || visible.sort((left, right) => right.rect.top - left.rect.top)[0];
         const rect = anchor?.rect || section.getBoundingClientRect();
         return {
             path: destination.pathname,
@@ -76,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
             atBottom: scrollY > 0 && scrollY + innerHeight >= document.documentElement.scrollHeight - 4,
             stories: Array.from(document.querySelectorAll('.about-disclosure')).map(element => element.open),
             research: Array.from(document.querySelectorAll('.research-detail-button')).map(element => element.getAttribute('aria-expanded') === 'true'),
-            skills: Array.from(document.querySelectorAll('.tag-button.active')).map(element => element.dataset.target),
             slide: Math.max(0, Array.from(document.querySelectorAll('.hero-slide')).findIndex(element => element.classList.contains('active')))
         };
     };
@@ -102,19 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 panel.classList.toggle('is-open', open);
             }
         });
-        const restoredPanels = [];
-        (savedPosition.skills || []).forEach(id => {
-            const button = Array.from(document.querySelectorAll('.tag-button')).find(element => element.dataset.target === id);
-            const panel = document.getElementById(id);
-            if (button && panel) {
-                panel.style.transition = 'none';
-                panel.style.animation = 'none';
-                button.insertAdjacentElement('afterend', panel);
-                button.classList.add('active');
-                panel.classList.add('active');
-                restoredPanels.push(panel);
-            }
-        });
         let userMoved = false;
         ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(name =>
             window.addEventListener(name, () => { userMoved = true; }, { once: true, passive: true }));
@@ -130,13 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         const ready = document.fonts?.ready || Promise.resolve();
         Promise.race([ready, new Promise(resolve => setTimeout(resolve, 1200))]).then(() => {
-            requestAnimationFrame(() => requestAnimationFrame(() => {
-                restoreScroll();
-                restoredPanels.forEach(panel => {
-                    panel.style.removeProperty('transition');
-                    panel.style.removeProperty('animation');
-                });
-            }));
+            requestAnimationFrame(() => requestAnimationFrame(restoreScroll));
         });
         ready.then(() => requestAnimationFrame(restoreScroll));
     }
