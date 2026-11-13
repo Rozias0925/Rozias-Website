@@ -1007,6 +1007,10 @@
             margin: 0;
         }
 
+        .about-disclosure-body p + p {
+            margin-top: 16px;
+        }
+
         .about-empty {
             min-height: 2px;
         }
@@ -1591,7 +1595,9 @@
                     <span class="about-disclosure-title">我是怎樣的人？</span>
                     <span class="about-disclosure-action">閱讀</span>
                 </summary>
-                <div class="about-disclosure-body about-empty" aria-hidden="true"></div>
+                <div class="about-disclosure-body">
+                    <p class="handwriting">我是一個充滿好奇心、喜歡探索與挑戰的人。我享受學習新知的過程，也習慣透過獨立思考與不斷提問，尋找問題背後的本質。我對自己有一定的要求，相信成長來自持續嘗試、反思與改進。雖然偶爾會因追求完美而猶豫，但我也逐漸學會接受不確定性。我期待的不只是累積知識與成就，更希望透過不同的經歷，拓展自己的視野，探索人生的更多可能。</p>
+                </div>
             </details>
 
             <details class="about-disclosure fade-in">
@@ -1606,31 +1612,15 @@
 
             <details class="about-disclosure fade-in">
                 <summary>
-                    <span class="about-disclosure-title">為什麼是新加坡？</span>
+                    <span class="about-disclosure-title">我下一個追求的目標</span>
                     <span class="about-disclosure-action">閱讀</span>
                 </summary>
                 <div class="about-disclosure-body">
-                    <p class="handwriting">2018 年初次造訪新加坡時，我便對城市的發展與秩序留下深刻印象；2025 年初再次前往，並與當地學生交流後，我更清楚看見自己嚮往的學習環境：有效率、積極上進，也對自己有嚴格的要求。我願意把它稱為心中的烏托邦。這份嚮往讓我把目標放在新加坡國立大學或南洋理工大學，期望在機器學習、資料科學或人工智慧相關領域繼續深造。</p>
-                </div>
-            </details>
-
-            <details class="about-disclosure fade-in">
-                <summary>
-                    <span class="about-disclosure-title">我如何找到下一個方向？</span>
-                    <span class="about-disclosure-action">閱讀</span>
-                </summary>
-                <div class="about-disclosure-body">
+                    <p class="handwriting">我下一個追求的目標，是前往海外攻讀研究所，在更廣闊且多元的學術環境中持續成長。我希望結合既有的數學基礎與跨領域研究經驗，進一步深化自己在資料科學、機器學習與人工智能方面的知識與能力。同時，我也期待與來自不同文化及專業背景的人交流，接觸不同的思考方式與研究觀點。對我而言，出國留學不僅是學術上的進修，更是一次走出舒適圈、拓展國際視野，並探索未來發展方向的重要機會。</p>
                     <p class="handwriting">走向機器學習，並不是因為否定純數學，而是我重新評估自己的個性、喜好與想處理的問題後，做出的主動選擇。2025 年校際應用數學秋季研討會的最佳論文獎，讓我看見自己也能把數學想法帶進新的問題；而科學計算的學習，則讓我理解模型、資料與演算法之間的連結。從 Graph Laplacian 到 GCN，我發現過去的純數與邏輯訓練沒有被留在原地，而是為我打開了通往 ML 的新門。</p>
                 </div>
             </details>
 
-            <details class="about-disclosure fade-in">
-                <summary>
-                    <span class="about-disclosure-title">我正在推進什麼？</span>
-                    <span class="about-disclosure-action">閱讀</span>
-                </summary>
-                <div class="about-disclosure-body about-empty" aria-hidden="true"></div>
-            </details>
         </div>
     </section>
 
@@ -1649,7 +1639,7 @@
                 <h3>以數學為起點，將理解帶進教學與實作。</h3>
                 <p data-background-paragraph="0">我的學術背景建立於國立臺灣師範大學數學系的訓練。從代數與線性代數出發，我逐步把對數學結構的理解帶入科學計算、圖論與機器學習，在理論與實作之間持續探索。</p>
                 <p data-background-paragraph="1">教學也是這段歷程的重要部分。2023–2024 年，我在 elevo 艾樂維教育科技股份有限公司擔任國中及高中數學科講師；在師大，我於 113-1 學期擔任代數學（I）助教，113-2 學期擔任代數學（II）與機率導論助教，並在這兩個學期獲得數學系優良教學助理。</p>
-                <p data-background-paragraph="2">之後，我於 114-1 學期擔任線性代數（I）助教，並再次獲得優良教學助理；114-2 學期擔任數論助教，115-1 學期則擔任科學計算導論助教。這些課程橫跨代數、機率與計算，也連結了我持續累積的數學與程式實作經驗。</p>
+                <p data-background-paragraph="2">之後，我於 114-1 學期擔任線性代數（I）助教，114-2 學期擔任數論助教，並在這兩個學期再次獲得優良教學助理；115-1 學期則擔任科學計算導論助教。這些課程橫跨代數、機率與計算，也連結了我持續累積的數學與程式實作經驗。</p>
             </div>
         </div>
     </section>
@@ -1962,7 +1952,7 @@
 
         <div class="list-item fade-in">
             <h3>NTNU 優秀教學助理</h3>
-            <div class="meta">113-1, 113-2, 114-1 學期 | 國立臺灣師範大學</div>
+            <div class="meta">113-1, 113-2, 114-1, 114-2 學期 | 國立臺灣師範大學</div>
             <a href="assets/certificates/outstanding-teaching-assistant.pdf" target="_blank" rel="noopener" class="project-link">查看證書 ↗</a>
         </div>
 
